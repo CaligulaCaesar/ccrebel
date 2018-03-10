@@ -1,0 +1,10 @@
+
+has_revolutionary_boost = {
+	OR = {
+		has_modifier = revolutionary_boost_1
+		has_modifier = revolutionary_boost_2
+		has_modifier = revolutionary_boost_3
+		has_modifier = revolutionary_boost_4
+		has_modifier = revolutionary_boost_5
+	}
+}

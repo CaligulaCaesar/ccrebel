@@ -1,0 +1,110 @@
+
+		
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_1 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_1
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_2 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_2
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_3 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_3
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_4 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_4
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_5 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_5
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_6 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_6
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_7 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_7
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_8 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_8
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_9 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_9
+					days = 3600			
+				}
+				else = {
+			if = {
+				limit = {
+					owner = { NOT = { any_owned_planet {has_modifier = ccrebel_stirring_cost_10 } } }
+				}
+				add_modifier = {
+					modifier = ccrebel_stirring_cost_10
+					days = 3600			
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}
+				}
+			}

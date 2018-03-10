@@ -1,0 +1,1740 @@
+namespace = rebellionscript
+
+# A war is beginning, executed for every country in the war.
+# Root = Country
+# From = War
+country_event = {
+	id = rebellionscript.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		
+		every_owned_pop = {
+			limit = {
+				NOT = { is_same_species = root }
+				has_a_happiness_gauge = yes
+				
+				from = {
+					any_war_participant = {
+						from = {
+							if = {
+								limit = {
+									is_war_participant = {
+										who = root
+										side = attackers
+									}
+								}
+								is_war_participant = {
+									who = prev
+									side = defenders
+								}
+								else = {
+									is_war_participant = {
+										who = prev
+										side = attackers
+									}
+								}
+							}
+							NOT = { is_same_value = root }
+						}
+						is_same_species = prevprev
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_modifier = cc_war_with_kin } }
+				add_modifier = {
+					modifier = cc_war_with_kin
+					days = -1
+				}
+			}
+			set_timed_pop_flag = {
+				flag = cc_patriots
+				days = 10
+			}
+			if = {
+				limit = { has_modifier = nationalist_revolt }
+				remove_modifier = nationalist_revolt
+			}
+		#	root = { set_country_flag = cc_war_with_kin }	#can't use that as will only save one war / war opponent
+		}
+		every_owned_planet = {
+			limit = {
+				pop_percentage = {
+					percentage > 0.30
+					limit = { 
+						has_modifier = cc_war_with_kin
+						has_pop_flag = cc_patriots
+					}
+				}
+			}
+#			add_modifier = {
+#				modifier = cc_planet_war_with_kin
+#				days = -1
+#			}
+
+			planet_event = { id = rebellionscript.401 }
+		}
+		country_event = { id = rebellionscript.41 days = 5 }
+	}
+}
+
+#Random triggers per planet
+planet_event = {
+	id = rebellionscript.401
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				unrest > 50
+				NOT = { unrest > 65 }
+			}
+			random = {
+				chance = 33
+				set_timed_planet_flag = {
+					flag = cc_patriot_revolt
+					days = 360
+				}
+				planet_event = { id = rebellionscript.429 days = 10 }
+			}
+		}
+		if = {
+			limit = {
+				unrest > 65
+				NOT = { unrest > 80 }
+			}
+			random = {
+				chance = 67
+				set_timed_planet_flag = {
+					flag = cc_patriot_revolt
+					days = 360
+				}
+				planet_event = { id = rebellionscript.429 days = 10 }
+			}
+		}
+		if = {
+			limit = {
+				unrest > 80
+			}
+			set_timed_planet_flag = {
+				flag = cc_patriot_revolt
+				days = 360
+			}
+			planet_event = { id = rebellionscript.429 days = 10 }
+		}
+	}
+}
+
+#sort out descriptions
+country_event = {
+	id = rebellionscript.41
+	title = rebellionscript.41.name
+	desc = rebellionscript.41.desc
+	picture = GFX_evt_alien_propaganda
+#	desc = {
+#		trigger = { NOT = { any_owned_planet = { has_modifier = cc_planet_war_with_kin } } }
+#		text = rebellionscript.41.desc.minor
+#	}
+#	desc = {
+#		trigger = { any_owned_planet = { has_modifier = cc_planet_war_with_kin } }
+#		text = rebellionscript.41.desc.major
+#	}
+	is_triggered_only = yes
+	
+	trigger = {
+		any_owned_pop = {
+			has_modifier = cc_war_with_kin
+			has_pop_flag = cc_patriots
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { any_owned_planet = { has_planet_flag = cc_patriot_revolt } }
+			set_timed_country_flag = {
+				flag = cc_country_patriot_revolt
+				days = 355
+			}
+		}
+		random_owned_pop = {
+			limit = { 
+				has_modifier = cc_war_with_kin
+				has_pop_flag = cc_patriots
+			}
+			save_event_target_as = cc_patriot_pop
+		}
+		random_country = {
+			limit = {
+				has_country_flag = cc_war_opponent
+				is_same_species = event_target:cc_patriot_pop
+			}
+			save_event_target_as = cc_war_opponent1
+		}
+	}			
+	
+	option = {
+		name = rebellionscript.41.option
+		custom_tooltip = rebellionscript.41.tooltip
+	}
+}
+
+
+
+#on_monthly
+
+#monthly
+event = {
+	id = rebellionscript.42
+	is_triggered_only = yes
+	hide_window = yes
+	
+	trigger = {
+		any_country = {
+			any_owned_pop = {
+				has_modifier = cc_war_with_kin
+			}
+		}
+	}
+	
+	immediate = {
+		every_country = {
+			every_owned_pop = {
+				limit = { 
+					has_modifier = cc_war_with_kin
+					OR = {
+						is_same_species = prev
+						prev = { is_at_war = no }
+						NOT = {
+							any_country = {
+								is_at_war_with = prevprev
+								is_same_species = prev
+							}
+						}
+					}
+				}
+				remove_modifier = cc_war_with_kin
+			}
+		}
+	}
+}
+		
+#trigger 43 via a random list on a loop rather than mtth
+planet_event = {
+	id = rebellionscript.429
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = cc_patriot_revolt 
+		
+		NOR = {
+#			has_planet_flag = recent_unrest_event 
+			has_planet_flag = revolt_in_progress
+		}
+		has_ground_combat = no
+		controller = { is_same_value = root.owner }
+		
+		owner = { has_country_flag = cc_country_patriot_revolt }
+	}
+	
+	immediate = {
+		random_list = {
+			19 = {
+				planet_event = { id = rebellionscript.43 }
+				
+				modifier = {
+					factor = 0
+					NOT = { unrest > 50 }
+				}
+				
+				modifier = {
+					factor = 1.25
+					unrest > 80
+				}
+				modifier = {
+					factor = 1.25
+					unrest > 99
+				}
+		
+				modifier = {
+					factor = 1.25
+					any_owned_pop = {
+						has_citizenship_type = {
+							type = citizenship_assimilation
+							country = root.owner
+						}
+					}
+				}
+		
+				modifier = {
+					factor = 1.25
+					any_pop = { 
+						has_modifier = cc_war_with_kin
+						is_enslaved = yes
+					}
+				}
+				modifier = {
+					factor = 1.5
+					any_pop = { 
+						has_modifier = cc_war_with_kin
+						is_being_purged = yes
+					}
+				}
+				modifier = {
+					factor = 1.25
+					pop_percentage = {
+						percentage > 0.74
+						limit = { 
+							has_modifier = cc_war_with_kin
+						}
+					}
+				}
+				modifier = {
+					factor = 1.25
+					pop_percentage = {
+						percentage = 1
+						limit = { 
+							has_modifier = cc_war_with_kin
+						}
+					}
+				}
+			}			
+			
+			981 = { planet_event = { id = rebellionscript.429 days = 10 } }
+		}
+	}
+}
+		
+# Sort out localisations!
+# Revolt to homeland that the country is at war with (with 'else' just in case something goes wrong)
+
+planet_event = {
+	id = rebellionscript.43
+	title = rebellionscript.43.name
+	desc = rebellionscript.43.desc
+	
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		unrest > 50
+		has_planet_flag = cc_patriot_revolt 
+		
+		NOR = {
+#			has_planet_flag = recent_unrest_event 
+			has_planet_flag = revolt_in_progress
+		}
+		has_ground_combat = no
+		controller = { is_same_value = root.owner }
+		
+		owner = { is_at_war = yes }
+	}
+
+	immediate = {
+		set_planet_flag = revolt_in_progress
+		
+		set_timed_planet_flag = {
+			flag = cc_revolution
+			days = 60
+		
+		}
+		if = {
+			limit = { # has fatherland
+				original_owner = no
+				any_country = {
+					NOT = { is_same_value = root.owner }
+					is_at_war_with = root.owner
+					root = {
+						any_owned_pop = {
+							is_same_species = prevprev
+							OR = {
+								has_modifier = cc_war_with_kin
+								has_modifier = nationalist_revolt
+							}
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					NOT = { is_same_value = root.owner }
+					is_at_war_with = root.owner
+					root = {
+						any_owned_pop = {
+							is_same_species = prevprev
+							OR = {
+								has_modifier = cc_war_with_kin
+								has_modifier = nationalist_revolt
+							}
+						}
+					}
+				}
+				save_event_target_as = fatherland
+				set_timed_country_flag = {
+					flag = seceed_to_patriot
+					days = 90
+				}
+			}
+			random_owned_pop = {
+				limit = { is_same_species = event_target:fatherland }
+				save_event_target_as = nationalist_pop
+			}
+			create_rebels = {
+				name = random
+				ethos = event_target:fatherland
+				authority = random
+				#civics = event_target:fatherland
+				civics = random
+				species = event_target:fatherland
+				flag = random
+				effect = {
+					set_country_flag = cc_patriot_rebels
+					save_event_target_as = nationalist_rebels
+					establish_communications_no_message = root.owner
+					establish_communications_no_message = event_target:fatherland
+					root = {
+						owner = {
+							every_relation = {
+								establish_communications_no_message = prevprevprev
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					count_armies = {
+						limit = { owner = { is_same_value = root.owner } }
+						count > 8
+					}
+				}
+				every_owned_pop = {
+					limit = {
+						happiness < 0.25
+						OR = {
+							has_modifier = cc_war_with_kin
+							has_modifier = nationalist_revolt
+						}
+					}
+					planet = {
+						change_variable = {
+							which = ccrebel_planet_armies
+							value = 1
+						}
+					}
+				}
+			}
+			every_owned_pop = {
+				limit = {
+					OR = {
+						has_modifier = cc_war_with_kin
+						has_modifier = nationalist_revolt
+					}
+				}
+				planet = {
+					change_variable = {
+						which = ccrebel_planet_armies
+						value = 2
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ccrebel_planet_armies
+						value > 1
+					}
+				}
+				subtract_variable = {
+					which = ccrebel_planet_armies
+					value = 2
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = ccrebel_planet_armies
+							value = 1
+						}
+					}
+					subtract_variable = {
+						which = ccrebel_planet_armies
+						value = 1
+					}
+				}
+				create_army = {
+					owner = event_target:nationalist_rebels
+					species = event_target:fatherland
+					type = "assault_army"
+				}
+			}
+#			set_planet_flag = nationalist_revolt
+			set_timed_planet_flag = {
+				flag = cc_patriot_revolt_planet
+				days = 100
+			}
+			set_timed_planet_flag = {
+				flag = recent_unrest_event
+				days = 720
+			}
+			else = { # no original owner
+				create_rebels = {
+					species = this
+					ethos = random
+					authority = random
+					name = random
+					flag = random
+					effect = {
+						set_country_flag = standard_unrest_rebels
+						save_event_target_as = secessionist_rebels
+						establish_communications_no_message = root.owner
+						root = {
+							owner = {
+								every_relation = {
+									establish_communications_no_message = prevprevprev
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						count_armies = {
+							limit = { owner = { is_same_value = root.owner } }
+							count > 8
+						}
+					}
+					every_owned_pop = {
+						limit = {
+							happiness < 0.25
+							OR = {
+								has_modifier = cc_war_with_kin
+								has_modifier = nationalist_revolt
+							}
+						}
+						planet = {
+							change_variable = {
+								which = ccrebel_planet_armies
+								value = 1
+							}
+						}
+					}
+				}
+				every_owned_pop = {
+					limit = {
+						OR = {
+							has_modifier = cc_war_with_kin
+							has_modifier = nationalist_revolt
+						}
+					}
+					planet = {
+						change_variable = {
+							which = ccrebel_planet_armies
+							value = 2
+						}
+					}
+				}
+				while = {
+					limit = {
+						check_variable = {
+							which = ccrebel_planet_armies
+							value > 1
+						}
+					}
+					subtract_variable = {
+						which = ccrebel_planet_armies
+						value = 2
+					}
+					if = {
+						limit = {
+							check_variable = {
+								which = ccrebel_planet_armies
+								value = 1
+							}
+						}
+						subtract_variable = {
+							which = ccrebel_planet_armies
+							value = 1
+						}
+					}
+					create_army = {
+						name = "NAME_ccrebel_Patriotic_Brigade"
+						owner = event_target:secessionist_rebels
+						species = event_target:secessionist_rebels
+						type = "assault_army"
+					}
+				}
+				set_planet_flag = secessionist_revolt
+				set_timed_planet_flag = {
+					flag = recent_unrest_event
+					days = 720
+				}
+			}
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		custom_tooltip = ccrebel.4200.tooltip
+	}
+}
+
+# Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
+# This = Rebel Country
+# From = Planet
+country_event = {
+	id = rebellionscript.44
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = { has_country_flag = cc_patriot_rebels }
+
+	immediate = {
+		this = { save_event_target_as = cc_sec_rebels }
+
+		From = { 
+			remove_planet_flag = revolt_in_progress 
+			save_event_target_as = nationalist_revolt_planet
+			solar_system = {
+				starbase = {
+					set_owner = root
+				}
+				add_claims = {
+					who = from.owner
+					num_of_claims = 1
+					show_notification = no
+				}
+			}
+		}
+		create_leader = {
+			type = ruler
+			species = owner_main_species
+			name = random
+			skill = 2
+			traits = {}
+		}
+		assign_leader = last_created_leader
+		ruler = {
+			add_random_leader_trait = yes
+		}
+		from.owner = {
+			save_event_target_as = rebelled_against
+			country_event = { id = unrest.4211 }
+		}
+		from = { 
+			if = {
+				limit = { has_modifier = free_at_last }
+				remove_modifier = free_at_last
+			}
+			if = {
+				limit = { has_modifier = insurgents_free }
+				remove_modifier = insurgents_free
+			}
+			if = {
+				limit = { has_modifier = slaves_defected }
+				remove_modifier = slaves_defected
+			}
+			add_modifier = { 
+				modifier = insurgents_free
+				days = 7200
+			}
+		}
+		
+		
+		this = {
+			save_event_target_as = new_rebels
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = seceed_to_patriot
+					is_same_species = event_target:new_rebels
+					NOT = { is_same_value = event_target:new_rebels }
+					NOR = {
+						is_same_value = from.owner
+						is_same_empire = from.owner
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = seceed_to_patriot
+					is_same_species = event_target:new_rebels
+					NOR = {
+						is_same_value = event_target:new_rebels
+						is_same_empire = event_target:new_rebels
+					}
+					NOR = {
+						is_same_value = from.owner
+						is_same_empire = from.owner
+					}
+				}
+				save_event_target_as = rebellion2
+			}
+
+			if = {
+				limit = {
+					event_target:rebellion2 = { is_at_war_with = from.owner }
+				}
+				if = {
+					limit = {
+						OR = {
+							from.owner = {
+								has_relation_flag = {
+									who = event_target:rebellion2
+									flag = cc_lost_planet_to_patriots_1
+								}
+							}
+							event_target:rebellion2 = { NOT = { any_owned_planet = { has_planet_flag = cc_lost_to_patriots_1 } } }
+						}
+					}
+					from = { set_planet_flag = cc_lost_to_patriots_1 }
+					
+					from.owner = {
+						set_relation_flag = {
+							who = event_target:rebellion2
+							flag = cc_lost_planet_to_patriots_1 
+						}
+					}
+					else = {
+						if = {
+							limit = {
+								OR = {
+									from.owner = {
+										has_relation_flag = {
+											who = event_target:rebellion2
+											flag = cc_lost_planet_to_patriots_2
+										}
+									}
+									event_target:rebellion2 = { NOT = { any_owned_planet = { has_planet_flag = cc_lost_to_patriots_2 } } }
+								}
+							}
+							from = { set_planet_flag = cc_lost_to_patriots_2 }
+							
+							from.owner = {
+								set_relation_flag = {
+									who = event_target:rebellion2
+									flag = cc_lost_planet_to_patriots_2 
+								}
+							}
+							else = {
+								if = {
+									limit = {
+										OR = {
+											from.owner = {
+												has_relation_flag = {
+													who = event_target:rebellion2
+													flag = cc_lost_planet_to_patriots_3
+												}
+											}
+											event_target:rebellion2 = { NOT = { any_owned_planet = { has_planet_flag = cc_lost_to_patriots_3 } } }
+										}
+									}
+									from = { set_planet_flag = cc_lost_to_patriots_3 }
+									
+									from.owner = {
+										set_relation_flag = {
+											who = event_target:rebellion2
+											flag = cc_lost_planet_to_patriots_3 
+										}
+									}
+									else = {
+										if = {
+											limit = {
+												OR = {
+													from.owner = {
+														has_relation_flag = {
+															who = event_target:rebellion2
+															flag = cc_lost_planet_to_patriots_4
+														}
+													}
+													event_target:rebellion2 = { NOT = { any_owned_planet = { has_planet_flag = cc_lost_to_patriots_4 } } }
+												}
+											}
+											from = { set_planet_flag = cc_lost_to_patriots_4 }
+											
+											from.owner = {
+												set_relation_flag = {
+													who = event_target:rebellion2
+													flag = cc_lost_planet_to_patriots_4 
+												}
+											}
+											else = {		#no conditions as seems unlikely to get this far and I can't be bothered to code further
+#												if = {
+#													limit = {
+#														OR = {
+#															from.owner = {
+#																has_relation_flag = {
+#																	who = event_target:rebellion2
+#																	flag = cc_lost_planet_to_patriots_5
+#																}
+#															}
+#															event_target:rebellion2 = { NOT = { any_owned_planet = { has_planet_flag = cc_lost_to_patriots_5 } } }
+#														}
+#													}
+													from = { set_planet_flag = cc_lost_to_patriots_5 }
+													
+													from.owner = {
+														set_relation_flag = {
+															who = event_target:rebellion2
+															flag = cc_lost_planet_to_patriots_5 
+														}
+													}
+#												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+				
+			event_target:rebellion2 = {
+				if = {
+					limit = {
+						NOR = {
+							is_same_value = event_target:new_rebels
+							is_same_empire = event_target:new_rebels
+							is_same_value = from.owner
+							is_same_empire = from.owner
+							has_country_flag = cc_rebels_merging
+						}
+					}
+					country_event = { id = unrest.4220 days = 5 } # request incorporation
+					root = { set_country_flag = cc_rebels_merging }
+				}
+			}
+			else = {
+				remove_country_flag = cc_patriot_rebels
+			}
+		}
+	}
+}
+
+# on_war_lost
+# Root = Loser
+# From = Main Winner
+# FromFrom = War
+country_event = {
+	id = rebellionscript.45
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		fromfrom = {
+			every_war_participant = {
+				country_event = { id = rebellionscript.47 days = 10 }
+			}
+		}
+		
+		if = {
+			limit = {
+				from = {
+					relative_power = {
+						who = root
+						category = fleet
+						value = overwhelming
+					}
+				}
+			}
+
+			From = {
+				set_timed_country_flag = {
+					flag = cc_war_victor
+					days = 8
+				}
+			}
+			
+			fromfrom = {
+				every_war_participant = {
+					limit = {
+						fromfrom = {
+							is_war_participant = {
+								who = prev
+								side = Root
+							}
+						}
+					}
+					country_event = { id = rebellionscript.46 days = 5 }
+				}
+			}
+		}
+	}
+}
+
+
+# A white peace has been signed
+# Root = Recipient
+# From = Actor
+# FromFrom = Main Attacker
+# FromFromFrom = Main Defender
+# FromFromFromFrom = War
+country_event = {
+	id = rebellionscript.451
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		fromfromfromfrom = {
+			every_war_participant = {
+				country_event = { id = rebellionscript.47 days = 10 }
+			}
+		}
+	}
+}
+
+#######################localisation: the victor says "We won this war. These planets are ours." And you are forced to cede them.
+
+country_event = {
+	id = rebellionscript.46
+	title = rebellionscript.46.name
+	desc = rebellionscript.46.desc
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:cc_war_victor
+		planet_background = event_target:cc_war_victor.capital_scope
+		#graphical_culture = event_target:cc_war_victor
+		city_level = event_target:cc_war_victor.capital_scope
+		room = event_target:cc_war_victor
+	}
+
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			AND = {
+				any_owned_planet = {
+					has_planet_flag = cc_lost_to_patriots_1
+					controller = { is_same_value = root }
+				}
+				any_country = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_1
+					}
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+					NOT = { is_at_war_with = root }
+				}
+			}
+			AND = {
+				any_owned_planet = {
+					has_planet_flag = cc_lost_to_patriots_2
+					controller = { is_same_value = root }
+				}
+				any_country = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_2
+					}
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+					NOT = { is_at_war_with = root }
+				}
+			}
+			AND = {
+				any_owned_planet = {
+					has_planet_flag = cc_lost_to_patriots_3
+					controller = { is_same_value = root }
+				}
+				any_country = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_3
+					}
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+					NOT = { is_at_war_with = root }
+				}
+			}
+			AND = {
+				any_owned_planet = {
+					has_planet_flag = cc_lost_to_patriots_4
+					controller = { is_same_value = root }
+				}
+				any_country = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_4
+					}
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+					NOT = { is_at_war_with = root }
+				}
+			}
+			AND = {
+				any_owned_planet = {
+					has_planet_flag = cc_lost_to_patriots_5
+					controller = { is_same_value = root }
+				}
+				any_country = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_5
+					}
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+					NOT = { is_at_war_with = root }
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = {
+				has_country_flag = cc_war_victor
+			}
+			save_event_target_as = cc_war_victor
+		}
+		save_event_target_as = cc_war_loser
+	}
+	
+	option = {
+		name = rebellionscript.46.option
+		custom_tooltip = rebellionscript.46.option.tooltip
+		
+		hidden_effect = {
+			if = {
+				limit = {
+					any_owned_planet = {
+						has_planet_flag = cc_lost_to_patriots_1
+						controller = { is_same_value = root }
+					}
+					any_country = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_1
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_1
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+					save_event_target_as = cc_beneficiary_1
+				}
+				every_owned_planet = {
+					limit = {
+						has_planet_flag = cc_lost_to_patriots_1
+						controller = { is_same_value = root }
+					}
+					remove_planet_flag = cc_lost_planet_to_patriots_1
+					conquer = event_target:cc_beneficiary_1
+				}
+				event_target:cc_beneficiary_1 = {
+					country_event = { id = rebellionscript.461 }
+					
+					remove_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_1
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						has_planet_flag = cc_lost_to_patriots_2
+						controller = { is_same_value = root }
+					}
+					any_country = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_2
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_2
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+					save_event_target_as = cc_beneficiary_2
+				}
+				every_owned_planet = {
+					limit = {
+						has_planet_flag = cc_lost_to_patriots_2
+						controller = { is_same_value = root }
+					}
+					remove_planet_flag = cc_lost_planet_to_patriots_2
+					conquer = event_target:cc_beneficiary_2
+				}
+				event_target:cc_beneficiary_2 = {
+					country_event = { id = rebellionscript.461 }
+					
+					remove_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_2
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						has_planet_flag = cc_lost_to_patriots_3
+						controller = { is_same_value = root }
+					}
+					any_country = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_3
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_3
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+					save_event_target_as = cc_beneficiary_3
+				}
+				every_owned_planet = {
+					limit = {
+						has_planet_flag = cc_lost_to_patriots_3
+						controller = { is_same_value = root }
+					}
+					remove_planet_flag = cc_lost_planet_to_patriots_3
+					conquer = event_target:cc_beneficiary_3
+				}
+				event_target:cc_beneficiary_3 = {
+					country_event = { id = rebellionscript.461 }
+					
+					remove_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_3
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						has_planet_flag = cc_lost_to_patriots_4
+						controller = { is_same_value = root }
+					}
+					any_country = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_4
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_4
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+					save_event_target_as = cc_beneficiary_4
+				}
+				every_owned_planet = {
+					limit = {
+						has_planet_flag = cc_lost_to_patriots_4
+						controller = { is_same_value = root }
+					}
+					remove_planet_flag = cc_lost_planet_to_patriots_4
+					conquer = event_target:cc_beneficiary_4
+				}
+				event_target:cc_beneficiary_4 = {
+					country_event = { id = rebellionscript.461 }
+					
+					remove_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_4
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						has_planet_flag = cc_lost_to_patriots_5
+						controller = { is_same_value = root }
+					}
+					any_country = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_5
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_5
+						}
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+						NOT = { is_at_war_with = root }
+					}
+					save_event_target_as = cc_beneficiary_5
+				}
+				every_owned_planet = {					
+					limit = {
+						has_planet_flag = cc_lost_to_patriots_5
+						controller = { is_same_value = root }
+					}
+					remove_planet_flag = cc_lost_planet_to_patriots_5
+					conquer = event_target:cc_beneficiary_5
+				}
+				event_target:cc_beneficiary_5 = {
+					country_event = { id = rebellionscript.461 }
+					
+					remove_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_5
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+country_event = {
+	id = rebellionscript.461
+	title = rebellionscript.461.name
+	desc = rebellionscript.461.desc
+	picture = GFX_evt_arguing_senate
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		country_event = { id = rebellionscript.462 days = 5 }
+	}
+	
+	option = {
+		name = rebellionscript.461.option
+	}
+}
+
+
+country_event = {
+	id = rebellionscript.462
+	title = rebellionscript.462.name
+	desc = rebellionscript.462.desc
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:cc_war_loser
+		planet_background = event_target:cc_war_loser.capital_scope
+		#graphical_culture = event_target:cc_war_victor
+		city_level = event_target:cc_war_loser.capital_scope
+		room = event_target:cc_war_loser
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = rebellionscript.462.option
+		custom_tooltip = rebellionscript.462.option.tooltip
+	}
+}
+
+
+
+#tieing up loose ends
+country_event = {
+	id = rebellionscript.47
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				any_owned_planet = { has_planet_flag = cc_lost_to_patriots_1 }
+				NOT = {
+					any_country = {
+						is_at_war_with = root
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_1
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = cc_lost_to_patriots_1
+				}
+				remove_planet_flag = cc_lost_to_patriots_1
+			}
+		}
+		
+		if = {
+			limit = {
+				any_country = {
+					NOT = { is_at_war_with = root }
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_1
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_1
+					}
+				}
+				remove_relation_flag = {
+					who = root
+					flag = cc_lost_planet_to_patriots_1
+				}
+			}
+		}
+		
+		
+		if = {
+			limit = {
+				any_owned_planet = { has_planet_flag = cc_lost_to_patriots_2 }
+				NOT = {
+					any_country = {
+						is_at_war_with = root
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_2
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = cc_lost_to_patriots_2
+				}
+				remove_planet_flag = cc_lost_to_patriots_2
+			}
+		}
+		
+		if = {
+			limit = {
+				any_country = {
+					NOT = { is_at_war_with = root }
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_2
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_2
+					}
+				}
+				remove_relation_flag = {
+					who = root
+					flag = cc_lost_planet_to_patriots_2
+				}
+			}
+		}
+		
+		
+		if = {
+			limit = {
+				any_owned_planet = { has_planet_flag = cc_lost_to_patriots_3 }
+				NOT = {
+					any_country = {
+						is_at_war_with = root
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_3
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = cc_lost_to_patriots_3
+				}
+				remove_planet_flag = cc_lost_to_patriots_3
+			}
+		}
+		
+		if = {
+			limit = {
+				any_country = {
+					NOT = { is_at_war_with = root }
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_3
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_3
+					}
+				}
+				remove_relation_flag = {
+					who = root
+					flag = cc_lost_planet_to_patriots_3
+				}
+			}
+		}
+		
+		
+		if = {
+			limit = {
+				any_owned_planet = { has_planet_flag = cc_lost_to_patriots_4 }
+				NOT = {
+					any_country = {
+						is_at_war_with = root
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_4
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = cc_lost_to_patriots_4
+				}
+				remove_planet_flag = cc_lost_to_patriots_4
+			}
+		}
+		
+		if = {
+			limit = {
+				any_country = {
+					NOT = { is_at_war_with = root }
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_4
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_4
+					}
+				}
+				remove_relation_flag = {
+					who = root
+					flag = cc_lost_planet_to_patriots_4
+				}
+			}
+		}
+		
+		
+		if = {
+			limit = {
+				any_owned_planet = { has_planet_flag = cc_lost_to_patriots_5 }
+				NOT = {
+					any_country = {
+						is_at_war_with = root
+						has_relation_flag = {
+							who = root
+							flag = cc_lost_planet_to_patriots_5
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					has_planet_flag = cc_lost_to_patriots_5
+				}
+				remove_planet_flag = cc_lost_to_patriots_5
+			}
+		}
+		
+		if = {
+			limit = {
+				any_country = {
+					NOT = { is_at_war_with = root }
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_5
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					has_relation_flag = {
+						who = root
+						flag = cc_lost_planet_to_patriots_5
+					}
+				}
+				remove_relation_flag = {
+					who = root
+					flag = cc_lost_planet_to_patriots_5
+				}
+			}
+		}
+	}
+}
+
+
+# Patriotism transferred to kids
+pop_event = {
+	id = rebellionscript.475
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = planet
+		planet = {
+			exists = owner
+			owner = { 
+				any_owned_pop = {
+					is_same_species = root
+					has_modifier = cc_war_with_kin
+				}
+			}
+		}
+	}
+
+	immediate = {
+		add_modifier = {
+			modifier = cc_war_with_kin
+			days = -1
+		}
+	}
+}
+
+# Patriotism transferred to immigrants
+pop_event = {
+	id = rebellionscript.476
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_modifier = cc_war_with_kin }
+		
+		exists = planet
+		planet = {
+			exists = owner
+			owner = {  
+				any_owned_pop = {
+					is_same_species = root
+					has_modifier = cc_war_with_kin
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = cc_war_with_kin
+			days = -1
+		}
+	}
+}
+
+
+
+	
+#for reinforcing rebels (experimental):
+#trigger = { planet = { has_planet_flag = revolt in progress unrest > 99 } }
+
+#immediate = {
+#every_planet_army = { owner = { is_country_type = rebel save_event_target_as = rebellion_to_reinforce } }
+#etc etc
+
+#Possible bonus for civic or authority: (Make it unremovable and unaddable ). Slaves in neighbouring countries will
+#want to revolt to you (script that), but you can't have proper relations with their country. Maybe a bonus when
+#fighting them?
+

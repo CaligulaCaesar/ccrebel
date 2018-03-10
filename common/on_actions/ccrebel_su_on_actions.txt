@@ -1,0 +1,29 @@
+
+#From = Country scope
+#This = Planet scope
+#on_planet_transfer = {
+#	events = {
+#		ccrebel_sow_unrest.42
+#	}
+#}
+
+
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_lose = {
+	events = {
+		ccrebel_sow_unrest.3
+		ccrebel_sow_unrest.31
+	}
+}
+
+on_monthly_pulse = {
+	events = {
+		ccrebel_sow_unrest.2
+		ccrebel_sow_unrest.22
+		ccrebel_sow_unrest.43
+		cc_su_perf.1
+	}
+}

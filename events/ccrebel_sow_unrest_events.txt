@@ -1,0 +1,6662 @@
+namespace = ccrebel_sow_unrest
+
+
+
+#notification that someone is sowing unrest
+
+country_event = {
+	id = ccrebel_sow_unrest.1
+	title = ccrebel_sow_unrest.1.name
+	desc = ccrebel_sow_unrest.1.desc
+	picture = GFX_evt_alien_propaganda
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		random_country = {
+			limit = {
+				has_country_flag = cc_sowing_unrest
+				has_relation_flag = {
+					who = root
+					flag = ccrebel_sowing_unrest_by_1
+				}
+			}
+			save_event_target_as = ccrebel_sowing_unrest_1
+			
+			root = {
+				random_owned_planet = {
+					limit = { has_planet_flag = ccrebel_planet_being_stirred_up@prevprev }
+					save_event_target_as = ccrebel_sow_unrest_target
+				}
+			}
+			
+			random_owned_planet = {
+				limit = { has_planet_flag = cc_planet_sowing_unrest_marker_1@root }
+				save_event_target_as = ccrebel_sow_unrest_source
+			}
+		}
+	}
+	
+	option = {
+		name = ccrebel_sow_unrest.1.option
+	}
+}
+
+
+#Get rid of unrest if they no longer own the planet that was creating it.
+#monthly
+event = {
+	id = ccrebel_sow_unrest.2
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		every_country = {
+			limit = {
+				any_owned_planet = {
+					is_being_stirred_up = yes
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					is_being_stirred_up = yes
+					NOT = {
+						any_country = {
+							prev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer@prev }
+							any_owned_planet = {
+								prev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev }
+							}
+						}
+					}
+				}
+				cc_remove_su_modifiers = yes
+				
+				owner = { country_event = { id = ccrebel_sow_unrest.21 days = 1 } }
+			}
+		}
+	}
+}
+
+#cleanup - get rid of flag if appropriate
+country_event = {
+	id = ccrebel_sow_unrest.21
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		every_country = {
+			limit = {
+				reverse_has_relation_flag = {
+					who = root
+					flag = ccrebel_sowing_unrest_by
+				}
+				root = {
+					NOT = {
+						any_owned_planet = {
+							is_being_stirred_up = yes
+							has_planet_flag = ccrebel_planet_being_stirred_up_longer@prevprev
+							prevprev = {
+								any_owned_planet = {
+									prevprev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev }
+								}
+							}
+						}
+					}
+				}
+			}
+			root = {
+				remove_relation_flag = {
+					who = prev
+					flag = ccrebel_sowing_unrest_by
+				}
+			}
+		}
+	}
+}
+
+#Get rid of sow unrest costs if the planet changes hands (or no more planets remain to sow unrest to).
+#monthly
+event = {
+	id = ccrebel_sow_unrest.22
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		every_country = {
+			limit = {
+				any_owned_planet = {
+					OR = {
+						has_modifier = ccrebel_sowing_up_planet
+						has_modifier = ccrebel_sowing_up_planet_2
+						has_modifier = ccrebel_sowing_up_planet_3
+						has_modifier = ccrebel_sowing_up_planet_4
+					}
+				}
+				NOT = {
+					any_country = {
+						reverse_has_relation_flag = {
+							who = prev
+							flag = ccrebel_sowing_unrest_by
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					has_modifier = ccrebel_sowing_up_planet
+				}
+				remove_modifier = ccrebel_sowing_up_planet
+			}
+			every_owned_planet = {
+				limit = {
+					has_modifier = ccrebel_sowing_up_planet_2
+				}
+				remove_modifier = ccrebel_sowing_up_planet_2
+			}
+			every_owned_planet = {
+				limit = {
+					has_modifier = ccrebel_sowing_up_planet_3
+				}
+				remove_modifier = ccrebel_sowing_up_planet_3
+			}
+			every_owned_planet = {
+				limit = {
+					has_modifier = ccrebel_sowing_up_planet_4
+				}
+				remove_modifier = ccrebel_sowing_up_planet_4
+			}
+		}
+		
+		every_country = {
+			limit = {
+				any_country = {
+					reverse_has_relation_flag = {
+						who = prev
+						flag = ccrebel_sowing_unrest_by
+					}
+				}
+				any_owned_planet = {
+					OR = {
+						has_modifier = ccrebel_sowing_up_planet
+						has_modifier = ccrebel_sowing_up_planet_2
+						has_modifier = ccrebel_sowing_up_planet_3
+						has_modifier = ccrebel_sowing_up_planet_4
+					}
+					NOT = {
+						any_country = {
+							reverse_has_relation_flag = {
+								who = prevprev
+								flag = ccrebel_sowing_unrest_by
+							}
+							any_owned_planet = {
+								has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prevprev
+								is_being_stirred_up = yes
+							}
+						}
+					}
+				}
+			}
+			every_owned_planet = {
+				limit = {
+					OR = {
+						has_modifier = ccrebel_sowing_up_planet
+						has_modifier = ccrebel_sowing_up_planet_2
+						has_modifier = ccrebel_sowing_up_planet_3
+						has_modifier = ccrebel_sowing_up_planet_4
+					}
+					NOT = {
+						any_country = {
+							reverse_has_relation_flag = {
+								who = prevprev
+								flag = ccrebel_sowing_unrest_by
+							}
+							any_owned_planet = {
+								has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prevprev
+								is_being_stirred_up = yes
+							}
+						}
+					}
+				}
+				if = {
+					limit = { has_modifier = ccrebel_sowing_up_planet }
+					remove_modifier = ccrebel_sowing_up_planet
+				}
+				if = {
+					limit = { has_modifier = ccrebel_sowing_up_planet_2 }
+					remove_modifier = ccrebel_sowing_up_planet_2
+				}
+				if = {
+					limit = { has_modifier = ccrebel_sowing_up_planet_3 }
+					remove_modifier = ccrebel_sowing_up_planet_3
+				}
+				if = {
+					limit = { has_modifier = ccrebel_sowing_up_planet_4 }
+					remove_modifier = ccrebel_sowing_up_planet_4
+				}
+				if = {
+					limit = { has_planet_flag = cc_planet_sowing_unrest_marker }
+					remove_planet_flag = cc_planet_sowing_unrest_marker
+				}
+			}
+		}
+	}
+}
+
+
+#Removes modifiers if a rebellion succeeds, plus triggers subsidising the rebels
+
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+# Revolt Lost #
+country_event = {
+	id = ccrebel_sow_unrest.3
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		From = { is_country_type = rebel }
+		FromFrom = {
+			is_being_stirred_up = yes
+		}
+	}
+
+	immediate = {
+	
+		save_event_target_as = old_owner
+		
+		FromFrom = { cc_remove_su_modifiers = yes }
+		
+#		This = {
+#			set_timed_relation_flag = {
+#				flag = ccrebel_lost_to_these_rebels
+#				who = From
+#				days = 12
+#			}
+#		}
+			
+		random_country = {
+			limit = {
+				fromfrom = { has_planet_flag = ccrebel_planet_being_stirred_up_longer@prev }
+			}
+			From = {
+				set_timed_relation_flag = {
+					flag = ccrebel_subsidised_rebels
+					who = prev
+					days = 15
+				}
+			}
+#			if = {
+#				limit = { has_technology = tech_ccrebel_unrest_2 }
+#				country_event = { id = ccrebel_sow_unrest.41 days = 11 }
+#				else = { country_event = { id = ccrebel_sow_unrest.4 days = 11 } }
+#			}
+			country_event = { id = ccrebel_sow_unrest.4 days = 14 }
+		}
+	}
+}
+
+
+# triggers 'subsidise rebels' even if you didn't sow unrest
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+# Revolt Lost #
+country_event = {
+	id = ccrebel_sow_unrest.31
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		From = { is_country_type = rebel }
+		FromFrom = {
+			is_being_stirred_up = no
+		}
+	}
+
+	immediate = {
+	
+		save_event_target_as = old_owner
+		
+		
+#		This = {
+#			set_timed_relation_flag = {
+#				flag = ccrebel_lost_to_these_rebels
+#				who = From
+#				days = 12
+#			}
+#		}
+			
+		random_country = {
+			limit = {
+				NOT = { is_country_type = fallen_empire }
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+					has_valid_civic = civic_barbaric_despoilers
+				}
+				any_owned_planet = {
+					distance = {
+						source = FromFrom
+						max_distance = 150
+					}
+				}
+#				has_relation_flag = {
+#					who = event_target:old_owner
+#					flag = ccrebel_sowing_unrest_by
+#				}
+				
+				opinion = {
+					who = event_target:old_owner
+					value < -50
+				}
+				OR = {
+					is_hostile_to = event_target:old_owner
+					is_angry_to = event_target:old_owner
+					is_rival = event_target:old_owner
+					is_disloyal_to = event_target:old_owner
+					is_domineering_to = event_target:old_owner
+				}
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 2000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 100
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 100
+						}
+						energy > 2000
+					}
+				}
+			}
+			From = {
+				set_timed_relation_flag = {
+					flag = ccrebel_may_support_rebels
+					who = prev
+					days = 15
+				}
+			}
+#			if = {
+#				limit = { has_technology = tech_ccrebel_unrest_2 }
+#				country_event = { id = ccrebel_sow_unrest.41 days = 11 }
+#				else = { country_event = { id = ccrebel_sow_unrest.4 days = 11 } }
+#			}
+			country_event = { id = ccrebel_sow_unrest.4 days = 14 }
+		}
+	}
+}
+
+
+
+country_event = {
+	id = ccrebel_sow_unrest.4
+	title = ccrebel_sow_unrest.4.name
+	
+	desc = {
+		trigger = { 
+			any_country = {
+				has_relation_flag = {
+					flag = ccrebel_subsidised_rebels
+					who = root
+				}
+			}
+		}
+		text = ccrebel_sow_unrest.4.desc
+	}
+	desc = {
+		trigger = { 
+			any_country = {
+				has_relation_flag = {
+					flag = ccrebel_may_support_rebels
+					who = root
+				}
+			}
+		}
+		text = ccrebel_sow_unrest.4.desc.not_sown_unrest
+	}
+	
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:ccrebel_subsidised_rebels
+		planet_background = event_target:ccrebel_subsidised_rebels.capital_scope
+		#graphical_culture = event_target:ccrebel_subsidised_rebels
+		city_level = event_target:ccrebel_subsidised_rebels.capital_scope
+		room = event_target:ccrebel_subsidised_rebels
+	}
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		exists = root
+		NOR = {
+			has_valid_civic = civic_fanatic_purifiers
+			has_valid_civic = civic_hive_devouring_swarm
+			has_valid_civic = civic_machine_terminator
+			has_valid_civic = civic_barbaric_despoilers
+		}
+		any_country = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_barbaric_despoilers
+			}
+			OR = {
+				has_relation_flag = {
+					flag = ccrebel_may_support_rebels
+					who = root
+				}
+				has_relation_flag = {
+					flag = ccrebel_subsidised_rebels
+					who = root
+				}
+			}
+		}
+	}
+	
+	immediate = {		
+		random_country = {
+			limit = {
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+					has_valid_civic = civic_barbaric_despoilers
+				}
+				OR = {
+					has_relation_flag = {
+						flag = ccrebel_subsidised_rebels
+						who = root
+					}
+					has_relation_flag = {
+						flag = ccrebel_may_support_rebels
+						who = root
+					}
+				}
+			}
+			save_event_target_as = ccrebel_subsidised_rebels
+		}
+		
+		
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_relation_flag = {
+						flag = ccrebel_subsidised_rebels
+						who = root
+					}
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					has_planet_flag = cc_planet_sowing_unrest_marker
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev
+					}
+				}
+				save_event_target_as = ccrebel_subsidising_planet
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						distance = {
+							source = event_target:ccrebel_subsidised_rebels.capital_scope
+							max_distance = 150
+						}
+					}
+					save_event_target_as = ccrebel_subsidising_planet
+				}
+			}
+		}
+		
+		#bit of a cock-up here...
+		if = {
+			limit = {
+				exists = event_target:old_owner
+				NOT = { exists = event_target:ccrebel_revolted_from_country }
+			}
+			event_target:old_owner = {
+				save_event_target_as = ccrebel_revolted_from_country
+			}
+		}
+	}
+	
+	
+	option = {
+		name = ccrebel_sow_unrest.4.option.A
+		custom_tooltip = ccrebel_sow_unrest.4.option.A.tooltip
+		
+		ai_chance = {
+			factor = 8
+			
+			
+			modifier = {
+				factor = 0
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -80
+				}
+			}
+			modifier = {
+				factor = 0.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -40
+				}
+			}
+			modifier = {
+				factor = 1.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 20
+				}
+			}
+			
+			
+			#Ethics and attitudes
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+# conqueror -> Will they conquer planets from other empires?
+# subjugator -> Will they vassalise other empires?
+# liberator -> Will they liberate conquered empires?
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 1.5
+				has_ai_personality_behaviour = liberator
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = subjugator
+			}
+			
+			
+			modifier = {
+				factor = 3
+				is_at_war_with = event_target:ccrebel_revolted_from_country
+			}
+				
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 8000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 400
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 400
+							}
+							energy > 8000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 10000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 500
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 500
+							}
+							energy > 10000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 15000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 800
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 800
+						}
+						energy > 15000
+					}
+				}
+			}
+
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						any_country = {
+							NOT = { is_same_value = prev }
+							OR = {
+								root = {
+									is_threatened_to = prev
+									is_hostile_to = prev
+									is_dismissive_to = prev
+									is_patronizing_to = prev
+									is_angry_to = prev
+									is_rival = prev
+									is_unfriendly_to = prev
+									is_disloyal_to = prev
+									is_domineering_to = prev
+#									is_wary_to = prev
+								}
+							}
+							any_owned_planet = {
+								distance = {
+									source = prevprev
+									max_distance = 75
+								}
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				event_target:ccrebel_subsidised_rebels.capital_scope = {
+					any_country = {
+						NOT = { is_same_value = prev }
+						OR = {
+							root = {
+								is_threatened_to = prev
+								is_hostile_to = prev
+								is_rival = prev
+								is_disloyal_to = prev
+							}
+						}
+						any_owned_planet = {
+							distance = {
+								source = prevprev
+								max_distance = 75
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+#			add_energy = -2000
+#			add_minerals = -6000
+
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				if = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_they_gave_a_fleet }
+						is_ai = no
+					}
+					root = { save_event_target_as = ccrebel_naughty_country }
+					country_event = { id = ccrebel_sow_unrest.7 days = 30 }
+				}
+			}
+			
+			event_target:ccrebel_subsidising_planet = {
+				if = {
+					limit = {
+						NOT = { has_modifier = ccrebel_subsidiser_3 }
+					}
+					add_modifier = {
+						modifier = ccrebel_subsidiser_3
+						days = 3600
+					}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_1 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_1
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_2 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_2
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_3 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_3
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_4 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_4
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_5 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_5
+								days = 3600
+							}
+						}
+					}
+					else = {
+						add_modifier = {
+							modifier = ccrebel_subsidiser_3
+							days = 3600
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+				}
+				set_timed_planet_flag = {
+					flag = ccrebel_subsidiser_planet
+					days = 3610
+				}
+			}	
+			set_timed_relation_flag = {
+				who = event_target:ccrebel_subsidised_rebels
+				flag = ccrebel_subsidiser
+				days = 3610
+			}
+			
+			country_event = { id = ccrebel_sow_unrest.6 }
+			
+#			country_event = { id = ccrebel_sow_unrest.43 days = 3600 }
+			country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
+			
+			event_target:ccrebel_subsidised_rebels = {
+				capital_scope = {
+					add_modifier = {
+						modifier = ccrebel_subsidised_3
+						days = 3600
+					}
+					
+					set_timed_planet_flag = {
+						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
+						days = 3600
+					}
+				}
+#				add_energy = 2000
+#				add_minerals = 6000
+				
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+			}
+
+		#get it to run again if there are more valid targets
+			set_country_flag = ccrebel_been_asked_to_subsidise
+			if = {
+				limit = {
+					any_country = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+				}
+			
+			
+				random_country = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+					event_target:ccrebel_subsidised_rebels = {
+						set_timed_relation_flag = {
+							flag = ccrebel_may_support_rebels
+							who = prev
+							days = 5
+						}
+					}
+		#			if = {
+		#				limit = { has_technology = tech_ccrebel_unrest_2 }
+		#				country_event = { id = ccrebel_sow_unrest.41 days = 11 }
+		#				else = { country_event = { id = ccrebel_sow_unrest.4 days = 11 } }
+		#			}
+					country_event = { id = ccrebel_sow_unrest.4 }
+				}
+			}
+			
+		}
+	}
+	
+	option = {
+		name = ccrebel_sow_unrest.4.option.B
+		custom_tooltip = ccrebel_sow_unrest.4.option.B.tooltip
+		
+		ai_chance = {
+			factor = 4
+			
+			modifier = {
+				factor = 0
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -80
+				}
+			}
+			modifier = {
+				factor = 0.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -40
+				}
+			}
+			modifier = {
+				factor = 1.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 20
+				}
+			}
+			
+			#Ethics and attitudes
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+# conqueror -> Will they conquer planets from other empires?
+# subjugator -> Will they vassalise other empires?
+# liberator -> Will they liberate conquered empires?
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 1.5
+				has_ai_personality_behaviour = liberator
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = subjugator
+			}
+			
+			modifier = {
+				factor = 3
+				is_at_war_with = event_target:ccrebel_revolted_from_country
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 4000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 200
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 200
+							}
+							energy > 4000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.25
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 5000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 250
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 250
+							}
+							energy > 5000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 8000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 400
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 400
+						}
+						energy > 8000
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						any_country = {
+							NOT = { is_same_value = prev }
+							OR = {
+								root = {
+									is_threatened_to = prev
+									is_hostile_to = prev
+									is_dismissive_to = prev
+									is_patronizing_to = prev
+									is_angry_to = prev
+									is_rival = prev
+									is_unfriendly_to = prev
+									is_disloyal_to = prev
+									is_domineering_to = prev
+#									is_wary_to = prev
+								}
+							}
+							any_owned_planet = {
+								distance = {
+									source = prevprev
+									max_distance = 75
+								}
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				event_target:ccrebel_subsidised_rebels.capital_scope = {
+					any_country = {
+						NOT = { is_same_value = prev }
+						OR = {
+							root = {
+								is_threatened_to = prev
+								is_hostile_to = prev
+								is_rival = prev
+								is_disloyal_to = prev
+							}
+						}
+						any_owned_planet = {
+							distance = {
+								source = prevprev
+								max_distance = 75
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+#			add_energy = -1000
+#			add_minerals = -3000
+
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				if = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_they_gave_a_fleet }
+						is_ai = no
+					}
+					root = { save_event_target_as = ccrebel_naughty_country }
+					country_event = { id = ccrebel_sow_unrest.7 days = 30 }
+				}
+			}
+			
+			event_target:ccrebel_subsidising_planet = {
+				if = {
+					limit = {
+						NOT = { has_modifier = ccrebel_subsidiser_2 }
+					}
+					add_modifier = {
+						modifier = ccrebel_subsidiser_2
+						days = 3600
+					}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_1 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_1
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_2 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_2
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_3 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_3
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_4 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_4
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_5 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_5
+								days = 3600
+							}
+						}
+					}
+					else = {
+						add_modifier = {
+							modifier = ccrebel_subsidiser_2
+							days = 3600
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+				}
+					
+				set_timed_planet_flag = {
+					flag = ccrebel_subsidiser_planet
+					days = 3610
+				}
+			}	
+			set_timed_relation_flag = {
+				who = event_target:ccrebel_subsidised_rebels
+				flag = ccrebel_subsidiser
+				days = 3610
+			}
+			
+			country_event = { id = ccrebel_sow_unrest.6 }
+			
+#			country_event = { id = ccrebel_sow_unrest.43 days = 3600 }
+			country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
+			
+			event_target:ccrebel_subsidised_rebels = {
+				capital_scope = {
+					add_modifier = {
+						modifier = ccrebel_subsidised_2
+						days = 3600
+					}
+					
+					set_timed_planet_flag = {
+						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
+						days = 3600
+					}
+				}
+#				add_energy = 1000
+#				add_minerals = 3000
+				
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+			}
+			
+		#get it to run again if there are more valid targets
+			set_country_flag = ccrebel_been_asked_to_subsidise
+			if = {
+				limit = {
+					any_country = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+				}
+			
+			
+				random_country = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+					event_target:ccrebel_subsidised_rebels = {
+						set_timed_relation_flag = {
+							flag = ccrebel_may_support_rebels
+							who = prev
+							days = 5
+						}
+					}
+		#			if = {
+		#				limit = { has_technology = tech_ccrebel_unrest_2 }
+		#				country_event = { id = ccrebel_sow_unrest.41 days = 11 }
+		#				else = { country_event = { id = ccrebel_sow_unrest.4 days = 11 } }
+		#			}
+					country_event = { id = ccrebel_sow_unrest.4 }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ccrebel_sow_unrest.4.option.C
+		custom_tooltip = ccrebel_sow_unrest.4.option.C.tooltip
+		
+		ai_chance = {
+			factor = 2
+			
+			modifier = {
+				factor = 0
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -80
+				}
+			}
+			modifier = {
+				factor = 0.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -40
+				}
+			}
+			modifier = {
+				factor = 1.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 20
+				}
+			}
+			
+			#Ethics and attitudes
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+# conqueror -> Will they conquer planets from other empires?
+# subjugator -> Will they vassalise other empires?
+# liberator -> Will they liberate conquered empires?
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 1.5
+				has_ai_personality_behaviour = liberator
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = subjugator
+			}
+			
+			
+			modifier = {
+				factor = 3
+				is_at_war_with = event_target:ccrebel_revolted_from_country
+			}
+			
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 2000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 100
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 100
+							}
+							energy > 2000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 2500
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 125
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 125
+							}
+							energy > 2500
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 4000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 200
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 200
+						}
+						energy > 4000
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						any_country = {
+							NOT = { is_same_value = prev }
+							OR = {
+								root = {
+									is_threatened_to = prev
+									is_hostile_to = prev
+									is_dismissive_to = prev
+									is_patronizing_to = prev
+									is_angry_to = prev
+									is_rival = prev
+									is_unfriendly_to = prev
+									is_disloyal_to = prev
+									is_domineering_to = prev
+#									is_wary_to = prev
+								}
+							}
+							any_owned_planet = {
+								distance = {
+									source = prevprev
+									max_distance = 75
+								}
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				event_target:ccrebel_subsidised_rebels.capital_scope = {
+					any_country = {
+						NOT = { is_same_value = prev }
+						OR = {
+							root = {
+								is_threatened_to = prev
+								is_hostile_to = prev
+								is_rival = prev
+								is_disloyal_to = prev
+							}
+						}
+						any_owned_planet = {
+							distance = {
+								source = prevprev
+								max_distance = 75
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+#			add_energy = -1000
+#			add_minerals = -3000
+
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				if = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_they_gave_a_fleet }
+						is_ai = no
+					}
+					root = { save_event_target_as = ccrebel_naughty_country }
+					country_event = { id = ccrebel_sow_unrest.7 days = 30 }
+				}
+			}
+
+			event_target:ccrebel_subsidising_planet = {
+				if = {
+					limit = {
+						NOT = { has_modifier = ccrebel_subsidiser_1 }
+					}
+					add_modifier = {
+						modifier = ccrebel_subsidiser_1
+						days = 3600
+					}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_1 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_1
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_2 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_2
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_3 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_3
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_4 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_4
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_5 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_5
+								days = 3600
+							}
+						}
+					}
+					else = {
+						add_modifier = {
+							modifier = ccrebel_subsidiser_1
+							days = 3600
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+				}
+					
+				set_timed_planet_flag = {
+					flag = ccrebel_subsidiser_planet
+					days = 3610
+				}
+			}	
+			set_timed_relation_flag = {
+				who = event_target:ccrebel_subsidised_rebels
+				flag = ccrebel_subsidiser
+				days = 3610
+			}
+			
+			country_event = { id = ccrebel_sow_unrest.6 }
+			
+#			country_event = { id = ccrebel_sow_unrest.43 days = 3600 }
+			country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
+			
+			event_target:ccrebel_subsidised_rebels = {
+				capital_scope = {
+					add_modifier = {
+						modifier = ccrebel_subsidised_1
+						days = 3600
+					}
+					
+					set_timed_planet_flag = {
+						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
+						days = 3600
+					}
+				}
+#				add_energy = 1000
+#				add_minerals = 3000
+				
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+			}
+			
+		#get it to run again if there are more valid targets
+			set_country_flag = ccrebel_been_asked_to_subsidise
+			if = {
+				limit = {
+					any_country = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+				}
+			
+			
+				random_country = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+					event_target:ccrebel_subsidised_rebels = {
+						set_timed_relation_flag = {
+							flag = ccrebel_may_support_rebels
+							who = prev
+							days = 5
+						}
+					}
+		#			if = {
+		#				limit = { has_technology = tech_ccrebel_unrest_2 }
+		#				country_event = { id = ccrebel_sow_unrest.41 days = 11 }
+		#				else = { country_event = { id = ccrebel_sow_unrest.4 days = 11 } }
+		#			}
+					country_event = { id = ccrebel_sow_unrest.4 }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ccrebel_sow_unrest.4.option.D
+		
+		ai_chance = {
+			factor = 1
+		}
+		
+		hidden_effect = {
+			set_country_flag = ccrebel_been_asked_to_subsidise
+			if = {
+				limit = {
+					any_country = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+				}
+			
+			
+				random_country = {
+					limit = {
+						NOT = { has_country_flag = ccrebel_been_asked_to_subsidise }
+						NOR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+							has_valid_civic = civic_barbaric_despoilers
+						}
+						any_owned_planet = {
+							distance = {
+								source = event_target:ccrebel_subsidised_rebels.capital_scope
+								max_distance = 150
+							}
+						}
+		#				has_relation_flag = {
+		#					who = event_target:old_owner
+		#					flag = ccrebel_sowing_unrest_by
+		#				}
+						
+						opinion = {
+							who = event_target:old_owner
+							value < -50
+						}
+						OR = {
+							is_hostile_to = event_target:old_owner
+							is_angry_to = event_target:old_owner
+							is_rival = event_target:old_owner
+							is_disloyal_to = event_target:old_owner
+							is_domineering_to = event_target:old_owner
+						}
+						AND = {
+							OR = {
+								has_country_resource = {
+									type = minerals
+									amount > 2000
+								}
+								has_monthly_income = {
+									resource = minerals
+									value > 100
+								}
+							}
+							OR = {
+								has_monthly_income = {
+									resource = energy
+									value > 100
+								}
+								energy > 2000
+							}
+						}
+					}
+					event_target:ccrebel_subsidised_rebels = {
+						set_timed_relation_flag = {
+							flag = ccrebel_may_support_rebels
+							who = prev
+							days = 5
+						}
+					}
+		#			if = {
+		#				limit = { has_technology = tech_ccrebel_unrest_2 }
+		#				country_event = { id = ccrebel_sow_unrest.41 days = 11 }
+		#				else = { country_event = { id = ccrebel_sow_unrest.4 days = 11 } }
+		#			}
+					country_event = { id = ccrebel_sow_unrest.4 }
+				}
+			}
+		}
+	}
+}
+
+
+# Planet transferred
+#planet_event = {
+#	id = ccrebel_sow_unrest.42
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		if = {
+#			limit = {
+#				has_modifier = ccrebel_subsidised_1
+#			}
+#			remove_modifier = ccrebel_subsidised_1
+#		}
+#		if = {
+#			limit = {
+#				has_modifier = ccrebel_subsidised_2
+#			}
+#			remove_modifier = ccrebel_subsidised_2
+#		}
+#	}
+#}
+
+#monthly
+event = {
+	id = ccrebel_sow_unrest.43
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		any_country = {
+			any_owned_planet = {
+				OR = {
+					has_modifier = ccrebel_subsidised_1
+					has_modifier = ccrebel_subsidised_2
+					has_modifier = ccrebel_subsidised_3
+				}
+			}
+		}
+	}
+	immediate = {
+		every_country = {
+			limit = {
+				any_owned_planet = {
+					OR = {
+						has_modifier = ccrebel_subsidised_1
+						has_modifier = ccrebel_subsidised_2
+						has_modifier = ccrebel_subsidised_3
+					}
+				}
+			}
+				
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_relation_flag = {
+								flag = ccrebel_subsidiser
+								who = prev
+							}
+						}
+					}
+				}
+				every_owned_planet = {
+					limit = {
+						OR = {
+							has_modifier = ccrebel_subsidised_1
+							has_modifier = ccrebel_subsidised_2
+							has_modifier = ccrebel_subsidised_3
+						}
+					}
+					if = {
+						limit = { has_modifier = ccrebel_subsidised_1 }
+						remove_modifier = ccrebel_subsidised_1
+					}
+					if = {
+						limit = { has_modifier = ccrebel_subsidised_2 }
+						remove_modifier = ccrebel_subsidised_2
+					}
+					if = {
+						limit = { has_modifier = ccrebel_subsidised_3 }
+						remove_modifier = ccrebel_subsidised_3
+					}
+					
+					every_country = {
+						limit = {
+							any_owned_planet = {
+								prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev }
+							}
+						}
+						country_event = { id = ccrebel_sow_unrest.44 }
+						every_owned_planet = {
+							limit = { prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev } }
+							prevprev = { remove_planet_flag = ccrebel_subsidised_planet@prev }
+							
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1
+								}
+								remove_modifier = ccrebel_subsidiser_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_1
+								}
+								remove_modifier = ccrebel_subsidiser_1_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_2
+								}
+								remove_modifier = ccrebel_subsidiser_1_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_3
+								}
+								remove_modifier = ccrebel_subsidiser_1_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_4
+								}
+								remove_modifier = ccrebel_subsidiser_1_4
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_5
+								}
+								remove_modifier = ccrebel_subsidiser_1_5
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2
+								}
+								remove_modifier = ccrebel_subsidiser_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_1
+								}
+								remove_modifier = ccrebel_subsidiser_2_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_2
+								}
+								remove_modifier = ccrebel_subsidiser_2_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_3
+								}
+								remove_modifier = ccrebel_subsidiser_2_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_4
+								}
+								remove_modifier = ccrebel_subsidiser_2_4
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_5
+								}
+								remove_modifier = ccrebel_subsidiser_2_5
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3
+								}
+								remove_modifier = ccrebel_subsidiser_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_1
+								}
+								remove_modifier = ccrebel_subsidiser_3_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_2
+								}
+								remove_modifier = ccrebel_subsidiser_3_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_3
+								}
+								remove_modifier = ccrebel_subsidiser_3_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_4
+								}
+								remove_modifier = ccrebel_subsidiser_3_4
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_5
+								}
+								remove_modifier = ccrebel_subsidiser_3_5
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					is_subject = yes
+					any_country = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = prev
+						}
+					}
+				}
+				save_event_target_as = ccrebel_subjected_rebel
+				
+				every_owned_planet = {
+					limit = {
+						OR = {
+							has_modifier = ccrebel_subsidised_1
+							has_modifier = ccrebel_subsidised_2
+							has_modifier = ccrebel_subsidised_3
+						}
+					}
+					if = {
+						limit = { has_modifier = ccrebel_subsidised_1 }
+						remove_modifier = ccrebel_subsidised_1
+					}
+					if = {
+						limit = { has_modifier = ccrebel_subsidised_2 }
+						remove_modifier = ccrebel_subsidised_2
+					}
+					if = {
+						limit = { has_modifier = ccrebel_subsidised_3 }
+						remove_modifier = ccrebel_subsidised_3
+					}
+				
+				
+					every_country = {
+						limit = {
+							has_relation_flag = {
+								flag = ccrebel_subsidiser
+								who = prevprev
+							}
+							any_owned_planet = {
+								prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev }
+							}
+						}
+						save_event_target_as = ccrebel_ended_subsidiser
+						country_event = { id = ccrebel_sow_unrest.44 }
+
+						###get rid of subsidiser flag
+						remove_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = prev
+						}
+
+						every_owned_planet = {
+							limit = { prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev } }
+							prevprev = { remove_planet_flag = ccrebel_subsidised_planet@prev }
+							
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1
+								}
+								remove_modifier = ccrebel_subsidiser_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_1
+								}
+								remove_modifier = ccrebel_subsidiser_1_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_2
+								}
+								remove_modifier = ccrebel_subsidiser_1_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_3
+								}
+								remove_modifier = ccrebel_subsidiser_1_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_4
+								}
+								remove_modifier = ccrebel_subsidiser_1_4
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_1_5
+								}
+								remove_modifier = ccrebel_subsidiser_1_5
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2
+								}
+								remove_modifier = ccrebel_subsidiser_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_1
+								}
+								remove_modifier = ccrebel_subsidiser_2_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_2
+								}
+								remove_modifier = ccrebel_subsidiser_2_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_3
+								}
+								remove_modifier = ccrebel_subsidiser_2_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_4
+								}
+								remove_modifier = ccrebel_subsidiser_2_4
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_2_5
+								}
+								remove_modifier = ccrebel_subsidiser_2_5
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3
+								}
+								remove_modifier = ccrebel_subsidiser_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_1
+								}
+								remove_modifier = ccrebel_subsidiser_3_1
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_2
+								}
+								remove_modifier = ccrebel_subsidiser_3_2
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_3
+								}
+								remove_modifier = ccrebel_subsidiser_3_3
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_4
+								}
+								remove_modifier = ccrebel_subsidiser_3_4
+								else = {
+							if = {
+								limit = {
+									has_modifier = ccrebel_subsidiser_3_5
+								}
+								remove_modifier = ccrebel_subsidiser_3_5
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.44
+	title = ccrebel_sow_unrest.44.name
+	desc = ccrebel_sow_unrest.44.name
+	
+	picture = "GFX_evt_city_ruins"
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+	}
+}
+
+
+
+country_event = {
+	id = ccrebel_sow_unrest.5
+	title = ccrebel_sow_unrest.5.name
+	desc = ccrebel_sow_unrest.5.desc
+	
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:ccrebel_subsidised_rebels
+		planet_background = event_target:ccrebel_subsidised_rebels.capital_scope
+		#graphical_culture = event_target:ccrebel_subsidised_rebels
+		city_level = event_target:ccrebel_subsidised_rebels.capital_scope
+		room = event_target:ccrebel_subsidised_rebels
+	}
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		exists = root
+		NOR = {
+			has_valid_civic = civic_fanatic_purifiers
+			has_valid_civic = civic_hive_devouring_swarm
+			has_valid_civic = civic_machine_terminator
+			has_valid_civic = civic_barbaric_despoilers
+		}
+		any_country = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_barbaric_despoilers
+			}
+			root = {
+				has_relation_flag = {
+					flag = ccrebel_subsidiser
+					who = prev
+				}
+			}
+			any_owned_planet = {
+				NOR = {
+					has_modifier = ccrebel_subsidised_1
+					has_modifier = ccrebel_subsidised_2
+					has_modifier = ccrebel_subsidised_3
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = {
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+					has_valid_civic = civic_barbaric_despoilers
+				}
+				root = {
+					has_relation_flag = {
+						flag = ccrebel_subsidiser
+						who = prev
+					}
+				}
+				any_owned_planet = {
+					NOR = {
+						has_modifier = ccrebel_subsidised_1
+						has_modifier = ccrebel_subsidised_2
+						has_modifier = ccrebel_subsidised_3
+					}
+				}
+			}
+			save_event_target_as = ccrebel_subsidised_rebels
+		}
+		
+		if = {
+			limit = { NOT = { exists = event_target:ccrebel_subsidising_planet } }
+			random_owned_planet = {
+				limit = {
+					has_planet_flag = ccrebel_subsidiser_planet
+					
+					distance = {
+						source = event_target:ccrebel_subsidised_rebels.capital_scope
+						max_distance = 150
+					}
+				}
+				save_event_target_as = ccrebel_subsidising_planet
+			}
+		}
+		
+		event_target:ccrebel_subsidised_rebels = {
+			if = {
+				limit = { NOT = { has_country_flag = ccrebel_subsidised_once } }
+				set_country_flag = ccrebel_subsidised_once
+				limit = { 
+					has_country_flag = ccrebel_subsidised_once
+					NOT = { has_country_flag = ccrebel_subsidised_twice }
+				}
+				set_country_flag = ccrebel_subsidised_twice
+			}
+		}
+	}
+
+
+	option = {
+		name = ccrebel_sow_unrest.5.option.A
+		custom_tooltip = ccrebel_sow_unrest.5.option.A.tooltip
+		
+		ai_chance = {
+			factor = 5
+			
+			#Ethics and attitudes
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+# conqueror -> Will they conquer planets from other empires?
+# subjugator -> Will they vassalise other empires?
+# liberator -> Will they liberate conquered empires?
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 1.5
+				has_ai_personality_behaviour = liberator
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = subjugator
+			}
+			
+			
+			modifier = {
+				factor = 3
+				exists = event_target:ccrebel_revolted_from_country
+				is_at_war_with = event_target:ccrebel_revolted_from_country
+			}
+			
+			modifier = {
+				factor = 0
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < 0
+				}
+			}
+			modifier = {
+				factor = 2
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 100
+				}
+			}
+				
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 8000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 400
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 400
+							}
+							energy > 8000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 10000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 500
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 500
+							}
+							energy > 10000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 15000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 800
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 800
+						}
+						energy > 15000
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						any_country = {
+							NOT = { is_same_value = prev }
+							OR = {
+								root = {
+									is_threatened_to = prev
+									is_hostile_to = prev
+									is_dismissive_to = prev
+									is_patronizing_to = prev
+									is_angry_to = prev
+									is_rival = prev
+									is_unfriendly_to = prev
+									is_disloyal_to = prev
+									is_domineering_to = prev
+#									is_wary_to = prev
+								}
+							}
+							any_owned_planet = {
+								distance = {
+									source = prevprev
+									max_distance = 75
+								}
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				event_target:ccrebel_subsidised_rebels.capital_scope = {
+					any_country = {
+						NOT = { is_same_value = prev }
+						OR = {
+							root = {
+								is_threatened_to = prev
+								is_hostile_to = prev
+								is_rival = prev
+								is_disloyal_to = prev
+							}
+						}
+						any_owned_planet = {
+							distance = {
+								source = prevprev
+								max_distance = 75
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+#			add_energy = -2000
+#			add_minerals = -6000
+
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+			}
+			
+			event_target:ccrebel_subsidising_planet = {
+				if = {
+					limit = {
+						NOT = { has_modifier = ccrebel_subsidiser_3 }
+					}
+					add_modifier = {
+						modifier = ccrebel_subsidiser_3
+						days = 3600
+					}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_1 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_1
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_2 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_2
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_3 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_3
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_4 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_4
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_3_5 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_3_5
+								days = 3600
+							}
+						}
+					}
+					else = {
+						add_modifier = {
+							modifier = ccrebel_subsidiser_3
+							days = 3600
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+				}
+				set_timed_planet_flag = {
+					flag = ccrebel_subsidiser_planet
+					days = 3610
+				}
+			}	
+			set_timed_relation_flag = {
+				who = event_target:ccrebel_subsidised_rebels
+				flag = ccrebel_subsidiser
+				days = 3610
+			}
+#			country_event = { id = ccrebel_sow_unrest.43 days = 3600 }
+
+			if = {
+				limit = { NOT = { event_target:ccrebel_subsidised_rebels = { has_country_flag = ccrebel_subsidised_twice } } }
+				country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
+			}
+			
+			if = {
+				limit = { event_target:ccrebel_subsidised_rebels = { has_country_flag = ccrebel_subsidised_twice } }
+				country_event = { id = ccrebel_sow_unrest.51 days = 3605 }
+			}
+			
+			event_target:ccrebel_subsidised_rebels = {
+				capital_scope = {
+					add_modifier = {
+						modifier = ccrebel_subsidised_3
+						days = 3600
+					}
+					
+					set_timed_planet_flag = {
+						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
+						days = 3600
+					}
+				}
+#				add_energy = 2000
+#				add_minerals = 6000
+				
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = ccrebel_sow_unrest.5.option.B
+		custom_tooltip = ccrebel_sow_unrest.5.option.B.tooltip
+		
+		ai_chance = {
+			factor = 3
+			
+			
+			#Ethics and attitudes
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+# conqueror -> Will they conquer planets from other empires?
+# subjugator -> Will they vassalise other empires?
+# liberator -> Will they liberate conquered empires?
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 1.5
+				has_ai_personality_behaviour = liberator
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = subjugator
+			}
+			
+			modifier = {
+				factor = 3
+				exists = event_target:ccrebel_revolted_from_country
+				is_at_war_with = event_target:ccrebel_revolted_from_country
+			}
+			
+			modifier = {
+				factor = 0
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < 0
+				}
+			}
+			modifier = {
+				factor = 2
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 100
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 4000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 200
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 200
+							}
+							energy > 4000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.25
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 5000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 250
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 250
+							}
+							energy > 5000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 8000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 400
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 400
+						}
+						energy > 8000
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						any_country = {
+							NOT = { is_same_value = prev }
+							OR = {
+								root = {
+									is_threatened_to = prev
+									is_hostile_to = prev
+									is_dismissive_to = prev
+									is_patronizing_to = prev
+									is_angry_to = prev
+									is_rival = prev
+									is_unfriendly_to = prev
+									is_disloyal_to = prev
+									is_domineering_to = prev
+#									is_wary_to = prev
+								}
+							}
+							any_owned_planet = {
+								distance = {
+									source = prevprev
+									max_distance = 75
+								}
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				event_target:ccrebel_subsidised_rebels.capital_scope = {
+					any_country = {
+						NOT = { is_same_value = prev }
+						OR = {
+							root = {
+								is_threatened_to = prev
+								is_hostile_to = prev
+								is_rival = prev
+								is_disloyal_to = prev
+							}
+						}
+						any_owned_planet = {
+							distance = {
+								source = prevprev
+								max_distance = 75
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+#			add_energy = -1000
+#			add_minerals = -3000
+
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+			}
+			
+			event_target:ccrebel_subsidising_planet = {
+				if = {
+					limit = {
+						NOT = { has_modifier = ccrebel_subsidiser_2 }
+					}
+					add_modifier = {
+						modifier = ccrebel_subsidiser_2
+						days = 3600
+					}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_1 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_1
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_2 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_2
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_3 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_3
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_4 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_4
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_2_5 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_2_5
+								days = 3600
+							}
+						}
+					}
+					else = {
+						add_modifier = {
+							modifier = ccrebel_subsidiser_2
+							days = 3600
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+				}
+					
+				set_timed_planet_flag = {
+					flag = ccrebel_subsidiser_planet
+					days = 3610
+				}
+			}	
+			set_timed_relation_flag = {
+				who = event_target:ccrebel_subsidised_rebels
+				flag = ccrebel_subsidiser
+				days = 3610
+			}
+#			country_event = { id = ccrebel_sow_unrest.43 days = 3600 }
+
+			if = {
+				limit = { NOT = { event_target:ccrebel_subsidised_rebels = { has_country_flag = ccrebel_subsidised_twice } } }
+				country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
+			}
+			
+			if = {
+				limit = { event_target:ccrebel_subsidised_rebels = { has_country_flag = ccrebel_subsidised_twice } }
+				country_event = { id = ccrebel_sow_unrest.51 days = 3605 }
+			}
+			
+			event_target:ccrebel_subsidised_rebels = {
+				capital_scope = {
+					add_modifier = {
+						modifier = ccrebel_subsidised_2
+						days = 3600
+					}
+					set_timed_planet_flag = {
+						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
+						days = 3600
+					}
+				}
+#				add_energy = 1000
+#				add_minerals = 3000
+				
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ccrebel_sow_unrest.5.option.C
+		custom_tooltip = ccrebel_sow_unrest.5.option.C.tooltip
+		
+		ai_chance = {
+			factor = 1.5
+			
+			
+			#Ethics and attitudes
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+# conqueror -> Will they conquer planets from other empires?
+# subjugator -> Will they vassalise other empires?
+# liberator -> Will they liberate conquered empires?
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 1.5
+				has_ai_personality_behaviour = liberator
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = subjugator
+			}
+			
+			
+			modifier = {
+				factor = 3
+				exists = event_target:ccrebel_revolted_from_country
+				is_at_war_with = event_target:ccrebel_revolted_from_country
+			}
+			
+			modifier = {
+				factor = 0
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < 0
+				}
+			}
+			modifier = {
+				factor = 2
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 100
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 2000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 100
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 100
+							}
+							energy > 2000
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 2500
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 125
+							}
+						}
+						OR = {
+							has_monthly_income = {
+								resource = energy
+								value > 125
+							}
+							energy > 2500
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				AND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 4000
+						}
+						has_monthly_income = {
+							resource = minerals
+							value > 200
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 200
+						}
+						energy > 4000
+					}
+				}
+			}
+			
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_subsidised_rebels.capital_scope = {
+						any_country = {
+							NOT = { is_same_value = prev }
+							OR = {
+								root = {
+									is_threatened_to = prev
+									is_hostile_to = prev
+									is_dismissive_to = prev
+									is_patronizing_to = prev
+									is_angry_to = prev
+									is_rival = prev
+									is_unfriendly_to = prev
+									is_disloyal_to = prev
+									is_domineering_to = prev
+#									is_wary_to = prev
+								}
+							}
+							any_owned_planet = {
+								distance = {
+									source = prevprev
+									max_distance = 75
+								}
+							}
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				event_target:ccrebel_subsidised_rebels.capital_scope = {
+					any_country = {
+						NOT = { is_same_value = prev }
+						OR = {
+							root = {
+								is_threatened_to = prev
+								is_hostile_to = prev
+								is_rival = prev
+								is_disloyal_to = prev
+							}
+						}
+						any_owned_planet = {
+							distance = {
+								source = prevprev
+								max_distance = 75
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+#			add_energy = -1000
+#			add_minerals = -3000
+
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+			}
+
+			event_target:ccrebel_subsidising_planet = {
+				if = {
+					limit = {
+						NOT = { has_modifier = ccrebel_subsidiser_1 }
+					}
+					add_modifier = {
+						modifier = ccrebel_subsidiser_1
+						days = 3600
+					}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_1 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_1
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_2 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_2
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_3 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_3
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_4 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_4
+								days = 3600
+							}
+					else = {
+						if = {
+							limit = {
+								NOT = { has_modifier = ccrebel_subsidiser_1_5 }
+							}
+							add_modifier = {
+								modifier = ccrebel_subsidiser_1_5
+								days = 3600
+							}
+						}
+					}
+					else = {
+						add_modifier = {
+							modifier = ccrebel_subsidiser_1
+							days = 3600
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+						}
+					}
+				}
+					
+				set_timed_planet_flag = {
+					flag = ccrebel_subsidiser_planet
+					days = 3610
+				}
+			}	
+			set_timed_relation_flag = {
+				who = event_target:ccrebel_subsidised_rebels
+				flag = ccrebel_subsidiser
+				days = 3610
+			}
+			
+#			country_event = { id = ccrebel_sow_unrest.43 days = 3600 }
+			
+			if = {
+				limit = { NOT = { event_target:ccrebel_subsidised_rebels = { has_country_flag = ccrebel_subsidised_twice } } }
+				country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
+			}
+			
+			if = {
+				limit = { event_target:ccrebel_subsidised_rebels = { has_country_flag = ccrebel_subsidised_twice } }
+				country_event = { id = ccrebel_sow_unrest.51 days = 3605 }
+			}
+			
+			event_target:ccrebel_subsidised_rebels = {
+				capital_scope = {
+					add_modifier = {
+						modifier = ccrebel_subsidised_1
+						days = 3600
+					}
+					
+					set_timed_planet_flag = {
+						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
+						days = 3600
+					}
+				}
+#				add_energy = 1000
+#				add_minerals = 3000
+				
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidised
+				}
+			}
+		}
+	}
+
+	option = {
+		name = ccrebel_sow_unrest.5.option.D
+		
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.51
+	title = ccrebel_sow_unrest.51.name
+	desc = ccrebel_sow_unrest.51.desc
+	
+	picture = GFX_evt_news_room
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = root
+		NOR = {
+			has_valid_civic = civic_fanatic_purifiers
+			has_valid_civic = civic_hive_devouring_swarm
+			has_valid_civic = civic_machine_terminator
+			has_valid_civic = civic_barbaric_despoilers
+		}
+		any_country = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_valid_civic = civic_barbaric_despoilers
+			}
+			root = {
+				has_relation_flag = {
+					flag = ccrebel_subsidiser
+					who = prev
+				}
+			}
+			any_owned_planet = {
+				NOR = {
+					has_modifier = ccrebel_subsidised_1
+					has_modifier = ccrebel_subsidised_2
+					has_modifier = ccrebel_subsidised_3
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		random_country = {
+			limit = {
+				NOR = {
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+					has_valid_civic = civic_barbaric_despoilers
+				}
+				root = {
+					has_relation_flag = {
+						flag = ccrebel_subsidiser
+						who = prev
+					}
+				}
+				any_owned_planet = {
+					NOR = {
+						has_modifier = ccrebel_subsidised_1
+						has_modifier = ccrebel_subsidised_2
+					}
+				}
+			}
+			save_event_target_as = ccrebel_subsidised_rebels
+		}
+	}
+	option = { name = OK }
+}
+
+
+country_event = {
+	id = ccrebel_sow_unrest.6
+	title = ccrebel_sow_unrest.6.name
+	desc = ccrebel_sow_unrest.6.desc
+	
+	picture = GFX_evt_fleet_good
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			count_owned_ships = {
+				limit = { is_ship_size = corvette }
+				count > 24
+			}
+			count_owned_ships = {
+				limit = { is_ship_size = destroyer }
+				count > 12
+			}
+			count_owned_ships = {
+				limit = { is_ship_size = cruiser }
+				count > 6
+			}
+			count_owned_ships = {
+				limit = { is_ship_size = battleship }
+				count > 3
+			}
+		}
+	}
+	
+	#if it doesn't know who event_target:ccrebel_subsidised_rebels is, just use a 1-day flag
+
+	option = {
+		name = ccrebel_sow_unrest.6.option.A
+		custom_tooltip = ccrebel_sow_unrest.6.option.A.tooltip
+		
+		ai_chance = {
+			factor = 12
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+			#cheeky me
+			modifier = {
+				factor = 1.2
+				event_target:ccrebel_revolted_from_country = { is_ai = no }
+			}
+			
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = liberator
+			}
+			
+			
+			modifier = {
+				factor = 0.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -20
+				}
+			}
+			modifier = {
+				factor = 1.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 80
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 600
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 150
+							}
+						}
+						OR = {
+							AND = {
+								energy > 600
+								has_monthly_income = {
+									resource = energy
+									value > 15
+								}
+							}
+							has_monthly_income = {
+								resource = energy
+								value > 150
+							}
+						}
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0.35
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 1000
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 250
+							}
+						}
+						OR = {
+							energy > 1000
+							has_monthly_income = {
+								resource = energy
+								value > 250
+							}
+						}
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				any_country = {
+					is_at_war_with = root
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_revolted_from_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+				}
+			}
+			
+				
+			modifier = {
+				factor = 0
+				any_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					relative_power = {
+						who = root
+						category = fleet
+						value = overwhelming
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0.5
+				any_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					relative_power = {
+						who = root
+						category = fleet
+						value = superior
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 1.5
+				event_target:ccrebel_revolted_from_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					relative_power = {
+						who = root
+						category = fleet
+						value = inferior
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				
+				NOR = {
+					count_owned_ships = {
+						limit = { is_ship_size = corvette }
+						count > 72
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = destroyer }
+						count > 36
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = cruiser }
+						count > 18
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = battleship }
+						count > 9
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0.35
+				
+				NOR = {
+					count_owned_ships = {
+						limit = { is_ship_size = corvette }
+						count > 96
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = destroyer }
+						count > 48
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = cruiser }
+						count > 24
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = battleship }
+						count > 12
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					any_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = event_target:ccrebel_subsidised_rebels
+							is_angry_to = event_target:ccrebel_subsidised_rebels
+							is_domineering_to = event_target:ccrebel_subsidised_rebels
+							is_rival = event_target:ccrebel_subsidised_rebels
+							is_patronizing_to = event_target:ccrebel_subsidised_rebels
+						}
+						OR = {
+							is_threatened_to = root
+							is_hostile_to = root
+							is_dismissive_to = root
+							is_patronizing_to = root
+							is_angry_to = root
+							is_rival = root
+							is_unfriendly_to = root
+							is_disloyal_to = root
+							is_domineering_to = root
+			#				is_wary_to = root
+						}
+						OR = {
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = superior
+							}
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = equal
+							}
+						}
+					}
+				}
+			}
+		
+			modifier = {
+				factor = 1.5
+					event_target:ccrebel_revolted_from_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = event_target:ccrebel_subsidised_rebels
+							is_angry_to = event_target:ccrebel_subsidised_rebels
+							is_domineering_to = event_target:ccrebel_subsidised_rebels
+							is_rival = event_target:ccrebel_subsidised_rebels
+							is_patronizing_to = event_target:ccrebel_subsidised_rebels
+						}
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+						
+						OR = {
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = superior
+							}
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = equal
+							}
+						}
+					}
+			}
+		
+			modifier = {
+				factor = 0.5
+				NOT = {
+					any_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = event_target:ccrebel_subsidised_rebels
+							is_angry_to = event_target:ccrebel_subsidised_rebels
+							is_domineering_to = event_target:ccrebel_subsidised_rebels
+							is_rival = event_target:ccrebel_subsidised_rebels
+							is_patronizing_to = event_target:ccrebel_subsidised_rebels
+						}
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+						
+						OR = {
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = superior
+							}						
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = overwhelming
+							}
+						}
+					}
+				}
+			}
+		
+			modifier = {
+				factor = 1.5
+					event_target:ccrebel_revolted_from_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = event_target:ccrebel_subsidised_rebels
+							is_angry_to = event_target:ccrebel_subsidised_rebels
+							is_domineering_to = event_target:ccrebel_subsidised_rebels
+							is_rival = event_target:ccrebel_subsidised_rebels
+							is_patronizing_to = event_target:ccrebel_subsidised_rebels
+						}
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+						
+						relative_power = {
+							who = event_target:ccrebel_subsidised_rebels
+							category = fleet
+							value = overwhelming
+						}
+					}
+			}
+		}
+		
+		hidden_effect = {
+		
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				set_timed_country_flag = {
+					flag = ccrebel_they_gave_a_fleet
+					days = 31
+				}
+				if = {
+					limit = {
+						is_ai = no
+					}
+					root = { save_event_target_as = ccrebel_naughty_country }
+					country_event = { id = ccrebel_sow_unrest.71 days = 15 }
+				}
+			}
+			
+			#corvettes
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+			}
+			
+			#destroyers
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+			}
+			
+			#cruisers
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.67 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.603 }
+			}
+			
+			#battleships
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = battleship
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = battleship
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.69 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_battleship_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.604 }
+			}
+		}
+	}
+		
+	option = {
+		name = ccrebel_sow_unrest.6.option.B
+		custom_tooltip = ccrebel_sow_unrest.6.option.B.tooltip
+		
+		ai_chance = {
+			factor = 6
+			
+			modifier = {
+				factor = 0.25
+				cc_su_target_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.5
+				cc_su_target_half_opposite_ethic = yes
+			}
+			
+			modifier = {
+				factor = 0.75
+				cc_su_target_quarter_opposite_ethic = yes
+			}
+			
+			#cheeky me
+			modifier = {
+				factor = 1.2
+				event_target:ccrebel_revolted_from_country = { is_ai = no }
+			}
+			
+			modifier = {
+				factor = 0.5
+				has_ai_personality_behaviour = conqueror
+			}
+			modifier = {
+				factor = 2
+				has_ai_personality_behaviour = liberator
+			}
+			
+			
+			modifier = {
+				factor = 0.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value < -20
+				}
+			}
+			modifier = {
+				factor = 1.5
+				opinion = {
+					who = event_target:ccrebel_subsidised_rebels
+					value > 80
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 300
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 75
+							}
+						}
+						OR = {
+							AND = {
+								energy > 300
+								has_monthly_income = {
+									resource = energy
+									value > 0
+								}
+							}
+							has_monthly_income = {
+								resource = energy
+								value > 75
+							}
+						}
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0.5
+				NOT = {
+					AND = {
+						OR = {
+							has_country_resource = {
+								type = minerals
+								amount > 500
+							}
+							has_monthly_income = {
+								resource = minerals
+								value > 125
+							}
+						}
+						OR = {
+							energy > 500
+							has_monthly_income = {
+								resource = energy
+								value > 125
+							}
+						}
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				any_country = {
+					is_at_war_with = root
+					OR = {
+						relative_power = {
+							who = root
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = root
+							category = fleet
+							value = superior
+						}
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					event_target:ccrebel_revolted_from_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+				}
+			}
+			
+				
+			modifier = {
+				factor = 0
+				any_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					relative_power = {
+						who = root
+						category = fleet
+						value = overwhelming
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0.5
+				any_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					relative_power = {
+						who = root
+						category = fleet
+						value = superior
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 1.5
+				event_target:ccrebel_revolted_from_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					relative_power = {
+						who = root
+						category = fleet
+						value = inferior
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				
+				NOR = {
+					count_owned_ships = {
+						limit = { is_ship_size = corvette }
+						count > 36
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = destroyer }
+						count > 18
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = cruiser }
+						count > 9
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = battleship }
+						count > 3
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0.5
+				
+				NOR = {
+					count_owned_ships = {
+						limit = { is_ship_size = corvette }
+						count > 48
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = destroyer }
+						count > 24
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = cruiser }
+						count > 12
+					}
+					count_owned_ships = {
+						limit = { is_ship_size = battleship }
+						count > 4
+					}
+				}
+			}
+			
+			modifier = {
+				factor = 0
+				NOT = {
+					any_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = event_target:ccrebel_subsidised_rebels
+							is_angry_to = event_target:ccrebel_subsidised_rebels
+							is_domineering_to = event_target:ccrebel_subsidised_rebels
+							is_rival = event_target:ccrebel_subsidised_rebels
+							is_patronizing_to = event_target:ccrebel_subsidised_rebels
+						}
+						OR = {
+							is_threatened_to = root
+							is_hostile_to = root
+							is_dismissive_to = root
+							is_patronizing_to = root
+							is_angry_to = root
+							is_rival = root
+							is_unfriendly_to = root
+							is_disloyal_to = root
+							is_domineering_to = root
+			#				is_wary_to = root
+						}
+						OR = {
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = superior
+							}
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = equal
+							}
+						}
+					}
+				}
+			}
+		
+			modifier = {
+				factor = 1.5
+				event_target:ccrebel_revolted_from_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = event_target:ccrebel_subsidised_rebels
+						is_angry_to = event_target:ccrebel_subsidised_rebels
+						is_domineering_to = event_target:ccrebel_subsidised_rebels
+						is_rival = event_target:ccrebel_subsidised_rebels
+						is_patronizing_to = event_target:ccrebel_subsidised_rebels
+					}
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					
+					OR = {
+						relative_power = {
+							who = event_target:ccrebel_subsidised_rebels
+							category = fleet
+							value = overwhelming
+						}
+						relative_power = {
+							who = event_target:ccrebel_subsidised_rebels
+							category = fleet
+							value = superior
+						}
+						relative_power = {
+							who = event_target:ccrebel_subsidised_rebels
+							category = fleet
+							value = equal
+						}
+					}
+				}
+			}
+		
+			modifier = {
+				factor = 0.5
+				NOT = {
+					any_country = {
+						NOT = { is_country_type = fallen_empire }
+						OR = {
+							is_hostile_to = event_target:ccrebel_subsidised_rebels
+							is_angry_to = event_target:ccrebel_subsidised_rebels
+							is_domineering_to = event_target:ccrebel_subsidised_rebels
+							is_rival = event_target:ccrebel_subsidised_rebels
+							is_patronizing_to = event_target:ccrebel_subsidised_rebels
+						}
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+						
+						OR = {
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = superior
+							}						
+							relative_power = {
+								who = event_target:ccrebel_subsidised_rebels
+								category = fleet
+								value = overwhelming
+							}
+						}
+					}
+				}
+			}
+		
+			modifier = {
+				factor = 1.5
+				event_target:ccrebel_revolted_from_country = {
+					NOT = { is_country_type = fallen_empire }
+					OR = {
+						is_hostile_to = event_target:ccrebel_subsidised_rebels
+						is_angry_to = event_target:ccrebel_subsidised_rebels
+						is_domineering_to = event_target:ccrebel_subsidised_rebels
+						is_rival = event_target:ccrebel_subsidised_rebels
+						is_patronizing_to = event_target:ccrebel_subsidised_rebels
+					}
+					OR = {
+						is_hostile_to = root
+						is_angry_to = root
+						is_domineering_to = root
+						is_rival = root
+					}
+					
+					relative_power = {
+						who = event_target:ccrebel_subsidised_rebels
+						category = fleet
+						value = overwhelming
+					}
+				}
+			}
+		}
+		
+		hidden_effect = {
+		
+			event_target:ccrebel_revolted_from_country = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_ccrebel_subsidising_our_rebels
+				}
+				set_timed_country_flag = {
+					flag = ccrebel_they_gave_a_fleet
+					days = 31
+				}
+				if = {
+					limit = {
+						is_ai = no
+					}
+					root = { save_event_target_as = ccrebel_naughty_country }
+					country_event = { id = ccrebel_sow_unrest.71 days = 15 }
+				}
+			}
+			
+			#corvettes
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+			}
+			
+			#destroyers
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6501 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6022 }
+			}
+			
+			#cruisers
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6701 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_1
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6033 }
+			}
+			
+			#battleships
+			
+			if = {
+				limit = {
+					any_owned_ship = {
+						is_ship_size = battleship
+						is_in_combat = no
+					}
+				}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = battleship
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6901 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_battleship_1
+						days = 50
+					}
+				}
+			}
+		}
+	}
+		
+	option = {
+		name = ccrebel_sow_unrest.6.option.B
+		
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.601
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = corvette
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_1
+					NOT = { has_country_flag = ccrebel_received_corvette_2 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_2
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_2
+					NOT = { has_country_flag = ccrebel_received_corvette_3 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_3
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_3
+					NOT = { has_country_flag = ccrebel_received_corvette_4 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_4
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_4
+					NOT = { has_country_flag = ccrebel_received_corvette_5 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_5
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_5
+					NOT = { has_country_flag = ccrebel_received_corvette_6 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_6
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_6
+					NOT = { has_country_flag = ccrebel_received_corvette_7 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_7
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_7
+					NOT = { has_country_flag = ccrebel_received_corvette_8 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_8
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_8
+					NOT = { has_country_flag = ccrebel_received_corvette_9 }
+				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_ship_size = corvette
+					is_in_combat = no
+				}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_corvette_9
+					days = 50
+				}
+			}
+			country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_9
+					NOT = { has_country_flag = ccrebel_received_corvette_10 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_10
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_10
+					NOT = { has_country_flag = ccrebel_received_corvette_11 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_11
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_11
+					NOT = { has_country_flag = ccrebel_received_corvette_12 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_12
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_12
+					NOT = { has_country_flag = ccrebel_received_corvette_13 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_13
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_13
+					NOT = { has_country_flag = ccrebel_received_corvette_14 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_14
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_14
+					NOT = { has_country_flag = ccrebel_received_corvette_15 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_15
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_15
+					NOT = { has_country_flag = ccrebel_received_corvette_16 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_16
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_16
+					NOT = { has_country_flag = ccrebel_received_corvette_17 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_17
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_17
+					NOT = { has_country_flag = ccrebel_received_corvette_18 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_18
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_18
+					NOT = { has_country_flag = ccrebel_received_corvette_19 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_19
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_19
+					NOT = { has_country_flag = ccrebel_received_corvette_20 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_20
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_20
+					NOT = { has_country_flag = ccrebel_received_corvette_21 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_21
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_21
+					NOT = { has_country_flag = ccrebel_received_corvette_22 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_22
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_22
+					NOT = { has_country_flag = ccrebel_received_corvette_23 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.63 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_23
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.601 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_23
+					NOT = { has_country_flag = ccrebel_received_corvette_24 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.64 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_24
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+
+country_event = {
+	id = ccrebel_sow_unrest.6011
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = corvette
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_1
+					NOT = { has_country_flag = ccrebel_received_corvette_2 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_2
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_2
+					NOT = { has_country_flag = ccrebel_received_corvette_3 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_3
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_3
+					NOT = { has_country_flag = ccrebel_received_corvette_4 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_4
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_4
+					NOT = { has_country_flag = ccrebel_received_corvette_5 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_5
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_5
+					NOT = { has_country_flag = ccrebel_received_corvette_6 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_6
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_6
+					NOT = { has_country_flag = ccrebel_received_corvette_7 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_7
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_7
+					NOT = { has_country_flag = ccrebel_received_corvette_8 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_8
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_8
+					NOT = { has_country_flag = ccrebel_received_corvette_9 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_9
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_9
+					NOT = { has_country_flag = ccrebel_received_corvette_10 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_10
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_10
+					NOT = { has_country_flag = ccrebel_received_corvette_11 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6301 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_11
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6011 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_corvette_11
+					NOT = { has_country_flag = ccrebel_received_corvette_12 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = corvette
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6401 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_corvette_12
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+
+country_event = {
+	id = ccrebel_sow_unrest.602
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = destroyer
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_1
+					NOT = { has_country_flag = ccrebel_received_destroyer_2 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_2
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_2
+					NOT = { has_country_flag = ccrebel_received_destroyer_3 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_3
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_3
+					NOT = { has_country_flag = ccrebel_received_destroyer_4 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_4
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_4
+					NOT = { has_country_flag = ccrebel_received_destroyer_5 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_5
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_5
+					NOT = { has_country_flag = ccrebel_received_destroyer_6 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_6
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_6
+					NOT = { has_country_flag = ccrebel_received_destroyer_7 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_7
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_7
+					NOT = { has_country_flag = ccrebel_received_destroyer_8 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_8
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_8
+					NOT = { has_country_flag = ccrebel_received_destroyer_9 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_9
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_9
+					NOT = { has_country_flag = ccrebel_received_destroyer_10 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_10
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_10
+					NOT = { has_country_flag = ccrebel_received_destroyer_11 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.65 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_11
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.602 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_11
+					NOT = { has_country_flag = ccrebel_received_destroyer_12 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.66 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_12
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.6022
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = destroyer
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_1
+					NOT = { has_country_flag = ccrebel_received_destroyer_2 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6501 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_2
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6022 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_2
+					NOT = { has_country_flag = ccrebel_received_destroyer_3 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6501 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_3
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6022 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_3
+					NOT = { has_country_flag = ccrebel_received_destroyer_4 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6501 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_4
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6022 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_4
+					NOT = { has_country_flag = ccrebel_received_destroyer_5 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6501 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_5
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6022 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_destroyer_5
+					NOT = { has_country_flag = ccrebel_received_destroyer_6 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = destroyer
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6601 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_destroyer_6
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.603
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = cruiser
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_1
+					NOT = { has_country_flag = ccrebel_received_cruiser_2 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.67 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_2
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.603 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_2
+					NOT = { has_country_flag = ccrebel_received_cruiser_3 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.67 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_3
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.603 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_3
+					NOT = { has_country_flag = ccrebel_received_cruiser_4 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.67 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_4
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.603 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_4
+					NOT = { has_country_flag = ccrebel_received_cruiser_5 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.67 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_5
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.603 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_5
+					NOT = { has_country_flag = ccrebel_received_cruiser_6 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.68 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_6
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.6033
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = cruiser
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_1
+					NOT = { has_country_flag = ccrebel_received_cruiser_2 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6701 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_2
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.6033 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_cruiser_2
+					NOT = { has_country_flag = ccrebel_received_cruiser_3 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = cruiser
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.6801 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_cruiser_6
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.604
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_ship = {
+			is_ship_size = battleship
+			is_in_combat = no
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_battleship_1
+					NOT = { has_country_flag = ccrebel_received_battleship_2 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = battleship
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.69 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_battleship_2
+						days = 50
+					}
+				}
+				country_event = { id = ccrebel_sow_unrest.604 }
+		}
+		if = {
+			limit = {
+				event_target:ccrebel_subsidised_rebels = {
+					has_country_flag = ccrebel_received_battleship_2
+					NOT = { has_country_flag = ccrebel_received_battleship_3 }
+				}
+			}
+				random_owned_ship = {
+					limit = {
+						is_ship_size = battleship
+						is_in_combat = no
+					}
+					delete_ship = this
+				}
+				event_target:ccrebel_subsidised_rebels = {
+					country_event = { id = ccrebel_sow_unrest.699 days = 20 random = 10 }
+					set_timed_country_flag = {
+						flag = ccrebel_received_battleship_3
+						days = 50
+					}
+				}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.61
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		add_energy = -250
+		add_minerals = -250
+		
+		event_target:ccrebel_revolted_from_country = {
+			add_energy = 250
+			add_minerals = 250
+		}
+	}
+}	
+	
+country_event = {
+	id = ccrebel_sow_unrest.62
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		add_energy = -150
+		add_minerals = -150
+		
+		event_target:ccrebel_revolted_from_country = {
+			add_energy = 150
+			add_minerals = 150
+		}
+	}
+}	
+
+country_event = {
+	id = ccrebel_sow_unrest.63
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_corvette_1
+				has_country_flag = ccrebel_received_corvette_2
+				has_country_flag = ccrebel_received_corvette_3
+				has_country_flag = ccrebel_received_corvette_4
+				has_country_flag = ccrebel_received_corvette_5
+				has_country_flag = ccrebel_received_corvette_6
+				has_country_flag = ccrebel_received_corvette_7
+				has_country_flag = ccrebel_received_corvette_8				
+				has_country_flag = ccrebel_received_corvette_9
+				has_country_flag = ccrebel_received_corvette_10
+				has_country_flag = ccrebel_received_corvette_11			
+				has_country_flag = ccrebel_received_corvette_12
+				has_country_flag = ccrebel_received_corvette_13
+				has_country_flag = ccrebel_received_corvette_14
+				has_country_flag = ccrebel_received_corvette_15
+				has_country_flag = ccrebel_received_corvette_16
+				has_country_flag = ccrebel_received_corvette_17
+				has_country_flag = ccrebel_received_corvette_18
+				has_country_flag = ccrebel_received_corvette_19
+				has_country_flag = ccrebel_received_corvette_20
+				has_country_flag = ccrebel_received_corvette_21
+				has_country_flag = ccrebel_received_corvette_22
+				has_country_flag = ccrebel_received_corvette_23
+				has_country_flag = ccrebel_received_corvette_24
+			}
+		}
+	}
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}	
+				set_location = root.capital_scope
+			}
+		}
+	}
+}	
+
+country_event = {
+	id = ccrebel_sow_unrest.6301
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_corvette_1
+				has_country_flag = ccrebel_received_corvette_2
+				has_country_flag = ccrebel_received_corvette_3
+				has_country_flag = ccrebel_received_corvette_4
+				has_country_flag = ccrebel_received_corvette_5
+				has_country_flag = ccrebel_received_corvette_6
+				has_country_flag = ccrebel_received_corvette_7
+				has_country_flag = ccrebel_received_corvette_8				
+				has_country_flag = ccrebel_received_corvette_9
+				has_country_flag = ccrebel_received_corvette_10
+				has_country_flag = ccrebel_received_corvette_11			
+				has_country_flag = ccrebel_received_corvette_12
+			}
+		}
+	}
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}	
+				set_location = root.capital_scope
+			}
+		}
+	}
+}	
+
+
+country_event = {
+	id = ccrebel_sow_unrest.64
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 24
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.6401
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 12
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.65
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_destroyer_1
+				has_country_flag = ccrebel_received_destroyer_2
+				has_country_flag = ccrebel_received_destroyer_3
+				has_country_flag = ccrebel_received_destroyer_4
+				has_country_flag = ccrebel_received_destroyer_5
+				has_country_flag = ccrebel_received_destroyer_6
+				has_country_flag = ccrebel_received_destroyer_7
+				has_country_flag = ccrebel_received_destroyer_8				
+				has_country_flag = ccrebel_received_destroyer_9
+				has_country_flag = ccrebel_received_destroyer_10
+				has_country_flag = ccrebel_received_destroyer_11			
+				has_country_flag = ccrebel_received_destroyer_12
+			}
+		}
+	}
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}	
+				set_location = root.capital_scope
+			}
+		}
+	}
+}	
+
+country_event = {
+	id = ccrebel_sow_unrest.6501
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_destroyer_1
+				has_country_flag = ccrebel_received_destroyer_2
+				has_country_flag = ccrebel_received_destroyer_3
+				has_country_flag = ccrebel_received_destroyer_4
+				has_country_flag = ccrebel_received_destroyer_5
+				has_country_flag = ccrebel_received_destroyer_6
+			}
+		}
+	}
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}	
+				set_location = root.capital_scope
+			}
+		}
+	}
+}	
+
+
+country_event = {
+	id = ccrebel_sow_unrest.66
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 12
+					create_ship = {
+						name = random
+						random_existing_design = destroyer
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.6601
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 6
+					create_ship = {
+						name = random
+						random_existing_design = destroyer
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.67
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_cruiser_1
+				has_country_flag = ccrebel_received_cruiser_2
+				has_country_flag = ccrebel_received_cruiser_3
+				has_country_flag = ccrebel_received_cruiser_4
+				has_country_flag = ccrebel_received_cruiser_5
+				has_country_flag = ccrebel_received_cruiser_6
+			}
+		}
+	}
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}	
+				set_location = root.capital_scope
+			}
+		}	
+	}
+}	
+
+
+country_event = {
+	id = ccrebel_sow_unrest.6701
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_cruiser_1
+				has_country_flag = ccrebel_received_cruiser_2
+				has_country_flag = ccrebel_received_cruiser_3
+			}
+		}
+	}
+	
+	immediate = {
+						create_fleet = {
+							effect = {
+								set_owner = root
+								create_ship = {
+									name = random
+									random_existing_design = cruiser
+								}	
+								set_location = root.capital_scope
+							}
+						}
+	}
+}	
+
+
+country_event = {
+	id = ccrebel_sow_unrest.68
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 6
+					create_ship = {
+						name = random
+						random_existing_design = cruiser
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = ccrebel_sow_unrest.6801
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						random_existing_design = cruiser
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.69
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_country_flag = ccrebel_received_battleship_1
+				has_country_flag = ccrebel_received_battleship_2
+				has_country_flag = ccrebel_received_battleship_3
+			}
+		}
+	}
+	
+	immediate = {
+						create_fleet = {
+							effect = {
+								set_owner = root
+								create_ship = {
+									name = random
+									random_existing_design = battleship
+								}	
+								set_location = root.capital_scope
+							}
+						}
+	}
+}	
+
+country_event = {
+	id = ccrebel_sow_unrest.6901
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}	
+				set_location = root.capital_scope
+			}
+		}
+	}
+}	
+
+
+country_event = {
+	id = ccrebel_sow_unrest.699
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		create_fleet = {
+			effect = {
+				set_owner = root
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						random_existing_design = battleship
+					}	
+					set_location = root.capital_scope
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.7
+	title = ccrebel_sow_unrest.7.name
+	desc = ccrebel_sow_unrest.7.desc
+	picture = GFX_evt_alien_propaganda
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = ccrebel_they_gave_a_fleet }
+	}
+	
+	option = {
+		name = ccrebel_sow_unrest.7.option
+	}
+}
+
+country_event = {
+	id = ccrebel_sow_unrest.71
+	title = ccrebel_sow_unrest.71.name
+	desc = ccrebel_sow_unrest.71.desc
+	picture = GFX_evt_fleet_evil
+	is_triggered_only = yes
+	
+	option = {
+		name = ccrebel_sow_unrest.71.option
+	}
+}

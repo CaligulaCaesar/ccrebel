@@ -1,0 +1,56 @@
+
+is_being_stirred_up = {
+	OR = {
+		has_modifier = ccrebel_planet_being_stirred_up_no_ethic
+		has_modifier = ccrebel_planet_being_stirred_up_xenophobe
+		has_modifier = ccrebel_planet_being_stirred_up_xenophile
+		has_modifier = ccrebel_planet_being_stirred_up_egalitarian
+		has_modifier = ccrebel_planet_being_stirred_up_authoritarian
+		has_modifier = ccrebel_planet_being_stirred_up_spiritualist
+		has_modifier = ccrebel_planet_being_stirred_up_materialist
+		has_modifier = ccrebel_planet_being_stirred_up_pacifist
+		has_modifier = ccrebel_planet_being_stirred_up_militarist
+		has_modifier = ccrebel_planet_being_stirred_up_no_ethic_2
+		has_modifier = ccrebel_planet_being_stirred_up_xenophobe_2
+		has_modifier = ccrebel_planet_being_stirred_up_xenophile_2
+		has_modifier = ccrebel_planet_being_stirred_up_egalitarian_2
+		has_modifier = ccrebel_planet_being_stirred_up_authoritarian_2
+		has_modifier = ccrebel_planet_being_stirred_up_spiritualist_2
+		has_modifier = ccrebel_planet_being_stirred_up_materialist_2
+		has_modifier = ccrebel_planet_being_stirred_up_pacifist_2
+		has_modifier = ccrebel_planet_being_stirred_up_militarist_2
+		has_modifier = ccrebel_planet_being_stirred_up_no_ethic_3
+		has_modifier = ccrebel_planet_being_stirred_up_xenophobe_3
+		has_modifier = ccrebel_planet_being_stirred_up_xenophile_3
+		has_modifier = ccrebel_planet_being_stirred_up_egalitarian_3
+		has_modifier = ccrebel_planet_being_stirred_up_authoritarian_3
+		has_modifier = ccrebel_planet_being_stirred_up_spiritualist_3
+		has_modifier = ccrebel_planet_being_stirred_up_materialist_3
+		has_modifier = ccrebel_planet_being_stirred_up_pacifist_3
+		has_modifier = ccrebel_planet_being_stirred_up_militarist_3
+		has_modifier = ccrebel_planet_being_stirred_up_no_ethic_4
+		has_modifier = ccrebel_planet_being_stirred_up_xenophobe_4
+		has_modifier = ccrebel_planet_being_stirred_up_xenophile_4
+		has_modifier = ccrebel_planet_being_stirred_up_egalitarian_4
+		has_modifier = ccrebel_planet_being_stirred_up_authoritarian_4
+		has_modifier = ccrebel_planet_being_stirred_up_spiritualist_4
+		has_modifier = ccrebel_planet_being_stirred_up_materialist_4
+		has_modifier = ccrebel_planet_being_stirred_up_pacifist_4
+		has_modifier = ccrebel_planet_being_stirred_up_militarist_4
+	}
+}
+
+#is_stirring_up = {
+#	OR = {
+#		has_modifier = ccrebel_stirring_cost_1
+#		has_modifier = ccrebel_stirring_cost_2
+#		has_modifier = ccrebel_stirring_cost_3
+#		has_modifier = ccrebel_stirring_cost_4
+#		has_modifier = ccrebel_stirring_cost_5
+#		has_modifier = ccrebel_stirring_cost_6
+#		has_modifier = ccrebel_stirring_cost_7
+#		has_modifier = ccrebel_stirring_cost_8
+#		has_modifier = ccrebel_stirring_cost_9
+#		has_modifier = ccrebel_stirring_cost_10
+#	}
+#}

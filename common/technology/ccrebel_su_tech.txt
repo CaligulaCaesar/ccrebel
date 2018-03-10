@@ -1,0 +1,609 @@
+##################
+### TECH COSTS ###
+##################
+#If you change any of these, use replace in files so the values are the same across all files
+
+@tier1cost1 = 500
+@tier1cost2 = 640
+@tier1cost3 = 780
+
+@tier2cost1 = 1000
+@tier2cost2 = 1500
+@tier2cost3 = 2000
+
+@tier3cost1 = 3000
+@tier3cost2 = 4000
+@tier3cost3 = 5000
+
+@tier4cost1 = 6000
+@tier4cost2 = 8000
+@tier4cost3 = 10000
+
+@tier5cost1 = 14000
+@tier5cost2 = 17000
+@tier5cost3 = 20000
+
+####################
+### TECH WEIGHTS ###
+####################
+
+@tier1weight1 = 100
+@tier1weight2 = 95
+@tier1weight3 = 90
+
+@tier2weight1 = 85
+@tier2weight2 = 75
+@tier2weight3 = 70
+
+@tier3weight1 = 65
+@tier3weight2 = 60
+@tier3weight3 = 50
+
+@tier4weight1 = 45
+@tier4weight2 = 40
+@tier4weight3 = 35
+
+@tier5weight1 = 30
+@tier5weight2 = 25
+@tier5weight3 = 20
+
+
+
+tech_ccrebel_unrest_1 = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" }
+	weight = @tier2weight2
+
+	
+	# unlocks sow unrest edict
+	
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = liberator
+		}
+		modifier = {
+			factor = 0.75
+			has_ai_personality_behaviour = conqueror
+		}
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_broken_shackles
+		}
+		modifier = {
+			factor = 1.75
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = overwhelming
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = superior
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+			}
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_hostile_to = prev
+						is_dismissive_to = prev
+						is_patronizing_to = prev
+						is_angry_to = prev
+						is_rival = prev
+						is_unfriendly_to = prev
+						is_disloyal_to = prev
+						is_domineering_to = prev
+#						is_wary_to = prev
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_disloyal_to = prev
+						is_rival = prev
+						is_hostile_to = prev
+					}
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 1.25
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}	
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = liberator
+		}
+		modifier = {
+			factor = 0.75
+			has_ai_personality_behaviour = conqueror
+		}
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_broken_shackles
+		}
+		modifier = {
+			factor = 1.75
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = overwhelming
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = superior
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+			}
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_hostile_to = prev
+						is_dismissive_to = prev
+						is_patronizing_to = prev
+						is_angry_to = prev
+						is_rival = prev
+						is_unfriendly_to = prev
+						is_disloyal_to = prev
+						is_domineering_to = prev
+#						is_wary_to = prev
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_disloyal_to = prev
+						is_rival = prev
+						is_hostile_to = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+
+tech_ccrebel_unrest_2 = {
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { statecraft }
+	is_rare = yes
+	prerequisites = { "tech_ccrebel_unrest_1" "tech_galactic_administration" }
+	weight = @tier3weight3
+	
+	#makes sow unrest edict far more effective
+	
+	feature_flags = { ccrebel_sow_unrest_better }
+	
+#	modifier = {
+#		description = feature_ccrebel_sow_unrest_better
+#	}
+
+	prereqfor_desc = {
+		custom = {
+			title = "feature_ccrebel_sow_unrest_better"
+			desc = "feature_ccrebel_sow_unrest_better_desc"
+		}
+	}
+	
+	weight_modifier = {
+		modifier = {
+			factor = 0.6
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_statecraft"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = liberator
+		}
+		modifier = {
+			factor = 0.75
+			has_ai_personality_behaviour = conqueror
+		}
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_broken_shackles
+		}
+		modifier = {
+			factor = 1.75
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = overwhelming
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = superior
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+			}
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_hostile_to = prev
+						is_dismissive_to = prev
+						is_patronizing_to = prev
+						is_angry_to = prev
+						is_rival = prev
+						is_unfriendly_to = prev
+						is_disloyal_to = prev
+						is_domineering_to = prev
+#						is_wary_to = prev
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_disloyal_to = prev
+						is_rival = prev
+						is_hostile_to = prev
+					}
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 2	#rare and useful
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}	
+		modifier = {
+			factor = 1.5
+			has_ai_personality_behaviour = liberator
+		}
+		modifier = {
+			factor = 0.75
+			has_ai_personality_behaviour = conqueror
+		}
+		modifier = {
+			factor = 2
+			has_valid_civic = civic_broken_shackles
+		}
+		modifier = {
+			factor = 1.75
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = overwhelming
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			any_neighbor_country = {
+				has_communications = root
+				OR = {
+					AND = {
+						is_country_type = default
+						OR = {
+							is_hostile_to = root
+							is_angry_to = root
+							is_domineering_to = root
+							is_rival = root
+						}
+					}
+					is_country_type = awakened_fallen_empire
+				}
+				relative_power = {
+					who = root
+					category = fleet
+					value = superior
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_fanatic_pacifist
+			}
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_hostile_to = prev
+						is_dismissive_to = prev
+						is_patronizing_to = prev
+						is_angry_to = prev
+						is_rival = prev
+						is_unfriendly_to = prev
+						is_disloyal_to = prev
+						is_domineering_to = prev
+#						is_wary_to = prev
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_neighbor_country = {
+				has_communications = root
+				any_owned_planet = {
+					any_owned_pop = { is_same_species = root }
+					root = {
+						any_owned_planet = { 
+							distance = {
+								source = prevprev
+								max_distance = 150
+							}
+						}
+					}
+				}
+				root = {
+					OR = {
+						is_threatened_to = prev
+						is_disloyal_to = prev
+						is_rival = prev
+						is_hostile_to = prev
+					}
+				}
+			}
+		}
+	}
+}
+

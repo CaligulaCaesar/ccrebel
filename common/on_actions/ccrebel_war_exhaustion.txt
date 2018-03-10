@@ -1,0 +1,7 @@
+
+# No scope, like on_game_start
+on_monthly_pulse = {
+	events = {
+		ccrebel_war_exhaustion_script.1
+	}
+}
