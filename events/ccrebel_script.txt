@@ -1772,8 +1772,8 @@ planet_event = {
 			}
 			create_rebels = {
 				name = random
-				authority = event_target:fatherland
 				ethos = event_target:fatherland
+				authority = random
 				#civics = event_target:fatherland
 				civics = random
 				species = event_target:fatherland
@@ -1853,8 +1853,8 @@ planet_event = {
 				}
 				create_army = {
 					name = "NAME_ccrebel_Nationalist_Revolutionaries"
-					owner = event_target:copycat_rebels
-					species = event_target:rebellion
+					owner = event_target:nationalist_rebels
+					species = event_target:fatherland
 					type = "assault_army"
 				}
 			}

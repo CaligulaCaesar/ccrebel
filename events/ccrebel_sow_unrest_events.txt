@@ -64,7 +64,7 @@ event = {
 						any_country = {
 							prev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer@prev }
 							any_owned_planet = {
-								prev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev }
+								prevprev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev }
 							}
 						}
 					}
