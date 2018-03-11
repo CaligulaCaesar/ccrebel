@@ -1567,15 +1567,15 @@ country_event = {
 		has_civic = civic_broken_shackles
 		has_civic = civic_free_republic
 		
-		fromfrom = {
-			OR = {
-				AND = {
-					is_war_participant = { who = root side = defenders }
-					using_war_goal = { type = wg_force_ideology owner = attacker }
+		NOT = {
+			AND = {
+				OR = {
+					has_ethic = ethic_fanatic_egalitarian
+					has_ethic = ethic_egalitarian
 				}
-				AND = {
-					is_war_participant = { who = root side = attackers }
-					using_war_goal = { type = wg_force_ideology owner = defender }
+				OR = {
+					has_ethic = ethic_fanatic_militarist
+					has_ethic = ethic_militarist
 				}
 			}
 		}

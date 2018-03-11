@@ -36,8 +36,14 @@ country_event = {
 									}
 								}
 							}
-							NOT = { is_same_value = root }
 						}
+						NOT = {
+							has_opinion_modifier = {
+								who = root
+								modifier = opinion_broke_away_from
+							}
+						}
+						NOT = { is_same_value = root }
 						is_same_species = prevprev
 					}
 				}
@@ -59,8 +65,44 @@ country_event = {
 			}
 		#	root = { set_country_flag = cc_war_with_kin }	#can't use that as will only save one war / war opponent
 		}
+		every_country = {
+			limit = {
+				NOT = {
+					has_opinion_modifier = {
+						who = root
+						modifier = opinion_broke_away_from
+					}
+				}
+				from = {
+					if = {
+						limit = {
+							is_war_participant = {
+								who = root
+								side = attackers
+							}
+						}
+						is_war_participant = {
+							who = prev
+							side = defenders
+						}
+						else = {
+							is_war_participant = {
+								who = prev
+								side = attackers
+							}
+						}
+					}
+				}
+			}
+			set_timed_country_flag = {
+				flag = cc_war_opponent@root
+				days = 18
+			}
+		}
+			
 		every_owned_planet = {
 			limit = {
+				NOT = { is_capital = yes }
 				pop_percentage = {
 					percentage > 0.30
 					limit = { 
@@ -69,17 +111,20 @@ country_event = {
 					}
 				}
 			}
-#			add_modifier = {
-#				modifier = cc_planet_war_with_kin
-#				days = -1
-#			}
 
-			planet_event = { id = rebellionscript.401 }
+			set_timed_planet_flag = {
+				flag = cc_patriot_revolt
+				days = 360
+			}
+			planet_event = { id = rebellionscript.429 days = 20 }
+
+#			planet_event = { id = rebellionscript.401 }
 		}
-		country_event = { id = rebellionscript.41 days = 5 }
+		country_event = { id = rebellionscript.41 days = 15 }
 	}
 }
 
+#Disabled because the whole thing now works better
 #Random triggers per planet
 planet_event = {
 	id = rebellionscript.401
@@ -145,9 +190,15 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		any_owned_pop = {
-			has_modifier = cc_war_with_kin
-			has_pop_flag = cc_patriots
+		any_country = {
+			has_country_flag = cc_war_opponent@root
+			root = {
+				any_owned_pop = {
+					is_same_species = prevprev
+					has_modifier = cc_war_with_kin
+					has_pop_flag = cc_patriots
+				}
+			}
 		}
 	}
 	
@@ -168,7 +219,10 @@ country_event = {
 		}
 		random_country = {
 			limit = {
-				has_country_flag = cc_war_opponent
+				has_country_flag = cc_war_opponent@root
+				
+				NOT = { is_same_value = root }
+						
 				is_same_species = event_target:cc_patriot_pop
 			}
 			save_event_target_as = cc_war_opponent1
@@ -249,6 +303,10 @@ planet_event = {
 					factor = 0
 					NOT = { unrest > 50 }
 				}
+				modifier = {
+					factor = 0.5
+					NOT = { unrest > 65 }
+				}
 				
 				modifier = {
 					factor = 1.25
@@ -308,7 +366,6 @@ planet_event = {
 	}
 }
 		
-# Sort out localisations!
 # Revolt to homeland that the country is at war with (with 'else' just in case something goes wrong)
 
 planet_event = {
