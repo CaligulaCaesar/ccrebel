@@ -426,3 +426,5 @@ cc_slaves_rebel.7.tooltip:0 "Eine Sklavenrebellion droht."
 rebellionscript.14.tooltip:0 "Regimekritische £pops Bewohner bekommen Unzufriedenheitsmodifikatoren.\nPlaneten mit mindestens 50 Unruhe §Rkönnten versuchen zu rebellieren§!."
 
 effect_every_neighbor_country:0 "Jedes Nachbarland"
+
+ccrebel_no_valid_target_in_range:0 "Keine feindliche Planete in Reichweite"

@@ -189,7 +189,7 @@ cc_terror_state_desc:0 "The state is deploying its considerable resources - and 
 #------Sowing Unrest
 
 edict_ccrebel_sow_unrest:0 "Sow Unrest"
-edict_ccrebel_sow_unrest_desc:0 "Establish this planet as a base through which to sow unrest in nearby enemy planets.\n\nNotes on usage:\n-This edict will add unrest to every planet that within 100 distance units (150 if you have researched §G$tech_ccrebel_unrest_2$§!) and that is owned by an empire that is not in an alliance with you, has an opinion of -50 towards you, and that you are not friendly towards. It will also add an unhappiness modifier to pops of your empire's species.\n-If you have researched £society tech §G$tech_ccrebel_unrest_2$§!, it will also create ethics attraction in favour of your empire's main ethic (if it is not the target's ethic), and pops of that ethic will get an unhappiness modifier. If you are $ethic_fanatic_egalitarian$, or if you are $ethic_fanatic_xenophile$ and your target is $ethic_xenophobe$, this also applies to slaves."
+edict_ccrebel_sow_unrest_desc:0 "Establish this planet as a base through which to sow unrest in nearby enemy planets.\n\nNotes on usage:\n-This edict will add unrest to every planet that within 100 distance units (150 if you have researched §G$tech_ccrebel_unrest_2$§!) and that is owned by an empire that is not in an alliance with you, has an opinion of -50 towards you, and that you are not friendly towards. It will also add an unhappiness modifier to pops of your empire's species.\n-If you have researched £society  Tech §G$tech_ccrebel_unrest_2$§!, it will also create ethics attraction in favour of your empire's main ethic (if it is not the target's ethic), and pops of that ethic will get an unhappiness modifier. If you are $ethic_fanatic_egalitarian$, or if you are $ethic_fanatic_xenophile$ and your target is $ethic_xenophobe$, this also applies to slaves."
 
 opinion_ccrebel_stirring_up:0 "Stirring Up Unrest in our Planets"
 opinion_ccrebel_subsidised:0 "Subsidising Us"
@@ -421,13 +421,15 @@ name_list_CCSLAVE1:0 "$FLAG_CATEGORY_slave$"
 opinion_rebelled_from_rival:0 "Rebelled against our Rival"
 
 cc_vulnerability_tooltip:0 "The populace can be reassured either by the state having no militarily overwhelming hostile states or by having as large a fleet as the state can sustain (>90% of naval cap)."
-cc_vulnerability_pops_tooltip:0 "£pops Pops with grievances gain unhappiness modifiers proportional to their grievance and state vulnerability."
+cc_vulnerability_pops_tooltip:0 "£pops  Pops with grievances gain unhappiness modifiers proportional to their grievance and state vulnerability."
 cc_state_vulnerability_removed:0 "All state vulnerability modifiers removed."
 
 ccrebel.4200.tooltip:0 "Rebel armies will attempt to seize the planet."
 rebellionscript.41.tooltip:0 "[cc_patriot_pop.GetSpeciesNamePlural] in the [root.GetName] gain the modifier §R$cc_war_with_kin$§! (-30% happiness).\nPlanets with large [cc_patriot_pop.GetSpeciesAdj] populations §Rmay try to revolt§!."
 cc_slaves_rebel.4.tooltip:0 "Slave populations on planets near the [cc_freed_slaves.GetName] gain the modifier §R$cc_call_of_liberty$§! (-15% happiness)."
 cc_slaves_rebel.7.tooltip:0 "A slave revolt may be imminent."
-rebellionscript.14.tooltip:0 "Dissident £pops Pops gain unhappiness modifiers.\nPlanets with 50 unrest and higher §Rmay try to revolt§!."
+rebellionscript.14.tooltip:0 "Dissident £pops  Pops gain unhappiness modifiers.\nPlanets with 50 unrest and higher §Rmay try to revolt§!."
 
 effect_every_neighbor_country:0 "Every Neighbouring Country"
+
+ccrebel_no_valid_target_in_range:0 "No valid target within range"

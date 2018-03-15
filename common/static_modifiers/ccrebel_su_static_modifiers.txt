@@ -277,29 +277,29 @@ ccrebel_being_stirred_up_4 = {
 #}
 
 ccrebel_sowing_up_planet = {
+	planet_resource_energy_add = -5
+	planet_resource_minerals_add = -5
+	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
+	icon_frame = 3
+}
+
+ccrebel_sowing_up_planet_2 = {
+	planet_resource_energy_add = -10
+	planet_resource_minerals_add = -10
+	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
+	icon_frame = 3
+}
+
+ccrebel_sowing_up_planet_3 = {
 	planet_resource_energy_add = -15
 	planet_resource_minerals_add = -15
 	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
 	icon_frame = 3
 }
 
-ccrebel_sowing_up_planet_2 = {
+ccrebel_sowing_up_planet_4 = {
 	planet_resource_energy_add = -20
 	planet_resource_minerals_add = -20
-	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
-	icon_frame = 3
-}
-
-ccrebel_sowing_up_planet_3 = {
-	planet_resource_energy_add = -25
-	planet_resource_minerals_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
-	icon_frame = 3
-}
-
-ccrebel_sowing_up_planet_4 = {
-	planet_resource_energy_add = -30
-	planet_resource_minerals_add = -30
 	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
 	icon_frame = 3
 }

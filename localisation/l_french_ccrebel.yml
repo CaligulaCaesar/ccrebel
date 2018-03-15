@@ -427,3 +427,5 @@ cc_slaves_rebel.7.tooltip:0 "Une rébellion des esclaves pourrait être imminent
  rebellionscript.14.tooltip:0 "Les £pops pops dissidents reçoivent des modificateurs du malheur.\nPlanètes avec plus que 50 agitation §Rpourront essayer à révolter§!."
 
 effect_every_neighbor_country:0 "Chaque pays voisin"
+
+ccrebel_no_valid_target_in_range:0 "Aucune cible valide à portée"

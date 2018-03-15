@@ -435,3 +435,5 @@ cc_slaves_rebel.7.tooltip:0 "Восстание рабов неизбежно!."
 rebellionscript.14.tooltip:0 "Диссидентские существа получают модификатор несчастья.\nПланеты с 50 волнением и выше §Rmay попытаются восстать§!."
 
 effect_every_neighbor_country:0 "Every Neighbouring Country"
+
+ccrebel_no_valid_target_in_range:0 "Нет действительной цели в радиусе действия"

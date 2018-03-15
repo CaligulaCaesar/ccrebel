@@ -3,51 +3,16 @@
 planet_edict = {
     name = "ccrebel_sow_unrest"
 	
-	cost = { influence = 100 energy = 300 minerals = 300 }
+	cost = { influence = 100 energy = 200 minerals = 200 }
 	
     potential = {
-		has_planet_flag = ccrebel_planet_can_sow_unrest
+		NOT = { has_planet_flag = cc_planet_sowing_unrest_marker }
+	}
 	
-		owner = {
-			NOT = { is_country_type = fallen_empire } #just in case
-			
-			AND = {
-				OR = {
-					has_country_resource = {
-						type = minerals
-						amount > 1200
-					}
-					has_monthly_income = {
-						resource = minerals
-						value > 60
-					}
-				}
-				OR = {
-					has_monthly_income = {
-						resource = energy
-						value > 60
-					}
-					energy > 1200
-				}
-			}
-			
-			any_neighbor_country = {
-				root = {
-					is_neighbor_of = prev
-					has_planet_flag = ccrebel_su_can_target@prev
-				}
-				NOT = {
-					opinion = {
-						who = root.owner
-						value > -50
-					}					
-				}
-				any_owned_planet = {
-					has_planet_flag = ccrebel_su_can_be_targeted@root
-					is_being_stirred_up = no
-					any_owned_pop = { has_a_happiness_gauge = yes }
-				}
-			}
+	allow = {
+		custom_tooltip = {
+			fail_text = "ccrebel_no_valid_target_in_range"
+			has_planet_flag = ccrebel_planet_can_sow_unrest
 		}
 	}
 	
@@ -57,7 +22,6 @@ planet_edict = {
 #		planet_resource_influence_add = -0.5
 #	}
 
-    allow = { }		#try stuff here? (Didn't work)
 	
 	prerequisites = {
 		"tech_ccrebel_unrest_1"
@@ -432,33 +396,10 @@ planet_edict = {
 								}
 								
 								else = {
-									if = {
-										limit = {
-											AND = {
-												OR = {
-													has_country_resource = {
-														type = minerals
-														amount > 1200
-													}
-													has_monthly_income = {
-														resource = minerals
-														value > 60
-													}
-												}
-												OR = {
-													has_monthly_income = {
-														resource = energy
-														value > 60
-													}
-													energy > 1200
-												}
-											}
-										}
-										root = {
-											add_modifier = {
-												modifier = ccrebel_sowing_up_planet
-												days = 3600
-											}
+									root = {
+										add_modifier = {
+											modifier = ccrebel_sowing_up_planet
+											days = 3600
 										}
 									}
 								}
@@ -493,58 +434,43 @@ planet_edict = {
 			every_neighbor_country = {
 				limit = {
 					root = {
-						is_neighbor_of = prev
 						has_planet_flag = ccrebel_su_can_target@prev
 					}
 					OR = {
 						is_country_type = default
 						is_country_type = awakened_fallen_empire
 					}
+					root.owner = {
+						OR = {
+							is_unfriendly_to = prev
+							is_rival = prev
+							is_hostile_to = prev
+							is_domineering_to = prev
+							is_disloyal_to = prev
+							is_threatened_to = prev
+							is_belligerent_to = prev
+							is_berserker_to = prev
+						}
+					}
 					NOR = {
 						is_same_value = prev
 						is_in_federation_with = prev
-						opinion = {
-							who = prev
-							value > -50
-						}			
+#						opinion = {
+#							who = prev
+#							value > -50
+#						}			
 					}
 
-					prev = {
-						OR = {
-							is_threatened_to = prev
-							is_hostile_to = prev
-							is_dismissive_to = prev
-							is_patronizing_to = prev
-							is_angry_to = prev
-							is_rival = prev
-							is_unfriendly_to = prev
-							is_disloyal_to = prev
-							is_domineering_to = prev
-							is_belligerent_to = prev
-							is_imperious_to = prev
-							is_berserker_to = prev
-		#					is_wary_to = prev
-						}
+					root.owner = {
 						if = {
 							limit = { exists = overlord }
-							NOT = {
+							OR = {
+								is_hostile_to = overlord
+								is_disloyal_to = overlord
 								overlord = {
-									NOT = {
-										prev = {
-											OR = {
-												is_hostile_to = prev
-												is_disloyal_to = prev
-											}
-										}
-									}
-									OR = {
+									NOR = {
 										is_in_federation_with = prevprev
-										prevprev = {
-											opinion = {
-												who = prev
-												value > 0
-											}
-										}
+										has_defensive_pact = prevprev
 									}
 								}
 							}
@@ -1100,170 +1026,145 @@ planet_edict = {
 										else = {
 											if = {
 												limit = {
-													root.owner = { 
-														AND = {
-															OR = {
-																has_country_resource = {
-																	type = minerals
-																	amount > 1200
-																}
-																has_monthly_income = {
-																	resource = minerals
-																	value > 60
+													root.owner = { has_technology = tech_ccrebel_unrest_2 }
+												}
+												if = {
+													limit = {
+														root.owner = { has_ethic = ethic_fanatic_militarist }
+														owner = { NOR = { 
+																has_ethic = ethic_fanatic_militarist
+																has_ethic = ethic_militarist
+															}
+														}
+													}
+													add_modifier = {
+														modifier = ccrebel_planet_being_stirred_up_militarist
+														days = 3600
+													}
+													else = {
+														if = {
+															limit = {
+																root.owner = { has_ethic = ethic_fanatic_pacifist }
+																owner = { NOR = { 
+																		has_ethic = ethic_fanatic_pacifist
+																		has_ethic = ethic_pacifist
+																	}
 																}
 															}
-															OR = {
-																has_monthly_income = {
-																	resource = energy
-																	value > 60
+															add_modifier = {
+																modifier = ccrebel_planet_being_stirred_up_pacifist
+																days = 3600
+															}
+															else = {
+																if = {
+																	limit = {
+																		root.owner = { has_ethic = ethic_fanatic_materialist }
+																		owner = { NOR = { 
+																				has_ethic = ethic_fanatic_materialist
+																				has_ethic = ethic_materialist
+																			}
+																		}
+																	}
+																	add_modifier = {
+																		modifier = ccrebel_planet_being_stirred_up_materialist
+																		days = 3600
+																	}
+															else = {
+																if = {
+																	limit = {
+																		root.owner = { has_ethic = ethic_fanatic_spiritualist }
+																		owner = { NOR = { 
+																				has_ethic = ethic_fanatic_spiritualist
+																				has_ethic = ethic_spiritualist
+																			}
+																		}
+																	}
+																	add_modifier = {
+																		modifier = ccrebel_planet_being_stirred_up_spiritualist
+																		days = 3600
+																	}
+															else = {
+																if = {
+																	limit = {
+																		root.owner = { has_ethic = ethic_fanatic_egalitarian }
+																		owner = { NOR = { 
+																				has_ethic = ethic_fanatic_egalitarian
+																				has_ethic = ethic_egalitarian
+																			}
+																		}
+																	}
+																	add_modifier = {
+																		modifier = ccrebel_planet_being_stirred_up_egalitarian
+																		days = 3600
+																	}
+															else = {
+																if = {
+																	limit = {
+																		root.owner = { has_ethic = ethic_fanatic_authoritarian }
+																		owner = { NOR = { 
+																				has_ethic = ethic_fanatic_authoritarian
+																				has_ethic = ethic_authoritarian
+																			}
+																		}
+																	}
+																	add_modifier = {
+																		modifier = ccrebel_planet_being_stirred_up_authoritarian
+																		days = 3600
+																	}
+															else = {
+																if = {
+																	limit = {
+																		root.owner = { has_ethic = ethic_fanatic_xenophile }
+																		owner = { NOR = { 
+																				has_ethic = ethic_fanatic_xenophile
+																				has_ethic = ethic_xenophile
+																			}
+																		}
+																	}
+																	add_modifier = {
+																		modifier = ccrebel_planet_being_stirred_up_xenophile
+																		days = 3600
+																	}
+															else = {
+																if = {
+																	limit = {
+																		root.owner = { has_ethic = ethic_fanatic_xenophobe }
+																		owner = { NOR = { 
+																				has_ethic = ethic_fanatic_xenophobe
+																				has_ethic = ethic_xenophobe
+																			}
+																		}
+																	}
+																	add_modifier = {
+																		modifier = ccrebel_planet_being_stirred_up_xenophobe
+																		days = 3600
+																	}
+															else = {
+																add_modifier = {
+																	modifier = ccrebel_planet_being_stirred_up_no_ethic
+																	days = 3600
 																}
-																energy > 1200
+															}
+																}
+															}
+																}
+															}
+																}
+															}
+																}
+															}
+																}
+															}
+																}
 															}
 														}
 													}
 												}
-												if = {
-													limit = {
-														root.owner = { has_technology = tech_ccrebel_unrest_2 }
-													}
-													if = {
-														limit = {
-															root.owner = { has_ethic = ethic_fanatic_militarist }
-															owner = { NOR = { 
-																	has_ethic = ethic_fanatic_militarist
-																	has_ethic = ethic_militarist
-																}
-															}
-														}
-														add_modifier = {
-															modifier = ccrebel_planet_being_stirred_up_militarist
-															days = 3600
-														}
-														else = {
-															if = {
-																limit = {
-																	root.owner = { has_ethic = ethic_fanatic_pacifist }
-																	owner = { NOR = { 
-																			has_ethic = ethic_fanatic_pacifist
-																			has_ethic = ethic_pacifist
-																		}
-																	}
-																}
-																add_modifier = {
-																	modifier = ccrebel_planet_being_stirred_up_pacifist
-																	days = 3600
-																}
-																else = {
-																	if = {
-																		limit = {
-																			root.owner = { has_ethic = ethic_fanatic_materialist }
-																			owner = { NOR = { 
-																					has_ethic = ethic_fanatic_materialist
-																					has_ethic = ethic_materialist
-																				}
-																			}
-																		}
-																		add_modifier = {
-																			modifier = ccrebel_planet_being_stirred_up_materialist
-																			days = 3600
-																		}
-																else = {
-																	if = {
-																		limit = {
-																			root.owner = { has_ethic = ethic_fanatic_spiritualist }
-																			owner = { NOR = { 
-																					has_ethic = ethic_fanatic_spiritualist
-																					has_ethic = ethic_spiritualist
-																				}
-																			}
-																		}
-																		add_modifier = {
-																			modifier = ccrebel_planet_being_stirred_up_spiritualist
-																			days = 3600
-																		}
-																else = {
-																	if = {
-																		limit = {
-																			root.owner = { has_ethic = ethic_fanatic_egalitarian }
-																			owner = { NOR = { 
-																					has_ethic = ethic_fanatic_egalitarian
-																					has_ethic = ethic_egalitarian
-																				}
-																			}
-																		}
-																		add_modifier = {
-																			modifier = ccrebel_planet_being_stirred_up_egalitarian
-																			days = 3600
-																		}
-																else = {
-																	if = {
-																		limit = {
-																			root.owner = { has_ethic = ethic_fanatic_authoritarian }
-																			owner = { NOR = { 
-																					has_ethic = ethic_fanatic_authoritarian
-																					has_ethic = ethic_authoritarian
-																				}
-																			}
-																		}
-																		add_modifier = {
-																			modifier = ccrebel_planet_being_stirred_up_authoritarian
-																			days = 3600
-																		}
-																else = {
-																	if = {
-																		limit = {
-																			root.owner = { has_ethic = ethic_fanatic_xenophile }
-																			owner = { NOR = { 
-																					has_ethic = ethic_fanatic_xenophile
-																					has_ethic = ethic_xenophile
-																				}
-																			}
-																		}
-																		add_modifier = {
-																			modifier = ccrebel_planet_being_stirred_up_xenophile
-																			days = 3600
-																		}
-																else = {
-																	if = {
-																		limit = {
-																			root.owner = { has_ethic = ethic_fanatic_xenophobe }
-																			owner = { NOR = { 
-																					has_ethic = ethic_fanatic_xenophobe
-																					has_ethic = ethic_xenophobe
-																				}
-																			}
-																		}
-																		add_modifier = {
-																			modifier = ccrebel_planet_being_stirred_up_xenophobe
-																			days = 3600
-																		}
-																else = {
-																	add_modifier = {
-																		modifier = ccrebel_planet_being_stirred_up_no_ethic
-																		days = 3600
-																	}
-																}
-																	}
-																}
-																	}
-																}
-																	}
-																}
-																	}
-																}
-																	}
-																}
-																	}
-																}
-															}
-														}
-													}
-													
-													else = {
-														add_modifier = {
-															modifier = ccrebel_planet_being_stirred_up_no_ethic
-															days = 3600
-														}
+												
+												else = {
+													add_modifier = {
+														modifier = ccrebel_planet_being_stirred_up_no_ethic
+														days = 3600
 													}
 												}
 											}
@@ -1453,55 +1354,30 @@ planet_edict = {
 											else = {
 												if = {
 													limit = {
-														root.owner = { 
-															AND = {
-																OR = {
-																	has_country_resource = {
-																		type = minerals
-																		amount > 1200
-																	}
-																	has_monthly_income = {
-																		resource = minerals
-																		value > 60
-																	}
-																}
-																OR = {
-																	has_monthly_income = {
-																		resource = energy
-																		value > 60
-																	}
-																	energy > 1200
-																}
-															}	
+														root.owner = { has_technology = tech_ccrebel_unrest_2 }
+													}
+													every_owned_pop = {
+														limit = {
+															has_a_happiness_gauge = yes
+															ccsu_pop_to_sow_unrest = yes
+														}
+														add_modifier = {
+															modifier = ccrebel_being_stirred_up
+															days = 3600
 														}
 													}
-													if = {
-														limit = {
-															root.owner = { has_technology = tech_ccrebel_unrest_2 }
-														}
+													else = {
 														every_owned_pop = {
 															limit = {
 																has_a_happiness_gauge = yes
-																ccsu_pop_to_sow_unrest = yes
+																AND = {
+																	is_same_species = root.owner
+																	NOT = { is_same_species = prev.owner }
+																}
 															}
 															add_modifier = {
 																modifier = ccrebel_being_stirred_up
 																days = 3600
-															}
-														}
-														else = {
-															every_owned_pop = {
-																limit = {
-																	has_a_happiness_gauge = yes
-																	AND = {
-																		is_same_species = root.owner
-																		NOT = { is_same_species = prev.owner }
-																	}
-																}
-																add_modifier = {
-																	modifier = ccrebel_being_stirred_up
-																	days = 3600
-																}
 															}
 														}
 													}

@@ -431,3 +431,5 @@ cc_slaves_rebel.7.tooltip:0 "A slave revolt may be imminent."
 rebellionscript.14.tooltip:0 "Dissident £pops Pops gain unhappiness modifiers.\nPlanets with 50 unrest and higher §Rmay try to revolt§!."
 
 effect_every_neighbor_country:0 "Every Neighbouring Country"
+
+ccrebel_no_valid_target_in_range:0 "No valid target within range"
