@@ -86,6 +86,12 @@ country_event = {
 					NOT = { any_planet = { is_colony = yes } }
 				}
 				starbase = { set_owner = root }
+				
+				add_claims = {
+					who = event_target:cc_former_owner
+					num_of_claims = 1
+					show_notification = no
+				}
 			}
 
 			if = {
@@ -99,6 +105,12 @@ country_event = {
 						NOT = { any_planet = { is_colony = yes } }
 					}
 					starbase = { set_owner = root }
+				
+					add_claims = {
+						who = event_target:cc_former_owner
+						num_of_claims = 1
+						show_notification = no
+					}
 				}
 			}
 		}
