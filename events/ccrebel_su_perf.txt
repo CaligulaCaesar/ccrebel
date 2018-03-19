@@ -201,7 +201,6 @@ planet_event = {
 			every_neighbor_country = {
 				limit = {
 					root = {
-						is_neighbor_of = prev
 						has_planet_flag = ccrebel_su_can_target@prev
 					}
 				}

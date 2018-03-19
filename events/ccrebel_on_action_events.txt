@@ -17,6 +17,7 @@ country_event = {
 	
 	immediate = {
 		set_country_type = default
+		from.owner = { save_event_target_as = cc_former_owner }
 		if = {
 			limit = {
 				has_country_flag = slave_rebels
@@ -61,12 +62,50 @@ country_event = {
 				}
 			}
 		}
+		country_event = { id = action.3099 days = 3 }
 	}
 }
 
+country_event = {
+	id = action.3099
+	hide_window = yes
+	is_triggered_only = yes
 
+	trigger = { exists = event_target:cc_former_owner }
 
-# Planet transfered
+	immediate = {
+		#Give them an extra system
+
+		capital_scope.solar_system = {
+			closest_system = {
+				min_steps = 1
+				max_steps = 1
+				limit = {
+					is_within_borders_of = event_target:cc_former_owner
+					starbase = { has_starbase_size = starbase_outpost }
+					NOT = { any_planet = { is_colony = yes } }
+				}
+				starbase = { set_owner = root }
+			}
+
+			if = {
+				limit = { fromfrom = { NOT = { has_planet_flag = cc_revolution } } }
+				closest_system = {
+					min_steps = 1
+					max_steps = 1
+					limit = {
+						is_within_borders_of = event_target:cc_former_owner
+						starbase = { has_starbase_size = starbase_outpost }
+						NOT = { any_planet = { is_colony = yes } }
+					}
+					starbase = { set_owner = root }
+				}
+			}
+		}
+	}
+}
+
+# Planet transferred
 planet_event = {
 	id = action.42
 	hide_window = yes
