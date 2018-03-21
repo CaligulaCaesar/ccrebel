@@ -62,7 +62,7 @@ country_event = {
 				}
 			}
 		}
-		country_event = { id = action.3099 days = 3 }
+		country_event = { id = action.3099 }
 	}
 }
 

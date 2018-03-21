@@ -2977,34 +2977,6 @@ event = {
 
 
 
-
-# Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
-# This = Rebel Country
-# From = Planet
-# FromFrom = War
-country_event = {
-	id = rebellionscript.999
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		from.owner = { country_event = { id = rebellionscript.9991 days = 1 } }
-	}
-}
-
-country_event = {
-	id = rebellionscript.9991
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		declare_war = {
-			target = from
-			attacker_war_goal = wg_conquest
-		}
-	}
-}
-
 #For testing
 #event = {
 #	id = rebellionscript.99
