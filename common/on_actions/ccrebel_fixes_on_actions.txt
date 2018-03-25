@@ -5,3 +5,14 @@ on_rebels_take_planet_owner_switched = {
 		rebellionscript.35
 	}
 }
+
+
+#Fired whenever a new owner is set for a planet,
+#be it after a war or through a trade
+#From = Country scope (new owner)
+#This = Planet scope
+on_planet_transfer = {
+	events = {
+		rebellionscript.520
+	}
+}

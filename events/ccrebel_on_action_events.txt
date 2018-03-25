@@ -63,6 +63,34 @@ country_event = {
 			}
 		}
 		country_event = { id = action.3099 }
+
+		if = {
+			limit = {
+				from.owner = {
+					OR = {
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+
+						AND = {
+							is_subject = yes 
+							OR = {
+								is_subject_type = protectorate
+								overlord = {
+									OR = {
+										is_country_type = fallen_empire
+										is_country_type = awakened_fallen_empire
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			set_timed_country_flag = {
+				flag = ccrebel_cut_rebellion_fleet_spawn
+				days = 3600
+			}
+		}
 	}
 }
 

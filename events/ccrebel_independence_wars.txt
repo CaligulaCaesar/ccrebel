@@ -15,20 +15,30 @@ country_event = {
 	trigger = { NOT = { has_country_flag = ccrebel_dont_declare_war } }
 
 	immediate = {
-		random_country = {
-			limit = {
-				has_relation_flag = {
-					who = ROOT
-					flag = ccrebel_declare_war_on
-				}
-			}
-			root = {
-				declare_war = {
-					target = prev
-					attacker_war_goal = wg_ccrebel_independence
-				}
+        if = {
+            limit = {
+                any_country = {
+                    has_relation_flag = {
+                        who = ROOT
+                        flag = ccrebel_declare_war_on
+                    }
+                }
             }
-		}
+            random_country = {
+                limit = {
+                    has_relation_flag = {
+                        who = ROOT
+                        flag = ccrebel_declare_war_on
+                    }
+                }
+                root = {
+                    declare_war = {
+                        target = prev
+                        attacker_war_goal = wg_ccrebel_independence
+                    }
+                }
+            }
+        }
 	}
 }
 

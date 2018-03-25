@@ -130,7 +130,7 @@ war_name_format = {
 	random_weight = {
 		factor = 0
 		modifier = {
-			add = 5
+			add = 500
 			attacker = {
 				has_policy_flag = slavery_allowed
 			}
@@ -147,7 +147,7 @@ war_name_format = {
 	random_weight = {
 		factor = 0
 		modifier = {
-			add = 5
+			add = 500
 			attacker = {
 				has_policy_flag = slavery_allowed
 			}
@@ -165,7 +165,7 @@ war_name_format = {
 	random_weight = {
 		factor = 0
 		modifier = {
-			add = 5
+			add = 500
 			attacker = {
 				has_valid_civic = civic_broken_shackles
 				has_valid_civic = civic_free_republic
@@ -182,7 +182,7 @@ war_name_format = {
 	random_weight = {
 		factor = 0
 		modifier = {
-			add = 5
+			add = 500
 			attacker = {
 				has_valid_civic = civic_broken_shackles
 				has_valid_civic = civic_free_republic
@@ -194,3 +194,69 @@ war_name_format = {
 	}
 	format = "[This.MainAttacker.GetAdj] - [This.MainDefender.GetAdj] <cc_freedom_2>"
 }
+
+
+
+
+# Rebellion
+
+war_name_parts_list = {
+	key = "ccrebel_independence_1"
+	parts = {
+		"Liberation" = 1
+		"Liberty" = 1
+		"Freedom" = 1
+		"Independence" = 3
+	}
+}
+
+war_name_parts_list = {
+	key = "ccrebel_independence_2"
+	parts = {
+		"Revolt" = 1
+		"Uprising" = 1
+		"Rebellion" = 1
+	}
+}
+
+war_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 500
+			using_war_goal = {
+				type = wg_ccrebel_independence
+				owner = attacker
+			}
+			attacker = {
+				NOR = {
+					has_valid_civic = civic_broken_shackles
+					has_valid_civic = civic_free_republic
+				}
+			}
+		}
+	}
+	format = "War of [This.MainAttacker.GetAdj] <ccrebel_independence_1>"
+}
+
+war_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 500
+			using_war_goal = {
+				type = wg_ccrebel_independence
+				owner = attacker
+			}
+			attacker = {
+				NOR = {
+					has_valid_civic = civic_broken_shackles
+					has_valid_civic = civic_free_republic
+				}
+			}
+		}
+	}
+	format = "The [This.MainAttacker.GetAdj] <ccrebel_independence_2>"
+}
+
+
