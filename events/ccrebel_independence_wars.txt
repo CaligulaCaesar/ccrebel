@@ -3,33 +3,31 @@ namespace = ccrebel_wg_script
 
 
 
-# Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
+# Initial rebels manage to take control of the planet, happens after the new owner is set, after the war is created.
 # This = Rebel Country
 # From = Planet
 # FromFrom = War
 country_event = {
 	id = ccrebel_wg_script.1
 	hide_window = yes
-    is_triggered_only = yes
-    
-    trigger = { from = { NOT = { has_planet_flag = cc_revolution } } }
-
-	immediate = {
-		from.owner = { save_event_target_as = old_owner }
-		
-		country_event = { id = ccrebel_wg_script.2 days = 1 }
-	}
-}
-
-country_event = {
-	id = ccrebel_wg_script.2
-	hide_window = yes
 	is_triggered_only = yes
 
+	trigger = { NOT = { has_country_flag = ccrebel_dont_declare_war } }
+
 	immediate = {
-		declare_war = {
-			target = event_target:old_owner
-			attacker_war_goal = wg_ccrebel_independence
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					who = ROOT
+					flag = ccrebel_declare_war_on
+				}
+			}
+			root = {
+				declare_war = {
+					target = prev
+					attacker_war_goal = wg_ccrebel_independence
+				}
+			}
 		}
 	}
 }
@@ -41,6 +39,8 @@ country_event = {
     desc = ccrebel_wg_script.3.desc
     picture = GFX_evt_arguing_senate
     location = from.capital_scope
+
+    is_triggered_only = yes
 
     immediate = {
         from = {
@@ -58,17 +58,24 @@ country_event = {
             }
             destroy_country = yes
         }
-        fromfrom = { country_event = { id = ccrebel_wg_script.4 } }
+        if = {
+            limit = { exists = fromfrom }
+            fromfrom = { country_event = { id = ccrebel_wg_script.4 } }
+        }
     }
     option = { name = EXCELLENT }
 }
 
+
+#We have been unable to prevent the [from.GetSpeciesAdj]/slave rebels from defecting to the [from.GetName].
 country_event = {
     id = ccrebel_wg_script.4
     title = ccrebel_wg_script.4.name
     desc = ccrebel_wg_script.4.desc
     picture = GFX_evt_arguing_senate
     location = from.capital_scope
+
+    is_triggered_only = yes
 
     option = { name = UNFORTUNATE }
 }

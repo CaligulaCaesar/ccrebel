@@ -53,6 +53,7 @@ on_rebels_take_planet = {
 # FromFrom = War
 on_rebels_take_planet_owner_switched = {
 	events = {
+		ccrebel_wg_script.1
 		rebellionscript.1
 		
 #		rebellionscript.5
@@ -61,11 +62,11 @@ on_rebels_take_planet_owner_switched = {
 }
 
 # No scope, like on_game_start
-on_decade_pulse = {
-	events = {
-		rebellionscript.2
-	}
-}
+#on_decade_pulse = {
+#	events = {
+#		rebellionscript.2
+#	}
+#}
 
 # No scope, like on_game_start
 on_yearly_pulse = {
@@ -101,7 +102,6 @@ on_monthly_pulse = {
 on_war_lost = {
 	events = {
 		rebellionscript.17
-		rebellionscript.45
 		cc_slaves_rebel.12
 	}
 }
@@ -114,18 +114,6 @@ on_war_beginning = {
 	events = {
 		rebellionscript.40
 		cc_slaves_rebel.10
-	}
-}
-
-# A white peace has been signed
-# Root = Recipient
-# From = Actor
-# FromFrom = Main Attacker
-# FromFromFrom = Main Defender
-# FromFromFromFrom = War
-on_white_peace = {
-	events = {
-		rebellionscript.451
 	}
 }
 

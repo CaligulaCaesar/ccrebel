@@ -64,11 +64,13 @@ country_event = {
 	}
 }
 
-
+#disabled
 event = {
 	id = rebellionscript.2
 	hide_window = yes
 	is_triggered_only = yes
+
+	trigger = { always = no }
 	
 	immediate = {
 		every_country = {
@@ -413,12 +415,6 @@ country_event = {
 #	}
 
 	immediate = {
-		this = {
-			add_modifier = {
-				modifier = "revolutionary_mobilisation"
-				days = 1800
-			}
-		}
 		from = {
 			every_owned_pop = {
 				if = { 
@@ -1311,6 +1307,7 @@ country_event = {
 						is_same_value = from.owner
 						is_same_empire = from.owner
 						has_country_flag = copycat_rebels
+						has_country_flag = cc_rebels_merging
 					}
 				}
 			}
@@ -1326,6 +1323,7 @@ country_event = {
 						is_same_value = from.owner
 						is_same_empire = from.owner
 						has_country_flag = copycat_rebels
+						has_country_flag = cc_rebels_merging
 					}
 				}
 				save_event_target_as = rebellion1
@@ -1340,6 +1338,10 @@ country_event = {
 							has_country_flag = cc_rebels_merging
 						}
 					}
+					set_timed_country_flag = { #this is to stop the PRE war dec
+						flag = ccrebel_dont_declare_war
+						days = 5
+					}
 					country_event = { id = unrest.4220 days = 5 } # request incorporation
 					root = { set_country_flag = cc_rebels_merging }
 				}
@@ -1353,19 +1355,24 @@ country_event = {
 				}
 			}
 			else = {
+				from.owner = {
+					set_timed_relation_flag = {
+						flag = ccrebel_declare_war_on
+						who = root
+						days = 5
+					}
+				}
 				if = {
 					limit = { 
 						any_country = {
-							OR = { 
-								has_country_flag = cc_rebellion
-								is_same_species = root
-							}
+							is_same_species = root
 							is_country_type = default
 							NOR = {
 								is_same_value = event_target:new_rebels
 								is_same_value = from.owner
 								is_same_empire = from.owner
 								has_country_flag = copycat_rebels
+								has_country_flag = cc_rebels_merging
 							}
 							from = {
 								any_owned_pop = {
@@ -1376,16 +1383,14 @@ country_event = {
 					}
 					random_country = {
 						limit = {
-							OR = { 
-								has_country_flag = cc_rebellion
-								is_same_species = root
-							}
+							is_same_species = root
 							is_country_type = default
 							NOR = {
 								is_same_value = event_target:new_rebels
 								is_same_value = from.owner
 								is_same_empire = from.owner
 								has_country_flag = copycat_rebels
+								has_country_flag = cc_rebels_merging
 							}
 							from = {
 								any_owned_pop = {
@@ -1397,14 +1402,6 @@ country_event = {
 					}
 
 					event_target:rebellion1 = {
-						if = {
-							limit = {
-								NOR = {
-									is_same_value = from.owner
-									is_same_empire = from.owner
-									has_country_flag = cc_rebels_merging
-								}
-							}
 							country_event = { id = unrest.4220 days = 5 } # request incorporation
 							root = { set_country_flag = cc_rebels_merging }
 						}

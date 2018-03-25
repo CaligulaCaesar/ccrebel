@@ -12,6 +12,9 @@ wg_ccrebel_independence = {
 		always = yes
 	}
 	
+	surrender_acceptance = -1000
+	war_exhaustion = 0.75
+	
 	on_status_quo = {
 		custom_tooltip = wg_ccrebel_independence_status_quo
 		hidden_effect = {
@@ -74,7 +77,7 @@ wg_ccrebel_independence = {
                             flag = ccrebel_supporting_independence_war
                         }
                     }
-                    country_event = { id = ccrebel_wg_script.1 days = 5 }
+                    country_event = { id = ccrebel_wg_script.3 days = 5 }
                 }
             }					
 		}
