@@ -1402,9 +1402,8 @@ country_event = {
 					}
 
 					event_target:rebellion1 = {
-							country_event = { id = unrest.4220 days = 5 } # request incorporation
-							root = { set_country_flag = cc_rebels_merging }
-						}
+						country_event = { id = unrest.4220 days = 5 } # request incorporation
+						root = { set_country_flag = cc_rebels_merging }
 					}
 					from = { 
 						if = {

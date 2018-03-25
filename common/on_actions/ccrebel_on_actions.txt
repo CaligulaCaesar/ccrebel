@@ -43,7 +43,7 @@ on_rebels_take_planet = {
 		rebellionscript.111
 		rebellionscript.44
 		cc_slaves_rebel.1
-		ccrebel_wg_script.999
+#		ccrebel_wg_script.999
 	}
 }
 
