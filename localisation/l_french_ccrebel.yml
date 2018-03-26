@@ -435,5 +435,5 @@ ccrebel_no_valid_target_in_range:0 "Aucune cible valide à portée"
 
 wg_ccrebel_independence:0 "$war_goal_wg_independence$"
 wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
-wg_ccrebel_independence_status_quo:0 "$wg_independence_status_quo$. Si un autre empire soutient la [Root.GetName], il est possible que cette dernière pourrait se joindre à cela."
-wg_ccrebel_independence_accept:0 "$wg_independence_accept$. Si un autre empire soutient la [Root.GetName], il est possible que cette dernière pourrait se joindre à cela."
+wg_ccrebel_independence_status_quo:0 "$wg_independence_status_quo$ Si un autre empire soutient la [Root.GetName], il est possible que cette dernière pourrait se joindre à cela."
+wg_ccrebel_independence_accept:0 "$wg_independence_accept$ Si un autre empire soutient la [Root.GetName], il est possible que cette dernière pourrait se joindre à cela."

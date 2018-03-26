@@ -102,6 +102,17 @@ war_name_parts_list = {
 	}
 }
 
+war_name_parts_list = {
+	key = "cc_counter_revolution_adj"
+	parts = {
+		"Escaped" = 1
+		"Upstart" = 1
+		"Rebellious" = 1
+	}
+}
+
+
+
 # Free Republic attacks slavers
 
 war_name_parts_list = {
@@ -137,6 +148,7 @@ war_name_format = {
 			defender = {
 				has_valid_civic = civic_broken_shackles
 				has_valid_civic = civic_free_republic
+				NOT = { is_same_species = prev.attacker }
 			}
 		}
 	}
@@ -154,10 +166,29 @@ war_name_format = {
 			defender = {
 				has_valid_civic = civic_broken_shackles
 				has_valid_civic = civic_free_republic
+				NOT = { is_same_species = prev.attacker }
 			}
 		}
 	}
-	format = "[This.MainAttacker.GetName] <cc_counter_revolution_2> of the [This.MainDefender.GetName]"
+	format = "[This.MainAttacker.GetAdj] <cc_counter_revolution_2> of the [This.MainDefender.GetName]"
+}
+
+war_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 500
+			attacker = {
+				has_policy_flag = slavery_allowed
+			}
+			defender = {
+				has_valid_civic = civic_broken_shackles
+				has_valid_civic = civic_free_republic
+				is_same_species = prev.attacker
+			}
+		}
+	}
+	format = "[This.MainAttacker.GetAdj] <cc_counter_revolution_2> of their <cc_counter_revolution_adj> Slaves"
 }
 
 
@@ -172,6 +203,7 @@ war_name_format = {
 			}
 			defender = {
 				has_policy_flag = slavery_allowed
+				NOT = { is_same_species = prev.attacker }
 			}
 		}
 	}
@@ -189,12 +221,48 @@ war_name_format = {
 			}
 			defender = {
 				has_policy_flag = slavery_allowed
+				NOT = { is_same_species = prev.attacker }
 			}
 		}
 	}
-	format = "[This.MainAttacker.GetAdj] - [This.MainDefender.GetAdj] <cc_freedom_2>"
+	format = "[This.MainAttacker.GetAdj] <cc_freedom_2>"
 }
 
+war_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 500
+			attacker = {
+				has_valid_civic = civic_broken_shackles
+				has_valid_civic = civic_free_republic
+			}
+			defender = {
+				has_policy_flag = slavery_allowed
+				is_same_species = prev.attacker
+			}
+		}
+	}
+	format = "[This.MainAttacker.GetAdj] Slave <ccrebel_independence_2>"
+}
+
+war_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 500
+			attacker = {
+				has_valid_civic = civic_broken_shackles
+				has_valid_civic = civic_free_republic
+			}
+			defender = {
+				has_policy_flag = slavery_allowed
+				is_same_species = prev.attacker
+			}
+		}
+	}
+	format = "[This.MainAttacker.GetAdj] Slave <ccrebel_independence_2>"
+}
 
 
 

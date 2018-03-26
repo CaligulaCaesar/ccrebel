@@ -102,6 +102,34 @@ event = {
             limit = {
                 NOT = { has_country_flag = ccrebel_has_existed_5_years }
             }
+            switch = {
+                trigger = has_country_flag
+                ccrebel_has_existed_4_years = { set_country_flag = ccrebel_has_existed_5_year }
+                ccrebel_has_existed_3_years = {
+                    set__timed_country_flag = {
+                        flag = ccrebel_has_existed_4_year
+                        years = 10
+                    }
+                }
+                ccrebel_has_existed_2_years = {
+                    set__timed_country_flag = {
+                        flag = ccrebel_has_existed_3_year
+                        years = 10
+                    }
+                }
+                ccrebel_has_existed_1_years = {
+                    set__timed_country_flag = {
+                        flag = ccrebel_has_existed_2_year
+                        years = 10
+                    }
+                }
+                default = {
+                    set__timed_country_flag = {
+                        flag = ccrebel_has_existed_1_year
+                        years = 10
+                    }
+                }
+            }
             if = {
                 limit = { has_country_flag = ccrebel_has_existed_4_years }
                 set_country_flag = ccrebel_has_existed_5_years
