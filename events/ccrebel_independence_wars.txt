@@ -31,10 +31,21 @@ country_event = {
                         flag = ccrebel_declare_war_on
                     }
                 }
+                save_event_target_as = ccrebel_declared_war_on
+
                 root = {
                     declare_war = {
                         target = prev
                         attacker_war_goal = wg_ccrebel_independence
+                    }
+                    every_country = {
+                        limit = {
+                            any_war = {
+                                is_war_participant = { who = root side = attackers }
+                                is_war_participant = { who = prev side = defenders }
+                            }
+                        }
+                        country_event = { id = ccrebel_wg_script.2 }
                     }
                 }
             }
@@ -42,6 +53,37 @@ country_event = {
 	}
 }
 
+#The [from.GetName] has launched a rebellion against the [ccrebel_declared_war_on.GetName]. As their ally/overlord, we have come to their aid, and are now at war with the [from.GetName]!""
+country_event = {
+    id = ccrebel_wg_script.2
+    title = ccrebel_wg_script.2.name
+    desc = {
+        trigger = {
+            event_target:ccrebel_declared_war_on = {
+                exists = overlord
+                overlord = { is_same_value = root }
+            }
+        }
+        text = ccrebel_wg_script.2.desc.overlord
+    }
+    desc = {
+        trigger = {
+            event_target:ccrebel_declared_war_on = {
+                NOT = {
+                    AND = {
+                        exists = overlord
+                        overlord = { is_same_value = root }
+                    }
+                }
+            }
+        }
+        text = ccrebel_wg_script.2.desc.ally
+    }
+
+    is_triggered_only = yes 
+
+    option = { name = OK }
+}
 
 country_event = {
     id = ccrebel_wg_script.3
@@ -91,7 +133,7 @@ country_event = {
 }
 
 
-
+#Check a country is not a recent rebel
 event = {
     id = ccrebel_wg_script.5
     hide_window = yes 
@@ -106,25 +148,25 @@ event = {
                 trigger = has_country_flag
                 ccrebel_has_existed_4_years = { set_country_flag = ccrebel_has_existed_5_year }
                 ccrebel_has_existed_3_years = {
-                    set__timed_country_flag = {
+                    set_timed_country_flag = {
                         flag = ccrebel_has_existed_4_year
                         years = 10
                     }
                 }
                 ccrebel_has_existed_2_years = {
-                    set__timed_country_flag = {
+                    set_timed_country_flag = {
                         flag = ccrebel_has_existed_3_year
                         years = 10
                     }
                 }
                 ccrebel_has_existed_1_years = {
-                    set__timed_country_flag = {
+                    set_timed_country_flag = {
                         flag = ccrebel_has_existed_2_year
                         years = 10
                     }
                 }
                 default = {
-                    set__timed_country_flag = {
+                    set_timed_country_flag = {
                         flag = ccrebel_has_existed_1_year
                         years = 10
                     }
@@ -153,6 +195,179 @@ event = {
             if = {
                 limit = { NOT = { has_country_flag = ccrebel_has_existed_1_year } }
                 set_country_flag = ccrebel_has_existed_1_year
+            }
+        }
+    }
+}
+
+
+
+#Support rebels or not
+country_event = {
+    id = ccrebel_wg_script.10
+    title = ccrebel_wg_script.10.name
+    desc = ccrebel_wg_script.10.desc
+	location = fromfrom
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = from
+		planet_background = from.capital_scope
+		#graphical_culture = from
+		city_level = from.capital_scope
+		room = from.ruler
+	}
+
+    is_triggered_only = yes 
+
+    option = { #yes
+        name = ccrebel_wg_script.10.A
+
+        join_war = from
+        
+        ai_chance = {
+            factor = 1
+            modifier = {
+                factor = 2
+                OR = {
+                    has_ethic = ethic_militarist
+                    has_ethic = ethic_fanatic_militarist
+                    has_ethic = ethic_xenophobe
+                    has_ethic = ethic_fanatic_xenophobe
+                }
+            }
+            modifier = {
+                factor = 0
+                any_country = {
+                    is_at_war_with = from
+                    relative_power = {
+                        who = ROOT
+                        value = overwhelming
+                    }
+                }
+            }
+            modifier = {
+                factor = 0.5
+                any_country = {
+                    is_at_war_with = from
+                    relative_power = {
+                        who = ROOT
+                        value = superior
+                    }
+                }
+            }
+            modifier = {
+                factor = 2
+                any_country = {
+                    is_at_war_with = from
+                    root = {
+                        OR = {
+                            is_hostile_to = prev
+                            is_rival = prev
+                            is_disloyal_to = prev
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 2
+                any_country = {
+                    is_at_war_with = from
+                    has_policy_flag = purge_allowed
+                }
+            }
+        }
+    }
+    option = { #no
+        name = ccrebel_wg_script.10.B
+
+
+        ai_chance = {
+            factor = 1
+            modifier = {
+                factor = 2
+                OR = {
+                    has_ethic = ethic_pacifist
+                    has_ethic = ethic_fanatic_pacifist
+                }
+                NOT = {
+                    any_country = {
+                        is_at_war_with = from
+                        has_policy_flag = purge_allowed
+                    }
+                }
+            }
+            modifier = {
+                factor = 0.5
+                any_country = {
+                    is_at_war_with = from
+                    root = {
+                        OR = {
+                            is_friendly_to = prev
+                            is_cordial_to = prev
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 5
+                NOR = {
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = overwhelming
+                        }
+                    }
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = superior
+                        }
+                    }
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = equal
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 5
+                NOR = {
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = overwhelming
+                        }
+                    }
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = superior
+                        }
+                    }
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = equal
+                        }
+                    }
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value = inferior
+                        }
+                    }
+                }
             }
         }
     }

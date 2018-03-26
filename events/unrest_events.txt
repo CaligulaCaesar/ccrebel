@@ -2920,7 +2920,28 @@ country_event = {
 						from = {
 							is_original_owner = prev
 						}
-						NOT = { is_same_value = from.owner }
+						NOR = {
+							is_same_value = from.owner
+							is_in_federation_with = from.owner
+							has_defensive_pact = from.owner
+							if = {
+								limit = {
+									from.owner = {
+										exists = overlord
+										overlord = {
+											OR = {
+												is_in_federation_with = prevprev
+												has_defensive_pact = prevprev
+											}
+										}
+									}
+								}
+							}
+							AND = {
+								exists = overlord
+								overlord = { is_same_value = from.owner }
+							}
+						}
 					}
 				}
 				random_country = {
@@ -2936,26 +2957,66 @@ country_event = {
 					any_country = {
 						is_country_type = default
 						is_same_species = root
-						NOT = { is_same_value = from.owner }
 						NOR = {
+							is_same_value = from.owner
+							is_in_federation_with = from.owner
+							has_defensive_pact = from.owner
+							if = {
+								limit = {
+									from.owner = {
+										exists = overlord
+										overlord = {
+											OR = {
+												is_in_federation_with = prevprev
+												has_defensive_pact = prevprev
+											}
+										}
+									}
+								}
+							}
+							AND = {
+								exists = overlord
+								overlord = { is_same_value = from.owner }
+							}
+							
 							is_same_value = root
 							is_same_empire = root
 							has_country_flag = cc_rebels_merging
+							has_country_flag = cc_chain_revolt
 						}
-						NOT = { has_country_flag = cc_chain_revolt }
 					}
 				}
 				random_country = {
 					limit = {
 						is_country_type = default
 						is_same_species = root
-						NOT = { is_same_value = from.owner }
 						NOR = {
+							is_same_value = from.owner
+							is_in_federation_with = from.owner
+							has_defensive_pact = from.owner
+							if = {
+								limit = {
+									from.owner = {
+										exists = overlord
+										overlord = {
+											OR = {
+												is_in_federation_with = prevprev
+												has_defensive_pact = prevprev
+											}
+										}
+									}
+								}
+							}
+							AND = {
+								exists = overlord
+								overlord = { is_same_value = from.owner }
+							}
+							
 							is_same_value = root
 							is_same_empire = root
 							has_country_flag = cc_rebels_merging
+							has_country_flag = cc_chain_revolt
 						}
-						NOT = { has_country_flag = cc_chain_revolt }
 					}
 					save_event_target_as = fatherland
 				}
@@ -2964,8 +3025,28 @@ country_event = {
 						limit = {
 							is_country_type = default
 							is_same_species = root
-							NOT = { is_same_value = from.owner }
 							NOR = {
+								is_same_value = from.owner
+								is_in_federation_with = from.owner
+								has_defensive_pact = from.owner
+								if = {
+									limit = {
+										from.owner = {
+											exists = overlord
+											overlord = {
+												OR = {
+													is_in_federation_with = prevprev
+													has_defensive_pact = prevprev
+												}
+											}
+										}
+									}
+								}
+								AND = {
+									exists = overlord
+									overlord = { is_same_value = from.owner }
+								}
+								
 								is_same_value = root
 								is_same_empire = root
 								has_country_flag = cc_rebels_merging
@@ -2977,10 +3058,32 @@ country_event = {
 			}
 			if = {
 				limit = { exists = event_target:fatherland }
-				event_target:fatherland = {
-					country_event = { id = unrest.4220 days = 5 } # request incorporation
+
+				set_country_flag = cc_rebels_merging
+
+				if = {
+					limit = {
+						event_target:fatherland = {
+							OR = {
+								NOT = { has_country_flag = ccrebel_has_existed_5_years }
+								is_at_war_with = from.owner
+							}
+						}
+					}
+					set_timed_country_flag = {
+						flag = ccrebel_dont_declare_war
+						days = 5
+					}
+					event_target:fatherland = {
+						country_event = { id = unrest.4220 days = 5 } # request incorporation
+					}
+
+					else = {
+						event_target:fatherland = {
+							country_event = { id = ccrebel_wg_script.10 days = 5 } # request incorporation
+						}
+					}
 				}
-				root = { set_country_flag = cc_rebels_merging }
 			}
 			else = {
 				from = { remove_planet_flag = secessionist_revolt }
