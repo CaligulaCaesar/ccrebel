@@ -2922,25 +2922,8 @@ country_event = {
 						}
 						NOR = {
 							is_same_value = from.owner
-							is_in_federation_with = from.owner
-							has_defensive_pact = from.owner
-							if = {
-								limit = {
-									from.owner = {
-										exists = overlord
-										overlord = {
-											OR = {
-												is_in_federation_with = prevprev
-												has_defensive_pact = prevprev
-											}
-										}
-									}
-								}
-							}
-							AND = {
-								exists = overlord
-								overlord = { is_same_value = from.owner }
-							}
+							
+							would_join_war = { attacker = root defender = from.owner side = defenders }
 						}
 					}
 				}
@@ -2959,25 +2942,8 @@ country_event = {
 						is_same_species = root
 						NOR = {
 							is_same_value = from.owner
-							is_in_federation_with = from.owner
-							has_defensive_pact = from.owner
-							if = {
-								limit = {
-									from.owner = {
-										exists = overlord
-										overlord = {
-											OR = {
-												is_in_federation_with = prevprev
-												has_defensive_pact = prevprev
-											}
-										}
-									}
-								}
-							}
-							AND = {
-								exists = overlord
-								overlord = { is_same_value = from.owner }
-							}
+							
+							would_join_war = { attacker = root defender = from.owner side = defenders }
 							
 							is_same_value = root
 							is_same_empire = root
@@ -2992,25 +2958,8 @@ country_event = {
 						is_same_species = root
 						NOR = {
 							is_same_value = from.owner
-							is_in_federation_with = from.owner
-							has_defensive_pact = from.owner
-							if = {
-								limit = {
-									from.owner = {
-										exists = overlord
-										overlord = {
-											OR = {
-												is_in_federation_with = prevprev
-												has_defensive_pact = prevprev
-											}
-										}
-									}
-								}
-							}
-							AND = {
-								exists = overlord
-								overlord = { is_same_value = from.owner }
-							}
+							
+							would_join_war = { attacker = root defender = from.owner side = defenders }
 							
 							is_same_value = root
 							is_same_empire = root
@@ -3027,25 +2976,8 @@ country_event = {
 							is_same_species = root
 							NOR = {
 								is_same_value = from.owner
-								is_in_federation_with = from.owner
-								has_defensive_pact = from.owner
-								if = {
-									limit = {
-										from.owner = {
-											exists = overlord
-											overlord = {
-												OR = {
-													is_in_federation_with = prevprev
-													has_defensive_pact = prevprev
-												}
-											}
-										}
-									}
-								}
-								AND = {
-									exists = overlord
-									overlord = { is_same_value = from.owner }
-								}
+
+								would_join_war = { attacker = root defender = from.owner side = defenders }
 								
 								is_same_value = root
 								is_same_empire = root
