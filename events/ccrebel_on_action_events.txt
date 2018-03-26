@@ -18,6 +18,14 @@ country_event = {
 	immediate = {
 		set_country_type = default
 		from.owner = { save_event_target_as = cc_former_owner }
+
+		from.owner = {
+			set_timed_relation_flag = {
+				flag = ccrebel_declare_war_on
+				who = ROOT
+				days = 5
+			}
+		}
 		if = {
 			limit = {
 				has_country_flag = slave_rebels

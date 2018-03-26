@@ -1329,6 +1329,11 @@ country_event = {
 				save_event_target_as = rebellion1
 			}
 
+			set_timed_country_flag = { #this is to stop the PRE war dec
+				flag = ccrebel_dont_declare_war
+				days = 5
+			}
+
 			event_target:rebellion1 = {
 				if = {
 					limit = {
@@ -1337,10 +1342,6 @@ country_event = {
 							is_same_empire = from.owner
 							has_country_flag = cc_rebels_merging
 						}
-					}
-					set_timed_country_flag = { #this is to stop the PRE war dec
-						flag = ccrebel_dont_declare_war
-						days = 5
 					}
 					country_event = { id = unrest.4220 days = 5 } # request incorporation
 					root = { set_country_flag = cc_rebels_merging }
@@ -1355,13 +1356,6 @@ country_event = {
 				}
 			}
 			else = {
-				from.owner = {
-					set_timed_relation_flag = {
-						flag = ccrebel_declare_war_on
-						who = root
-						days = 5
-					}
-				}
 				if = {
 					limit = { 
 						any_country = {
