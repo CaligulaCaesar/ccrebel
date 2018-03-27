@@ -225,6 +225,14 @@ country_event = {
         name = ccrebel_wg_script.10.A
 
         join_war = from
+        custom_tooltip = ccrebel_wg_script.10.A.tooltip
+
+        hidden_effect = {
+            set_relation_flag = {
+                flag = ccrebel_supporting_independence_war
+                who = from
+            }
+        }
         
         ai_chance = {
             factor = 1

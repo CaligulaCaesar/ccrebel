@@ -2922,7 +2922,7 @@ country_event = {
 						}
 						NOR = {
 							is_same_value = from.owner
-							
+
 							would_join_war = { attacker = root defender = from.owner side = defenders }
 						}
 					}
@@ -2999,6 +2999,9 @@ country_event = {
 							OR = {
 								NOT = { has_country_flag = ccrebel_has_existed_5_years }
 								is_at_war_with = from.owner
+
+								#this is sadly necessary
+								has_federation = yes
 							}
 						}
 					}
