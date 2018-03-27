@@ -479,7 +479,7 @@ planet_edict = {
 					any_owned_planet = {
 						has_planet_flag = ccrebel_su_can_be_targeted@root
 						is_being_stirred_up = no
-						any_owned_pop = { has_a_happiness_gauge = yes }
+						any_owned_pop = { species = { pops_have_happiness = yes } }
 					}
 				}
 				hidden_effect = {
@@ -494,7 +494,7 @@ planet_edict = {
 					limit = {
 						has_planet_flag = ccrebel_su_can_be_targeted@root
 						is_being_stirred_up = no
-						any_owned_pop = { has_a_happiness_gauge = yes }
+						any_owned_pop = { species = { pops_have_happiness = yes } }
 					}
 					hidden_effect = {
 						set_timed_planet_flag = {
@@ -1214,7 +1214,7 @@ planet_edict = {
 								}
 								every_owned_pop = {
 									limit = {
-										has_a_happiness_gauge = yes
+										species = { pops_have_happiness = yes }
 										ccsu_pop_to_sow_unrest = yes
 									}
 									add_modifier = {
@@ -1225,7 +1225,7 @@ planet_edict = {
 								else = {
 									every_owned_pop = {
 										limit = {
-											has_a_happiness_gauge = yes
+											species = { pops_have_happiness = yes }
 											AND = {
 												is_same_species = root.owner
 												NOT = { is_same_species = prev.owner }
@@ -1270,7 +1270,7 @@ planet_edict = {
 										}
 										every_owned_pop = {
 											limit = {
-												has_a_happiness_gauge = yes
+												species = { pops_have_happiness = yes }
 												ccsu_pop_to_sow_unrest = yes
 											}
 											add_modifier = {
@@ -1281,7 +1281,7 @@ planet_edict = {
 										else = {
 											every_owned_pop = {
 												limit = {
-													has_a_happiness_gauge = yes
+													species = { pops_have_happiness = yes }
 													AND = {
 														is_same_species = root.owner
 														NOT = { is_same_species = prev.owner }
@@ -1326,7 +1326,7 @@ planet_edict = {
 												}
 												every_owned_pop = {
 													limit = {
-														has_a_happiness_gauge = yes
+														species = { pops_have_happiness = yes }
 														ccsu_pop_to_sow_unrest = yes
 													}
 													add_modifier = {
@@ -1337,7 +1337,7 @@ planet_edict = {
 												else = {
 													every_owned_pop = {
 														limit = {
-															has_a_happiness_gauge = yes
+															species = { pops_have_happiness = yes }
 															AND = {
 																is_same_species = root.owner
 																NOT = { is_same_species = prev.owner }
@@ -1358,7 +1358,7 @@ planet_edict = {
 													}
 													every_owned_pop = {
 														limit = {
-															has_a_happiness_gauge = yes
+															species = { pops_have_happiness = yes }
 															ccsu_pop_to_sow_unrest = yes
 														}
 														add_modifier = {
@@ -1369,7 +1369,7 @@ planet_edict = {
 													else = {
 														every_owned_pop = {
 															limit = {
-																has_a_happiness_gauge = yes
+																species = { pops_have_happiness = yes }
 																AND = {
 																	is_same_species = root.owner
 																	NOT = { is_same_species = prev.owner }

@@ -7,6 +7,8 @@ event = {
 	id = ccrebel_war_exhaustion_script.1
 	hide_window = yes
 	is_triggered_only = yes
+
+	trigger = { always = no }
 	
 	immediate = {
 		every_country = {

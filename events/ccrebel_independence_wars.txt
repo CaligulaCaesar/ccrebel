@@ -146,28 +146,28 @@ event = {
             }
             switch = {
                 trigger = has_country_flag
-                ccrebel_has_existed_4_years = { set_country_flag = ccrebel_has_existed_5_year }
+                ccrebel_has_existed_4_years = { set_country_flag = ccrebel_has_existed_5_years }
                 ccrebel_has_existed_3_years = {
                     set_timed_country_flag = {
-                        flag = ccrebel_has_existed_4_year
+                        flag = ccrebel_has_existed_4_years
                         years = 10
                     }
                 }
                 ccrebel_has_existed_2_years = {
                     set_timed_country_flag = {
-                        flag = ccrebel_has_existed_3_year
+                        flag = ccrebel_has_existed_3_years
                         years = 10
                     }
                 }
                 ccrebel_has_existed_1_years = {
                     set_timed_country_flag = {
-                        flag = ccrebel_has_existed_2_year
+                        flag = ccrebel_has_existed_2_years
                         years = 10
                     }
                 }
                 default = {
                     set_timed_country_flag = {
-                        flag = ccrebel_has_existed_1_year
+                        flag = ccrebel_has_existed_1_years
                         years = 10
                     }
                 }
@@ -267,8 +267,7 @@ country_event = {
             }
             modifier = {
                 factor = 2
-                any_country = {
-                    is_at_war_with = from
+                event_target:rebelled_against = {
                     root = {
                         OR = {
                             is_hostile_to = prev
@@ -280,8 +279,7 @@ country_event = {
             }
             modifier = {
                 factor = 2
-                any_country = {
-                    is_at_war_with = from
+                event_target:rebelled_against = {
                     has_policy_flag = purge_allowed
                 }
             }
@@ -300,14 +298,24 @@ country_event = {
                     has_ethic = ethic_fanatic_pacifist
                 }
                 NOT = {
-                    any_country = {
-                        is_at_war_with = from
+                    event_target:rebelled_against = {
                         has_policy_flag = purge_allowed
                     }
                 }
             }
             modifier = {
                 factor = 0.5
+                event_target:rebelled_against = {
+                    root = {
+                        OR = {
+                            is_friendly_to = prev
+                            is_cordial_to = prev
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 0.75
                 any_country = {
                     is_at_war_with = from
                     root = {
@@ -316,6 +324,13 @@ country_event = {
                             is_cordial_to = prev
                         }
                     }
+                }
+            }
+            modifier = {
+                factor = 0.5
+                any_country = {
+                    is_at_war_with = from
+                    has_defensive_pact = root
                 }
             }
             modifier = {

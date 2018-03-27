@@ -1613,7 +1613,50 @@ country_event = {
 			}
 		}
 		
-		if = { #first choice is the slave republic
+		
+		if = { #first choice is a rebellion
+			limit = {
+				any_country = {
+					is_same_species = from
+					has_civic = civic_free_republic
+					has_civic = civic_broken_shackles
+
+					NOT = { has_country_flag = ccrebel_has_existed_5_years }
+					NOR = {
+						is_same_value = root
+
+						is_same_value = from
+						is_same_empire = from
+						has_country_flag = cc_rebels_merging
+
+						would_join_war = { attacker = from defender = root side = root }
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					is_same_species = from
+					has_civic = civic_free_republic
+					has_civic = civic_broken_shackles
+
+					NOT = { has_country_flag = ccrebel_has_existed_5_years }
+					NOR = {
+						is_same_value = root
+
+						is_same_value = from
+						is_same_empire = from
+						has_country_flag = cc_rebels_merging
+
+						would_join_war = { attacker = from defender = root side = root }
+					}
+				}
+
+				save_event_target_as = ccrebel_land_of_liberty
+			}
+			else = {
+				stuff!
+
+		if = {
 			limit = {
 				any_country = {
 					has_civic = civic_free_republic
@@ -1621,7 +1664,7 @@ country_event = {
 					
 					has_policy_flag = slavery_not_allowed
 					is_country_type = default
-					has_communications = ROOT
+					has_communications = from
 					any_owned_planet = {
 						distance = { 
    							source = FromFrom
@@ -1642,7 +1685,7 @@ country_event = {
 					has_civic = civic_broken_shackles
 					
 					has_policy_flag = slavery_not_allowed
-					has_communications = ROOT
+					has_communications = from
 					is_country_type = default
 					any_owned_planet = {
 						distance = {
@@ -1761,7 +1804,40 @@ country_event = {
 					}
 				}
 			}
-		}	
+		}
+		if = {
+			limit = { exists = event_target:ccrebel_land_of_liberty }
+
+			if = {
+				limit = {
+					event_target:ccrebel_land_of_liberty = {
+						OR = {
+							NOT = { has_country_flag = ccrebel_has_existed_5_years }
+							is_at_war_with = root
+	
+							#this is sadly necessary
+							has_federation = yes
+						}
+					}
+				}
+				event_target:ccrebel_land_of_liberty = {
+					country_event = { id = unrest.168 days = 5 } #request merge 
+				}
+				from = {
+					set_timed_country_flag = {
+						flag = ccrebel_dont_declare_war
+						days = 5
+					}
+					set_country_flag = cc_rebels_merging
+				}
+				else = {
+					event_target:ccrebel_land_of_liberty = { #I wonder whether this works
+						save_event_target_as = event_target:rebelled_against
+						country_event = { id = ccrebel_wg_script.10 days = 5 scopes = { event_target:ccrebel_land_of_liberty = root fromfrom = fromfrom from = from root = event_target:rebelled_against } } #request aid in war 
+					} 
+				}
+			}
+		}
 	}
 
 	option = {
@@ -1771,6 +1847,7 @@ country_event = {
 		name = unrest.167.b
 	}
 }
+
 
 
 # Defect request #
@@ -2393,6 +2470,13 @@ planet_event = {
 							limit = { is_same_species = prev }
 						}
 					}
+					any_owned_planet = {
+						distance = { 
+							source = root
+							max_distance = 150
+							min_distance = 0
+						}
+					}
 					NOR = {
 						is_same_value = root.owner
 						is_same_empire = root.owner
@@ -2407,6 +2491,13 @@ planet_event = {
 						pop_percentage = {
 							percentage > 0.35
 							limit = { is_same_species = prev }
+						}
+					}
+					any_owned_planet = {
+						distance = { 
+							source = root
+							max_distance = 150
+							min_distance = 0
 						}
 					}
 					NOR = {
@@ -2519,7 +2610,7 @@ planet_event = {
 							percentage > 0.55
 							limit = {
 								is_enslaved = yes
-								has_a_happiness_gauge = yes
+								species = { pops_have_happiness = yes }
 							}
 						}
 					}
@@ -2904,6 +2995,7 @@ country_event = {
 				days = 7200
 			}
 		}
+
 		if = {
 			limit = {
 				from = {
@@ -2916,90 +3008,145 @@ country_event = {
 			if = {
 				limit = {
 					any_country = {
+						has_communications = ROOT
 						is_same_species = root
-						from = {
-							is_original_owner = prev
-						}
+						NOT = { has_country_flag = ccrebel_has_existed_5_years }
 						NOR = {
 							is_same_value = from.owner
-
-							would_join_war = { attacker = root defender = from.owner side = defenders }
+		
+							is_same_value = root
+							is_same_empire = root
+							has_country_flag = cc_rebels_merging
+		
+							would_join_war = { attacker = root defender = from.owner side = from.owner }
 						}
 					}
 				}
 				random_country = {
 					limit = {
-						from = { is_original_owner = prev }
-					}
-					save_event_target_as = fatherland
-				}
-			}
-			if = {
-				limit = {
-					NOT = { exists = event_target:fatherland }
-					any_country = {
-						is_country_type = default
+						has_communications = ROOT
 						is_same_species = root
+						NOT = { has_country_flag = ccrebel_has_existed_5_years }
 						NOR = {
 							is_same_value = from.owner
-							
-							would_join_war = { attacker = root defender = from.owner side = defenders }
-							
+		
 							is_same_value = root
 							is_same_empire = root
 							has_country_flag = cc_rebels_merging
-							has_country_flag = cc_chain_revolt
-						}
-					}
-				}
-				random_country = {
-					limit = {
-						is_country_type = default
-						is_same_species = root
-						NOR = {
-							is_same_value = from.owner
-							
-							would_join_war = { attacker = root defender = from.owner side = defenders }
-							
-							is_same_value = root
-							is_same_empire = root
-							has_country_flag = cc_rebels_merging
-							has_country_flag = cc_chain_revolt
+		
+							would_join_war = { attacker = root defender = from.owner side = from.owner }
 						}
 					}
 					save_event_target_as = fatherland
 				}
+		
+		
 				else = {
-					random_country = {
+					if = {
 						limit = {
-							is_country_type = default
-							is_same_species = root
-							NOR = {
-								is_same_value = from.owner
-
-								would_join_war = { attacker = root defender = from.owner side = defenders }
-								
-								is_same_value = root
-								is_same_empire = root
-								has_country_flag = cc_rebels_merging
+							any_country = {
+								is_same_species = root
+								has_communications = ROOT
+								from = {
+									is_original_owner = prev
+								}
+								NOR = {
+									is_same_value = from.owner
+		
+									would_join_war = { attacker = root defender = from.owner side = from.owner }
+								}
 							}
 						}
-						save_event_target_as = fatherland
+						random_country = {
+							limit = {
+								from = { is_original_owner = prev }
+							}
+							save_event_target_as = fatherland
+						}
+					}
+					if = {
+						limit = {
+							NOT = { exists = event_target:fatherland }
+							any_country = {
+								has_communications = ROOT
+								is_country_type = default
+								is_same_species = root
+								NOR = {
+									is_same_value = from.owner
+									
+									would_join_war = { attacker = root defender = from.owner side = from.owner }
+									
+									is_same_value = root
+									is_same_empire = root
+									has_country_flag = cc_rebels_merging
+									has_country_flag = cc_chain_revolt
+								}
+							}
+						}
+						random_country = {
+							limit = {
+								has_communications = ROOT
+								is_country_type = default
+								is_same_species = root
+								any_owned_planet = {
+									distance = { 
+										source = from
+										max_distance = 150
+										min_distance = 0
+									}
+								}
+								NOR = {
+									is_same_value = from.owner
+									
+									would_join_war = { attacker = root defender = from.owner side = from.owner }
+									
+									is_same_value = root
+									is_same_empire = root
+									has_country_flag = cc_rebels_merging
+									has_country_flag = cc_chain_revolt
+								}
+							}
+							save_event_target_as = fatherland
+						}
+						else = {
+							random_country = {
+								limit = {
+									has_communications = ROOT
+									is_country_type = default
+									is_same_species = root
+									any_owned_planet = {
+										distance = { 
+											source = from
+											max_distance = 150
+											min_distance = 0
+										}
+									}
+									NOR = {
+										is_same_value = from.owner
+		
+										would_join_war = { attacker = root defender = from.owner side = from.owner }
+										
+										is_same_value = root
+										is_same_empire = root
+										has_country_flag = cc_rebels_merging
+									}
+								}
+								save_event_target_as = fatherland
+							}
+						}
 					}
 				}
 			}
 			if = {
 				limit = { exists = event_target:fatherland }
-
-				set_country_flag = cc_rebels_merging
-
+		
 				if = {
 					limit = {
 						event_target:fatherland = {
 							OR = {
 								NOT = { has_country_flag = ccrebel_has_existed_5_years }
 								is_at_war_with = from.owner
-
+		
 								#this is sadly necessary
 								has_federation = yes
 							}
@@ -3009,13 +3156,15 @@ country_event = {
 						flag = ccrebel_dont_declare_war
 						days = 5
 					}
+					set_country_flag = cc_rebels_merging
+
 					event_target:fatherland = {
 						country_event = { id = unrest.4220 days = 5 } # request incorporation
 					}
-
+		
 					else = {
 						event_target:fatherland = {
-							country_event = { id = ccrebel_wg_script.10 days = 5 } # request incorporation
+							country_event = { id = ccrebel_wg_script.10 days = 5 } # request support in independence war
 						}
 					}
 				}

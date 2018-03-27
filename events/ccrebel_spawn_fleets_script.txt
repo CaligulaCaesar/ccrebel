@@ -11,7 +11,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
-	trigger = { from = { NOT = { has_planet_flag = cc_revolution } } }
+	trigger = { NOT = { has_country_flag = ccrebel_dont_declare_war } }
 	
 	immediate = {
 			
@@ -151,7 +151,7 @@ planet_event = {
 		exists = owner
 		has_planet_flag = cc_recent_rebellion
 		NOT = { owner = { has_country_flag = cc_temporary_rebellion_marker@root } }
-		owner = { has_country_flag = cc_rebellion }
+		owner = { NOT = { has_country_flag = ccrebel_has_existed_5_years } }
 	}
 
 	immediate = {

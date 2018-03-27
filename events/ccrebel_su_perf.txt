@@ -84,7 +84,7 @@ country_event = {
 						has_country_flag = cc_can_target_with_su_country@root
 						any_owned_planet = {
 							is_being_stirred_up = no
-							any_owned_pop = { has_a_happiness_gauge = yes }
+							any_owned_pop = { species = { pops_have_happiness = yes } }
 							if = {
 								limit = { root = { has_technology = tech_ccrebel_unrest_2 } }
 								distance = {
@@ -111,7 +111,7 @@ country_event = {
 					has_country_flag = cc_can_target_with_su_country@root
 					any_owned_planet = {
 						is_being_stirred_up = no
-						any_owned_pop = { has_a_happiness_gauge = yes }
+						any_owned_pop = { species = { pops_have_happiness = yes } }
 						if = {
 							limit = { root = { has_technology = tech_ccrebel_unrest_2 } }
 							distance = {
@@ -149,7 +149,7 @@ country_event = {
 									}
 								}
 								is_being_stirred_up = no
-								any_owned_pop = { has_a_happiness_gauge = yes }
+								any_owned_pop = { species = { pops_have_happiness = yes } }
 							}
 							set_timed_planet_flag = {
 								flag = ccrebel_su_can_be_targeted@prevprev
@@ -235,7 +235,7 @@ planet_event = {
 						any_owned_planet = {
 							has_planet_flag = ccrebel_su_can_be_targeted@root
 							any_owned_pop = {
-								has_a_happiness_gauge = yes
+								species = { pops_have_happiness = yes }
 								is_enslaved = yes
 							}
 						}
@@ -268,7 +268,7 @@ planet_event = {
 							pop_percentage = {
 								percentage > 0.25
 								limit = {
-									has_a_happiness_gauge = yes
+									species = { pops_have_happiness = yes }
 									is_same_species = root.owner
 								}
 							}
@@ -287,7 +287,7 @@ planet_event = {
 								pop_percentage = {
 									percentage > 0.60
 									limit = {
-										has_a_happiness_gauge = yes
+										species = { pops_have_happiness = yes }
 										is_same_species = root.owner
 									}
 								}

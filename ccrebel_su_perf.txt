@@ -168,7 +168,7 @@ event = {
 										any_planet = {
 											is_colony = yes
 											is_being_stirred_up = no
-											any_owned_pop = { has_a_happiness_gauge = yes }
+											any_owned_pop = { species = { pops_have_happiness = yes } }
 										}
 									}
 								}
@@ -182,7 +182,7 @@ event = {
 											any_planet = {
 												is_colony = yes
 												is_being_stirred_up = no
-												any_owned_pop = { has_a_happiness_gauge = yes }
+												any_owned_pop = { species = { pops_have_happiness = yes } }
 											}
 										}
 									}
@@ -306,7 +306,7 @@ planet_event = {
 					}
 					any_owned_planet = {
 						is_being_stirred_up = no
-						any_owned_pop = { has_a_happiness_gauge = yes }
+						any_owned_pop = { species = { pops_have_happiness = yes } }
 						if = {
 							limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
 							closest_system = {
@@ -359,7 +359,7 @@ planet_event = {
 						any_owned_planet = {
 							is_being_stirred_up = no
 							any_owned_pop = {
-								has_a_happiness_gauge = yes
+								species = { pops_have_happiness = yes }
 								is_enslaved = yes
 							}
 							if = {
@@ -410,7 +410,7 @@ planet_event = {
 							pop_percentage = {
 								percentage > 0.25
 								limit = {
-									has_a_happiness_gauge = yes
+									species = { pops_have_happiness = yes }
 									is_same_species = root.owner
 								}
 							}
@@ -448,7 +448,7 @@ planet_event = {
 								pop_percentage = {
 									percentage > 0.60
 									limit = {
-										has_a_happiness_gauge = yes
+										species = { pops_have_happiness = yes }
 										is_same_species = root.owner
 									}
 								}
@@ -494,7 +494,7 @@ planet_event = {
 				if = {
 					limit = {
 						any_owned_planet = {
-							any_owned_pop = { has_a_happiness_gauge = yes }
+							any_owned_pop = { species = { pops_have_happiness = yes } }
 							is_being_stirred_up = no
 							
 							if = {
@@ -529,7 +529,7 @@ planet_event = {
 					if = {
 						limit = {
 							any_owned_planet = {
-								any_owned_pop = { has_a_happiness_gauge = yes }
+								any_owned_pop = { species = { pops_have_happiness = yes } }
 								is_being_stirred_up = no
 								
 								if = {
@@ -602,7 +602,7 @@ planet_event = {
 				#Multitude of planets test
 				random_owned_planet = {
 					limit = {
-						any_owned_pop = { has_a_happiness_gauge = yes }
+						any_owned_pop = { species = { pops_have_happiness = yes } }
 						is_being_stirred_up = no
 						
 						if = {
@@ -631,7 +631,7 @@ planet_event = {
 					limit = {
 						any_owned_planet = {
 							NOT = { is_same_value = event_target:cc_su_first_planet }
-							any_owned_pop = { has_a_happiness_gauge = yes }
+							any_owned_pop = { species = { pops_have_happiness = yes } }
 							is_being_stirred_up = no
 							
 							if = {
@@ -658,7 +658,7 @@ planet_event = {
 					random_owned_planet = {
 						limit = {
 							NOT = { is_same_value = event_target:cc_su_first_planet }
-							any_owned_pop = { has_a_happiness_gauge = yes }
+							any_owned_pop = { species = { pops_have_happiness = yes } }
 							is_being_stirred_up = no
 							
 							if = {
@@ -690,7 +690,7 @@ planet_event = {
 									is_same_value = event_target:cc_su_first_planet
 									is_same_value = event_target:cc_su_second_planet
 								}
-								any_owned_pop = { has_a_happiness_gauge = yes }
+								any_owned_pop = { species = { pops_have_happiness = yes } }
 								is_being_stirred_up = no
 								
 								if = {
@@ -720,7 +720,7 @@ planet_event = {
 									is_same_value = event_target:cc_su_first_planet
 									is_same_value = event_target:cc_su_second_planet
 								}
-								any_owned_pop = { has_a_happiness_gauge = yes }
+								any_owned_pop = { species = { pops_have_happiness = yes } }
 								is_being_stirred_up = no
 								
 								if = {
@@ -759,7 +759,7 @@ planet_event = {
 										is_same_value = event_target:cc_su_second_planet
 										is_same_value = event_target:cc_su_third_planet
 									}
-									any_owned_pop = { has_a_happiness_gauge = yes }
+									any_owned_pop = { species = { pops_have_happiness = yes } }
 									is_being_stirred_up = no
 									
 									if = {
@@ -797,7 +797,7 @@ planet_event = {
 											is_same_value = event_target:cc_su_second_planet
 											is_same_value = event_target:cc_su_third_planet
 										}
-										any_owned_pop = { has_a_happiness_gauge = yes }
+										any_owned_pop = { species = { pops_have_happiness = yes } }
 										is_being_stirred_up = no
 										
 										if = {
@@ -827,7 +827,7 @@ planet_event = {
 													is_same_value = event_target:cc_su_second_planet
 													is_same_value = event_target:cc_su_third_planet
 												}
-												any_owned_pop = { has_a_happiness_gauge = yes }
+												any_owned_pop = { species = { pops_have_happiness = yes } }
 												is_being_stirred_up = no
 												
 												if = {
@@ -867,7 +867,7 @@ planet_event = {
 												is_same_value = event_target:cc_su_second_planet
 												is_same_value = event_target:cc_su_third_planet
 											}
-											any_owned_pop = { has_a_happiness_gauge = yes }
+											any_owned_pop = { species = { pops_have_happiness = yes } }
 											is_being_stirred_up = no
 											
 											if = {
@@ -897,7 +897,7 @@ planet_event = {
 														is_same_value = event_target:cc_su_second_planet
 														is_same_value = event_target:cc_su_third_planet
 													}
-													any_owned_pop = { has_a_happiness_gauge = yes }
+													any_owned_pop = { species = { pops_have_happiness = yes } }
 													is_being_stirred_up = no
 													
 													if = {
@@ -928,7 +928,7 @@ planet_event = {
 																is_same_value = event_target:cc_su_second_planet
 																is_same_value = event_target:cc_su_third_planet
 															}
-															any_owned_pop = { has_a_happiness_gauge = yes }
+															any_owned_pop = { species = { pops_have_happiness = yes } }
 															is_being_stirred_up = no
 															
 															if = {
@@ -1025,7 +1025,7 @@ planet_event = {
 											}
 										}
 										any_owned_planet = {
-											any_owned_pop = { has_a_happiness_gauge = yes }
+											any_owned_pop = { species = { pops_have_happiness = yes } }
 											is_being_stirred_up = no
 											if = {
 												limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
@@ -1048,7 +1048,7 @@ planet_event = {
 											}
 											owner = {
 												any_owned_planet = {
-													any_owned_pop = { has_a_happiness_gauge = yes }
+													any_owned_pop = { species = { pops_have_happiness = yes } }
 													NOT = { is_same_value = prevprev }
 													is_being_stirred_up = no
 												

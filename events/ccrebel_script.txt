@@ -1447,7 +1447,7 @@ planet_event = {
 			limit = {
 				any_owned_pop = {
 					is_enslaved = yes
-					has_a_happiness_gauge = yes
+					species = { pops_have_happiness = yes }
 				}
 			}
 			if = {
@@ -1723,6 +1723,16 @@ planet_event = {
 							limit = { is_same_species = prev }
 						}
 					}
+					OR = {
+						NOT = { has_country_flag = ccrebel_has_existed_5_years }
+						any_owned_planet = {
+							distance = { 
+								source = root
+								max_distance = 150
+								min_distance = 0
+							}
+						}
+					}
 					NOR = {
 						is_same_value = root.owner
 						is_same_empire = root.owner
@@ -1737,6 +1747,16 @@ planet_event = {
 						pop_percentage = {
 							percentage > 0.35
 							limit = { is_same_species = prev }
+						}
+					}
+					OR = {
+						NOT = { has_country_flag = ccrebel_has_existed_5_years }
+						any_owned_planet = {
+							distance = { 
+								source = root
+								max_distance = 150
+								min_distance = 0
+							}
 						}
 					}
 					NOR = {
@@ -2921,7 +2941,7 @@ event = {
 						percentage > 0.5
 						limit = {
 							is_being_purged = yes
-							has_a_happiness_gauge = yes
+							species = { pops_have_happiness = yes }
 						}
 					}
 					count_pops = {
@@ -2948,7 +2968,7 @@ event = {
 									percentage > 0.5
 									limit = {
 										is_being_purged = yes
-										has_a_happiness_gauge = yes
+										species = { pops_have_happiness = yes }
 									}
 								}
 								count_pops = {
