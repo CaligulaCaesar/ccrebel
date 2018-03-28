@@ -434,7 +434,7 @@ planet_event = {
 				}
 				save_event_target_as = fatherland
 				set_timed_country_flag = {
-					flag = seceed_to_patriot
+					flag = ccrebel_seceed_to_patriot@root
 					days = 90
 				}
 			}
@@ -654,11 +654,7 @@ country_event = {
 
 	immediate = {
 		save_event_target_as = cc_sec_rebels
-		
-		set_timed_country_flag = {
-			flag = ccrebel_dont_declare_war
-			days = 5
-		}
+
 
 		From = { 
 			remove_planet_flag = revolt_in_progress 
@@ -715,18 +711,19 @@ country_event = {
 		if = {
 			limit = { 
 				any_country = {
-					has_country_flag = seceed_to_patriot
+					has_country_flag = ccrebel_seceed_to_patriot@from
 					is_same_species = event_target:new_rebels
 					NOT = { is_same_value = event_target:new_rebels }
 					NOR = {
 						is_same_value = from.owner
 						is_same_empire = from.owner
+						has_country_flag = cc_rebels_merging
 					}
 				}
 			}
 			random_country = {
 				limit = {
-					has_country_flag = seceed_to_patriot
+					has_country_flag = ccrebel_seceed_to_patriot@from
 					is_same_species = event_target:new_rebels
 					NOR = {
 						is_same_value = event_target:new_rebels
@@ -735,25 +732,20 @@ country_event = {
 					NOR = {
 						is_same_value = from.owner
 						is_same_empire = from.owner
+						has_country_flag = cc_rebels_merging
 					}
 				}
 				save_event_target_as = rebellion2
 			}
 				
+			set_timed_country_flag = {
+				flag = ccrebel_dont_declare_war
+				days = 5
+			}
+			set_country_flag = cc_rebels_merging
+
 			event_target:rebellion2 = {
-				if = {
-					limit = {
-						NOR = {
-							is_same_value = event_target:new_rebels
-							is_same_empire = event_target:new_rebels
-							is_same_value = from.owner
-							is_same_empire = from.owner
-							has_country_flag = cc_rebels_merging
-						}
-					}
-					country_event = { id = unrest.4220 days = 5 } # request incorporation
-					root = { set_country_flag = cc_rebels_merging }
-				}
+				country_event = { id = unrest.4220 days = 5 } # request incorporation
 			}
 			else = {
 				remove_country_flag = cc_patriot_rebels

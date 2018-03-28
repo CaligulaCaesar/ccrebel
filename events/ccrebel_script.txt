@@ -1329,23 +1329,14 @@ country_event = {
 				save_event_target_as = rebellion1
 			}
 
-			set_timed_country_flag = { #this is to stop the PRE war dec
+			set_country_flag = cc_rebels_merging
+			set_timed_country_flag = {
 				flag = ccrebel_dont_declare_war
 				days = 5
 			}
 
 			event_target:rebellion1 = {
-				if = {
-					limit = {
-						NOR = {
-							is_same_value = from.owner
-							is_same_empire = from.owner
-							has_country_flag = cc_rebels_merging
-						}
-					}
 					country_event = { id = unrest.4220 days = 5 } # request incorporation
-					root = { set_country_flag = cc_rebels_merging }
-				}
 			}
 			from = { 
 				if = {
@@ -1368,11 +1359,6 @@ country_event = {
 								has_country_flag = copycat_rebels
 								has_country_flag = cc_rebels_merging
 							}
-							from = {
-								any_owned_pop = {
-									is_same_species = prevprev
-								}
-							}
 						}
 					}
 					random_country = {
@@ -1386,18 +1372,30 @@ country_event = {
 								has_country_flag = copycat_rebels
 								has_country_flag = cc_rebels_merging
 							}
-							from = {
-								any_owned_pop = {
-									is_same_species = prevprev
-								}
-							}
 						}
 						save_event_target_as = rebellion1
 					}
 
 					event_target:rebellion1 = {
-						country_event = { id = unrest.4220 days = 5 } # request incorporation
-						root = { set_country_flag = cc_rebels_merging }
+						if = {
+							limit = {
+								OR = {
+									NOT = { has_country_flag = ccrebel_has_existed_5_years }
+									is_at_war_with = from.owner
+								}
+							}
+
+							root = {
+								set_country_flag = cc_rebels_merging
+								set_timed_country_flag = {
+									flag = ccrebel_dont_declare_war
+									days = 5
+								}
+							}
+							country_event = { id = unrest.4220 days = 5 } # request incorporation
+
+							else = { country_event = { id = ccrebel_wg_script.10 days = 5 } } # request support in war 
+						}
 					}
 					from = { 
 						if = {

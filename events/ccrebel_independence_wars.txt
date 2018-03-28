@@ -38,51 +38,10 @@ country_event = {
                         target = prev
                         attacker_war_goal = wg_ccrebel_independence
                     }
-                    every_country = {
-                        limit = {
-                            any_war = {
-                                is_war_participant = { who = root side = attackers }
-                                is_war_participant = { who = prev side = defenders }
-                            }
-                        }
-                        country_event = { id = ccrebel_wg_script.2 }
-                    }
                 }
             }
         }
 	}
-}
-
-#The [from.GetName] has launched a rebellion against the [ccrebel_declared_war_on.GetName]. As their ally/overlord, we have come to their aid, and are now at war with the [from.GetName]!""
-country_event = {
-    id = ccrebel_wg_script.2
-    title = ccrebel_wg_script.2.name
-    desc = {
-        trigger = {
-            event_target:ccrebel_declared_war_on = {
-                exists = overlord
-                overlord = { is_same_value = root }
-            }
-        }
-        text = ccrebel_wg_script.2.desc.overlord
-    }
-    desc = {
-        trigger = {
-            event_target:ccrebel_declared_war_on = {
-                NOT = {
-                    AND = {
-                        exists = overlord
-                        overlord = { is_same_value = root }
-                    }
-                }
-            }
-        }
-        text = ccrebel_wg_script.2.desc.ally
-    }
-
-    is_triggered_only = yes 
-
-    option = { name = OK }
 }
 
 country_event = {
@@ -95,6 +54,10 @@ country_event = {
     is_triggered_only = yes
 
     immediate = {
+        if = {
+            limit = { exists = fromfrom }
+            fromfrom = { country_event = { id = ccrebel_wg_script.4 } }
+        }
         from = {
             every_owned_fleet = {
                 set_owner = root
@@ -109,10 +72,6 @@ country_event = {
                 set_owner = root
             }
             destroy_country = yes
-        }
-        if = {
-            limit = { exists = fromfrom }
-            fromfrom = { country_event = { id = ccrebel_wg_script.4 } }
         }
     }
     option = { name = EXCELLENT }
@@ -206,7 +165,30 @@ event = {
 country_event = {
     id = ccrebel_wg_script.10
     title = ccrebel_wg_script.10.name
-    desc = ccrebel_wg_script.10.desc
+    desc = {
+        trigger = {
+            from = {
+                OR = {
+                    NOR = {
+                        has_civic = civic_broken_shackles
+                        has_civic = civic_free_republic
+                    }
+                    has_country_flag = cc_slave_fatherland7
+                }
+            }
+        }
+        text = ccrebel_wg_script.10.desc.standard
+    }
+	desc = {
+		trigger = {
+            from = {
+                has_civic = civic_broken_shackles
+                has_civic = civic_free_republic
+            }
+            NOT = { has_country_flag = cc_slave_fatherland7 }
+        }
+		text = ccrebel_wg_script.10.desc.slave
+	}
 	location = fromfrom
 
 	diplomatic = yes
@@ -283,11 +265,43 @@ country_event = {
                     has_policy_flag = purge_allowed
                 }
             }
+            modifier = {
+                factor = 0.5
+                NOT = { is_same_species = from }
+            }
+            modifier = {
+                factor = 5
+                NOT = {
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value > inferior
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 10
+                NOT = {
+                    any_country = {
+                        is_at_war_with = from
+                        relative_power = {
+                            who = ROOT
+                            value > pathetic
+                        }
+                    }
+                }
+            }
         }
     }
     option = { #no
         name = ccrebel_wg_script.10.B
 
+        add_opinion_modifier = {
+            modifier = ccrebel_refused_to_help_rebels
+            who = from
+        }
 
         ai_chance = {
             factor = 1
@@ -331,65 +345,6 @@ country_event = {
                 any_country = {
                     is_at_war_with = from
                     has_defensive_pact = root
-                }
-            }
-            modifier = {
-                factor = 5
-                NOR = {
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = overwhelming
-                        }
-                    }
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = superior
-                        }
-                    }
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = equal
-                        }
-                    }
-                }
-            }
-            modifier = {
-                factor = 5
-                NOR = {
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = overwhelming
-                        }
-                    }
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = superior
-                        }
-                    }
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = equal
-                        }
-                    }
-                    any_country = {
-                        is_at_war_with = from
-                        relative_power = {
-                            who = ROOT
-                            value = inferior
-                        }
-                    }
                 }
             }
         }

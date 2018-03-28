@@ -66,3 +66,14 @@ opinion_rebelled_from_rival = {
 		base = 1
 	}
 }
+
+
+ccrebel_refused_to_help_rebels = {
+	opinion = {
+		base = -50
+	}
+
+	decay = {
+		base = 1
+	}
+}

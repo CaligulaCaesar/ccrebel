@@ -1653,113 +1653,77 @@ country_event = {
 
 				save_event_target_as = ccrebel_land_of_liberty
 			}
-			else = {
-				stuff!
 
-		if = {
-			limit = {
-				any_country = {
-					has_civic = civic_free_republic
-					has_civic = civic_broken_shackles
-					
-					has_policy_flag = slavery_not_allowed
-					is_country_type = default
-					has_communications = from
-					any_owned_planet = {
-						distance = { 
-   							source = FromFrom
-  							max_distance = 150
-  							min_distance = 0
- 						}
- 					}
- 					NOR = {
- 						is_in_federation_with = ROOT
- 						is_same_value = ROOT
-						is_same_value = event_target:rebel_country
- 					}
-				}
-			}
-			random_country = {
-				limit = {
-					has_civic = civic_free_republic
-					has_civic = civic_broken_shackles
-					
-					has_policy_flag = slavery_not_allowed
-					has_communications = from
-					is_country_type = default
-					any_owned_planet = {
-						distance = {
-   							source = FromFrom
-  							max_distance = 150
-  							min_distance = 0
- 						}
- 					}
- 					NOR = {
- 						is_in_federation_with = ROOT
- 						is_same_value = ROOT
-						is_same_value = event_target:rebel_country
-						has_country_flag = cc_rebels_merging
- 					}
-				}
-				country_event = { id = unrest.168 days = 5 }
-				root = { set_country_flag = cc_rebels_merging }
-			}
-			
-			else = { #second choice is same species but not slaveholders
-				
+			else = {
 				if = {
 					limit = {
 						any_country = {
-							NOR = {
-								is_same_value = event_target:old_owner
-								is_same_empire = event_target:old_owner
-								is_same_value = event_target:rebel_country
-								is_same_empire = event_target:rebel_country
-								is_in_federation_with = ROOT
-							}
-							is_country_type = default
-							is_subject = no
+							has_civic = civic_free_republic
+							has_civic = civic_broken_shackles
+							
 							has_policy_flag = slavery_not_allowed
-							is_same_species = from
+							is_country_type = default
+							has_communications = from
+							any_owned_planet = {
+								distance = { 
+									source = FromFrom
+									max_distance = 150
+									min_distance = 0
+								}
+							}
+							NOR = {
+								is_same_value = root
+
+								is_same_value = from
+								is_same_empire = from
+								has_country_flag = cc_rebels_merging
+
+								would_join_war = { attacker = from defender = root side = root }
+							}
 						}
 					}
-					
 					random_country = {
 						limit = {
-							NOR = {
-								is_same_value = event_target:old_owner
-								is_same_empire = event_target:old_owner
-								is_same_value = event_target:rebel_country
-								is_same_empire = event_target:rebel_country
-								is_in_federation_with = ROOT
-								has_country_flag = cc_rebels_merging
-							}
-							is_country_type = default
-							is_subject = no
+							has_civic = civic_free_republic
+							has_civic = civic_broken_shackles
+							
 							has_policy_flag = slavery_not_allowed
-							is_same_species = from
+							has_communications = from
+							is_country_type = default
+							any_owned_planet = {
+								distance = {
+									source = FromFrom
+									max_distance = 150
+									min_distance = 0
+								}
+							}
+							NOR = {
+								is_same_value = root
+
+								is_same_value = from
+								is_same_empire = from
+								has_country_flag = cc_rebels_merging
+
+								would_join_war = { attacker = from defender = root side = root }
+							}
 						}
-						save_event_target_as = slave_fatherland1
-						set_timed_country_flag = {
-							flag = cc_slave_fatherland7
-							days = 10
-						}
-						country_event = { id = unrest.168 days = 5 } # request incorporation
-						root = { set_country_flag = cc_rebels_merging }
+						save_event_target_as = ccrebel_land_of_liberty
 					}
-				
 					
-					else = { #third choice: random egalitarians
+					else = { #second choice is same species but not slaveholders
+						
 						if = {
 							limit = {
 								any_country = {
-									OR = {
-										has_ethic = ethic_fanatic_egalitarian
-										has_ethic = ethic_egalitarian
+									NOR = {
+										is_same_value = root
+				
+										is_same_value = from
+										is_same_empire = from
+										has_country_flag = cc_rebels_merging
+				
+										would_join_war = { attacker = from defender = root side = root }
 									}
-									has_policy_flag = slavery_not_allowed
-									is_country_type = default
-									has_communications = ROOT
 									any_owned_planet = {
 										distance = { #changed max distance from 300 as that is quite a long way and I wanted some slave republics to actually exist.
 											source = FromFrom
@@ -1767,38 +1731,105 @@ country_event = {
 											min_distance = 0
 										}
 									}
-									NOR = {
-										is_in_federation_with = ROOT
-										is_same_value = ROOT
-										is_same_value = event_target:rebel_country
-									}
+									is_country_type = default
+									is_subject = no
+									has_policy_flag = slavery_not_allowed
+									is_same_species = from
 								}
 							}
+							
 							random_country = {
 								limit = {
-									OR = {
-										has_ethic = ethic_fanatic_egalitarian
-										has_ethic = ethic_egalitarian
+									NOR = {
+										is_same_value = root
+				
+										is_same_value = from
+										is_same_empire = from
+										has_country_flag = cc_rebels_merging
+				
+										would_join_war = { attacker = from defender = root side = root }
 									}
-									has_policy_flag = slavery_not_allowed
-									has_communications = ROOT
-									is_country_type = default
 									any_owned_planet = {
-										distance = {
+										distance = { #changed max distance from 300 as that is quite a long way and I wanted some slave republics to actually exist.
 											source = FromFrom
 											max_distance = 150
 											min_distance = 0
 										}
 									}
-									NOR = {
-										is_in_federation_with = ROOT
-										is_same_value = ROOT
-										is_same_value = event_target:rebel_country
-										has_country_flag = cc_rebels_merging
+									is_country_type = default
+									is_subject = no
+									has_policy_flag = slavery_not_allowed
+									is_same_species = from
+								}
+								save_event_target_as = slave_fatherland1
+								set_timed_country_flag = {
+									flag = cc_slave_fatherland7
+									days = 10
+								}
+								save_event_target_as = ccrebel_land_of_liberty
+							}
+						
+							
+							else = { #third choice: random egalitarians
+								if = {
+									limit = {
+										any_country = {
+											OR = {
+												has_ethic = ethic_fanatic_egalitarian
+												has_ethic = ethic_egalitarian
+											}
+											has_policy_flag = slavery_not_allowed
+											is_country_type = default
+											has_communications = ROOT
+											any_owned_planet = {
+												distance = { #changed max distance from 300 as that is quite a long way and I wanted some slave republics to actually exist.
+													source = FromFrom
+													max_distance = 150
+													min_distance = 0
+												}
+											}
+											NOR = {
+												is_same_value = root
+						
+												is_same_value = from
+												is_same_empire = from
+												has_country_flag = cc_rebels_merging
+						
+												would_join_war = { attacker = from defender = root side = root }
+											}
+											has_ai_personality_behaviour = multispecies
+										}
+									}
+									random_country = {
+										limit = {
+											OR = {
+												has_ethic = ethic_fanatic_egalitarian
+												has_ethic = ethic_egalitarian
+											}
+											has_policy_flag = slavery_not_allowed
+											has_communications = ROOT
+											is_country_type = default
+											any_owned_planet = {
+												distance = {
+													source = FromFrom
+													max_distance = 150
+													min_distance = 0
+												}
+											}
+											NOR = {
+												is_same_value = root
+						
+												is_same_value = from
+												is_same_empire = from
+												has_country_flag = cc_rebels_merging
+						
+												would_join_war = { attacker = from defender = root side = root }
+											}
+											has_ai_personality_behaviour = multispecies
+										}
+										save_event_target_as = ccrebel_land_of_liberty
 									}
 								}
-								country_event = { id = unrest.168 days = 5 }
-								root = { set_country_flag = cc_rebels_merging }
 							}
 						}
 					}
@@ -1833,7 +1864,7 @@ country_event = {
 				else = {
 					event_target:ccrebel_land_of_liberty = { #I wonder whether this works
 						save_event_target_as = event_target:rebelled_against
-						country_event = { id = ccrebel_wg_script.10 days = 5 scopes = { event_target:ccrebel_land_of_liberty = root fromfrom = fromfrom from = from root = event_target:rebelled_against } } #request aid in war 
+						country_event = { id = ccrebel_wg_script.10 days = 5 scopes = { fromfrom = fromfrom from = from } } #request aid in war 
 					} 
 				}
 			}
@@ -2236,6 +2267,7 @@ planet_event = {
 		NOT = { 
 			has_planet_flag = revolt_in_progress
 		}
+		is_colony = yes
 	}
 	
 	immediate = {
@@ -3210,7 +3242,19 @@ country_event = { # rebels have broken free notification
 country_event = {
 	id = unrest.4220
 	title = unrest.4220.name
-	desc = unrest.4220.desc
+	desc = {
+		trigger = {
+			fromfrom = { is_original_owner = root } 
+		}
+		text = unrest.4220.desc
+	}
+	desc = {
+		trigger = {
+			fromfrom = { NOT = { is_original_owner = root } }
+		}
+		text = unrest.4220.desc.not_orowner
+	}
+	
 	location = fromfrom
 
 	diplomatic = yes
