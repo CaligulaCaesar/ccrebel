@@ -441,3 +441,17 @@ wg_ccrebel_independence:0 "$war_goal_wg_independence$"
 wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
 wg_ccrebel_independence_status_quo:0 "$wg_independence_status_quo$ If the [Root.GetName] is being backed by a larger empire, it will secede to it."
 wg_ccrebel_independence_accept:0 "$wg_independence_accept$ If the [Root.GetName] is being backed by a larger empire, it will secede to it."
+
+ccrebel_wg_script.3.name:0 "The [from.GetName]"
+ccrebel_wg_script.3.desc:0 "Following the successful conclusion of our war with the [fromfrom.GetName], the [from.GetSpeciesAdj] rebels that had revolted from them have seceded and joined our state."
+ccrebel_wg_script.4.name:0 "The [fromfrom.GetName]"
+ccrebel_wg_script.4.desc:0 "We have been unable to prevent the [fromfrom.GetName] from seceding to the [from.GetName]."
+
+ccrebel_wg_script.10.name:0 "The [from.GetName] requests our Aid!"
+ccrebel_wg_script.10.desc.standard:0 "Greetings, [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nMany of us [root.GetSpeciesNamePlural] see the [Root.GetName] as our true fatherland. We wish for nothing more than to join your state. However, the [rebelled_against.GetName] stands in our way. We have managed to break free of them for the time being, but we fear that without your support this will not last. Will you help us secure a better future for all [root.GetSpeciesNamePlural]?"
+ccrebel_wg_script.10.desc.slave:0 "Greetings [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nWe are freedom fighters - former slaves - from the [rebelled_against.GetName], where we suffered much abuse under the oppression of [rebelled_against.GetRulerTitle] [rebelled_against.GetRulerName]. We have long admired your egalitarian standards, the "[Root.GetSpeciesAdj]" way, as we would refer to it back home, and we share your values. We wish for nothing more than to join your state. However, the [rebelled_against.GetName] stands in our way. We have managed to break free of them for the time being, but we fear that without your support this will not last. Will you help us secure a better future for all oppressed peoples?"
+ccrebel_wg_script.10.A:0 "Of course we will help them. To war!"
+ccrebel_wg_script.10.A.tooltip:0 "If the [rebelled_against.GetName] is defeated or forced into a status quo peace, the [from.GetName] will secede and join the [root.GetName]."
+ccrebel_wg_script.10.B:0 "We do not desire war."
+
+ccrebel_refused_to_help_rebels:0 "Refused to support us"

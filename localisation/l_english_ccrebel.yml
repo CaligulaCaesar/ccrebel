@@ -459,13 +459,3 @@ ccrebel_wg_script.10.A.tooltip:0 "If the [rebelled_against.GetName] is defeated 
 ccrebel_wg_script.10.B:0 "We do not desire war."
 
 ccrebel_refused_to_help_rebels:0 "Refused to support us"
- 
- 
- 
-  unrest.168.name:0 "[rebel_country.GetName]"
- unrest.168.desc:0 "Greetings [Root.GetSpeciesName]. We are freedom fighters - former slaves - from the [old_owner.GetName], where we suffered much abuse under the oppression of [old_owner.GetRulerTitle] [old_owner.GetRulerName]. We have long admired your egalitarian standards, the "[new_owner.GetSpeciesAdj]" way, as we would refer to it back home, and we share your values. We have seceded and wish to be a part of your nation, if you will have us?"
- unrest.168.a:0 "Join us. Here we are all equal."
- unrest.168.a.tooltip:0 "[old_owner.GetName] will be notified that we have accepted their former slaves."
- unrest.168.b:0 "We have no need for another planet."
- 
-rebellionscript.132.desc:0 "Greetings, friend. We are freedom fighters - former slaves - from the [old_owner.GetName], where we suffered much abuse under the oppression of [old_owner.GetRulerTitle] [old_owner.GetRulerName]. Although we are now free, the galaxy is vast and full of perils. We have long viewed you, who have managed to maintain [Root.GetSpeciesAdj] freedom, as a beacon of hope. We have seceded and wish to be a part of your nation, if you will have us?"
