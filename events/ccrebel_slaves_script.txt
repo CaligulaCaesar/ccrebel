@@ -230,6 +230,7 @@ event = {
 								limit = { NOT = { has_ethic = ethic_fanatic_egalitarian } }
 								country_add_ethic = ethic_fanatic_egalitarian
 							}
+							set_name = random
 						}
 						else = {
 							change_government = {
@@ -363,6 +364,7 @@ country_event = {
 					limit = { NOT = { has_ethic = ethic_fanatic_egalitarian } }
 					country_add_ethic = ethic_fanatic_egalitarian
 				}
+				set_name = random
 			}
 		}
 	}

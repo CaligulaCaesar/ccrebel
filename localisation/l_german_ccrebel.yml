@@ -432,8 +432,8 @@ effect_every_neighbor_country:0 "Jedes Nachbarland"
 ccrebel_no_valid_target_in_range:0 "Keine feindliche Planete in Reichweite"
 
 
-wg_ccrebel_independence:0 "$war_goal_wg_independence$"
-wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
+war_goal_wg_ccrebel_independence:0 "$war_goal_wg_independence$"
+war_goal_wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
 wg_ccrebel_independence_status_quo:0 "$wg_independence_status_quo$ Ist die [Root.GetName] von einem größeren Staat unterstützt, wird es sich möglicherweise diese anschließen."
 wg_ccrebel_independence_accept:0 "$wg_independence_accept$ Ist die [Root.GetName] von einem größeren Staat unterstützt, wird es sich möglicherweise diese anschließen."
 

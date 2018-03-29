@@ -441,8 +441,8 @@ effect_every_neighbor_country:0 "Every Neighbouring Country"
 ccrebel_no_valid_target_in_range:0 "Нет действительной цели в радиусе действия"
 
 
-wg_ccrebel_independence:0 "$war_goal_wg_independence$"
-wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
+war_goal_wg_ccrebel_independence:0 "$war_goal_wg_independence$"
+war_goal_wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
 wg_ccrebel_independence_status_quo:0 "$wg_independence_status_quo$ Если [Root.GetName] будет поддерживаться более крупной империей, она будет от нее отделена."
 wg_ccrebel_independence_accept:0 "$wg_independence_accept$ Если [Root.GetName] будет поддерживаться более крупной империей, она будет от нее отделена."
 

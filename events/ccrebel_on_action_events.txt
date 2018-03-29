@@ -23,7 +23,7 @@ country_event = {
 			set_timed_relation_flag = {
 				flag = ccrebel_declare_war_on
 				who = ROOT
-				days = 5
+				days = 30
 			}
 		}
 		if = {

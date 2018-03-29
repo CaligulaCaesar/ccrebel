@@ -1977,6 +1977,37 @@ country_event = {
 # NO!
 	option = {
 		name = unrest.168.b
+
+		hidden_effect = {
+			if = {
+				limit = {
+					any_country = {
+						has_relation_flag = {
+							who = event_target:rebel_country
+							flag = ccrebel_declare_war_on
+						}
+						NOT = { is_at_war_with = event_target:rebel_country }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = event_target:rebel_country
+							flag = ccrebel_declare_war_on
+						}
+						NOT = { is_at_war_with = event_target:rebel_country }
+					}
+					save_event_target_as = ccrebel_declared_war_on
+	
+					event_target:rebel_country = {
+						declare_war = {
+							target = prev
+							attacker_war_goal = wg_ccrebel_independence
+						}
+					}
+				}
+			}
+		}
 		ai_chance = {
 			factor = 0
 		}
@@ -3365,6 +3396,37 @@ country_event = {
 
 	option = {
 		name = unrest.4220.c
+
+		hidden_effect = {
+			if = {
+				limit = {
+					any_country = {
+						has_relation_flag = {
+							who = from
+							flag = ccrebel_declare_war_on
+						}
+						NOT = { is_at_war_with = from }
+					}
+				}
+				random_country = {
+					limit = {
+						has_relation_flag = {
+							who = from
+							flag = ccrebel_declare_war_on
+						}
+						NOT = { is_at_war_with = from }
+					}
+					save_event_target_as = ccrebel_declared_war_on
+	
+					from = {
+						declare_war = {
+							target = prev
+							attacker_war_goal = wg_ccrebel_independence
+						}
+					}
+				}
+			}
+		}
 		ai_chance = {
 			factor = 0
 		}
