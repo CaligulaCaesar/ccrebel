@@ -89,12 +89,14 @@ country_event = {
 								limit = { root = { has_technology = tech_ccrebel_unrest_2 } }
 								distance = {
 									source = prevprevprev
-									max_distance = 150
+									min_jumps = 1
+									max_jumps = 6
 								}
 								else = {
 									distance = {
 										source = prevprevprev
-										max_distance = 100
+										min_jumps = 1
+										max_jumps = 4
 									}
 								}
 							}
@@ -116,12 +118,14 @@ country_event = {
 							limit = { root = { has_technology = tech_ccrebel_unrest_2 } }
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 6
 							}
 							else = {
 								distance = {
 									source = prevprev
-									max_distance = 100
+									min_jumps = 1
+									max_jumps = 4
 								}
 							}
 						}
@@ -139,12 +143,14 @@ country_event = {
 									limit = { prevprev.owner = { has_technology = tech_ccrebel_unrest_2 } }
 									distance = {
 										source = prevprev
-										max_distance = 150
+										min_jumps = 1
+										max_jumps = 6
 									}
 									else = {
 										distance = {
 											source = prevprev
-											max_distance = 100
+											min_jumps = 1
+											max_jumps = 4
 										}
 									}
 								}
@@ -179,12 +185,14 @@ planet_event = {
 							limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
 							distance = {
 								source = root
-								max_distance = 60	#40% of total reach
+								min_jumps = 1
+								max_jumps = 3
 							}
 							else = {
 								distance = {
 									source = root
-									max_distance = 40
+									min_jumps = 1
+									max_jumps = 2
 								}
 							}
 						}

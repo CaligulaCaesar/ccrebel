@@ -140,7 +140,8 @@ tech_ccrebel_unrest_1 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 4
 							}
 						}
 					}
@@ -171,7 +172,8 @@ tech_ccrebel_unrest_1 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 4
 							}
 						}
 					}
@@ -269,7 +271,8 @@ tech_ccrebel_unrest_1 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 4
 							}
 						}
 					}
@@ -300,7 +303,8 @@ tech_ccrebel_unrest_1 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 4
 							}
 						}
 					}
@@ -429,7 +433,8 @@ tech_ccrebel_unrest_2 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 6
 							}
 						}
 					}
@@ -460,7 +465,8 @@ tech_ccrebel_unrest_2 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 6
 							}
 						}
 					}
@@ -558,7 +564,8 @@ tech_ccrebel_unrest_2 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 6
 							}
 						}
 					}
@@ -589,7 +596,8 @@ tech_ccrebel_unrest_2 = {
 						any_owned_planet = { 
 							distance = {
 								source = prevprev
-								max_distance = 150
+								min_jumps = 1
+								max_jumps = 6
 							}
 						}
 					}
