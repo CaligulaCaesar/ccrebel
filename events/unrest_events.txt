@@ -1863,7 +1863,7 @@ country_event = {
 				}
 				else = {
 					event_target:ccrebel_land_of_liberty = { #I wonder whether this works
-						save_event_target_as = event_target:rebelled_against
+						save_event_target_as = rebelled_against
 						country_event = { id = ccrebel_wg_script.10 days = 5 scopes = { fromfrom = fromfrom from = from } } #request aid in war 
 					} 
 				}
@@ -2884,8 +2884,8 @@ planet_event = {
 						}
 						create_army = {
 							name = "NAME_Freedom_Fighters"
-							owner = event_target:rebelling_slaves
-							species = event_target:leader_pop.species
+							owner = event_target:secessionist_rebels
+							species = event_target:secessionist_rebels
 							type = "rebel_slave_defense_army"
 						}
 					}

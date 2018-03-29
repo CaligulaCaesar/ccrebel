@@ -6175,38 +6175,6 @@ country_event = {
 }
 
 country_event = {
-	id = ccrebel_sow_unrest.61
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		add_energy = -250
-		add_minerals = -250
-		
-		event_target:ccrebel_revolted_from_country = {
-			add_energy = 250
-			add_minerals = 250
-		}
-	}
-}	
-	
-country_event = {
-	id = ccrebel_sow_unrest.62
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		add_energy = -150
-		add_minerals = -150
-		
-		event_target:ccrebel_revolted_from_country = {
-			add_energy = 150
-			add_minerals = 150
-		}
-	}
-}	
-
-country_event = {
 	id = ccrebel_sow_unrest.63
 	hide_window = yes
 	is_triggered_only = yes
