@@ -1862,8 +1862,8 @@ country_event = {
 					set_country_flag = cc_rebels_merging
 				}
 				else = {
+					save_event_target_as = rebelled_against
 					event_target:ccrebel_land_of_liberty = { #I wonder whether this works
-						save_event_target_as = rebelled_against
 						country_event = { id = ccrebel_wg_script.10 days = 5 scopes = { fromfrom = fromfrom from = from } } #request aid in war 
 					} 
 				}
