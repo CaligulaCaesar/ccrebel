@@ -525,6 +525,7 @@ planet_event = {
 					}
 				}
 				create_army = {
+					name = "NAME_ccrebel_Patriotic_Brigade"
 					owner = event_target:nationalist_rebels
 					species = event_target:fatherland
 					type = "assault_army"

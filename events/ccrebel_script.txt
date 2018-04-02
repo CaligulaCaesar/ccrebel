@@ -2125,6 +2125,7 @@ planet_event = {
 					}
 				}
 			}
+			
 			random_country = {
 				limit = {
 					NOT = { is_same_value = root.owner }
@@ -2164,6 +2165,13 @@ planet_event = {
 			set_timed_planet_flag = {
 				flag = cc_revolution
 				days = 60
+			}
+			
+			random_owned_pop = {
+				limit = {
+					is_enslaved = yes
+				}
+				save_event_target_as = leader_pop
 			}
 			
 			create_rebels = {
