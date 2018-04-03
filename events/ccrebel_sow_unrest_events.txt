@@ -333,7 +333,10 @@ country_event = {
 			
 		random_country = {
 			limit = {
-				NOT = { is_country_type = fallen_empire }
+				OR = {
+					is_country_type = default
+					is_country_type = awakened_fallen_empire
+				}
 				NOR = {
 					has_valid_civic = civic_fanatic_purifiers
 					has_valid_civic = civic_hive_devouring_swarm

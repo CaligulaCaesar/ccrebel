@@ -1297,10 +1297,8 @@ country_event = {
 		if = {
 			limit = { 
 				any_country = {
-					AND = { 
-						has_country_flag = cc_rebellion
-						is_same_species = root
-					}
+					has_country_flag = cc_rebellion
+					is_same_species = root
 					is_country_type = default
 					NOR = {
 						is_same_value = event_target:new_rebels
@@ -1313,10 +1311,8 @@ country_event = {
 			}
 			random_country = {
 				limit = {
-					AND = { 
-						has_country_flag = cc_rebellion
-						is_same_species = root
-					}
+					has_country_flag = cc_rebellion
+					is_same_species = root
 					is_country_type = default
 					NOR = {
 						is_same_value = event_target:new_rebels
@@ -1336,7 +1332,7 @@ country_event = {
 			}
 
 			event_target:rebellion1 = {
-					country_event = { id = unrest.4220 days = 5 } # request incorporation
+				country_event = { id = unrest.4220 days = 5 } # request incorporation
 			}
 			from = { 
 				if = {

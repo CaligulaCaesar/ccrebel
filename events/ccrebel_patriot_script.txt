@@ -712,6 +712,7 @@ country_event = {
 		if = {
 			limit = { 
 				any_country = {
+					is_country_type = default
 					has_country_flag = ccrebel_seceed_to_patriot@from
 					is_same_species = event_target:new_rebels
 					NOT = { is_same_value = event_target:new_rebels }

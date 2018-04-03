@@ -1617,6 +1617,7 @@ country_event = {
 		if = { #first choice is a rebellion
 			limit = {
 				any_country = {
+					is_country_type = default
 					is_same_species = from
 					has_civic = civic_free_republic
 					has_civic = civic_broken_shackles
@@ -1635,6 +1636,7 @@ country_event = {
 			}
 			random_country = {
 				limit = {
+					is_country_type = default
 					is_same_species = from
 					has_civic = civic_free_republic
 					has_civic = civic_broken_shackles
@@ -3071,6 +3073,7 @@ country_event = {
 			if = {
 				limit = {
 					any_country = {
+						is_country_type = default
 						has_communications = ROOT
 						is_same_species = root
 						NOT = { has_country_flag = ccrebel_has_existed_5_years }
@@ -3087,6 +3090,7 @@ country_event = {
 				}
 				random_country = {
 					limit = {
+						is_country_type = default
 						has_communications = ROOT
 						is_same_species = root
 						NOT = { has_country_flag = ccrebel_has_existed_5_years }
@@ -3108,6 +3112,7 @@ country_event = {
 					if = {
 						limit = {
 							any_country = {
+								is_country_type = default
 								is_same_species = root
 								has_communications = ROOT
 								from = {
