@@ -354,10 +354,10 @@ country_event = {
 #					flag = ccrebel_sowing_unrest_by
 #				}
 				
-				opinion = {
-					who = event_target:old_owner
-					value < -50
-				}
+#				opinion = {
+#					who = event_target:old_owner
+#					value < -50
+#				}
 				OR = {
 					is_hostile_to = event_target:old_owner
 					is_angry_to = event_target:old_owner
@@ -896,10 +896,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -950,10 +950,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -1347,10 +1347,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -1401,10 +1401,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -1795,10 +1795,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -1849,10 +1849,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -1928,10 +1928,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -1982,10 +1982,10 @@ country_event = {
 		#					flag = ccrebel_sowing_unrest_by
 		#				}
 						
-						opinion = {
-							who = event_target:old_owner
-							value < -50
-						}
+#						opinion = {
+#							who = event_target:old_owner
+#							value < -50
+#						}
 						OR = {
 							is_hostile_to = event_target:old_owner
 							is_angry_to = event_target:old_owner
@@ -6136,21 +6136,21 @@ country_event = {
 					NOT = { has_country_flag = ccrebel_received_battleship_2 }
 				}
 			}
-				random_owned_ship = {
-					limit = {
-						is_ship_size = battleship
-						is_in_combat = no
-					}
-					delete_ship = this
+			random_owned_ship = {
+				limit = {
+					is_ship_size = battleship
+					is_in_combat = no
 				}
-				event_target:ccrebel_subsidised_rebels = {
-					country_event = { id = ccrebel_sow_unrest.69 days = 20 random = 10 }
-					set_timed_country_flag = {
-						flag = ccrebel_received_battleship_2
-						days = 50
-					}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.69 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_battleship_2
+					days = 50
 				}
-				country_event = { id = ccrebel_sow_unrest.604 }
+			}
+			country_event = { id = ccrebel_sow_unrest.604 }
 		}
 		if = {
 			limit = {
@@ -6159,20 +6159,20 @@ country_event = {
 					NOT = { has_country_flag = ccrebel_received_battleship_3 }
 				}
 			}
-				random_owned_ship = {
-					limit = {
-						is_ship_size = battleship
-						is_in_combat = no
-					}
-					delete_ship = this
+			random_owned_ship = {
+				limit = {
+					is_ship_size = battleship
+					is_in_combat = no
 				}
-				event_target:ccrebel_subsidised_rebels = {
-					country_event = { id = ccrebel_sow_unrest.699 days = 20 random = 10 }
-					set_timed_country_flag = {
-						flag = ccrebel_received_battleship_3
-						days = 50
-					}
+				delete_ship = this
+			}
+			event_target:ccrebel_subsidised_rebels = {
+				country_event = { id = ccrebel_sow_unrest.699 days = 20 random = 10 }
+				set_timed_country_flag = {
+					flag = ccrebel_received_battleship_3
+					days = 50
 				}
+			}
 		}
 	}
 }
