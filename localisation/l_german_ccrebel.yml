@@ -450,3 +450,6 @@ ccrebel_wg_script.10.A.tooltip:0 "If the [rebelled_against.GetName] is defeated 
 ccrebel_wg_script.10.B:0 "We do not desire war."
 
 ccrebel_refused_to_help_rebels:0 "Refused to support us"
+
+ccrebel_hard:0 "$hard_ai$"
+ccrebel_insane:0 "$very_hard_ai$"

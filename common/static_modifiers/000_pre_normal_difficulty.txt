@@ -1,4 +1,0 @@
-
-#difficulty_normal_ai = {
-#	planet_unrest_add = -10
-#}

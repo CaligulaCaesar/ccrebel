@@ -7,6 +7,7 @@ on_game_start = {
 		cc_slaves_rebel.101
 		rebellionscript.500
 		rebellionscript.800
+		ccrebel_hard.1
 	}
 }
 
@@ -75,6 +76,7 @@ on_yearly_pulse = {
 		rebellionscript.501
 		rebellionscript.502
 		ccrebel_wg_script.5
+		ccrebel_hard.1
 	}
 }
 

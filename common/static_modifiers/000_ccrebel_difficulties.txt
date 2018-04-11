@@ -1,0 +1,13 @@
+
+#difficulty_normal_ai = {
+#	planet_unrest_add = -10
+#}
+
+ccrebel_hard = {
+	planet_unrest_add = -10
+}
+
+ccrebel_insane = {
+	planet_unrest_add = -20
+}
+

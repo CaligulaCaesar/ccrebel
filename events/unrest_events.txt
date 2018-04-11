@@ -953,9 +953,18 @@ planet_event = {
 		if = {
 			limit = {
 				unrest > @unrestlevel3
-				check_variable = {
-					which = unrest_50
-					value > 36
+				if = {
+					limit = { owner = { is_ai = yes } }
+					check_variable = {
+						which = unrest_50
+						value > 48
+					}
+					else = {	
+						check_variable = {
+							which = unrest_50
+							value > 36
+						}
+					}
 				}
 				has_planet_flag = slave_riots
  				any_owned_pop = {
@@ -2314,9 +2323,18 @@ planet_event = {
 						AND = {
 							has_owner = yes
 							unrest > 80
-							check_variable = {
-								which = unrest_50
-								value > 36
+							if = {
+								limit = { owner = { is_ai = yes } }
+								check_variable = {
+									which = unrest_50
+									value > 48
+								}
+								else = {
+									check_variable = {
+										which = unrest_50
+										value > 36
+									}
+								}
 							}
 							has_planet_flag = cc_revolt_imminent
 							NOR = {
@@ -2336,6 +2354,7 @@ planet_event = {
 				}
 				modifier = {
 					factor = 1.25
+					owner = { is_ai = no }
 					check_variable = {
 						which = unrest_50
 						value > 48

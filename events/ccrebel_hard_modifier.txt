@@ -1,0 +1,57 @@
+namespace = ccrebel_hard
+
+#yearly, on game start
+event = {
+	id = ccrebel_hard.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			is_difficulty = 1
+			is_difficulty = 2
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { is_difficulty = 1 }
+			every_country = {
+				limit = {
+					NOT = { has_modifier = ccrebel_hard }
+					is_ai = yes
+				}
+				add_modifier = {
+					modifier = ccrebel_hard
+					days = -1
+				}
+			}
+			every_country = {
+				limit = {
+					has_modifier = ccrebel_hard
+					is_ai = no
+				}
+				remove_modifier = ccrebel_hard
+			}
+			else = {
+				every_country = {
+					limit = {
+						NOT = { has_modifier = ccrebel_insane }
+						is_ai = yes
+					}
+					add_modifier = {
+						modifier = ccrebel_insane
+						days = -1
+					}
+				}
+				every_country = {
+					limit = {
+						has_modifier = ccrebel_insane
+						is_ai = no
+					}
+					remove_modifier = ccrebel_insane
+				}
+			}
+		}
+	}
+}
