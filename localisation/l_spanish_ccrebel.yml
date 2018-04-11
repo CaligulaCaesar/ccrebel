@@ -458,3 +458,5 @@ ccrebel_refused_to_help_rebels:0 "Refused to support us"
 
 ccrebel_hard:0 "$hard_ai$"
 ccrebel_insane:0 "$very_hard_ai$"
+
+unrest.4220.desc.not_orowner:0 "Greetings, [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nWe recently broke free of the clutches of the [rebelled_against.GetName]. We are a young nation, and still an easy target for more... predatory powers. Many of us [root.GetSpeciesNamePlural] see the [Root.GetName] as our true fatherland. We would be glad to join your state."
