@@ -25,6 +25,11 @@ country_event = {
 					NOT = {
 						any_owned_planet = { NOT = { is_same_value = from } }
 					}
+					NOR = {
+						is_country_type = awakened_marauders
+						is_country_type = dormant_marauders
+						is_country_type = ruined_marauders
+					}
 				}
 			}
 			from.owner = {
