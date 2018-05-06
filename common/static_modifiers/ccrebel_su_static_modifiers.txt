@@ -65,62 +65,62 @@ ccrebel_planet_being_stirred_up_militarist = {
 
 
 ccrebel_planet_being_stirred_up_no_ethic_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_xenophobe_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_xenophobe_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_xenophile_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_xenophile_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_egalitarian_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_egalitarian_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_authoritarian_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_authoritarian_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_spiritualist_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_spiritualist_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_materialist_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_materialist_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_pacifist_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_pacifist_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_militarist_2 = {
-	planet_unrest_add = 30
+	planet_unrest_add = 25
 	pop_ethic_militarist_attraction_mult = 1
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
@@ -129,62 +129,62 @@ ccrebel_planet_being_stirred_up_militarist_2 = {
 
 
 ccrebel_planet_being_stirred_up_no_ethic_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_xenophobe_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_xenophobe_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_xenophile_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_xenophile_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_egalitarian_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_egalitarian_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_authoritarian_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_authoritarian_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_spiritualist_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_spiritualist_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_materialist_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_materialist_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_pacifist_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_pacifist_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_militarist_3 = {
-	planet_unrest_add = 40
+	planet_unrest_add = 30
 	pop_ethic_militarist_attraction_mult = 1.25
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
@@ -193,62 +193,62 @@ ccrebel_planet_being_stirred_up_militarist_3 = {
 
 
 ccrebel_planet_being_stirred_up_no_ethic_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_xenophobe_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_xenophobe_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_xenophile_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_xenophile_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_egalitarian_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_egalitarian_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_authoritarian_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_authoritarian_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_spiritualist_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_spiritualist_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_materialist_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_materialist_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_pacifist_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_pacifist_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3
 }
 
 ccrebel_planet_being_stirred_up_militarist_4 = {
-	planet_unrest_add = 50
+	planet_unrest_add = 35
 	pop_ethic_militarist_attraction_mult = 1.5
 	icon = "gfx/interface/icons/planet_modifiers/pm_sedition.dds"
 	icon_frame = 3

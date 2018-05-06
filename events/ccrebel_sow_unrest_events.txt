@@ -555,17 +555,19 @@ country_event = {
 				}
 			}
 			modifier = {
-				factor = 0.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -40
+				factor = 0
+				OR = {
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 1.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 20
+				OR = {
+					is_friendly_to = event_target:ccrebel_subsidised_rebels
+					is_cordial_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			
@@ -1009,23 +1011,18 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -80
-				}
-			}
-			modifier = {
-				factor = 0.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -40
+				OR = {
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 1.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 20
+				OR = {
+					is_friendly_to = event_target:ccrebel_subsidised_rebels
+					is_cordial_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			
@@ -1459,23 +1456,18 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -80
-				}
-			}
-			modifier = {
-				factor = 0.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -40
+				OR = {
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 1.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 20
+				OR = {
+					is_friendly_to = event_target:ccrebel_subsidised_rebels
+					is_cordial_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			
@@ -2650,19 +2642,18 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < 0
+				OR = {
+					is_unfriendly_to = event_target:ccrebel_subsidised_rebels
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 2
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 100
-				}
+				is_friendly_to = event_target:ccrebel_subsidised_rebels
 			}
-				
 			modifier = {
 				factor = 0
 				NOT = {
@@ -2971,17 +2962,17 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < 0
+				OR = {
+					is_unfriendly_to = event_target:ccrebel_subsidised_rebels
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 2
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 100
-				}
+				is_friendly_to = event_target:ccrebel_subsidised_rebels
 			}
 			
 			modifier = {
@@ -3289,17 +3280,17 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < 0
+				OR = {
+					is_unfriendly_to = event_target:ccrebel_subsidised_rebels
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 2
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 100
-				}
+				is_friendly_to = event_target:ccrebel_subsidised_rebels
 			}
 			
 			modifier = {
@@ -3707,17 +3698,17 @@ country_event = {
 			
 			modifier = {
 				factor = 0.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -20
+				OR = {
+					is_unfriendly_to = event_target:ccrebel_subsidised_rebels
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 1.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 80
-				}
+				is_friendly_to = event_target:ccrebel_subsidised_rebels
 			}
 			
 			modifier = {
@@ -4226,17 +4217,17 @@ country_event = {
 			
 			modifier = {
 				factor = 0.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value < -20
+				OR = {
+					is_unfriendly_to = event_target:ccrebel_subsidised_rebels
+					is_hostile_to = event_target:ccrebel_subsidised_rebels
+					is_rival = event_target:ccrebel_subsidised_rebels
+					is_domineering_to = event_target:ccrebel_subsidised_rebels
+					is_disloyal_to = event_target:ccrebel_subsidised_rebels
 				}
 			}
 			modifier = {
 				factor = 1.5
-				opinion = {
-					who = event_target:ccrebel_subsidised_rebels
-					value > 80
-				}
+				is_friendly_to = event_target:ccrebel_subsidised_rebels
 			}
 			
 			modifier = {
