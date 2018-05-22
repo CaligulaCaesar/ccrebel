@@ -289,6 +289,7 @@ planet_event = {
 			has_planet_flag = revolt_in_progress
 		}
 		has_ground_combat = no
+		exists = controller
 		controller = { is_same_value = root.owner }
 		
 		owner = { has_country_flag = cc_country_patriot_revolt }

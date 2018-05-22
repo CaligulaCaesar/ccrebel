@@ -1678,8 +1678,8 @@ country_event = {
 							any_owned_planet = {
 								distance = { 
 									source = FromFrom
-									max_distance = 150
-									min_distance = 0
+									max_distance <= 150
+									min_distance >= 0
 								}
 							}
 							NOR = {
@@ -1704,8 +1704,8 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = FromFrom
-									max_distance = 150
-									min_distance = 0
+									max_distance <= 150
+									min_distance >= 0
 								}
 							}
 							NOR = {
@@ -1738,8 +1738,8 @@ country_event = {
 									any_owned_planet = {
 										distance = { #changed max distance from 300 as that is quite a long way and I wanted some slave republics to actually exist.
 											source = FromFrom
-											max_distance = 150
-											min_distance = 0
+											max_distance <= 150
+											min_distance >= 0
 										}
 									}
 									is_country_type = default
@@ -1763,8 +1763,8 @@ country_event = {
 									any_owned_planet = {
 										distance = { #changed max distance from 300 as that is quite a long way and I wanted some slave republics to actually exist.
 											source = FromFrom
-											max_distance = 150
-											min_distance = 0
+											max_distance <= 150
+											min_distance >= 0
 										}
 									}
 									is_country_type = default
@@ -1795,8 +1795,8 @@ country_event = {
 											any_owned_planet = {
 												distance = { #changed max distance from 300 as that is quite a long way and I wanted some slave republics to actually exist.
 													source = FromFrom
-													max_distance = 150
-													min_distance = 0
+													max_distance <= 150
+													min_distance >= 0
 												}
 											}
 											NOR = {
@@ -1823,8 +1823,8 @@ country_event = {
 											any_owned_planet = {
 												distance = {
 													source = FromFrom
-													max_distance = 150
-													min_distance = 0
+													max_distance <= 150
+													min_distance >= 0
 												}
 											}
 											NOR = {
@@ -2237,7 +2237,6 @@ event = {
 
 	trigger = {
 		any_country = {
-			is_country_type = default
 			any_owned_planet = {
 				#has_planet_flag = slave_riots
 				OR = {
@@ -2249,43 +2248,45 @@ event = {
 	}
 
 	immediate = {
-		every_planet = {
-			limit = {
-				OR = {
-					#has_planet_flag = slave_riots
-					has_planet_flag = unrest_50_variable_set
-					unrest > @unrestlevel2
-				}
-			}
-			if = {
+		every_country = {
+			every_owned_planet = {
 				limit = {
-					NOT = { has_planet_flag = unrest_50_variable_set }
-					unrest > @unrestlevel2
+					OR = {
+						#has_planet_flag = slave_riots
+						has_planet_flag = unrest_50_variable_set
+						unrest > @unrestlevel2
+					}
 				}
-				set_planet_flag = unrest_50_variable_set
-				set_variable = {
-					which = unrest_50
-					value = 1
-				}
-				else = {
-					if = {
-						limit = {
-							has_planet_flag = unrest_50_variable_set
-							unrest > @unrestlevel2
-						}
-						change_variable = {
-							which = unrest_50
-							value = 1
-						}
-						else = {
-							if = {
-								limit = {
-									has_planet_flag = unrest_50_variable_set
-									unrest < @unrestlevel2
-								}
-								set_variable = {
-									which = unrest_50
-									value = 0
+				if = {
+					limit = {
+						NOT = { has_planet_flag = unrest_50_variable_set }
+						unrest > @unrestlevel2
+					}
+					set_planet_flag = unrest_50_variable_set
+					set_variable = {
+						which = unrest_50
+						value = 1
+					}
+					else = {
+						if = {
+							limit = {
+								has_planet_flag = unrest_50_variable_set
+								unrest > @unrestlevel2
+							}
+							change_variable = {
+								which = unrest_50
+								value = 1
+							}
+							else = {
+								if = {
+									limit = {
+										has_planet_flag = unrest_50_variable_set
+										unrest < @unrestlevel2
+									}
+									set_variable = {
+										which = unrest_50
+										value = 0
+									}
 								}
 							}
 						}
@@ -2557,8 +2558,8 @@ planet_event = {
 					any_owned_planet = {
 						distance = { 
 							source = root
-							max_distance = 150
-							min_distance = 0
+							max_distance <= 150
+							min_distance >= 0
 						}
 					}
 					NOR = {
@@ -2580,8 +2581,8 @@ planet_event = {
 					any_owned_planet = {
 						distance = { 
 							source = root
-							max_distance = 150
-							min_distance = 0
+							max_distance <= 150
+							min_distance >= 0
 						}
 					}
 					NOR = {
@@ -3178,8 +3179,8 @@ country_event = {
 								any_owned_planet = {
 									distance = { 
 										source = from
-										max_distance = 150
-										min_distance = 0
+										max_distance <= 150
+										min_distance >= 0
 									}
 								}
 								NOR = {
@@ -3204,8 +3205,8 @@ country_event = {
 									any_owned_planet = {
 										distance = { 
 											source = from
-											max_distance = 150
-											min_distance = 0
+											max_distance <= 150
+											min_distance >= 0
 										}
 									}
 									NOR = {

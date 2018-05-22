@@ -1722,8 +1722,8 @@ planet_event = {
 						any_owned_planet = {
 							distance = { 
 								source = root
-								max_distance = 150
-								min_distance = 0
+								max_distance <= 150
+								min_distance >= 0
 							}
 						}
 					}
@@ -1748,8 +1748,8 @@ planet_event = {
 						any_owned_planet = {
 							distance = { 
 								source = root
-								max_distance = 150
-								min_distance = 0
+								max_distance <= 150
+								min_distance >= 0
 							}
 						}
 					}

@@ -24,7 +24,7 @@ event = {
 							NOT = {
 								distance = {
 									source = prev.capital_scope
-									max_distance = 110
+									max_distance <= 110
 								}
 							}
 							else = {
@@ -35,7 +35,7 @@ event = {
 									NOT = {
 										distance = {
 											source = prev.capital_scope
-											max_distance = 95
+											max_distance <= 95
 										}
 									}
 									else = {
@@ -46,14 +46,14 @@ event = {
 											NOT = {
 												distance = {
 													source = prev.capital_scope
-													max_distance = 80
+													max_distance <= 80
 												}
 											}
 											else = {
 												NOT = {
 													distance = {
 														source = prev.capital_scope
-														max_distance = 65
+														max_distance <= 65
 													}
 												}
 											}
@@ -91,7 +91,7 @@ event = {
 						NOT = {
 							distance = {
 								source = prev.capital_scope
-								max_distance = 110
+								max_distance <= 110
 							}
 						}
 						else = {
@@ -102,7 +102,7 @@ event = {
 								NOT = {
 									distance = {
 										source = prev.capital_scope
-										max_distance = 95
+										max_distance <= 95
 									}
 								}
 								else = {
@@ -113,14 +113,14 @@ event = {
 										NOT = {
 											distance = {
 												source = prev.capital_scope
-												max_distance = 80
+												max_distance <= 80
 											}
 										}
 										else = {
 											NOT = {
 												distance = {
 													source = prev.capital_scope
-													max_distance = 65
+													max_distance <= 65
 												}
 											}
 										}
@@ -150,7 +150,7 @@ event = {
 						}
 						distance = {
 							source = prev.capital_scope
-							max_distance = 110
+							max_distance <= 110
 						}
 						else = {
 							if = {
@@ -159,7 +159,7 @@ event = {
 								}
 								distance = {
 									source = prev.capital_scope
-									max_distance = 95
+									max_distance <= 95
 								}
 								else = {
 									if = {
@@ -168,12 +168,12 @@ event = {
 										}
 										distance = {
 											source = prev.capital_scope
-											max_distance = 80
+											max_distance <= 80
 										}
 										else = {
 											distance = {
 												source = prev.capital_scope
-												max_distance = 65
+												max_distance <= 65
 											}
 										}
 									}
@@ -204,7 +204,7 @@ event = {
 						NOT = {
 							distance = {
 								source = prev.capital_scope
-								max_distance = 110
+								max_distance <= 110
 							}
 						}
 						else = {
@@ -215,7 +215,7 @@ event = {
 								NOT = {
 									distance = {
 										source = prev.capital_scope
-										max_distance = 95
+										max_distance <= 95
 									}
 								}
 								else = {
@@ -226,14 +226,14 @@ event = {
 										NOT = {
 											distance = {
 												source = prev.capital_scope
-												max_distance = 80
+												max_distance <= 80
 											}
 										}
 										else = {
 											NOT = {
 												distance = {
 													source = prev.capital_scope
-													max_distance = 65
+													max_distance <= 65
 												}
 											}
 										}

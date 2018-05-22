@@ -346,7 +346,7 @@ country_event = {
 				any_owned_planet = {
 					distance = {
 						source = FromFrom
-						max_distance = 150
+						max_distance <= 150
 					}
 				}
 #				has_relation_flag = {
@@ -518,7 +518,7 @@ country_event = {
 					limit = {
 						distance = {
 							source = event_target:ccrebel_subsidised_rebels.capital_scope
-							max_distance = 150
+							max_distance <= 150
 						}
 					}
 					save_event_target_as = ccrebel_subsidising_planet
@@ -705,7 +705,7 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = prevprev
-									max_distance = 75
+									max_distance <= 75
 								}
 							}
 						}
@@ -728,7 +728,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = prevprev
-								max_distance = 75
+								max_distance <= 75
 							}
 						}
 					}
@@ -890,7 +890,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -944,7 +944,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -1158,7 +1158,7 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = prevprev
-									max_distance = 75
+									max_distance <= 75
 								}
 							}
 						}
@@ -1181,7 +1181,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = prevprev
-								max_distance = 75
+								max_distance <= 75
 							}
 						}
 					}
@@ -1336,7 +1336,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -1390,7 +1390,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -1605,7 +1605,7 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = prevprev
-									max_distance = 75
+									max_distance <= 75
 								}
 							}
 						}
@@ -1628,7 +1628,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = prevprev
-								max_distance = 75
+								max_distance <= 75
 							}
 						}
 					}
@@ -1779,7 +1779,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -1833,7 +1833,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -1912,7 +1912,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -1966,7 +1966,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = event_target:ccrebel_subsidised_rebels.capital_scope
-								max_distance = 150
+								max_distance <= 150
 							}
 						}
 		#				has_relation_flag = {
@@ -2572,7 +2572,7 @@ country_event = {
 					
 					distance = {
 						source = event_target:ccrebel_subsidised_rebels.capital_scope
-						max_distance = 150
+						max_distance <= 150
 					}
 				}
 				save_event_target_as = ccrebel_subsidising_planet
@@ -2747,7 +2747,7 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = prevprev
-									max_distance = 75
+									max_distance <= 75
 								}
 							}
 						}
@@ -2770,7 +2770,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = prevprev
-								max_distance = 75
+								max_distance <= 75
 							}
 						}
 					}
@@ -3068,7 +3068,7 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = prevprev
-									max_distance = 75
+									max_distance <= 75
 								}
 							}
 						}
@@ -3091,7 +3091,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = prevprev
-								max_distance = 75
+								max_distance <= 75
 							}
 						}
 					}
@@ -3388,7 +3388,7 @@ country_event = {
 							any_owned_planet = {
 								distance = {
 									source = prevprev
-									max_distance = 75
+									max_distance <= 75
 								}
 							}
 						}
@@ -3411,7 +3411,7 @@ country_event = {
 						any_owned_planet = {
 							distance = {
 								source = prevprev
-								max_distance = 75
+								max_distance <= 75
 							}
 						}
 					}

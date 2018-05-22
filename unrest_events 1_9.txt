@@ -1369,8 +1369,8 @@ country_event = {
 					any_owned_planet = {
 						distance = {
    							source = FromFrom
-  							max_distance = 300
-  							min_distance = 0
+  							max_distance <= 300
+  							min_distance >= 0
  						}
  					}
  					NOT = {
@@ -1391,8 +1391,8 @@ country_event = {
 					any_owned_planet = {
 						distance = {
    							source = FromFrom
-  							max_distance = 300
-  							min_distance = 0
+  							max_distance <= 300
+  							min_distance >= 0
  						}
  					}
  					NOT = {
