@@ -598,23 +598,23 @@ country_event = {
 						limit = { has_modifier = cc_war_with_kin }
 						remove_modifier = cc_war_with_kin
 					}
-					else = {
+				}
+				else = {
+					if = {
+						limit = {			
+							NOR = {
+								has_modifier = pop_recently_conquered
+								has_modifier = nationalist_revolt
+								has_modifier = cc_call_of_liberty_nationalist
+							}
+						}
+						add_modifier = {
+							modifier = nationalist_revolt 
+							days = 1800
+						}
 						if = {
-							limit = {			
-								NOR = {
-									has_modifier = pop_recently_conquered
-									has_modifier = nationalist_revolt
-									has_modifier = cc_call_of_liberty_nationalist
-								}
-							}
-							add_modifier = {
-								modifier = nationalist_revolt 
-								days = 1800
-							}
-							if = {
-								limit = { has_modifier = cc_war_with_kin }
-								remove_modifier = cc_war_with_kin
-							}
+							limit = { has_modifier = cc_war_with_kin }
+							remove_modifier = cc_war_with_kin
 						}
 					}
 				}
@@ -688,48 +688,47 @@ planet_event = {
 					planet_event = { id = rebellionscript.11 }
 				}
 			}
-				
-			else = {
-				if = {
-					limit = {
-						unrest > 99
-						pop_percentage = { percentage > 0.30 limit = { 
-							is_same_species = event_target:rebellion
-							has_pop_flag = nationalists
-							}
+		}
+		else = {
+			if = {
+				limit = {
+					unrest > 99
+					pop_percentage = { percentage > 0.30 limit = { 
+						is_same_species = event_target:rebellion
+						has_pop_flag = nationalists
 						}
 					}
+				}
+				planet_event = { id = rebellionscript.8 }
+			}
+			if = {
+				limit = {
+					NOT = { unrest > 99 }
+					unrest > 80
+					pop_percentage = { percentage > 0.30 limit = { 
+						is_same_species = event_target:rebellion
+						has_pop_flag = nationalists
+						}
+					}
+				}
+				random = {
+					chance = 67
 					planet_event = { id = rebellionscript.8 }
 				}
-				if = {
-					limit = {
-						NOT = { unrest > 99 }
-						unrest > 80
-						pop_percentage = { percentage > 0.30 limit = { 
-							is_same_species = event_target:rebellion
-							has_pop_flag = nationalists
-							}
+			}
+			if = {
+				limit = {
+					NOT = { unrest > 80 }
+					unrest > 50
+					pop_percentage = { percentage > 0.30 limit = { 
+						is_same_species = event_target:rebellion
+						has_pop_flag = nationalists
 						}
-					}
-					random = {
-						chance = 67
-						planet_event = { id = rebellionscript.8 }
 					}
 				}
-				if = {
-					limit = {
-						NOT = { unrest > 80 }
-						unrest > 50
-						pop_percentage = { percentage > 0.30 limit = { 
-							is_same_species = event_target:rebellion
-							has_pop_flag = nationalists
-							}
-						}
-					}
-					random = {
-						chance = 33
-						planet_event = { id = rebellionscript.8 }
-					}
+				random = {
+					chance = 33
+					planet_event = { id = rebellionscript.8 }
 				}
 			}
 		}
@@ -848,8 +847,8 @@ planet_event = {
 				flag = ccrebel_chain_revolt_pause
 				days = 5
 			}
-			else = { planet_event { id = rebellionscript.11 } }
 		}
+		else = { planet_event { id = rebellionscript.11 } }
 	}
 }
 
@@ -1110,116 +1109,116 @@ planet_event = {
 				flag = recent_unrest_event
 				days = 720
 			}
-			else = { # no original owner
-				if = { # for the tooltips
-					limit = { 
-						any_country = {
-							has_relation_flag = {
-								flag = cc_revolted_from
-								who = root.owner
-							}
-							has_country_flag = cc_rebellion
+		}
+		else = { # no original owner
+			if = { # for the tooltips
+				limit = { 
+					any_country = {
+						has_relation_flag = {
+							flag = cc_revolted_from
+							who = root.owner
 						}
-					}
-					random_country = {
-						limit = {
-							has_relation_flag = {
-								flag = cc_revolted_from
-								who = root.owner
-							}
-							has_country_flag = cc_rebellion
-						}
-						save_event_target_as = rebellion
+						has_country_flag = cc_rebellion
 					}
 				}
-				create_rebels = {
-					species = this
-					ethos = random
-					authority = random
-					name = random
-					flag = random
-					effect = {
-						set_country_flag = standard_unrest_rebels
-						set_timed_country_flag = {
-							flag = cc_chain_revolt
-							days = 1800
-						}
-						save_event_target_as = secessionist_rebels
-						establish_communications_no_message = root.owner
-						root = {
-							owner = {
-								every_relation = {
-									establish_communications_no_message = prevprevprev
-								}
-							}
-						}
-					}
-				}
-				if = {
+				random_country = {
 					limit = {
-						count_armies = {
-							limit = { owner = { is_same_value = root.owner } }
-							count > 8
+						has_relation_flag = {
+							flag = cc_revolted_from
+							who = root.owner
 						}
+						has_country_flag = cc_rebellion
 					}
-					every_owned_pop = {
-						limit = {
-							happiness < 0.25
-						}
-						planet = {
-							change_variable = {
-								which = ccrebel_planet_armies
-								value = 1
+					save_event_target_as = rebellion
+				}
+			}
+			create_rebels = {
+				species = this
+				ethos = random
+				authority = random
+				name = random
+				flag = random
+				effect = {
+					set_country_flag = standard_unrest_rebels
+					set_timed_country_flag = {
+						flag = cc_chain_revolt
+						days = 1800
+					}
+					save_event_target_as = secessionist_rebels
+					establish_communications_no_message = root.owner
+					root = {
+						owner = {
+							every_relation = {
+								establish_communications_no_message = prevprevprev
 							}
 						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					count_armies = {
+						limit = { owner = { is_same_value = root.owner } }
+						count > 8
 					}
 				}
 				every_owned_pop = {
 					limit = {
-						happiness < 0.4
+						happiness < 0.25
 					}
 					planet = {
 						change_variable = {
 							which = ccrebel_planet_armies
-							value = 2
+							value = 1
 						}
 					}
 				}
-				while = {
-					limit = {
-						check_variable = {
-							which = ccrebel_planet_armies
-							value > 1
-						}
-					}
-					subtract_variable = {
+			}
+			every_owned_pop = {
+				limit = {
+					happiness < 0.4
+				}
+				planet = {
+					change_variable = {
 						which = ccrebel_planet_armies
 						value = 2
 					}
-					if = {
-						limit = {
-							check_variable = {
-								which = ccrebel_planet_armies
-								value = 1
-							}
-						}
-						subtract_variable = {
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ccrebel_planet_armies
+						value > 1
+					}
+				}
+				subtract_variable = {
+					which = ccrebel_planet_armies
+					value = 2
+				}
+				if = {
+					limit = {
+						check_variable = {
 							which = ccrebel_planet_armies
 							value = 1
 						}
 					}
-					create_army = {
-						name = "NAME_ccrebel_Revolutionary_Brigade"
-						owner = event_target:secessionist_rebels
-						species = event_target:secessionist_rebels
-						type = "assault_army"
+					subtract_variable = {
+						which = ccrebel_planet_armies
+						value = 1
 					}
 				}
-				set_planet_flag = secessionist_revolt
-				set_timed_planet_flag = {
-					flag = recent_unrest_event
-					days = 720
+				create_army = {
+					name = "NAME_ccrebel_Revolutionary_Brigade"
+					owner = event_target:secessionist_rebels
+					species = event_target:secessionist_rebels
+					type = "assault_army"
 				}
+			}
+			set_planet_flag = secessionist_revolt
+			set_timed_planet_flag = {
+				flag = recent_unrest_event
+				days = 720
 			}
 		}
 	}
@@ -1342,77 +1341,76 @@ country_event = {
 					remove_planet_flag = copycat_revolt
 				}
 			}
-			else = {
-				if = {
-					limit = { 
-						any_country = {
-							is_same_species = root
-							is_country_type = default
-							NOR = {
-								is_same_value = event_target:new_rebels
-								is_same_value = from.owner
-								is_same_empire = from.owner
-								has_country_flag = copycat_rebels
-								has_country_flag = cc_rebels_merging
-							}
+		}
+		else = {
+			if = {
+				limit = { 
+					any_country = {
+						is_same_species = root
+						is_country_type = default
+						NOR = {
+							is_same_value = event_target:new_rebels
+							is_same_value = from.owner
+							is_same_empire = from.owner
+							has_country_flag = copycat_rebels
+							has_country_flag = cc_rebels_merging
 						}
-					}
-					random_country = {
-						limit = {
-							is_same_species = root
-							is_country_type = default
-							NOR = {
-								is_same_value = event_target:new_rebels
-								is_same_value = from.owner
-								is_same_empire = from.owner
-								has_country_flag = copycat_rebels
-								has_country_flag = cc_rebels_merging
-							}
-						}
-						save_event_target_as = rebellion1
-					}
-
-					event_target:rebellion1 = {
-						if = {
-							limit = {
-								OR = {
-									NOT = { has_country_flag = ccrebel_has_existed_5_years }
-									is_at_war_with = from.owner
-								}
-							}
-
-							root = {
-								set_country_flag = cc_rebels_merging
-								set_timed_country_flag = {
-									flag = ccrebel_dont_declare_war
-									days = 5
-								}
-							}
-							country_event = { id = unrest.4220 days = 5 } # request incorporation
-
-							else = { country_event = { id = ccrebel_wg_script.10 days = 5 } } # request support in war 
-						}
-					}
-					from = { 
-						if = {
-							limit = {
-								has_planet_flag = copycat_revolt
-							}
-							remove_planet_flag = copycat_revolt
-						}
-					}
-					else = {
-						from = { 
-							if = {
-								limit = {
-									has_planet_flag = copycat_revolt
-								}
-								remove_planet_flag = copycat_revolt
-							}
-						}
-						remove_country_flag = copycat_rebels
 					}
 				}
+				random_country = {
+					limit = {
+						is_same_species = root
+						is_country_type = default
+						NOR = {
+							is_same_value = event_target:new_rebels
+							is_same_value = from.owner
+							is_same_empire = from.owner
+							has_country_flag = copycat_rebels
+							has_country_flag = cc_rebels_merging
+						}
+					}
+					save_event_target_as = rebellion1
+				}
+
+				event_target:rebellion1 = {
+					if = {
+						limit = {
+							OR = {
+								NOT = { has_country_flag = ccrebel_has_existed_5_years }
+								is_at_war_with = from.owner
+							}
+						}
+
+						root = {
+							set_country_flag = cc_rebels_merging
+							set_timed_country_flag = {
+								flag = ccrebel_dont_declare_war
+								days = 5
+							}
+						}
+						country_event = { id = unrest.4220 days = 5 } # request incorporation
+					}
+					else = { country_event = { id = ccrebel_wg_script.10 days = 5 } } # request support in war 
+				}
+				from = { 
+					if = {
+						limit = {
+							has_planet_flag = copycat_revolt
+						}
+						remove_planet_flag = copycat_revolt
+					}
+				}
+			}
+			else = {
+				from = { 
+					if = {
+						limit = {
+							has_planet_flag = copycat_revolt
+						}
+						remove_planet_flag = copycat_revolt
+					}
+				}
+				remove_country_flag = copycat_rebels
 			}
 		}
 	}
@@ -1490,47 +1488,46 @@ planet_event = {
 					days = 180
 				}
 			}
-				
-			else = {
-				if = {
-					limit = { NOT = { has_planet_flag = will_copycat_standard } }
-					planet_event = { id = rebellionscript.119 days = 10 }
-				}
-				set_timed_planet_flag = {
-					flag = will_copycat_standard
-					days = 180
-				}
-				if = {
-					limit = {
-						original_owner = no
-						any_country = {
-							NOT = { is_same_value = root.owner }
-							is_subject = no
-							root = {
-								is_original_owner = prev
-								any_owned_pop = {
-									is_same_species = prevprev
-								}
+		}
+		else = {
+			if = {
+				limit = { NOT = { has_planet_flag = will_copycat_standard } }
+				planet_event = { id = rebellionscript.119 days = 10 }
+			}
+			set_timed_planet_flag = {
+				flag = will_copycat_standard
+				days = 180
+			}
+			if = {
+				limit = {
+					original_owner = no
+					any_country = {
+						NOT = { is_same_value = root.owner }
+						is_subject = no
+						root = {
+							is_original_owner = prev
+							any_owned_pop = {
+								is_same_species = prevprev
 							}
 						}
 					}
-					set_timed_planet_flag = {
-						flag = ccperf_revolt_to_prev_owner
-						days = 180
+				}
+				set_timed_planet_flag = {
+					flag = ccperf_revolt_to_prev_owner
+					days = 180
+				}
+			}
+			if = {
+				limit = {
+					any_country = {
+						NOT = { is_same_value = root.owner }
+						is_subject = no
+						same_species_same_ethic = yes
 					}
 				}
-				if = {
-					limit = {
-						any_country = {
-							NOT = { is_same_value = root.owner }
-							is_subject = no
-							same_species_same_ethic = yes
-						}
-					}
-					set_timed_planet_flag = {
-						flag = ccperf_revolt_to_new_owner
-						days = 180
-					}
+				set_timed_planet_flag = {
+					flag = ccperf_revolt_to_new_owner
+					days = 180
 				}
 			}
 		}
@@ -1867,96 +1864,95 @@ planet_event = {
 				flag = recent_unrest_event
 				days = 720
 			}
-			
-			else = {# no original owner
-				create_rebels = {
-					species = this
-					ethos = random
-					authority = random
-					name = random
-					flag = random
-					effect = {
-						set_country_flag = standard_unrest_rebels
-						set_timed_country_flag = {
-							flag = cc_chain_revolt
-							days = 1800
-						}
-						save_event_target_as = secessionist_rebels
-						establish_communications_no_message = root.owner
-						root = {
-							owner = {
-								every_relation = {
-									establish_communications_no_message = prevprevprev
-								}
+		}
+		else = {# no original owner
+			create_rebels = {
+				species = this
+				ethos = random
+				authority = random
+				name = random
+				flag = random
+				effect = {
+					set_country_flag = standard_unrest_rebels
+					set_timed_country_flag = {
+						flag = cc_chain_revolt
+						days = 1800
+					}
+					save_event_target_as = secessionist_rebels
+					establish_communications_no_message = root.owner
+					root = {
+						owner = {
+							every_relation = {
+								establish_communications_no_message = prevprevprev
 							}
 						}
 					}
 				}
-				if = {
-					limit = {
-						count_armies = {
-							limit = { owner = { is_same_value = root.owner } }
-							count > 8
-						}
-					}
-					every_owned_pop = {
-						limit = {
-							happiness < 0.25
-						}
-						planet = {
-							change_variable = {
-								which = ccrebel_planet_armies
-								value = 1
-							}
-						}
+			}
+			if = {
+				limit = {
+					count_armies = {
+						limit = { owner = { is_same_value = root.owner } }
+						count > 8
 					}
 				}
 				every_owned_pop = {
 					limit = {
-						happiness < 0.4
+						happiness < 0.25
 					}
 					planet = {
 						change_variable = {
 							which = ccrebel_planet_armies
-							value = 2
+							value = 1
 						}
 					}
 				}
-				while = {
-					limit = {
-						check_variable = {
-							which = ccrebel_planet_armies
-							value > 1
-						}
-					}
-					subtract_variable = {
+			}
+			every_owned_pop = {
+				limit = {
+					happiness < 0.4
+				}
+				planet = {
+					change_variable = {
 						which = ccrebel_planet_armies
 						value = 2
 					}
-					if = {
-						limit = {
-							check_variable = {
-								which = ccrebel_planet_armies
-								value = 1
-							}
-						}
-						subtract_variable = {
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ccrebel_planet_armies
+						value > 1
+					}
+				}
+				subtract_variable = {
+					which = ccrebel_planet_armies
+					value = 2
+				}
+				if = {
+					limit = {
+						check_variable = {
 							which = ccrebel_planet_armies
 							value = 1
 						}
 					}
-					create_army = {
-						name = "NAME_ccrebel_Revolutionary_Brigade"
-						owner = event_target:secessionist_rebels
-						species = event_target:secessionist_rebels
-						type = "assault_army"
+					subtract_variable = {
+						which = ccrebel_planet_armies
+						value = 1
 					}
 				}
-				set_planet_flag = secessionist_revolt
-				set_timed_planet_flag = {
-					flag = recent_unrest_event
-					days = 720
+				create_army = {
+					name = "NAME_ccrebel_Revolutionary_Brigade"
+					owner = event_target:secessionist_rebels
+					species = event_target:secessionist_rebels
+					type = "assault_army"
 				}
+			}
+			set_planet_flag = secessionist_revolt
+			set_timed_planet_flag = {
+				flag = recent_unrest_event
+				days = 720
 			}
 		}
 	}
@@ -2394,184 +2390,171 @@ planet_event = {
 					}
 				}
 			}
-			
-			else = {
-				random_owned_pop = {
-					limit = {
-						is_enslaved = yes
-					}
-					save_event_target_as = leader_pop
+		}
+		else = {
+			random_owned_pop = {
+				limit = {
+					is_enslaved = yes
 				}
-				create_rebels = {
-					name = random
-					ethos = {
-						ethic = "ethic_fanatic_egalitarian"
-						ethic = "ethic_militarist"
-					}
-					authority = auth_democratic
-					civics = {
-						civic = civic_free_republic
-						civic = civic_broken_shackles
-					}
-					species = event_target:leader_pop.species
-					flag = random
+				save_event_target_as = leader_pop
+			}
+			create_rebels = {
+				name = random
+				ethos = {
+					ethic = "ethic_fanatic_egalitarian"
+					ethic = "ethic_militarist"
+				}
+				authority = auth_democratic
+				civics = {
+					civic = civic_free_republic
+					civic = civic_broken_shackles
+				}
+				species = event_target:leader_pop.species
+				flag = random
 
 
-					name_list = "CCSLAVE1"
+				name_list = "CCSLAVE1"
 
-					effect = {
-						random_list = {
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave1.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "circle.dds"
-									}
-									colors ={
-										"blue"
-										"grey"
-										"null"
-										"null"
-									}
+				effect = {
+					random_list = {
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave1.dds"
 								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave2.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "circle.dds"
-									}
-									colors ={
-										"dark_purple"
-										"orange"
-										"null"
-										"null"
-									}
+								background = {
+									category = "backgrounds"
+									file = "circle.dds"
 								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave3.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "sinus.dds"
-									}
-									colors ={
-										"brown"
-										"turquoise"
-										"null"
-										"null"
-									}
-								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave4.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "sinus.dds"
-									}
-									colors ={
-										"green"
-										"orange"
-										"null"
-										"null"
-									}
-								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave5.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "vertical.dds"
-									}
-									colors ={
-										"burgundy"
-										"teal"
-										"null"
-										"null"
-									}
-								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave6.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "vertical.dds"
-									}
-									colors ={
-										"blue"
-										"red_orange"
-										"null"
-										"null"
-									}
+								colors ={
+									"blue"
+									"grey"
+									"null"
+									"null"
 								}
 							}
 						}
-						set_country_flag = slave_rebels
-						set_timed_country_flag = {
-							flag = cc_chain_revolt
-							days = 1800
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave2.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "circle.dds"
+								}
+								colors ={
+									"dark_purple"
+									"orange"
+									"null"
+									"null"
+								}
+							}
 						}
-						save_event_target_as = rebelling_slaves
-						establish_communications_no_message = root.owner
-						root = {
-							owner = {
-								every_relation = {
-									limit = { has_communications = prev }
-									establish_communications_no_message = prevprevprev
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave3.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "sinus.dds"
+								}
+								colors ={
+									"brown"
+									"turquoise"
+									"null"
+									"null"
 								}
 							}
-							every_planet_army = {
-								limit = { army_type = slave_army }
-								set_owner = event_target:rebelling_slaves
-							}
-							if = {
-								limit = {
-									count_armies = {
-										limit = { owner = { is_same_value = root.owner } }
-										count > 8
-									}
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave4.dds"
 								}
-								every_owned_pop = {
-									limit = {
-										is_enslaved = yes
-										happiness < 0.25
-									}
-									planet = {
-										change_variable = {
-											which = ccrebel_planet_armies
-											value = 2
-										}
-									}
+								background = {
+									category = "backgrounds"
+									file = "sinus.dds"
+								}
+								colors ={
+									"green"
+									"orange"
+									"null"
+									"null"
+								}
+							}
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave5.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "vertical.dds"
+								}
+								colors ={
+									"burgundy"
+									"teal"
+									"null"
+									"null"
+								}
+							}
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave6.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "vertical.dds"
+								}
+								colors ={
+									"blue"
+									"red_orange"
+									"null"
+									"null"
+								}
+							}
+						}
+					}
+					set_country_flag = slave_rebels
+					set_timed_country_flag = {
+						flag = cc_chain_revolt
+						days = 1800
+					}
+					save_event_target_as = rebelling_slaves
+					establish_communications_no_message = root.owner
+					root = {
+						owner = {
+							every_relation = {
+								limit = { has_communications = prev }
+								establish_communications_no_message = prevprevprev
+							}
+						}
+						every_planet_army = {
+							limit = { army_type = slave_army }
+							set_owner = event_target:rebelling_slaves
+						}
+						if = {
+							limit = {
+								count_armies = {
+									limit = { owner = { is_same_value = root.owner } }
+									count > 8
 								}
 							}
 							every_owned_pop = {
 								limit = {
 									is_enslaved = yes
-									happiness < 0.4
+									happiness < 0.25
 								}
 								planet = {
 									change_variable = {
@@ -2580,51 +2563,63 @@ planet_event = {
 									}
 								}
 							}
-							while = {
-								limit = {
-									check_variable = {
-										which = ccrebel_planet_armies
-										value > 1
-									}
-								}
-								subtract_variable = {
+						}
+						every_owned_pop = {
+							limit = {
+								is_enslaved = yes
+								happiness < 0.4
+							}
+							planet = {
+								change_variable = {
 									which = ccrebel_planet_armies
 									value = 2
 								}
-								if = {
-									limit = {
-										check_variable = {
-											which = ccrebel_planet_armies
-											value = 1
-										}
-									}
-									subtract_variable = {
+							}
+						}
+						while = {
+							limit = {
+								check_variable = {
+									which = ccrebel_planet_armies
+									value > 1
+								}
+							}
+							subtract_variable = {
+								which = ccrebel_planet_armies
+								value = 2
+							}
+							if = {
+								limit = {
+									check_variable = {
 										which = ccrebel_planet_armies
 										value = 1
 									}
 								}
-								create_army = {
-									name = "NAME_Freedom_Fighters"
-									owner = event_target:rebelling_slaves
-									species = event_target:leader_pop.species
-									type = "rebel_slave_defense_army"
+								subtract_variable = {
+									which = ccrebel_planet_armies
+									value = 1
 								}
 							}
-						}
-						create_leader = {
-							type = ruler
-							species = owner_main_species
-							name = random
-							skill = 2
-							traits = {}
-						}
-						assign_leader = last_created_leader
-						ruler = {
-							add_random_leader_trait = yes
+							create_army = {
+								name = "NAME_Freedom_Fighters"
+								owner = event_target:rebelling_slaves
+								species = event_target:leader_pop.species
+								type = "rebel_slave_defense_army"
+							}
 						}
 					}
+					create_leader = {
+						type = ruler
+						species = owner_main_species
+						name = random
+						skill = 2
+						traits = {}
+					}
+					assign_leader = last_created_leader
+					ruler = {
+						add_random_leader_trait = yes
+					}
 				}
-			}		
+			}
 		}
 
 		set_planet_flag = slave_revolt

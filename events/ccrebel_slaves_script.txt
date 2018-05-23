@@ -124,125 +124,124 @@ event = {
 			if = { #tell the player
 				limit = { is_ai = no }
 				country_event = { id = cc_slaves_rebel.21 }
-				
-				else = {
-					if = {
-						limit = { has_country_flag = ccrebel_dont_change_ethic_60_years }
+			}
+			else = {
+				if = {
+					limit = { has_country_flag = ccrebel_dont_change_ethic_60_years }
 
-						if = {
-							limit = {
-								NOR = {
-									has_ethic = ethic_militarist
-									has_ethic = ethic_fanatic_militarist
+					if = {
+						limit = {
+							NOR = {
+								has_ethic = ethic_militarist
+								has_ethic = ethic_fanatic_militarist
+							}
+						}
+						shift_ethic = ethic_militarist
+					}
+					if = {
+						limit = { NOT = { has_ethic = "ethic_fanatic_egalitarian" } }
+						shift_ethic = ethic_fanatic_egalitarian
+					}
+					
+					#Backup, in case that doesn't work 100% as I want (theoretically possible that they simply do the same shift and cancel each other out)
+					if = {
+						limit = {
+							NOT = {
+								AND = {
+									OR = {
+										has_ethic = ethic_militarist
+										has_ethic = ethic_fanatic_militarist
+									}
+									has_ethic = ethic_fanatic_egalitarian
 								}
 							}
-							shift_ethic = ethic_militarist
 						}
 						if = {
-							limit = { NOT = { has_ethic = "ethic_fanatic_egalitarian" } }
-							shift_ethic = ethic_fanatic_egalitarian
+							limit = { has_ethic = "ethic_fanatic_materialist" }
+							country_remove_ethic = "ethic_fanatic_materialist"
+						}
+						if = {
+							limit = { has_ethic = "ethic_materialist" }
+							country_remove_ethic = "ethic_materialist"
+						}
+			#			if = {
+			#				limit = { has_ethic = "ethic_fanatic_egalitarian" }
+			#				country_remove_ethic = "ethic_fanatic_egalitarian"
+			#			}
+						if = {
+							limit = { has_ethic = "ethic_egalitarian" }
+							country_remove_ethic = "ethic_egalitarian"
+						}
+						if = {
+							limit = { has_ethic = "ethic_fanatic_pacifist" }
+							country_remove_ethic = "ethic_fanatic_pacifist"
+						}
+						if = {
+							limit = { has_ethic = "ethic_pacifist" }
+							country_remove_ethic = "ethic_pacifist"
+						}
+						if = {
+							limit = { has_ethic = "ethic_fanatic_militarist" }
+							country_remove_ethic = "ethic_fanatic_militarist"
+						}
+			#			if = {
+			#				limit = { has_ethic = "ethic_militarist" }
+			#				country_remove_ethic = "ethic_militarist"
+			#			}
+						if = {
+							limit = { has_ethic = "ethic_fanatic_xenophile" }
+							country_remove_ethic = "ethic_fanatic_xenophile"
+						}
+						if = {
+							limit = { has_ethic = "ethic_xenophile" }
+							country_remove_ethic = "ethic_xenophile"
+						}
+						if = {
+							limit = { has_ethic = "ethic_fanatic_xenophobe" }
+							country_remove_ethic = "ethic_fanatic_xenophobe"
+						}
+						if = {
+							limit = { has_ethic = "ethic_xenophobe" }
+							country_remove_ethic = "ethic_xenophobe"
+						}
+						if = {
+							limit = { has_ethic = "ethic_fanatic_spiritualist" }
+							country_remove_ethic = "ethic_fanatic_spiritualist"
+						}
+						if = {
+							limit = { has_ethic = "ethic_spiritualist" }
+							country_remove_ethic = "ethic_spiritualist"
+						}
+						if = {
+							limit = { has_ethic = "ethic_fanatic_authoritarian" }
+							country_remove_ethic = "ethic_fanatic_authoritarian"
+						}
+						if = {
+							limit = { has_ethic = "ethic_authoritarian" }
+							country_remove_ethic = "ethic_authoritarian"
 						}
 						
-						#Backup, in case that doesn't work 100% as I want (theoretically possible that they simply do the same shift and cancel each other out)
+						
 						if = {
-							limit = {
-								NOT = {
-									AND = {
-										OR = {
-											has_ethic = ethic_militarist
-											has_ethic = ethic_fanatic_militarist
-										}
-										has_ethic = ethic_fanatic_egalitarian
-									}
-								}
-							}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_materialist" }
-								country_remove_ethic = "ethic_fanatic_materialist"
-							}
-							if = {
-								limit = { has_ethic = "ethic_materialist" }
-								country_remove_ethic = "ethic_materialist"
-							}
-				#			if = {
-				#				limit = { has_ethic = "ethic_fanatic_egalitarian" }
-				#				country_remove_ethic = "ethic_fanatic_egalitarian"
-				#			}
-							if = {
-								limit = { has_ethic = "ethic_egalitarian" }
-								country_remove_ethic = "ethic_egalitarian"
-							}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_pacifist" }
-								country_remove_ethic = "ethic_fanatic_pacifist"
-							}
-							if = {
-								limit = { has_ethic = "ethic_pacifist" }
-								country_remove_ethic = "ethic_pacifist"
-							}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_militarist" }
-								country_remove_ethic = "ethic_fanatic_militarist"
-							}
-				#			if = {
-				#				limit = { has_ethic = "ethic_militarist" }
-				#				country_remove_ethic = "ethic_militarist"
-				#			}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_xenophile" }
-								country_remove_ethic = "ethic_fanatic_xenophile"
-							}
-							if = {
-								limit = { has_ethic = "ethic_xenophile" }
-								country_remove_ethic = "ethic_xenophile"
-							}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_xenophobe" }
-								country_remove_ethic = "ethic_fanatic_xenophobe"
-							}
-							if = {
-								limit = { has_ethic = "ethic_xenophobe" }
-								country_remove_ethic = "ethic_xenophobe"
-							}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_spiritualist" }
-								country_remove_ethic = "ethic_fanatic_spiritualist"
-							}
-							if = {
-								limit = { has_ethic = "ethic_spiritualist" }
-								country_remove_ethic = "ethic_spiritualist"
-							}
-							if = {
-								limit = { has_ethic = "ethic_fanatic_authoritarian" }
-								country_remove_ethic = "ethic_fanatic_authoritarian"
-							}
-							if = {
-								limit = { has_ethic = "ethic_authoritarian" }
-								country_remove_ethic = "ethic_authoritarian"
-							}
-							
-							
-							if = {
-								limit = { NOT = { has_ethic = ethic_militarist } }
-								country_add_ethic = ethic_militarist
-							}
-							if = {
-								limit = { NOT = { has_ethic = ethic_fanatic_egalitarian } }
-								country_add_ethic = ethic_fanatic_egalitarian
-							}
-							set_name = random
+							limit = { NOT = { has_ethic = ethic_militarist } }
+							country_add_ethic = ethic_militarist
 						}
-						else = {
-							change_government = {
-								civics = {
-									civic = civic_beacon_of_liberty
-									civic = civic_idealistic_foundation
-								}
-							}
-							set_name = random
-							change_country_flag = random
+						if = {
+							limit = { NOT = { has_ethic = ethic_fanatic_egalitarian } }
+							country_add_ethic = ethic_fanatic_egalitarian
+						}
+						set_name = random
+					}
+				}
+				else = {
+					change_government = {
+						civics = {
+							civic = civic_beacon_of_liberty
+							civic = civic_idealistic_foundation
 						}
 					}
+					set_name = random
+					change_country_flag = random
 				}
 			}
 		}
@@ -874,17 +873,17 @@ planet_event = {
 				}
 				save_event_target_as = cc_freed_slaves
 			}
-			else = {
-				random_country = {
-					limit = {
-						is_neighbor_of = root.owner
-						has_valid_civic = civic_broken_shackles
-						has_communications = root.owner
-					}
-					save_event_target_as = cc_freed_slaves
+		}
+		else = {
+			random_country = {
+				limit = {
+					is_neighbor_of = root.owner
+					has_valid_civic = civic_broken_shackles
+					has_communications = root.owner
 				}
+				save_event_target_as = cc_freed_slaves
 			}
-		}	
+		}
 	}
 	
 	option = {
@@ -1006,15 +1005,15 @@ planet_event = {
 				}
 				save_event_target_as = cc_freed_slaves
 			}
-			else = {
-				random_country = {
-					limit = {
-						is_neighbor_of = root.owner
-						has_valid_civic = civic_broken_shackles
-						has_communications = root.owner
-					}
-					save_event_target_as = cc_freed_slaves
+		}
+		else = {
+			random_country = {
+				limit = {
+					is_neighbor_of = root.owner
+					has_valid_civic = civic_broken_shackles
+					has_communications = root.owner
 				}
+				save_event_target_as = cc_freed_slaves
 			}
 		}
 				
@@ -1254,229 +1253,228 @@ planet_event = {
 					}
 				}
 			}
-			
-			else = {
-				random_owned_pop = {
-					limit = {
-						is_enslaved = yes
-					}
-					save_event_target_as = leader_pop
+		}
+		else = {
+			random_owned_pop = {
+				limit = {
+					is_enslaved = yes
 				}
-				create_rebels = {
-					name = random
-					ethos = {
-						ethic = "ethic_fanatic_egalitarian"
-						ethic = "ethic_militarist"
-					}
-					authority = auth_democratic
-					civics = random
-					species = event_target:leader_pop.species
-					flag = random
-					name_list = "CCSLAVE1"
+				save_event_target_as = leader_pop
+			}
+			create_rebels = {
+				name = random
+				ethos = {
+					ethic = "ethic_fanatic_egalitarian"
+					ethic = "ethic_militarist"
+				}
+				authority = auth_democratic
+				civics = random
+				species = event_target:leader_pop.species
+				flag = random
+				name_list = "CCSLAVE1"
 
-					effect = {
-						random_list = {
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave1.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "circle.dds"
-									}
-									colors ={
-										"blue"
-										"grey"
-										"null"
-										"null"
-									}
+				effect = {
+					random_list = {
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave1.dds"
 								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave2.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "circle.dds"
-									}
-									colors ={
-										"dark_purple"
-										"orange"
-										"null"
-										"null"
-									}
+								background = {
+									category = "backgrounds"
+									file = "circle.dds"
 								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave3.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "sinus.dds"
-									}
-									colors ={
-										"brown"
-										"turquoise"
-										"null"
-										"null"
-									}
-								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave4.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "sinus.dds"
-									}
-									colors ={
-										"green"
-										"orange"
-										"null"
-										"null"
-									}
-								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave5.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "vertical.dds"
-									}
-									colors ={
-										"burgundy"
-										"teal"
-										"null"
-										"null"
-									}
-								}
-							}
-							1 = {
-								change_country_flag = {
-									icon = {
-										category = "slave"
-										file = "ccslave6.dds"
-									}
-									background = {
-										category = "backgrounds"
-										file = "vertical.dds"
-									}
-									colors ={
-										"blue"
-										"red_orange"
-										"null"
-										"null"
-									}
+								colors ={
+									"blue"
+									"grey"
+									"null"
+									"null"
 								}
 							}
 						}
-						set_country_flag = slave_rebels
-						save_event_target_as = rebelling_slaves
-						establish_communications_no_message = root.owner
-						root = {
-							owner = {
-								every_relation = {
-									limit = { has_communications = prev }
-									establish_communications_no_message = prevprevprev
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave2.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "circle.dds"
+								}
+								colors ={
+									"dark_purple"
+									"orange"
+									"null"
+									"null"
 								}
 							}
-							every_planet_army = {
-								limit = { army_type = slave_army }
-								set_owner = event_target:rebelling_slaves
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave3.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "sinus.dds"
+								}
+								colors ={
+									"brown"
+									"turquoise"
+									"null"
+									"null"
+								}
 							}
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave4.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "sinus.dds"
+								}
+								colors ={
+									"green"
+									"orange"
+									"null"
+									"null"
+								}
+							}
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave5.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "vertical.dds"
+								}
+								colors ={
+									"burgundy"
+									"teal"
+									"null"
+									"null"
+								}
+							}
+						}
+						1 = {
+							change_country_flag = {
+								icon = {
+									category = "slave"
+									file = "ccslave6.dds"
+								}
+								background = {
+									category = "backgrounds"
+									file = "vertical.dds"
+								}
+								colors ={
+									"blue"
+									"red_orange"
+									"null"
+									"null"
+								}
+							}
+						}
+					}
+					set_country_flag = slave_rebels
+					save_event_target_as = rebelling_slaves
+					establish_communications_no_message = root.owner
+					root = {
+						owner = {
+							every_relation = {
+								limit = { has_communications = prev }
+								establish_communications_no_message = prevprevprev
+							}
+						}
+						every_planet_army = {
+							limit = { army_type = slave_army }
+							set_owner = event_target:rebelling_slaves
+						}
 
-							if = {
-								limit = {
-									count_armies = {
-										limit = { owner = { is_same_value = root.owner } }
-										count > 8
-									}
-								}
-								every_owned_pop = {
-									limit = {
-										is_enslaved = yes
-										happiness < 0.25
-									}
-									planet = {
-										change_variable = {
-											which = ccrebel_planet_armies
-											value = 2
-										}
-									}
+						if = {
+							limit = {
+								count_armies = {
+									limit = { owner = { is_same_value = root.owner } }
+									count > 8
 								}
 							}
 							every_owned_pop = {
 								limit = {
 									is_enslaved = yes
-									happiness < 0.4
+									happiness < 0.25
 								}
 								planet = {
 									change_variable = {
 										which = ccrebel_planet_armies
-										value = 3
+										value = 2
 									}
 								}
 							}
-							while = {
+						}
+						every_owned_pop = {
+							limit = {
+								is_enslaved = yes
+								happiness < 0.4
+							}
+							planet = {
+								change_variable = {
+									which = ccrebel_planet_armies
+									value = 3
+								}
+							}
+						}
+						while = {
+							limit = {
+								check_variable = {
+									which = ccrebel_planet_armies
+									value > 1
+								}
+							}
+							subtract_variable = {
+								which = ccrebel_planet_armies
+								value = 2
+							}
+							if = {
 								limit = {
 									check_variable = {
-										which = ccrebel_planet_armies
-										value > 1
-									}
-								}
-								subtract_variable = {
-									which = ccrebel_planet_armies
-									value = 2
-								}
-								if = {
-									limit = {
-										check_variable = {
-											which = ccrebel_planet_armies
-											value = 1
-										}
-									}
-									subtract_variable = {
 										which = ccrebel_planet_armies
 										value = 1
 									}
 								}
-								create_army = {
-									name = "NAME_Freedom_Fighters"
-									owner = event_target:rebelling_slaves
-									species = event_target:leader_pop.species
-									type = "rebel_slave_defense_army"
+								subtract_variable = {
+									which = ccrebel_planet_armies
+									value = 1
 								}
 							}
-						}
-						create_leader = {
-							type = ruler
-							species = owner_main_species
-							name = random
-							skill = 2
-							traits = {}
-						}
-						assign_leader = last_created_leader
-						ruler = {
-							add_random_leader_trait = yes
+							create_army = {
+								name = "NAME_Freedom_Fighters"
+								owner = event_target:rebelling_slaves
+								species = event_target:leader_pop.species
+								type = "rebel_slave_defense_army"
+							}
 						}
 					}
+					create_leader = {
+						type = ruler
+						species = owner_main_species
+						name = random
+						skill = 2
+						traits = {}
+					}
+					assign_leader = last_created_leader
+					ruler = {
+						add_random_leader_trait = yes
+					}
 				}
-			}		
+			}	
 		}
 
 		set_planet_flag = slave_revolt
@@ -1543,18 +1541,18 @@ event = {
 			if = {
 				limit = { NOT = { has_valid_civic = civic_free_republic } }
 				remove_modifier = fighting_for_liberty
-				else = {
-					if = {
-						limit = {
-							NOT = {
-								any_country = {
-									has_policy_flag = slavery_allowed
-									is_at_war_with = prev
-								}
+			}
+			else = {
+				if = {
+					limit = {
+						NOT = {
+							any_country = {
+								has_policy_flag = slavery_allowed
+								is_at_war_with = prev
 							}
 						}
-						remove_modifier = fighting_for_liberty
 					}
+					remove_modifier = fighting_for_liberty
 				}
 			}
 		}

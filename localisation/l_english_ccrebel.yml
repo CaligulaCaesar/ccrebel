@@ -111,16 +111,16 @@ rebellionscript.43.desc:0 "The [fatherland.GetSpeciesName] populace on [Root.Get
 rebellionscript.46.name:0 "The Victor's Demands"
 rebellionscript.46.desc:0 "You have been defeated. Those planets are ours. Resistance will not be tolerated."
 rebellionscript.46.option:0 "We admit defeat."
-rebellionscript.46.option.tooltip:0 "Planets that seceded to the [Root.GetName] from the [cc_war_victor.GetName] and their allies via patriotic revolts during the recent war will be given back."
+#rebellionscript.46.option.tooltip:0 "Planets that seceded to the [Root.GetName] from the [cc_war_victor.GetName] and their allies via patriotic revolts during the recent war will be given back."
 
-rebellionscript.461.name:0 "Patriot Revolts during the War"
-rebellionscript.461.desc:0 "During the war, some of our planets defected to the [cc_war_loser.GetName]. However, we were able to overcome the [cc_war_loser.GetSpeciesAdj] fleets and defeat them. We had never consented to recognise these defections, so they were left out of the peace deal. Instead, our negotiating team has demanded that our planets be returned to us immediately, separately to the main peace deal." 
-rebellionscript.461.option:0 "Good"
+#rebellionscript.461.name:0 "Patriot Revolts during the War"
+#rebellionscript.461.desc:0 "During the war, some of our planets defected to the [cc_war_loser.GetName]. However, we were able to overcome the [cc_war_loser.GetSpeciesAdj] fleets and defeat them. We had never consented to recognise these defections, so they were left out of the peace deal. Instead, our negotiating team has demanded that our planets be returned to us immediately, separately to the main peace deal." 
+#rebellionscript.461.option:0 "Good"
 
-rebellionscript.462.name:0 "The Victor's Demands"
-rebellionscript.462.desc:0 "We dare not disobey you. You can have the planets back. May you choke on them!"
-rebellionscript.462.option:0 "Good"
-rebellionscript.462.option.tooltip:0 "Planets lost to the [cc_war_loser.GetName] via patriot revolts during the recent war will be ceded back."
+#rebellionscript.462.name:0 "The Victor's Demands"
+#rebellionscript.462.desc:0 "We dare not disobey you. You can have the planets back. May you choke on them!"
+#rebellionscript.462.option:0 "Good"
+#rebellionscript.462.option.tooltip:0 "Planets lost to the [cc_war_loser.GetName] via patriot revolts during the recent war will be ceded back."
 
 
 
@@ -148,13 +148,13 @@ cc_slaves_rebel.8.desc:0 "Inspired by the example (and clandestine activists) of
 fighting_for_liberty:0 "Fighting for Liberty"
 fighting_for_liberty_desc:0 "The Free Republic is at war with a Slaver Empire. It will not give up its Liberty easily.\n\n"
 
-war_demand_renounce_free_republic_header:1 "§YCounter-Revolution§!"
-war_demand_renounce_free_republic_subtext:0 "[parameter:country.GetName]"
-war_demand_renounce_free_republic_tooltip_header:0 "$war_demand_free_republic_header$"
-war_demand_renounce_free_republic_tooltip_content:1 "Enforcing a Counter-Revolution on [parameter:country.GetName] will force them to give up their §Y$civic_broken_shackles$§! and §Y$civic_free_republic$§! Civics, and adopt a §Y$auth_dictatorial$§! Government. The enforcer will also gain §Y$unity$§!."
-war_demand_renounce_free_republic_tooltip_proper_header:0 "$war_demand_free_republic_header$"
-war_demand_renounce_free_republic_tooltip_proper_content:0 "Enforce a Counter-Revolution on the  [parameter:country.GetName]."
-war_demand_renounce_free_republic_no_planets:1 "All the Empire's planets will be ceded, nothing left to change form of government."
+#war_demand_renounce_free_republic_header:1 "§YCounter-Revolution§!"
+#war_demand_renounce_free_republic_subtext:0 "[parameter:country.GetName]"
+#war_demand_renounce_free_republic_tooltip_header:0 "$war_demand_free_republic_header$"
+#war_demand_renounce_free_republic_tooltip_content:1 "Enforcing a Counter-Revolution on [parameter:country.GetName] will force them to give up their §Y$civic_broken_shackles$§! and §Y$civic_free_republic$§! Civics, and adopt a §Y$auth_dictatorial$§! Government. The enforcer will also gain §Y$unity$§!."
+#war_demand_renounce_free_republic_tooltip_proper_header:0 "$war_demand_free_republic_header$"
+#war_demand_renounce_free_republic_tooltip_proper_content:0 "Enforce a Counter-Revolution on the  [parameter:country.GetName]."
+#war_demand_renounce_free_republic_no_planets:1 "All the Empire's planets will be ceded, nothing left to change form of government."
 
 
 

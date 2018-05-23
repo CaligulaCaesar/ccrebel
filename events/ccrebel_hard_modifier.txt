@@ -33,24 +33,24 @@ event = {
 				}
 				remove_modifier = ccrebel_hard
 			}
-			else = {
-				every_country = {
-					limit = {
-						NOT = { has_modifier = ccrebel_insane }
-						is_ai = yes
-					}
-					add_modifier = {
-						modifier = ccrebel_insane
-						days = -1
-					}
+		}
+		else = {
+			every_country = {
+				limit = {
+					NOT = { has_modifier = ccrebel_insane }
+					is_ai = yes
 				}
-				every_country = {
-					limit = {
-						has_modifier = ccrebel_insane
-						is_ai = no
-					}
-					remove_modifier = ccrebel_insane
+				add_modifier = {
+					modifier = ccrebel_insane
+					days = -1
 				}
+			}
+			every_country = {
+				limit = {
+					has_modifier = ccrebel_insane
+					is_ai = no
+				}
+				remove_modifier = ccrebel_insane
 			}
 		}
 	}
