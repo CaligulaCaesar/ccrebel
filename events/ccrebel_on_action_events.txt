@@ -19,6 +19,51 @@ country_event = {
 		set_country_type = default
 		from.owner = { save_event_target_as = cc_former_owner }
 
+		while = {
+			count = 3
+			create_leader = {
+				type = scientist
+				species = owner_main_species
+				name = random
+				skill = 1
+				traits = {}
+			}
+			last_created_leader = {
+				add_random_leader_trait = yes
+			}
+		}
+		create_leader = {
+			type = governor
+			species = owner_main_species
+			name = random
+			skill = 1
+			traits = {}
+		}
+		last_created_leader = {
+			add_random_leader_trait = yes
+		}
+		create_leader = {
+			type = admiral
+			species = owner_main_species
+			name = random
+			skill = 1
+			traits = {}
+		}
+		last_created_leader = {
+			add_random_leader_trait = yes
+		}
+		create_leader = {
+			type = general
+			species = owner_main_species
+			name = random
+			skill = 1
+			traits = {}
+		}
+		last_created_leader = {
+			add_random_leader_trait = yes
+		}
+		
+		
 		if = {
 			limit = {
 				from.owner = {
