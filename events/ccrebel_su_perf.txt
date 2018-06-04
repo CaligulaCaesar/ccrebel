@@ -89,14 +89,14 @@ country_event = {
 								limit = { root = { has_technology = tech_ccrebel_unrest_2 } }
 								distance = {
 									source = prevprevprev
-									use_bypasses = no
+									use_bypasses = yes
 									min_jumps = 1
 									max_jumps = 6
 								}
 								else = {
 									distance = {
 										source = prevprevprev
-										use_bypasses = no
+										use_bypasses = yes
 										min_jumps = 1
 										max_jumps = 4
 									}

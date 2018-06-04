@@ -2485,11 +2485,13 @@ country_event = {
 			if = {
 				limit = { NOT = { has_country_flag = ccrebel_subsidised_once } }
 				set_country_flag = ccrebel_subsidised_once
-				limit = { 
-					has_country_flag = ccrebel_subsidised_once
-					NOT = { has_country_flag = ccrebel_subsidised_twice }
+					if = {
+					limit = { 
+						has_country_flag = ccrebel_subsidised_once
+						NOT = { has_country_flag = ccrebel_subsidised_twice }
+					}
+					set_country_flag = ccrebel_subsidised_twice
 				}
-				set_country_flag = ccrebel_subsidised_twice
 			}
 		}
 	}
@@ -3812,7 +3814,7 @@ country_event = {
 							relative_power = {
 								who = event_target:ccrebel_subsidised_rebels
 								category = fleet
-								value = equal
+								value = equivalent
 							}
 						}
 					}
@@ -3851,7 +3853,7 @@ country_event = {
 							relative_power = {
 								who = event_target:ccrebel_subsidised_rebels
 								category = fleet
-								value = equal
+								value = equivalent
 							}
 						}
 					}
@@ -4331,7 +4333,7 @@ country_event = {
 							relative_power = {
 								who = event_target:ccrebel_subsidised_rebels
 								category = fleet
-								value = equal
+								value = equivalent
 							}
 						}
 					}
@@ -4370,7 +4372,7 @@ country_event = {
 						relative_power = {
 							who = event_target:ccrebel_subsidised_rebels
 							category = fleet
-							value = equal
+							value = equivalent
 						}
 					}
 				}

@@ -1,7 +1,9 @@
 
 
 planet_edict = {
-    name = "ccrebel_sow_unrest"
+	name = "ccrebel_sow_unrest"
+	
+	length = 0
 	
 	cost = { influence = 100 energy = 200 minerals = 200 }
 	

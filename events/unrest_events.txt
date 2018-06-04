@@ -2912,6 +2912,7 @@ planet_event = {
 				species = this
 				ethos = random
 				authority = random
+				civics = random
 				name = random
 				flag = random
 				effect = {

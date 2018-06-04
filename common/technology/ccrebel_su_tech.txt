@@ -334,7 +334,7 @@ tech_ccrebel_unrest_2 = {
 	
 	#makes sow unrest edict far more effective
 	
-	feature_flags = { ccrebel_sow_unrest_better }
+#	feature_flags = { ccrebel_sow_unrest_better }
 	
 #	modifier = {
 #		description = feature_ccrebel_sow_unrest_better
