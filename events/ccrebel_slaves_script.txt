@@ -860,14 +860,14 @@ planet_event = {
 		if = { # for the tooltips
 			limit = { 
 				any_country = {
-					is_neighbor_of = root
+					root = { is_neighbor_of = prev }
 					has_valid_civic = civic_broken_shackles
 					has_communications = root.owner
 				}
 			}
 			random_country = {
 				limit = {
-					is_neighbor_of = root
+					root = { is_neighbor_of = prev }
 					has_valid_civic = civic_broken_shackles
 					has_communications = root.owner
 				}
@@ -992,14 +992,14 @@ planet_event = {
 		if = { # for the tooltips
 			limit = { 
 				any_country = {
-					is_neighbor_of = root
+					root = { is_neighbor_of = prev }
 					has_valid_civic = civic_broken_shackles
 					has_communications = root.owner
 				}
 			}
 			random_country = {
 				limit = {
-					is_neighbor_of = root
+					root = { is_neighbor_of = prev }
 					has_valid_civic = civic_broken_shackles
 					has_communications = root.owner
 				}
