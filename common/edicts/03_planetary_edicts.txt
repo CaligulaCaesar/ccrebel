@@ -46,7 +46,10 @@ planet_edict = {
 			custom_tooltip = land_clearance_increase_size_1
 			hidden_effect = { change_planet_size = 1 }
 		}
-		hidden_effect = { set_planet_flag = land_clearance_happened }
+		hidden_effect = {
+			set_planet_flag = land_clearance_happened
+			planet_event = { id = mem_planetary_shields.2 days = 1 }
+		}
 	}
 	
 	ai_weight = {
