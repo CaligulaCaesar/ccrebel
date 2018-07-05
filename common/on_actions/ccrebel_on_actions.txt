@@ -132,8 +132,17 @@ on_pop_birth = {
 on_pop_migration_end = {
 	events = {
 		rebellionscript.476
+		rebellionscript.1599
 	}
 }
 
 
-
+#Fired whenever a new owner is set for a planet,
+#be it after a war or through a trade
+#From = Country scope (new owner)
+#This = Planet scope
+on_planet_transfer = {
+	events = {
+		rebellionscript.1598
+	}
+}
