@@ -2483,7 +2483,7 @@ planet_event = {
 		}
 		has_planet_flag = cc_revolt_imminent
 		NOR = {
-			has_planet_flag = recent_unrest_event 
+			has_planet_flag = recent_unrest_event
 			has_planet_flag = slave_stirring
 			has_planet_flag = slave_resistance
 			has_planet_flag = slave_riots

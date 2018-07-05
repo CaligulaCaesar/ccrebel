@@ -456,7 +456,22 @@ ccrebel_wg_script.10.B:0 "We do not desire war."
 
 ccrebel_refused_to_help_rebels:0 "Refused to support us"
 
-ccrebel_hard:0 "$hard_ai$"
+ccrebel_hard:0 "Coercive State"
 ccrebel_insane:0 "$very_hard_ai$"
+ccrebel_unrest_hard:0 "Unrest: Hard"
+ccrebel_unrest_hardest:0 "Unrest: Hard"
+
+policy_ccrebel_unrest:0 "Potent Rebellions Unrest Options"
+policy_ccrebel_unrest_desc:0 "Set unrest to the desired level as you prefer."
+ccrebel_unrest_default:0 "Potent Rebellions Default"
+ccrebel_unrest_default_name:0 "$ccrebel_unrest_default$"
+ccrebel_unrest_default_desc:0 "Non-player factions that have slavery or purging allowed will gain -20 unrest, as experience shows that these factions tend to struggle a lot with Potent Rebellions."
+ccrebel_unrest_vanilla:0 "Vanilla Values"
+ccrebel_unrest_vanilla_name:0 "$ccrebel_unrest_vanilla$"
+ccrebel_unrest_vanilla_desc:0 "No bonuses or maluses are given."
+ccrebel_unrest_hard:0 "Hard Mode"
+ccrebel_unrest_hard_name:0 "$ccrebel_unrest_hard$"
+ccrebel_unrest_hard_desc:0 "The player is given +30 unrest, all AIs are given +20 unrest."
+
 
 unrest.4220.desc.not_orowner:0 "Greetings, [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nWe recently broke free of the clutches of the [rebelled_against.GetName]. We are a young nation, and still an easy target for more... predatory powers. Many of us [root.GetSpeciesNamePlural] see the [Root.GetName] as our true fatherland. We would be glad to join your state."

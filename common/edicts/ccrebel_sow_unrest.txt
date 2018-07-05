@@ -51,160 +51,27 @@ planet_edict = {
 			
         modifier = {
             factor = 0
-			owner = {
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 1200
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 60
-							}
-						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 60
-							}
-							energy > 1200
-						}
-					}
-				}
-			}
+			owner = { has_country_flag = ccrebel_poor }
 		}
 		
         modifier = {
-            factor = 0.65
-			owner = {
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 1800
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 90
-							}
-						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 90
-							}
-							energy > 1800
-						}
-					}
-				}
-			}
+            factor = 0.4
+			owner = { has_country_flag = ccrebel_medium_poor }
+		}
+
+        modifier = {
+            factor = 0.8
+			owner = { has_country_flag = ccrebel_medium_income }
 		}
 		
         modifier = {
-            factor = 0.75
-			owner = {
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 2500
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 125
-							}
-						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 125
-							}
-							energy > 2500
-						}
-					}
-				}
-			}
+            factor = 1.5
+			owner = { has_country_flag = ccrebel_medium_rich }
 		}
 		
         modifier = {
-            factor = 0.85
-			owner = {
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 3600
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 180
-							}
-						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 180
-							}
-							energy > 3600
-						}
-					}
-				}
-			}
-		}
-		
-        modifier = {
-            factor = 1.25
-			owner = {
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 5000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 250
-						}
-					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 250
-						}
-						energy > 5000
-					}
-				}
-			}
-		}
-		
-        modifier = {
-            factor = 2
-			owner = {
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 10000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 500
-						}
-					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 500
-						}
-						energy > 10000
-					}
-				}
-			}
+            factor = 1.5
+			owner = { has_country_flag = ccrebel_rich }
 		}
 		
 		#enemy is vulnerable

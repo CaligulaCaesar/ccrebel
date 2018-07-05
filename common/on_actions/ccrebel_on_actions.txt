@@ -6,7 +6,6 @@ on_game_start = {
 #		rebellionscript.99 # For testing
 		cc_slaves_rebel.101
 		rebellionscript.500
-		rebellionscript.800
 		ccrebel_hard.1
 	}
 }
@@ -85,14 +84,11 @@ on_monthly_pulse = {
 	events = {
 		rebellionscript.3
 		rebellionscript.15
-		rebellionscript.25
-		rebellionscript.142
 		rebellionscript.42
 		rebellionscript.801
 		cc_slaves_rebel.22
 		cc_slaves_rebel.3
-		cc_slaves_rebel.5
-		cc_slaves_rebel.6
+		cc_slaves_rebel.5		
 		cc_slaves_rebel.11
 	}
 }

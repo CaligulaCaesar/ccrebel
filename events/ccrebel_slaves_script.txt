@@ -399,14 +399,14 @@ event = {
 	is_triggered_only = yes
 
 	trigger = {
-		any_country = {
+		any_playable_country = {
 			has_valid_civic = civic_broken_shackles
 			has_valid_civic = civic_free_republic
 			is_subject = yes
 		}
 	}
 	immediate = {
-		every_country = {
+		every_playable_country = {
 			limit = {
 				has_valid_civic = civic_broken_shackles
 				has_valid_civic = civic_free_republic
@@ -456,11 +456,11 @@ event = {
 	is_triggered_only = yes
 
 	trigger = {
-		any_country = { has_valid_civic = civic_broken_shackles }
+		any_playable_country = { has_valid_civic = civic_broken_shackles }
 	}
 
 	immediate = {
-		every_country = { 
+		every_playable_country = { 
 			limit = { has_valid_civic = civic_broken_shackles }
 			every_neighbor_country = {
 				limit = {
@@ -510,11 +510,33 @@ event = {
 							country_event = { id = cc_slaves_rebel.31 days = 2 }
 						}
 					}
+					
+#1% monthly chance (=11% yearly, 70% over 10 years) of adding +50 unrest modifier for 3 months. Triggers imminent
+#revolt (chance if 50%, more certain if 80%, 100%, lots of slaves or same species). If unrest = 100, then triggers
+#chance to sponsor revolt (once I make that)
+					if = {
+						limit = {
+							NOT = { has_modifier = cc_planet_call_of_liberty }
+							count_pops = {
+								limit = {
+									OR = {
+										has_modifier = cc_call_of_liberty
+										has_modifier = cc_call_of_liberty_1
+										has_modifier = cc_call_of_liberty_nationalist
+									}
+								}
+								count > 3
+							}
+						}
+						planet_event = { id = cc_slaves_rebel.61 }
+					}
 				}
 			}
 		}
 	}
 }
+
+
 
 country_event = {
 	id = cc_slaves_rebel.31
@@ -745,80 +767,6 @@ event = {
 	}
 }
 
-#1% monthly chance (=11% yearly, 70% over 10 years) of adding +50 unrest modifier for 3 months. Triggers imminent
-#revolt (chance if 50%, more certain if 80%, 100%, lots of slaves or same species). If unrest = 100, then triggers
-#chance to sponsor revolt (once I make that)
-
-#monthly
-event = {
-	id = cc_slaves_rebel.6
-	hide_window = yes
-
-	is_triggered_only = yes
-
-	trigger = {
-		any_country = {
-			has_valid_civic = civic_broken_shackles
-		}
-	}
-
-					
-					
-	immediate = {
-		every_country = { 
-			limit = {
-				has_policy_flag = slavery_allowed
-				OR = {
-					is_country_type = default
-					is_country_type = awakened_fallen_empire
-				}
-				any_owned_planet = {
-					prev = {
-						any_neighbor_country = {
-							has_valid_civic = civic_broken_shackles
-							has_communications = prevprevprev
-							any_owned_planet = {
-								distance = {
-									source = prevprevprev
-									max_distance <= 125
-								}
-							}
-						}
-					}
-				}
-			}
-			every_owned_planet = {
-				limit = {
-					has_owner = yes
-					NOT = { has_modifier = cc_planet_call_of_liberty }
-					count_pops = {
-						limit = {
-							OR = {
-								has_modifier = cc_call_of_liberty
-								has_modifier = cc_call_of_liberty_1
-								has_modifier = cc_call_of_liberty_nationalist
-							}
-						}
-						count > 3
-					}
-					prev = {
-						any_neighbor_country = {
-							has_valid_civic = civic_broken_shackles
-							has_communications = prevprevprev
-							any_owned_planet = {
-								distance = {
-									source = prevprevprev
-									max_distance <= 125
-								}
-							}
-						}
-					}
-				}
-				planet_event = { id = cc_slaves_rebel.61 }
-			}
-		}
-	}
-}
 
 planet_event = {
 	id = cc_slaves_rebel.61

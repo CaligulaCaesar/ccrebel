@@ -6,52 +6,82 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = {
-		is_difficulty > 1
-	}
-
 	immediate = {
-		if = {
+		every_country = {
 			limit = {
-				NOT = {
-					is_difficulty = 3
-				}
+				has_modifier = ccrebel_hard
 			}
+			remove_modifier = ccrebel_hard
+		}
+		every_country = {
+			limit = {
+				has_modifier = ccrebel_unrest_hard
+			}
+			remove_modifier = ccrebel_unrest_hard
+		}
+		every_country = {
+			limit = {
+				has_modifier = ccrebel_unrest_hardest
+			}
+			remove_modifier = ccrebel_unrest_hardest
+		}
+		every_country = {
+			limit = {
+				has_modifier = ccrebel_insane
+			}
+			remove_modifier = ccrebel_insane
+		}
+		
+		if = {
+			limit = { has_global_flag = ccrebel_unrest_default }
 			every_country = {
 				limit = {
-					NOT = { has_modifier = ccrebel_hard }
 					is_ai = yes
+					OR = {
+						has_policy_flag = slavery_allowed
+						has_policy_flag = purge_allowed
+						NOT = { has_modifier = ccrebel_hard }
+					}
 				}
 				add_modifier = {
 					modifier = ccrebel_hard
 					days = -1
 				}
 			}
+		}
+		if = {
+			limit = { has_global_flag = ccrebel_unrest_hard }
 			every_country = {
 				limit = {
-					has_modifier = ccrebel_hard
 					is_ai = no
 				}
-				remove_modifier = ccrebel_hard
+				if = {
+					limit = {
+						NOR = {
+							has_policy_flag = slavery_allowed
+							has_policy_flag = purge_allowed
+							NOT = { has_modifier = ccrebel_hard }
+						}
+					}
+					add_modifier = {
+						modifier = ccrebel_unrest_hardest
+						days = -1
+					}
+				}
 			}
-		}
-		else = {
-			every_country = {
+			every_playable_country = {
 				limit = {
-					NOT = { has_modifier = ccrebel_insane }
 					is_ai = yes
+					NOR = {
+						has_policy_flag = slavery_allowed
+						has_policy_flag = purge_allowed
+						NOT = { has_modifier = ccrebel_hard }
+					}
 				}
 				add_modifier = {
-					modifier = ccrebel_insane
+					modifier = ccrebel_unrest_hard
 					days = -1
 				}
-			}
-			every_country = {
-				limit = {
-					has_modifier = ccrebel_insane
-					is_ai = no
-				}
-				remove_modifier = ccrebel_insane
 			}
 		}
 	}

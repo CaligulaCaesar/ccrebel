@@ -159,10 +159,12 @@ event = {
 	is_triggered_only = yes
 
 	immediate = {
-		every_country = {
+		every_playable_country = {
+			limit = { 
+				has_revolutionary_boost = yes
+			}
 			if = {
 				limit = {
-					has_revolutionary_boost = yes
 					num_owned_planets > 1
 					years_passed < 25
 				}
@@ -185,7 +187,6 @@ event = {
 			}
 			if = {
 				limit = {
-					has_revolutionary_boost = yes
 					years_passed < 50
 					NOT = { years_passed < 25 }
 				}
@@ -247,7 +248,6 @@ event = {
 			}
 			if = {
 				limit = {
-					has_revolutionary_boost = yes
 					years_passed < 80
 					NOT = { years_passed < 50 }
 				}
@@ -320,7 +320,6 @@ event = {
 			}
 			if = {
 				limit = {
-					has_revolutionary_boost = yes
 					NOT = { years_passed < 80 }
 				}
 				if = {
@@ -2672,6 +2671,9 @@ country_event = {
 		}
 			
 		set_country_flag = period_of_unrest1
+
+		country_event = { id = rebellionscript.142 days = 181 }
+
 		add_modifier = {
 			modifier = wave_of_unrest
 			days = -1
@@ -2767,31 +2769,29 @@ country_event = {
 	}
 }
 
-event = {
+country_event = {
 	id = rebellionscript.142
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		any_country = {
-			has_country_flag = period_of_unrest1
-			NOT = { has_country_flag = period_of_unrest }
-		}
+		has_country_flag = period_of_unrest1
 	}
+
 	immediate = {
-		every_country = {
+		if = {
 			limit = {
-				has_country_flag = period_of_unrest1
 				NOT = { has_country_flag = period_of_unrest }
-			}				
-			remove_country_flag = period_of_unrest1
-			remove_modifier = wave_of_unrest
+			}
 			if = {
 				limit = {
 					is_ai = no
 				}
 				country_event = { id = rebellionscript.143 } #notify them
 			}
+		}
+		else = {
+			country_event = { id = rebellionscript.142 days = 30 }
 		}
 	}
 }
@@ -2932,53 +2932,62 @@ event = {
 	immediate = {
 		every_country = {
 			limit = { allows_purge = yes }
-			every_owned_planet = {
+			if = {
 				limit = {
-					unrest > 80
-					NOT = { has_modifier = cc_terror_state }
-					pop_percentage = {
-						percentage > 0.5
-						limit = {
-							is_being_purged = yes
-							species = { pops_have_happiness = yes }
-						}
-					}
-					count_pops = {
-						limit = { is_being_purged = yes }
-						count > 8
+					any_owned_pop = {
+						is_being_purged = yes
 					}
 				}
-				add_modifier = {
-					modifier = cc_terror_state
-					days = -1
+				every_owned_planet = {
+					limit = {
+						unrest > 80
+						NOT = { has_modifier = cc_terror_state }
+						count_pops = {
+							limit = {
+								is_being_purged = yes
+								species = { pops_have_happiness = yes }
+							}
+							count > 7
+						}
+					}
+					add_modifier = {
+						modifier = cc_terror_state
+						days = -1
+					}
 				}
 			}
 		}
 		
 		every_country = {
-			every_owned_planet = {
-				limit = {
-					has_modifier = cc_terror_state
-					NOT = {
-						OR = {
-							unrest > 50
-							AND = {
-								pop_percentage = {
-									percentage > 0.5
+			limit = { any_owned_planet = { has_modifier = cc_terror_state } }
+			if = {
+				limit = { allows_purge = no }
+				every_owned_planet = {
+					limit = {
+						has_modifier = cc_terror_state
+					}
+					remove_modifier = cc_terror_state
+				}
+			}
+			else = {
+				every_owned_planet = {
+					limit = {
+						has_modifier = cc_terror_state
+						NOT = {
+							OR = {
+								unrest > 50
+								count_pops = {
 									limit = {
 										is_being_purged = yes
 										species = { pops_have_happiness = yes }
 									}
-								}
-								count_pops = {
-									limit = { is_being_purged = yes }
-									count > 8
+									count > 7
 								}
 							}
 						}
 					}
+					remove_modifier = cc_terror_state
 				}
-				remove_modifier = cc_terror_state
 			}
 		}
 	}

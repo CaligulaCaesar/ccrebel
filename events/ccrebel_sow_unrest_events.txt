@@ -43,47 +43,21 @@ country_event = {
 }
 
 
-#Get rid of unrest if they no longer own the planet that was creating it.
-#monthly
-event = {
-	id = ccrebel_sow_unrest.2
-	is_triggered_only = yes
-	hide_window = yes
-	
-	immediate = {
-		every_country = {
-			limit = {
-				any_owned_planet = {
-					is_being_stirred_up = yes
-				}
-			}
-			every_owned_planet = {
-				limit = {
-					is_being_stirred_up = yes
-					NOT = {
-						any_country = {
-							prev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer@prev }
-							any_owned_planet = {
-								prevprev = { has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev }
-							}
-						}
-					}
-				}
-				cc_remove_su_modifiers = yes
-				
-				owner = { country_event = { id = ccrebel_sow_unrest.21 days = 1 } }
-			}
-		}
-	}
-}
-
 #cleanup - get rid of flag if appropriate
 country_event = {
 	id = ccrebel_sow_unrest.21
 	hide_window = yes
 	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = ccrebel_recent_su_cleanup }
+	}
 	
 	immediate = {
+		set_timed_country_flag = {
+			flag = ccrebel_recent_su_cleanup
+			days = 10
+		}
 		every_country = {
 			limit = {
 				reverse_has_relation_flag = {
@@ -115,130 +89,58 @@ country_event = {
 }
 
 #Get rid of sow unrest costs if the planet changes hands (or no more planets remain to sow unrest to).
-#monthly
-event = {
+#on_planet_transfer
+planet_event = {
 	id = ccrebel_sow_unrest.22
 	is_triggered_only = yes
 	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_modifier = ccrebel_sowing_up_planet
+			has_modifier = ccrebel_sowing_up_planet_2
+			has_modifier = ccrebel_sowing_up_planet_3
+			has_modifier = ccrebel_sowing_up_planet_4
+		}
+	}
 	
 	immediate = {
-		every_country = {
+		if = {
 			limit = {
-				any_owned_planet = {
-					OR = {
-						has_modifier = ccrebel_sowing_up_planet
-						has_modifier = ccrebel_sowing_up_planet_2
-						has_modifier = ccrebel_sowing_up_planet_3
-						has_modifier = ccrebel_sowing_up_planet_4
-					}
-				}
-				NOT = {
-					any_country = {
-						reverse_has_relation_flag = {
-							who = prev
-							flag = ccrebel_sowing_unrest_by
-						}
-					}
-				}
+				has_modifier = ccrebel_sowing_up_planet
 			}
-			every_owned_planet = {
-				limit = {
-					has_modifier = ccrebel_sowing_up_planet
-				}
-				remove_modifier = ccrebel_sowing_up_planet
-			}
-			every_owned_planet = {
-				limit = {
-					has_modifier = ccrebel_sowing_up_planet_2
-				}
-				remove_modifier = ccrebel_sowing_up_planet_2
-			}
-			every_owned_planet = {
-				limit = {
-					has_modifier = ccrebel_sowing_up_planet_3
-				}
-				remove_modifier = ccrebel_sowing_up_planet_3
-			}
-			every_owned_planet = {
-				limit = {
-					has_modifier = ccrebel_sowing_up_planet_4
-				}
-				remove_modifier = ccrebel_sowing_up_planet_4
-			}
+			remove_modifier = ccrebel_sowing_up_planet
 		}
-		
-		every_country = {
+		else_if = {
 			limit = {
-				any_country = {
-					reverse_has_relation_flag = {
-						who = prev
-						flag = ccrebel_sowing_unrest_by
-					}
-				}
-				any_owned_planet = {
-					OR = {
-						has_modifier = ccrebel_sowing_up_planet
-						has_modifier = ccrebel_sowing_up_planet_2
-						has_modifier = ccrebel_sowing_up_planet_3
-						has_modifier = ccrebel_sowing_up_planet_4
-					}
-					NOT = {
-						any_country = {
-							reverse_has_relation_flag = {
-								who = prevprev
-								flag = ccrebel_sowing_unrest_by
-							}
-							any_owned_planet = {
-								has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prevprev
-								is_being_stirred_up = yes
-							}
-						}
-					}
-				}
+				has_modifier = ccrebel_sowing_up_planet_2
 			}
+			remove_modifier = ccrebel_sowing_up_planet_2
+		}
+		else_if = {
+			limit = {
+				has_modifier = ccrebel_sowing_up_planet_3
+			}
+			remove_modifier = ccrebel_sowing_up_planet_3
+		}
+		else_if = {
+			limit = {
+				has_modifier = ccrebel_sowing_up_planet_4
+			}
+			remove_modifier = ccrebel_sowing_up_planet_4
+		}
+
+
+		every_country = {
 			every_owned_planet = {
 				limit = {
-					OR = {
-						has_modifier = ccrebel_sowing_up_planet
-						has_modifier = ccrebel_sowing_up_planet_2
-						has_modifier = ccrebel_sowing_up_planet_3
-						has_modifier = ccrebel_sowing_up_planet_4
-					}
-					NOT = {
-						any_country = {
-							reverse_has_relation_flag = {
-								who = prevprev
-								flag = ccrebel_sowing_unrest_by
-							}
-							any_owned_planet = {
-								has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prevprev
-								is_being_stirred_up = yes
-							}
-						}
-					}
+					has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@root
 				}
-				if = {
-					limit = { has_modifier = ccrebel_sowing_up_planet }
-					remove_modifier = ccrebel_sowing_up_planet
-				}
-				if = {
-					limit = { has_modifier = ccrebel_sowing_up_planet_2 }
-					remove_modifier = ccrebel_sowing_up_planet_2
-				}
-				if = {
-					limit = { has_modifier = ccrebel_sowing_up_planet_3 }
-					remove_modifier = ccrebel_sowing_up_planet_3
-				}
-				if = {
-					limit = { has_modifier = ccrebel_sowing_up_planet_4 }
-					remove_modifier = ccrebel_sowing_up_planet_4
-				}
-				if = {
-					limit = { has_planet_flag = cc_planet_sowing_unrest_marker }
-					remove_planet_flag = cc_planet_sowing_unrest_marker
-				}
+				cc_remove_su_modifiers = yes
+				
+				owner = { country_event = { id = ccrebel_sow_unrest.21 days = 1 random = 10 } }
 			}
-		}
+		}	
 	}
 }
 

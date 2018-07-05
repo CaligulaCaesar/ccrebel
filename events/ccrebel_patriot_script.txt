@@ -245,31 +245,40 @@ event = {
 	is_triggered_only = yes
 	hide_window = yes
 	
-	trigger = {
-		any_country = {
-			any_owned_pop = {
-				has_modifier = cc_war_with_kin
-			}
-		}
-	}
-	
 	immediate = {
 		every_country = {
-			every_owned_pop = {
-				limit = { 
+			limit = {
+				any_owned_pop = {
 					has_modifier = cc_war_with_kin
-					OR = {
-						is_same_species = prev
-						prev = { is_at_war = no }
-						NOT = {
-							any_country = {
-								is_at_war_with = prevprev
-								is_same_species = prev
+				}
+			}
+			if = {
+				limit = {
+					is_at_war = no
+				}
+				every_owned_pop = {
+					limit = { 
+						has_modifier = cc_war_with_kin
+					}
+					remove_modifier = cc_war_with_kin
+				}
+			}
+			else = {
+				every_owned_pop = {
+					limit = { 
+						has_modifier = cc_war_with_kin
+						OR = {
+							is_same_species = prev
+							NOT = {
+								any_country = {
+									is_at_war_with = prevprev
+									is_same_species = prev
+								}
 							}
 						}
 					}
+					remove_modifier = cc_war_with_kin
 				}
-				remove_modifier = cc_war_with_kin
 			}
 		}
 	}
@@ -285,7 +294,7 @@ planet_event = {
 		has_planet_flag = cc_patriot_revolt 
 		
 		NOR = {
-#			has_planet_flag = recent_unrest_event 
+			has_planet_flag = recent_unrest_event 
 			has_planet_flag = revolt_in_progress
 		}
 		has_ground_combat = no
@@ -385,7 +394,7 @@ planet_event = {
 		has_planet_flag = cc_patriot_revolt 
 		
 		NOR = {
-#			has_planet_flag = recent_unrest_event 
+			has_planet_flag = recent_unrest_event 
 			has_planet_flag = revolt_in_progress
 		}
 		has_ground_combat = no

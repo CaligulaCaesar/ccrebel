@@ -118,11 +118,11 @@ free_at_last_1 = {
 }
 
 cc_compact_empire = {
-	planet_unrest_add = -15
+	planet_unrest_add = -10
 }
 
 cc_empire_core = {
-	planet_unrest_add = -15
+	planet_unrest_add = -10
 	icon_frame = 2
 	icon = "gfx/interface/icons/planet_modifiers/capital.dds"
 }
