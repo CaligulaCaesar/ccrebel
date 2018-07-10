@@ -145,11 +145,6 @@ ccrebel_unrest = {
 				every_playable_country = {
 					limit = {
 						is_ai = yes
-						NOR = {
-							has_policy_flag = slavery_allowed
-							has_policy_flag = purge_allowed
-							NOT = { has_modifier = ccrebel_hard }
-						}
 					}
 					add_modifier = {
 						modifier = ccrebel_unrest_hard

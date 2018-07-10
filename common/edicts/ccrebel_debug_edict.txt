@@ -8,7 +8,7 @@ country_edict = {
 	cost = { }
 	
     potential = {
-		NOT = { is_ai = no }
+		is_ai = no
 	}
 
 	

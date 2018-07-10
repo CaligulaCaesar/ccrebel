@@ -7,6 +7,16 @@ event = {
 	is_triggered_only = yes
 
 	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_global_flag = ccrebel_unrest_default
+					has_global_flag = ccrebel_unrest_vanilla
+					has_global_flag = ccrebel_unrest_hard
+				}
+			}
+			set_global_flag = ccrebel_unrest_default
+		}
 		every_country = {
 			limit = {
 				has_modifier = ccrebel_hard
@@ -55,28 +65,14 @@ event = {
 				limit = {
 					is_ai = no
 				}
-				if = {
-					limit = {
-						NOR = {
-							has_policy_flag = slavery_allowed
-							has_policy_flag = purge_allowed
-							NOT = { has_modifier = ccrebel_hard }
-						}
-					}
-					add_modifier = {
-						modifier = ccrebel_unrest_hardest
-						days = -1
-					}
+				add_modifier = {
+					modifier = ccrebel_unrest_hardest
+					days = -1
 				}
 			}
 			every_playable_country = {
 				limit = {
 					is_ai = yes
-					NOR = {
-						has_policy_flag = slavery_allowed
-						has_policy_flag = purge_allowed
-						NOT = { has_modifier = ccrebel_hard }
-					}
 				}
 				add_modifier = {
 					modifier = ccrebel_unrest_hard
