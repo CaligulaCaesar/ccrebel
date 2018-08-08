@@ -2975,7 +2975,13 @@ event = {
 						has_modifier = cc_terror_state
 						NOT = {
 							OR = {
-								unrest > 50
+								AND = {
+									unrest > 50
+									any_owned_pop = {
+										is_being_purged = yes
+										species = { pops_have_happiness = yes }
+									}
+								}
 								count_pops = {
 									limit = {
 										is_being_purged = yes

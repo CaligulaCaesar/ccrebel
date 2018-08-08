@@ -18,11 +18,7 @@ civic_broken_shackles = {
 		}
 	}
 	random_weight = {
-		base = 100
-		modifier = {
-			factor = 0
-			always = yes
-		}
+		base = 0
 	}
 
 	description = civic_tooltip_broken_shackles_effects
@@ -46,11 +42,7 @@ civic_free_republic = {
 		}
 	}
 	random_weight = {
-		base = 100
-		modifier = {
-			factor = 0
-#			NOT = { has_country_flag = slave_rebels }
-		}
+		base = 0
 	}
 
 	description = civic_tooltip_free_republic_effects

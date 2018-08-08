@@ -28,9 +28,6 @@ glukzoran = {
 	}
 	government = gov_military_commissariat 
 	
-	weapon = "tech_missiles_1"
-	ftl = hyperdrive
-	
 	planet_name = "PRESCRIPTED_planet_name_glukzoran"
 	system_name = "PRESCRIPTED_system_name_glukzoran"
 	planet_class = "pc_alpine"
