@@ -2952,7 +2952,7 @@ event = {
 					}
 					add_modifier = {
 						modifier = cc_terror_state
-						days = -1
+						days = 3600
 					}
 				}
 			}
