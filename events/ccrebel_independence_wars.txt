@@ -181,12 +181,12 @@ country_event = {
     }
 	desc = {
 		trigger = {
-            from = {
-                has_civic = civic_broken_shackles
-                has_civic = civic_free_republic
-            }
-            NOT = { has_country_flag = cc_slave_fatherland7 }
-        }
+			from = {
+				has_civic = civic_broken_shackles
+				has_civic = civic_free_republic
+			}
+			NOT = { has_country_flag = cc_slave_fatherland7 }
+		}
 		text = ccrebel_wg_script.10.desc.slave
 	}
 	location = fromfrom

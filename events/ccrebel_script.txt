@@ -847,7 +847,7 @@ planet_event = {
 				days = 5
 			}
 		}
-		else = { planet_event { id = rebellionscript.11 } }
+		else = { planet_event = { id = rebellionscript.11 } }
 	}
 }
 
