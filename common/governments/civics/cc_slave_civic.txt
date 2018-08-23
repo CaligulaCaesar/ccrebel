@@ -18,7 +18,11 @@ civic_broken_shackles = {
 		}
 	}
 	random_weight = {
-		base = 0
+		base = 1
+		modifier = {
+			factor = 0
+			always = yes
+		}
 	}
 
 	description = civic_tooltip_broken_shackles_effects
@@ -42,7 +46,11 @@ civic_free_republic = {
 		}
 	}
 	random_weight = {
-		base = 0
+		base = 1
+		modifier = {
+			factor = 0
+			always = yes
+		}
 	}
 
 	description = civic_tooltip_free_republic_effects
