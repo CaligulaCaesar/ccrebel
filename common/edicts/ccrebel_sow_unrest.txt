@@ -206,24 +206,22 @@ planet_edict = {
 			}
 			else_if = {
 				limit = { 
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 5000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 250
-							}
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 5000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 250
-							}
-							energy > 5000
+						has_monthly_income = {
+							resource = minerals
+							value > 250
 						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 250
+						}
+						energy > 5000
 					}
 				}
 				root = {
@@ -378,25 +376,23 @@ planet_edict = {
 					
 					if = {
 						limit = {
-							root.owner = { 
-								AND = {
-									OR = {
-										has_country_resource = {
-											type = minerals
-											amount > 10000
-										}
-										has_monthly_income = {
-											resource = minerals
-											value > 500
-										}
+							root.owner = {
+								OR = {
+									has_country_resource = {
+										type = minerals
+										amount > 10000
 									}
-									OR = {
-										has_monthly_income = {
-											resource = energy
-											value > 500
-										}
-										energy > 10000
+									has_monthly_income = {
+										resource = minerals
+										value > 500
 									}
+								}
+								OR = {
+									has_monthly_income = {
+										resource = energy
+										value > 500
+									}
+									energy > 10000
 								}
 							}
 						}
@@ -535,25 +531,23 @@ planet_edict = {
 					else = {
 						if = {
 							limit = {
-								root.owner = { 
-									AND = {
-										OR = {
-											has_country_resource = {
-												type = minerals
-												amount > 5000
-											}
-											has_monthly_income = {
-												resource = minerals
-												value > 250
-											}
+								root.owner = {
+									OR = {
+										has_country_resource = {
+											type = minerals
+											amount > 5000
 										}
-										OR = {
-											has_monthly_income = {
-												resource = energy
-												value > 250
-											}
-											energy > 5000
+										has_monthly_income = {
+											resource = minerals
+											value > 250
 										}
+									}
+									OR = {
+										has_monthly_income = {
+											resource = energy
+											value > 250
+										}
+										energy > 5000
 									}
 								}
 							}
@@ -693,25 +687,23 @@ planet_edict = {
 						else = {
 							if = {
 								limit = {
-									root.owner = { 
-										AND = {
-											OR = {
-												has_country_resource = {
-													type = minerals
-													amount > 2500
-												}
-												has_monthly_income = {
-													resource = minerals
-													value > 125
-												}
+									root.owner = {
+										OR = {
+											has_country_resource = {
+												type = minerals
+												amount > 2500
 											}
-											OR = {
-												has_monthly_income = {
-													resource = energy
-													value > 125
-												}
-												energy > 2500
+											has_monthly_income = {
+												resource = minerals
+												value > 125
 											}
+										}
+										OR = {
+											has_monthly_income = {
+												resource = energy
+												value > 125
+											}
+											energy > 2500
 										}
 									}
 								}
@@ -993,25 +985,23 @@ planet_edict = {
 						
 						if = {
 							limit = {
-								root.owner = { 
-									AND = {
-										OR = {
-											has_country_resource = {
-												type = minerals
-												amount > 10000
-											}
-											has_monthly_income = {
-												resource = minerals
-												value > 500
-											}
+								root.owner = {
+									OR = {
+										has_country_resource = {
+											type = minerals
+											amount > 10000
 										}
-										OR = {
-											has_monthly_income = {
-												resource = energy
-												value > 500
-											}
-											energy > 10000
+										has_monthly_income = {
+											resource = minerals
+											value > 500
 										}
+									}
+									OR = {
+										has_monthly_income = {
+											resource = energy
+											value > 500
+										}
+										energy > 10000
 									}
 								}
 							}
@@ -1034,10 +1024,8 @@ planet_edict = {
 								every_owned_pop = {
 									limit = {
 										species = { pops_have_happiness = yes }
-										AND = {
-											is_same_species = root.owner
-											NOT = { is_same_species = prev.owner }
-										}
+										is_same_species = root.owner
+										NOT = { is_same_species = prev.owner }
 									}
 									add_modifier = {
 										modifier = ccrebel_being_stirred_up_4
@@ -1049,25 +1037,23 @@ planet_edict = {
 						
 						else_if = {
 							limit = {
-								root.owner = { 
-									AND = {
-										OR = {
-											has_country_resource = {
-												type = minerals
-												amount > 5000
-											}
-											has_monthly_income = {
-												resource = minerals
-												value > 250
-											}
+								root.owner = {
+									OR = {
+										has_country_resource = {
+											type = minerals
+											amount > 5000
 										}
-										OR = {
-											has_monthly_income = {
-												resource = energy
-												value > 250
-											}
-											energy > 5000
+										has_monthly_income = {
+											resource = minerals
+											value > 250
 										}
+									}
+									OR = {
+										has_monthly_income = {
+											resource = energy
+											value > 250
+										}
+										energy > 5000
 									}
 								}
 							}
@@ -1090,10 +1076,8 @@ planet_edict = {
 								every_owned_pop = {
 									limit = {
 										species = { pops_have_happiness = yes }
-										AND = {
-											is_same_species = root.owner
-											NOT = { is_same_species = prev.owner }
-										}
+										is_same_species = root.owner
+										NOT = { is_same_species = prev.owner }
 									}
 									add_modifier = {
 										modifier = ccrebel_being_stirred_up_3
@@ -1105,25 +1089,23 @@ planet_edict = {
 									
 						else_if = {
 							limit = {
-								root.owner = { 
-									AND = {
-										OR = {
-											has_country_resource = {
-												type = minerals
-												amount > 2500
-											}
-											has_monthly_income = {
-												resource = minerals
-												value > 125
-											}
+								root.owner = {
+									OR = {
+										has_country_resource = {
+											type = minerals
+											amount > 2500
 										}
-										OR = {
-											has_monthly_income = {
-												resource = energy
-												value > 125
-											}
-											energy > 2500
+										has_monthly_income = {
+											resource = minerals
+											value > 125
 										}
+									}
+									OR = {
+										has_monthly_income = {
+											resource = energy
+											value > 125
+										}
+										energy > 2500
 									}
 								}
 							}
@@ -1146,10 +1128,8 @@ planet_edict = {
 								every_owned_pop = {
 									limit = {
 										species = { pops_have_happiness = yes }
-										AND = {
-											is_same_species = root.owner
-											NOT = { is_same_species = prev.owner }
-										}
+										is_same_species = root.owner
+										NOT = { is_same_species = prev.owner }
 									}
 									add_modifier = {
 										modifier = ccrebel_being_stirred_up_2

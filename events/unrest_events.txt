@@ -2182,15 +2182,13 @@ event = {
 			}
 			every_owned_planet = {
 				limit = {
-					AND = {
-						has_planet_flag = slave_revolt_chain_active
-						unrest < @unrestlevel1
-						NOR = {
-							has_modifier = slave_hunger_strike
-							has_modifier = adding_unrest_slaves
-							has_modifier = slave_riots
-						}
-					}	
+					has_planet_flag = slave_revolt_chain_active
+					unrest < @unrestlevel1
+					NOR = {
+						has_modifier = slave_hunger_strike
+						has_modifier = adding_unrest_slaves
+						has_modifier = slave_riots
+					}
 				}
 				planet_event = { id = unrest.165 }
 			}	 
