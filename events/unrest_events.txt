@@ -1,7 +1,5 @@
 namespace = unrest
 
-#My addition:
-@stabilitylevel0 = 1
 
 #I figured I'd overwrite the original since I was overwriting 24 of 33 events
 
@@ -1210,7 +1208,7 @@ planet_event = {
 		random_owned_pop = {
 			limit = {
 				is_enslaved = yes
-				species = { pops_have_happiness = yes }
+				cc_has_happiness = yes
 			}
 			weights = {
 				base = 1
@@ -2524,7 +2522,7 @@ planet_event = {
 		random_owned_pop = {
 			limit = {
 				is_enslaved = yes
-				species = { pops_have_happiness = yes }
+				cc_has_happiness = yes
 			}
 			weights = {
 				base = 1
@@ -2736,7 +2734,7 @@ planet_event = {
 					percentage > 0.4
 					limit = {
 						is_enslaved = yes
-						species = { pops_have_happiness = yes }
+						cc_has_happiness = yes
 					}
 				}
 			}

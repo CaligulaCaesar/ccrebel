@@ -723,7 +723,7 @@ planet_event = {
 			}
 			random_owned_pop = {
 				limit = {
-					species = { pops_have_happiness = yes }
+					cc_has_happiness = yes
 				}
 				weights = {
 					base = 1
@@ -1074,7 +1074,7 @@ planet_event = {
 			limit = {
 				any_owned_pop = {
 					is_enslaved = yes
-					species = { pops_have_happiness = yes }
+					cc_has_happiness = yes
 				}
 			}
 			if = {
@@ -1308,7 +1308,7 @@ planet_event = {
 
 		random_owned_pop = {
 			limit = {
-				species = { pops_have_happiness = yes }
+				cc_has_happiness = yes
 			}
 			weights = {
 				base = 1
@@ -1744,7 +1744,7 @@ planet_event = {
 		random_owned_pop = {
 			limit = {
 				is_enslaved = yes
-				species = { pops_have_happiness = yes }
+				cc_has_happiness = yes
 			}
 			weights = {
 				base = 1
@@ -2608,7 +2608,7 @@ event = {
 						count_pops = {
 							limit = {
 								is_being_purged = yes
-								species = { pops_have_happiness = yes }
+								cc_has_happiness = yes
 							}
 							count > 7
 						}
@@ -2642,13 +2642,13 @@ event = {
 									unrest > 50
 									any_owned_pop = {
 										is_being_purged = yes
-										species = { pops_have_happiness = yes }
+										cc_has_happiness = yes
 									}
 								}
 								count_pops = {
 									limit = {
 										is_being_purged = yes
-										species = { pops_have_happiness = yes }
+										cc_has_happiness = yes
 									}
 									count > 7
 								}
