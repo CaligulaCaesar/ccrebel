@@ -517,7 +517,7 @@ event = {
 										has_modifier = cc_call_of_liberty_nationalist
 									}
 								}
-								count > 3
+								count > 8
 							}
 						}
 						planet_event = { id = cc_slaves_rebel.61 }
@@ -749,7 +749,7 @@ event = {
 									has_modifier = cc_call_of_liberty_nationalist
 								}
 							}
-							count > 3
+							count > 8
 						}
 					}
 				}

@@ -2610,7 +2610,7 @@ event = {
 								is_being_purged = yes
 								cc_has_happiness = yes
 							}
-							count > 7
+							count > 15
 						}
 					}
 					add_modifier = {
@@ -2650,7 +2650,7 @@ event = {
 										is_being_purged = yes
 										cc_has_happiness = yes
 									}
-									count > 7
+									count > 15
 								}
 							}
 						}
