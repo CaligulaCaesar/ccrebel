@@ -86,7 +86,7 @@ civic_tooltip_broken_shackles_effects:2 "§YAppel de la liberté :§! §R-15%§!
 
 civic_free_republic:0 "République libre"
 civic_free_republic_desc:0 "Cette société s'est affranchie de l'esclavage suite à une violente révolution contre ses anciens maîtres. Après s'être battu et souffert pour leur liberté, les citoyens ne vont pas la céder facilement !"
-civic_tooltip_free_republic_effects:2 "§Y$pop_ethic_egalitarian_attraction_mult$§! : §G+25%§!.\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! : §G+15%§! lorqu'en guerre avec des empires esclavagistes.\nNe peut pas changer d'§Yéthique§!.\nDoit également avoir le civisme §Y$civic_broken_shackles$§!."
+civic_tooltip_free_republic_effects:2 "§Y$mod_pop_ethic_egalitarian_attraction_mult$§! : §G+25%§!.\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! : §G+15%§! lorqu'en guerre avec des empires esclavagistes.\nNe peut pas changer d'§Yéthique§!.\nDoit également avoir le civisme §Y$civic_broken_shackles$§!."
 
 opinion_slaveholder_oppressors:0 "Oppresseur esclavagiste"
 opinion_upstart_slaves:0 "Esclaves parvenus"
@@ -126,7 +126,7 @@ cc_slaves_rebel.21.desc:0 "La population est outragée de voir que le gouverneme
 cc_slaves_rebel.21.option:0 "Revenons en arrière."
 cc_slaves_rebel.21.tooltip:0 "Changement d'éthiques à §Y$ethic_fanatic_egalitarian$§! et §Y$ethic_militarist$§!."
 cc_slaves_rebel.21.option.b:0 "Abandon des valeurs révolutionnaires"
-cc_slaves_rebel.21.option.b.tooltip:0 "Confère le modificateur §R$betrayed_the_revolution$§! :\n§Y$country_resource_unity_mult$§! : §R-33%§!\n§Y$country_resource_influence_mult$§! : §R-33%§!\n§Y$MOD_POP_HAPPINESS$§! : §R-20%§!\nSupprime les civismes :\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nConfère les civismes :\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
+cc_slaves_rebel.21.option.b.tooltip:0 "Confère le modificateur §R$betrayed_the_revolution$§! :\n§Y$mod_country_unity_produces_mult$§! : §R-33%§!\n§Y$mod_country_influence_produces_mult$§! : §R-33%§!\n§Y$MOD_POP_HAPPINESS$§! : §R-20%§!\nSupprime les civismes :\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nConfère les civismes :\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
 cc_slaves_rebel.23.name:0 "La Révolution est finie"
 cc_slaves_rebel.23.desc:0 "La [Root.GetName] a perdu sa liberté. La Révolution est finie. Une population abattue a assisté à une veillée silencieuse sur [Root.Capital.GetName] pour commémorer sa fin. Quelques éléments extrémistes soutiennent un dernier coup pour relancer la ferveur, mais la plupart accepte que la galaxie est trop grande et les périls trop nombreux, pour que l'age d'or de la liberté puisse perdurer."
 cc_slaves_rebel.23.option:0 "C'était inévitable."

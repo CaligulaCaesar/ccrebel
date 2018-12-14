@@ -94,14 +94,12 @@ event = {
 		any_country = {
 			has_civic = civic_broken_shackles
 			has_civic = civic_free_republic
-			NOT = {
-				AND = {
-					OR = {
-						has_ethic = ethic_militarist
-						has_ethic = ethic_fanatic_militarist
-					}
-					has_ethic = ethic_fanatic_egalitarian
+			NAND = {
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
 				}
+				has_ethic = ethic_fanatic_egalitarian
 			}
 		}
 	}
@@ -111,14 +109,12 @@ event = {
 				has_civic = civic_broken_shackles
 				has_civic = civic_free_republic
 				NOT = { has_country_flag = ccrebel_just_lost_war }
-				NOT = {
-					AND = {
-						OR = {
-							has_ethic = ethic_militarist
-							has_ethic = ethic_fanatic_militarist
-						}
-						has_ethic = ethic_fanatic_egalitarian
+				NAND = {
+					OR = {
+						has_ethic = ethic_militarist
+						has_ethic = ethic_fanatic_militarist
 					}
+					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
 			if = { #tell the player
@@ -146,14 +142,12 @@ event = {
 					#Backup, in case that doesn't work 100% as I want (theoretically possible that they simply do the same shift and cancel each other out)
 					if = {
 						limit = {
-							NOT = {
-								AND = {
-									OR = {
-										has_ethic = ethic_militarist
-										has_ethic = ethic_fanatic_militarist
-									}
-									has_ethic = ethic_fanatic_egalitarian
+							NAND = {
+								OR = {
+									has_ethic = ethic_militarist
+									has_ethic = ethic_fanatic_militarist
 								}
+								has_ethic = ethic_fanatic_egalitarian
 							}
 						}
 						if = {
@@ -279,14 +273,12 @@ country_event = {
 			#Backup, in case that doesn't work 100% as I want (theoretically possible that they simply do the same shift and cancel each other out)
 			if = {
 				limit = {
-					NOT = {
-						AND = {
-							OR = {
-								has_ethic = ethic_militarist
-								has_ethic = ethic_fanatic_militarist
-							}
-							has_ethic = ethic_fanatic_egalitarian
+					NAND = {
+						OR = {
+							has_ethic = ethic_militarist
+							has_ethic = ethic_fanatic_militarist
 						}
+						has_ethic = ethic_fanatic_egalitarian
 					}
 				}
 				if = {
@@ -880,15 +872,15 @@ planet_event = {
 				
 				modifier = {
 					factor = 0
-					NOT = { unrest > 50 }
+					NOT = { planet_stability < @stabilitylevel2 }
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 80
+					planet_stability < @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 99
+					planet_stability < @stabilitylevel0
 				}
 				modifier = {
 					factor = 1.25
@@ -921,7 +913,7 @@ planet_event = {
 		owner = { is_country_type = default }
 		exists = controller
 		controller = { is_same_value = root.owner }
-		unrest > 50
+		planet_stability < @stabilitylevel2
 #		has_planet_flag = slave_riots
 		has_modifier = cc_planet_call_of_liberty
  		any_owned_pop = {
@@ -1479,16 +1471,14 @@ country_event = {
 		has_civic = civic_broken_shackles
 		has_civic = civic_free_republic
 		
-		NOT = {
-			AND = {
-				OR = {
-					has_ethic = ethic_fanatic_egalitarian
-					has_ethic = ethic_egalitarian
-				}
-				OR = {
-					has_ethic = ethic_fanatic_militarist
-					has_ethic = ethic_militarist
-				}
+		NAND = {
+			OR = {
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_egalitarian
+			}
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_militarist
 			}
 		}
 	}

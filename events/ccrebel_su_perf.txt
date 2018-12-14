@@ -327,8 +327,8 @@ planet_event = {
 							
 							if = {
 								limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
-								unrest > 20
-								else = { unrest > 30 }
+								planet_stability < 40
+								else = { planet_stability < 50 }
 							}
 						}
 					}
@@ -345,8 +345,8 @@ planet_event = {
 								
 								if = {
 									limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
-									unrest > 40
-									else = { unrest > 50 }
+									planet_stability < 30
+									else = { planet_stability < @stabilitylevel2 }
 								}
 							}
 						}

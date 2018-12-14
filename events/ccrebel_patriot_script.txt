@@ -268,20 +268,20 @@ planet_event = {
 				
 				modifier = {
 					factor = 0
-					NOT = { unrest > 50 }
+					NOT = { planet_stability < @stabilitylevel2 }
 				}
 				modifier = {
 					factor = 0.5
-					NOT = { unrest > 65 }
+					NOT = { planet_stability < 20 }
 				}
 				
 				modifier = {
 					factor = 1.25
-					unrest > 80
+					planet_stability < @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 99
+					planet_stability < @stabilitylevel0
 				}
 		
 				modifier = {

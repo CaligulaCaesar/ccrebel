@@ -87,7 +87,7 @@ civic_tooltip_broken_shackles_effects:2 "§YRuf der Freiheit:§! §R-15%§! Zufr
 
 civic_free_republic:0 "Freie Republik"
 civic_free_republic_desc:0 "Diese Gesellschaft hat sich durch eine gewalttätige Revolution von der Sklaverei befreit. Nach ihrem schmerzlichen Freiheitskampf werden sie diese gewonnene Freiheit nicht leicht wieder aufgeben!"
-civic_tooltip_free_republic_effects:2 "§Y$pop_ethic_egalitarian_attraction_mult$§! um §G+25%§! erhöht.\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! um §G+15%§! während der Bekämpfung von sklavenhaltende Reiche erhöht.\nKann unmöglich §YEthik§! ändern.\nMuss auch Staatselement §Y$civic_broken_shackles$§! haben."
+civic_tooltip_free_republic_effects:2 "§Y$mod_pop_ethic_egalitarian_attraction_mult$§! um §G+25%§! erhöht.\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! um §G+15%§! während der Bekämpfung von sklavenhaltende Reiche erhöht.\nKann unmöglich §YEthik§! ändern.\nMuss auch Staatselement §Y$civic_broken_shackles$§! haben."
 
 opinion_slaveholder_oppressors:0 "Sklavenhaltende Unterdrücker"
 opinion_upstart_slaves:0 "Emporkömmlinge Sklaven"
@@ -129,7 +129,7 @@ cc_slaves_rebel.21.desc:0 "Die Bevölkerung ist empört, dass die Regierung der 
 cc_slaves_rebel.21.option:0 "Eine Kehrtwende ist nötig."
 cc_slaves_rebel.21.tooltip:0 "Gesinnungswechsel zurück nach §Y$ethic_fanatic_egalitarian$§! und §Y$ethic_militarist$§!."
 cc_slaves_rebel.21.option.b:0 "Aufgabe der revolutionären Werte"
-cc_slaves_rebel.21.option.b.tooltip:0 "Fügt §R$betrayed_the_revolution$§! den Modifikator §R$betrayed_the_revolution$§! hinzu:\n§Y$country_resource_unity_mult$§!: §R-33%§!\n§Y$country_resource_influence_mult$§!: §R-33%§!\n§Y$MOD_POP_HAPPINESS$§!: §R-20%§!\nEntfernt folgende Staatselemente:\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nFügt folgende Staatselemente hinzu:\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
+cc_slaves_rebel.21.option.b.tooltip:0 "Fügt §R$betrayed_the_revolution$§! den Modifikator §R$betrayed_the_revolution$§! hinzu:\n§Y$mod_country_unity_produces_mult$§!: §R-33%§!\n§Y$mod_country_influence_produces_mult$§!: §R-33%§!\n§Y$MOD_POP_HAPPINESS$§!: §R-20%§!\nEntfernt folgende Staatselemente:\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nFügt folgende Staatselemente hinzu:\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
 cc_slaves_rebel.23.name:0 "Die Revolution ist vorbei"
 cc_slaves_rebel.23.desc:0 "Die [Root.GetName] ist nicht mehr ihr eigener Meister. Die Revolution ist gescheitert. Die niedergeschlagene Bevölkerung hat letztendes bei einer stillen Mahnwache auf [Root.Capital.GetName] teilgenommen um ihr Ende zu bedauern. Obwohl einige extremistische Elemente ein letzter verzweifelter Versuch für Freiheit bevorzugen würden, akzeptieren die Meisten, dass die Galaxie einfach zu groß ist und ihre Gefahren zu zahlreich für die [Root.GetName] und dass das goldene Zeitalter der [Root.GetSpeciesName]en Freiheit zuende ist."
 cc_slaves_rebel.23.option:0 "Es war nicht zu vermeiden."

@@ -2326,37 +2326,35 @@ planet_event = {
 				
 				modifier = {
 					factor = 0
-					NOT = {
-						AND = {
-							has_owner = yes
-							planet_stability < @stabilitylevel1
-							if = {
-								limit = { owner = { is_ai = yes } }
+					NAND = {
+						has_owner = yes
+						planet_stability < @stabilitylevel1
+						if = {
+							limit = { owner = { is_ai = yes } }
+							check_variable = {
+								which = unrest_50
+								value > 48
+							}
+							else = {
 								check_variable = {
 									which = unrest_50
-									value > 48
-								}
-								else = {
-									check_variable = {
-										which = unrest_50
-										value > 36
-									}
+									value > 36
 								}
 							}
-							has_planet_flag = cc_revolt_imminent
-							NOR = {
-								has_planet_flag = recent_unrest_event 
-								has_planet_flag = slave_stirring
-								has_planet_flag = slave_resistance
-								has_planet_flag = slave_riots
-								has_planet_flag = slave_revolt
-							}
-							
-							has_ground_combat = no
-							has_orbital_bombardment = no
-							exists = controller
-							controller = { is_same_value = root.owner }
 						}
+						has_planet_flag = cc_revolt_imminent
+						NOR = {
+							has_planet_flag = recent_unrest_event 
+							has_planet_flag = slave_stirring
+							has_planet_flag = slave_resistance
+							has_planet_flag = slave_riots
+							has_planet_flag = slave_revolt
+						}
+						
+						has_ground_combat = no
+						has_orbital_bombardment = no
+						exists = controller
+						controller = { is_same_value = root.owner }
 					}
 				}
 				modifier = {

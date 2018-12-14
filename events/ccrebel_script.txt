@@ -264,7 +264,7 @@ planet_event = {
 			#Copycat revolt (non-nationalist)
 			if = {
 				limit = {	
-					unrest > 99
+					planet_stability < @stabilitylevel0
 					pop_percentage = { percentage > 0.30 limit = { 
 						is_same_species = event_target:rebellion
 						NOT = { has_pop_flag = nationalists }
@@ -275,8 +275,8 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					unrest > 80
-					NOT = { unrest > 99 }
+					planet_stability < @stabilitylevel1
+					NOT = { planet_stability < @stabilitylevel0 }
 					pop_percentage = { percentage > 0.30 limit = { 
 						is_same_species = event_target:rebellion
 						NOT = { has_pop_flag = nationalists }
@@ -290,8 +290,8 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					NOT = { unrest > 80 }
-					unrest > 50
+					NOT = { planet_stability < @stabilitylevel1 }
+					planet_stability < @stabilitylevel2
 					pop_percentage = { percentage > 0.30 limit = { 
 						is_same_species = event_target:rebellion
 						NOT = { has_pop_flag = nationalists }
@@ -307,7 +307,7 @@ planet_event = {
 		else = {
 			if = {
 				limit = {
-					unrest > 99
+					planet_stability < @stabilitylevel0
 					pop_percentage = { percentage > 0.30 limit = { 
 						is_same_species = event_target:rebellion
 						has_pop_flag = nationalists
@@ -318,8 +318,8 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					NOT = { unrest > 99 }
-					unrest > 80
+					NOT = { planet_stability < @stabilitylevel0 }
+					planet_stability < @stabilitylevel1
 					pop_percentage = { percentage > 0.30 limit = { 
 						is_same_species = event_target:rebellion
 						has_pop_flag = nationalists
@@ -333,8 +333,8 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					NOT = { unrest > 80 }
-					unrest > 50
+					NOT = { planet_stability < @stabilitylevel1 }
+					planet_stability < @stabilitylevel2
 					pop_percentage = { percentage > 0.30 limit = { 
 						is_same_species = event_target:rebellion
 						has_pop_flag = nationalists
@@ -352,7 +352,7 @@ planet_event = {
 					
 		if = {
 			limit = {
-				unrest > 99
+				planet_stability < @stabilitylevel0
 				pop_percentage = { percentage < 0.30 limit = { 
 					is_same_species = event_target:rebellion
 					}
@@ -365,8 +365,8 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				unrest > 80
-				NOT = { unrest > 99 }
+				planet_stability < @stabilitylevel1
+				NOT = { planet_stability < @stabilitylevel0 }
 				pop_percentage = { percentage < 0.30 limit = { 
 					is_same_species = event_target:rebellion
 					}
@@ -379,8 +379,8 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				NOT = { unrest > 80 }
-				unrest > 50
+				NOT = { planet_stability < @stabilitylevel1 }
+				planet_stability < @stabilitylevel2
 				pop_percentage = { percentage > 0.30 limit = { 
 					is_same_species = event_target:rebellion
 					}
@@ -508,15 +508,15 @@ planet_event = {
 					
 				modifier = {
 					factor = 0
-					unrest < 50
+					planet_stability > @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 80
+					planet_stability < @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 99
+					planet_stability < @stabilitylevel0
 				}
 				modifier = {
 					factor = 1.25
@@ -567,7 +567,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		unrest > 50
+		planet_stability < @stabilitylevel2
 		has_planet_flag = will_copycat_nationalist
 		
 		NOR = {
@@ -1201,15 +1201,15 @@ planet_event = {
 				
 				modifier = {
 					factor = 0
-					unrest < 50
+					planet_stability > @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 80
+					planet_stability < @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 99
+					planet_stability < @stabilitylevel0
 				}
 				modifier = {
 					factor = 1.25
@@ -1263,7 +1263,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		unrest > 50
+		planet_stability < @stabilitylevel2
 		has_planet_flag = will_copycat_standard 
 		
 		NOR = {
@@ -1639,15 +1639,15 @@ planet_event = {
 				
 				modifier = {
 					factor = 0
-					unrest < 50
+					planet_stability > @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 80
+					planet_stability < @stabilitylevel1
 				}
 				modifier = {
 					factor = 1.25
-					unrest > 99
+					planet_stability < @stabilitylevel0
 				}
 				modifier = {
 					factor = 1.25
@@ -1702,7 +1702,7 @@ planet_event = {
 		owner = { is_country_type = default }
 		exists = controller
 		controller = { is_same_value = root.owner }
-		unrest > 50
+		planet_stability < @stabilitylevel2
 #		has_planet_flag = slave_riots
 		has_planet_flag = will_copycat_slave
  		any_owned_pop = {
@@ -2603,7 +2603,7 @@ event = {
 				}
 				every_owned_planet = {
 					limit = {
-						unrest > 80
+						planet_stability < @stabilitylevel1
 						NOT = { has_modifier = cc_terror_state }
 						count_pops = {
 							limit = {
@@ -2639,7 +2639,7 @@ event = {
 						NOT = {
 							OR = {
 								AND = {
-									unrest > 50
+									planet_stability < @stabilitylevel2
 									any_owned_pop = {
 										is_being_purged = yes
 										cc_has_happiness = yes

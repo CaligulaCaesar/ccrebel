@@ -283,7 +283,11 @@ country_event = {
 						resource = energy
 						value > 100
 					}
-					energy > 2000
+					resource_stockpile_compare = {
+						resource = energy
+						value > 2000
+						
+					}
 				}
 			}
 			From = {
@@ -544,7 +548,11 @@ country_event = {
 								resource = energy
 								value > 400
 							}
-							energy > 8000
+							resource_stockpile_compare = {
+								resource = energy
+								value > 8000
+								
+							}
 						}
 					}
 				}
@@ -568,7 +576,11 @@ country_event = {
 								resource = energy
 								value > 500
 							}
-							energy > 10000
+							resource_stockpile_compare = {
+								resource = energy
+								value > 10000
+								
+							}
 						}
 					}
 				}
@@ -591,7 +603,10 @@ country_event = {
 							resource = energy
 							value > 800
 						}
-						energy > 15000
+						resource_stockpile_compare = {
+							resource = energy
+							value > 15000
+						}
 					}
 				}
 			}
@@ -862,54 +877,61 @@ country_event = {
 								resource = energy
 								value > 200
 							}
-							energy > 4000
+							resource_stockpile_compare = {
+								resource = energy
+								value > 4000
+								
+							}
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 0.25
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 5000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 250
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 5000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 250
-							}
-							energy > 5000
+						has_monthly_income = {
+							resource = minerals
+							value > 250
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 250
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 5000
+							
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 2
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 8000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 400
-						}
+				OR = {
+					has_country_resource = {
+						type = minerals
+						amount > 8000
 					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 400
-						}
-						energy > 8000
+					has_monthly_income = {
+						resource = minerals
+						value > 400
+					}
+				}
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value > 400
+					}
+					resource_stockpile_compare = {
+						resource = energy
+						value > 8000
 					}
 				}
 			}
@@ -1175,54 +1197,59 @@ country_event = {
 								resource = energy
 								value > 100
 							}
-							energy > 2000
+							resource_stockpile_compare = {
+								resource = energy
+								value > 2000
+							}
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 0.5
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 2500
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 125
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 2500
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 125
-							}
-							energy > 2500
+						has_monthly_income = {
+							resource = minerals
+							value > 125
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 125
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 2500
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 2
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 4000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 200
-						}
+				OR = {
+					has_country_resource = {
+						type = minerals
+						amount > 4000
 					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 200
-						}
-						energy > 4000
+					has_monthly_income = {
+						resource = minerals
+						value > 200
+					}
+				}
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value > 200
+					}
+					resource_stockpile_compare = {
+						resource = energy
+						value > 4000
 					}
 				}
 			}
@@ -1976,71 +2003,74 @@ country_event = {
 			}
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 8000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 400
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 8000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 400
-							}
-							energy > 8000
+						has_monthly_income = {
+							resource = minerals
+							value > 400
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 400
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 8000
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 0.1
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 10000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 500
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 10000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 500
-							}
-							energy > 10000
+						has_monthly_income = {
+							resource = minerals
+							value > 500
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 500
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 10000
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 2
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 15000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 800
-						}
+				OR = {
+					has_country_resource = {
+						type = minerals
+						amount > 15000
 					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 800
-						}
-						energy > 15000
+					has_monthly_income = {
+						resource = minerals
+						value > 800
+					}
+				}
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value > 800
+					}
+					resource_stockpile_compare = {
+						resource = energy
+						value > 15000
 					}
 				}
 			}
@@ -2287,71 +2317,74 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 4000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 200
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 4000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 200
-							}
-							energy > 4000
+						has_monthly_income = {
+							resource = minerals
+							value > 200
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 200
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 4000
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 0.25
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 5000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 250
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 5000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 250
-							}
-							energy > 5000
+						has_monthly_income = {
+							resource = minerals
+							value > 250
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 250
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 5000
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 2
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 8000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 400
-						}
+				OR = {
+					has_country_resource = {
+						type = minerals
+						amount > 8000
 					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 400
-						}
-						energy > 8000
+					has_monthly_income = {
+						resource = minerals
+						value > 400
+					}
+				}
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value > 400
+					}
+					resource_stockpile_compare = {
+						resource = energy
+						value > 8000
 					}
 				}
 			}
@@ -2595,71 +2628,74 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 2000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 100
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 2000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 100
-							}
-							energy > 2000
+						has_monthly_income = {
+							resource = minerals
+							value > 100
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 100
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 2000
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 0.5
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 2500
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 125
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 2500
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 125
-							}
-							energy > 2500
+						has_monthly_income = {
+							resource = minerals
+							value > 125
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 125
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 2500
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 2
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 4000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 200
-						}
+				OR = {
+					has_country_resource = {
+						type = minerals
+						amount > 4000
 					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 200
-						}
-						energy > 4000
+					has_monthly_income = {
+						resource = minerals
+						value > 200
+					}
+				}
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value > 200
+					}
+					resource_stockpile_compare = {
+						resource = energy
+						value > 4000
 					}
 				}
 			}
@@ -3003,30 +3039,31 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 600
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 150
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 600
 						}
-						OR = {
-							AND = {
-								energy > 600
-								has_monthly_income = {
-									resource = energy
-									value > 15
-								}
+						has_monthly_income = {
+							resource = minerals
+							value > 150
+						}
+					}
+					OR = {
+						AND = {
+							resource_stockpile_compare = {
+								resource = energy
+								value > 600
 							}
 							has_monthly_income = {
 								resource = energy
-								value > 150
+								value > 15
 							}
+						}
+						has_monthly_income = {
+							resource = energy
+							value > 150
 						}
 					}
 				}
@@ -3034,24 +3071,25 @@ country_event = {
 			
 			modifier = {
 				factor = 0.35
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 1000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 250
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 1000
 						}
-						OR = {
-							energy > 1000
-							has_monthly_income = {
-								resource = energy
-								value > 250
-							}
+						has_monthly_income = {
+							resource = minerals
+							value > 250
+						}
+					}
+					OR = {
+						resource_stockpile_compare = {
+							resource = energy
+							value > 1000
+						}
+						has_monthly_income = {
+							resource = energy
+							value > 250
 						}
 					}
 				}
@@ -3466,30 +3504,31 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 300
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 75
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 300
 						}
-						OR = {
-							AND = {
-								energy > 300
-								has_monthly_income = {
-									resource = energy
-									value > 0
-								}
+						has_monthly_income = {
+							resource = minerals
+							value > 75
+						}
+					}
+					OR = {
+						AND = {
+							resource_stockpile_compare = {
+								resource = energy
+								value > 300
 							}
 							has_monthly_income = {
 								resource = energy
-								value > 75
+								value > 0
 							}
+						}
+						has_monthly_income = {
+							resource = energy
+							value > 75
 						}
 					}
 				}
@@ -3497,24 +3536,25 @@ country_event = {
 			
 			modifier = {
 				factor = 0.5
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 500
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 125
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 500
 						}
-						OR = {
-							energy > 500
-							has_monthly_income = {
-								resource = energy
-								value > 125
-							}
+						has_monthly_income = {
+							resource = minerals
+							value > 125
+						}
+					}
+					OR = {
+						resource_stockpile_compare = {
+							resource = energy
+							value > 500
+						}
+						has_monthly_income = {
+							resource = energy
+							value > 125
 						}
 					}
 				}

@@ -1,13 +1,20 @@
 
 
-planet_edict = {
-	name = "ccrebel_sow_unrest"
-	
-	length = 0
-	
-	cost = { influence = 100 energy = 200 minerals = 200 }
+ccrebel_sow_unrest = {
+	owned_planets_only = yes
+	icon = decision_sow_unrest
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			energy = 200
+			minerals = 200
+		}
+	}
 	
     potential = {
+		has_technology = tech_ccrebel_unrest_1
 		NOT = { has_planet_flag = cc_planet_sowing_unrest_marker }
 	}
 	
@@ -17,21 +24,9 @@ planet_edict = {
 			has_planet_flag = ccrebel_planet_can_sow_unrest
 		}
 	}
-	
-#	modifier = {
-#		planet_resource_energy_add = -25
-#		planet_resource_minerals_add = -25
-#		planet_resource_influence_add = -0.5
-#	}
-
-	
-	prerequisites = {
-		"tech_ccrebel_unrest_1"
-	}
-
 
     ai_weight = { #I'm moving as much of this as possible to a monthly check for performance reasons
-        weight = 8
+        weight = 4
 		
 		modifier = {
 			weight = 75
@@ -193,7 +188,11 @@ planet_edict = {
 								resource = energy
 								value > 500
 							}
-							energy > 10000
+							resource_stockpile_compare = {
+								resource = energy
+								value > 10000
+								
+							}
 						}
 					}
 				}
@@ -221,7 +220,11 @@ planet_edict = {
 							resource = energy
 							value > 250
 						}
-						energy > 5000
+						resource_stockpile_compare = {
+							resource = energy
+							value > 5000
+							
+						}
 					}
 				}
 				root = {
@@ -250,7 +253,11 @@ planet_edict = {
 								resource = energy
 								value > 125
 							}
-							energy > 2500
+							resource_stockpile_compare = {
+								resource = energy
+								value > 2500
+								
+							}
 						}
 					}
 				}
@@ -392,7 +399,11 @@ planet_edict = {
 										resource = energy
 										value > 500
 									}
-									energy > 10000
+									resource_stockpile_compare = {
+										resource = energy
+										value > 10000
+										
+									}
 								}
 							}
 						}
@@ -547,7 +558,11 @@ planet_edict = {
 											resource = energy
 											value > 250
 										}
-										energy > 5000
+										resource_stockpile_compare = {
+											resource = energy
+											value > 5000
+											
+										}
 									}
 								}
 							}
@@ -703,7 +718,11 @@ planet_edict = {
 												resource = energy
 												value > 125
 											}
-											energy > 2500
+											resource_stockpile_compare = {
+												resource = energy
+												value > 2500
+												
+											}
 										}
 									}
 								}
@@ -1001,7 +1020,11 @@ planet_edict = {
 											resource = energy
 											value > 500
 										}
-										energy > 10000
+										resource_stockpile_compare = {
+											resource = energy
+											value > 10000
+											
+										}
 									}
 								}
 							}
@@ -1053,7 +1076,11 @@ planet_edict = {
 											resource = energy
 											value > 250
 										}
-										energy > 5000
+										resource_stockpile_compare = {
+											resource = energy
+											value > 5000
+											
+										}
 									}
 								}
 							}
@@ -1105,7 +1132,11 @@ planet_edict = {
 											resource = energy
 											value > 125
 										}
-										energy > 2500
+										resource_stockpile_compare = {
+											resource = energy
+											value > 2500
+											
+										}
 									}
 								}
 							}

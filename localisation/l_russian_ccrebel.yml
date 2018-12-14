@@ -87,7 +87,7 @@ civic_broken_shackles:0 "Разрыв Оков"
 civic_tooltip_broken_shackles_effects:2 "§Зов свободы:§! §R-15%§! Счастье среди соседних рабовладельческих стран.\nДружелюбная §YDiplomacy§! невозможна с рабовладельческими империями.\nНе возможна смена §YEthics§!.\nДолжен сочетаться с §Y$civic_free_republic$§!"
 
 civic_free_republic:0 "Свободная Республика"
-civic_tooltip_free_republic_effects:2 "§Y$pop_ethic_egalitarian_attraction_mult$§! увеличилось на §G+25%§!\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! увиличилось на §G+15%§! при борьбе с рабовладельческеми империями.\nCannot shift §YEthics§!.\nMust go with §Y$civic_broken_shackles$§!"
+civic_tooltip_free_republic_effects:2 "§Y$mod_pop_ethic_egalitarian_attraction_mult$§! увеличилось на §G+25%§!\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! увиличилось на §G+15%§! при борьбе с рабовладельческеми империями.\nCannot shift §YEthics§!.\nMust go with §Y$civic_broken_shackles$§!"
 
 opinion_slaveholder_oppressors:0 "Рабовладельческие угнетатели"
 opinion_upstart_slaves:0 "Новые рабы"
@@ -121,7 +121,7 @@ cc_slaves_rebel.21.desc:0 "Народ возмущен тем, что прави
 cc_slaves_rebel.21.option:0 "Обратный курс"
 cc_slaves_rebel.21.tooltip:0 "Этики возвращаются к §Y$ethic_fanatic_egalitarian$§! и §Y$ethic_militarist$§!."
 cc_slaves_rebel.21.option.b:0 "Отказ от революционных ценностей"
-cc_slaves_rebel.21.option.b.tooltip:0 "Добавляется §R$betrayed_the_revolution$§! Модификатор:\n§Y$country_resource_unity_mult$§!: §R-33%§!\n§Y$country_resource_influence_mult$§!: §R-33%§!\n§Y$MOD_POP_HAPPINESS$§!: §R-20%§!\nУбираются гражданские модели:\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nДобавляются гражданские модели:\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
+cc_slaves_rebel.21.option.b.tooltip:0 "Добавляется §R$betrayed_the_revolution$§! Модификатор:\n§Y$mod_country_unity_produces_mult$§!: §R-33%§!\n§Y$mod_country_influence_produces_mult$§!: §R-33%§!\n§Y$MOD_POP_HAPPINESS$§!: §R-20%§!\nУбираются гражданские модели:\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nДобавляются гражданские модели:\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
 cc_slaves_rebel.23.name:0 "Революция окончена"
 cc_slaves_rebel.23.desc:0 "Планета [Root.GetName] утратила свою независимость. Революция потерпела поражение. Удручённое население на планете [Root.Capital.GetName] приступило к выполнению своих повседневных обязанностей. Хотя некоторые экстремисты ещё выступают за последнюю попытку освобождения, многие считают, что галактика слишком велика и опасна для [Root.GetName]. Золотой век [Root.GetSpeciesName] канул в лету."
 cc_slaves_rebel.23.option:0 "Это было неизбежно."

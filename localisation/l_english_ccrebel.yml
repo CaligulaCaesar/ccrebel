@@ -88,7 +88,7 @@ civic_tooltip_broken_shackles_effects:2 "§YCall of Liberty:§! §R-15%§! Happi
 
 civic_free_republic:0 "Free Republic"
 civic_free_republic_desc:0 "This society emerged from slavery via a violent Revolution against its masters. Having fought and suffered for their freedom, the citizens will not give it up easily!"
-civic_tooltip_free_republic_effects:2 "§Y$pop_ethic_egalitarian_attraction_mult$§! increased by §G+25%§!.\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! increased by §G+15%§! when fighting Slaver Empires.\nCannot shift §YEthics§!.\nMust also have civic §Y$civic_broken_shackles$§!."
+civic_tooltip_free_republic_effects:2 "§Y$mod_pop_ethic_egalitarian_attraction_mult$§! increased by §G+25%§!.\n§Y$MOD_SHIP_FIRE_RATE_MULT$§! increased by §G+15%§! when fighting Slaver Empires.\nCannot shift §YEthics§!.\nMust also have civic §Y$civic_broken_shackles$§!."
 
 opinion_slaveholder_oppressors:0 "Slaveholder Oppressors"
 opinion_upstart_slaves:0 "Upstart Slaves"
@@ -131,7 +131,7 @@ cc_slaves_rebel.21.desc:0 "The populace is outraged that the [Root.GetName]'s go
 cc_slaves_rebel.21.option:0 "Reverse Course."
 cc_slaves_rebel.21.tooltip:0 "Ethics Shift back to §Y$ethic_fanatic_egalitarian$§! and §Y$ethic_militarist$§!."
 cc_slaves_rebel.21.option.b:0 "Abandon the Revolutionary Values"
-cc_slaves_rebel.21.option.b.tooltip:0 "Adds §R$betrayed_the_revolution$§! Modifier:\n§Y$country_resource_unity_mult$§!: §R-33%§!\n§Y$country_resource_influence_mult$§!: §R-33%§!\n§Y$MOD_POP_HAPPINESS$§!: §R-20%§!\nRemoves Civics:\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nAdds Civics:\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
+cc_slaves_rebel.21.option.b.tooltip:0 "Adds §R$betrayed_the_revolution$§! Modifier:\n§Y$mod_country_unity_produces_mult$§!: §R-33%§!\n§Y$mod_country_influence_produces_mult$§!: §R-33%§!\n§Y$MOD_POP_HAPPINESS$§!: §R-20%§!\nRemoves Civics:\n§Y$civic_free_republic$§!\n§Y$civic_broken_shackles$§!\nAdds Civics:\n§Y$civic_beacon_of_liberty$§!\n§Y$civic_idealistic_foundation$§!"
 cc_slaves_rebel.23.name:0 "The Revolution is Over"
 cc_slaves_rebel.23.desc:0 "The [Root.GetName] is no longer its own master. The Revolution has failed. A dejected population attended a silent vigil on [Root.Capital.GetName] to mark its passing. While some extreme elements advocate a last-ditch attempt at liberation, most accept that the galaxy has just proven too big and its hazards too numerous for the [Root.GetName], and that the golden age of [Root.GetSpeciesName] freedom is over."
 cc_slaves_rebel.23.option:0 "It was unavoidable."
