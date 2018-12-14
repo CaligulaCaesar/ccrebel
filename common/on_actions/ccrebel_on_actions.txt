@@ -82,7 +82,7 @@ on_yearly_pulse = {
 # No scope, like on_game_start
 on_monthly_pulse = {
 	events = {
-		rebellionscript.3
+#		rebellionscript.3
 		rebellionscript.15
 		rebellionscript.42
 		rebellionscript.801

@@ -14,7 +14,9 @@ ccrebel_sow_unrest = {
 	}
 	
     potential = {
-		has_technology = tech_ccrebel_unrest_1
+		from = {
+			has_technology = tech_ccrebel_unrest_1
+		}
 		NOT = { has_planet_flag = cc_planet_sowing_unrest_marker }
 	}
 	
@@ -41,32 +43,32 @@ ccrebel_sow_unrest = {
 		
 		modifier = {
 			factor = 1.5
-			owner = { has_ai_personality_behaviour = liberator }
+			from = { has_ai_personality_behaviour = liberator }
 		}
 			
         modifier = {
             factor = 0
-			owner = { has_country_flag = ccrebel_poor }
+			from = { has_country_flag = ccrebel_poor }
 		}
 		
         modifier = {
             factor = 0.4
-			owner = { has_country_flag = ccrebel_medium_poor }
+			from = { has_country_flag = ccrebel_medium_poor }
 		}
 
         modifier = {
             factor = 0.8
-			owner = { has_country_flag = ccrebel_medium_income }
+			from = { has_country_flag = ccrebel_medium_income }
 		}
 		
         modifier = {
             factor = 1.5
-			owner = { has_country_flag = ccrebel_medium_rich }
+			from = { has_country_flag = ccrebel_medium_rich }
 		}
 		
         modifier = {
             factor = 1.5
-			owner = { has_country_flag = ccrebel_rich }
+			from = { has_country_flag = ccrebel_rich }
 		}
 		
 		#enemy is vulnerable
@@ -84,14 +86,14 @@ ccrebel_sow_unrest = {
 		#slaves for egalitarians
         modifier = {
             factor = 2
-			owner = { has_ethic = ethic_fanatic_egalitarian }
+			from = { has_ethic = ethic_fanatic_egalitarian }
 			has_planet_flag = cc_su_perf_slave
 		}
 		
 		#slaves for xenophiles
         modifier = {
             factor = 1.5
-			owner = { has_ethic = ethic_fanatic_xenophile }
+			from = { has_ethic = ethic_fanatic_xenophile }
 			has_planet_flag = cc_su_perf_slave_phobe
 		}
 		

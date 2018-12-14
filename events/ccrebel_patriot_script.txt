@@ -29,11 +29,11 @@ country_event = {
 									who = prev
 									side = defenders
 								}
-								else = {
-									is_war_participant = {
-										who = prev
-										side = attackers
-									}
+							}
+							else = {
+								is_war_participant = {
+									who = prev
+									side = attackers
 								}
 							}
 						}
@@ -85,11 +85,11 @@ country_event = {
 							who = prev
 							side = defenders
 						}
-						else = {
-							is_war_participant = {
-								who = prev
-								side = attackers
-							}
+					}
+					else = {
+						is_war_participant = {
+							who = prev
+							side = attackers
 						}
 					}
 				}
@@ -638,9 +638,8 @@ country_event = {
 		}
 		
 		
-		this = {
-			save_event_target_as = new_rebels
-		}
+		save_event_target_as = new_rebels
+
 		if = {
 			limit = { 
 				any_country = {

@@ -93,13 +93,13 @@ country_event = {
 									min_jumps = 1
 									max_jumps = 6
 								}
-								else = {
-									distance = {
-										source = prevprevprev
-										use_bypasses = yes
-										min_jumps = 1
-										max_jumps = 4
-									}
+							}
+							else = {
+								distance = {
+									source = prevprevprev
+									use_bypasses = yes
+									min_jumps = 1
+									max_jumps = 4
 								}
 							}
 						}
@@ -123,12 +123,12 @@ country_event = {
 								min_jumps = 1
 								max_jumps = 6
 							}
-							else = {
-								distance = {
-									source = prevprev
-									min_jumps = 1
-									max_jumps = 4
-								}
+						}
+						else = {
+							distance = {
+								source = prevprev
+								min_jumps = 1
+								max_jumps = 4
 							}
 						}
 					}
@@ -148,12 +148,12 @@ country_event = {
 										min_jumps = 1
 										max_jumps = 6
 									}
-									else = {
-										distance = {
-											source = prevprev
-											min_jumps = 1
-											max_jumps = 4
-										}
+								}
+								else = {
+									distance = {
+										source = prevprev
+										min_jumps = 1
+										max_jumps = 4
 									}
 								}
 								is_being_stirred_up = no
@@ -190,12 +190,12 @@ planet_event = {
 								min_jumps = 1
 								max_jumps = 3
 							}
-							else = {
-								distance = {
-									source = root
-									min_jumps = 1
-									max_jumps = 2
-								}
+						}
+						else = {
+							distance = {
+								source = root
+								min_jumps = 1
+								max_jumps = 2
 							}
 						}
 					}
@@ -328,8 +328,8 @@ planet_event = {
 							if = {
 								limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
 								planet_stability < 40
-								else = { planet_stability < 50 }
 							}
+							else = { planet_stability < 50 }
 						}
 					}
 					root = {
@@ -346,8 +346,8 @@ planet_event = {
 								if = {
 									limit = { root.owner = { has_technology = tech_ccrebel_unrest_2 } }
 									planet_stability < 30
-									else = { planet_stability < @stabilitylevel2 }
 								}
+								else = { planet_stability < @stabilitylevel2 }
 							}
 						}
 						root = {
