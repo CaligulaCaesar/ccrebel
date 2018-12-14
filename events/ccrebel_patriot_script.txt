@@ -124,54 +124,6 @@ country_event = {
 	}
 }
 
-#Disabled because the whole thing now works better
-#Random triggers per planet
-planet_event = {
-	id = rebellionscript.401
-	hide_window = yes
-	is_triggered_only = yes
-	
-	immediate = {
-		if = {
-			limit = {
-				unrest > 50
-				NOT = { unrest > 65 }
-			}
-			random = {
-				chance = 33
-				set_timed_planet_flag = {
-					flag = cc_patriot_revolt
-					days = 360
-				}
-				planet_event = { id = rebellionscript.429 days = 10 }
-			}
-		}
-		if = {
-			limit = {
-				unrest > 65
-				NOT = { unrest > 80 }
-			}
-			random = {
-				chance = 67
-				set_timed_planet_flag = {
-					flag = cc_patriot_revolt
-					days = 360
-				}
-				planet_event = { id = rebellionscript.429 days = 10 }
-			}
-		}
-		if = {
-			limit = {
-				unrest > 80
-			}
-			set_timed_planet_flag = {
-				flag = cc_patriot_revolt
-				days = 360
-			}
-			planet_event = { id = rebellionscript.429 days = 10 }
-		}
-	}
-}
 
 #sort out descriptions
 country_event = {
@@ -297,6 +249,11 @@ planet_event = {
 			has_planet_flag = recent_unrest_event 
 			has_planet_flag = revolt_in_progress
 		}
+		
+		any_pop = { 
+			has_modifier = cc_war_with_kin
+		}
+
 		has_ground_combat = no
 		exists = controller
 		controller = { is_same_value = root.owner }
@@ -354,7 +311,7 @@ planet_event = {
 				modifier = {
 					factor = 1.25
 					pop_percentage = {
-						percentage > 0.74
+						percentage > 0.5
 						limit = { 
 							has_modifier = cc_war_with_kin
 						}
@@ -363,7 +320,7 @@ planet_event = {
 				modifier = {
 					factor = 1.25
 					pop_percentage = {
-						percentage = 1
+						percentage = 0.75
 						limit = { 
 							has_modifier = cc_war_with_kin
 						}
@@ -390,7 +347,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		unrest > 50
+		planet_stability < @stabilitylevel2
 		has_planet_flag = cc_patriot_revolt 
 		
 		NOR = {
@@ -399,6 +356,10 @@ planet_event = {
 		}
 		has_ground_combat = no
 		controller = { is_same_value = root.owner }
+		
+		any_pop = { 
+			has_modifier = cc_war_with_kin
+		}
 		
 		owner = { is_at_war = yes }
 	}
@@ -474,29 +435,6 @@ planet_event = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					count_armies = {
-						limit = { owner = { is_same_value = root.owner } }
-						count > 8
-					}
-				}
-				every_owned_pop = {
-					limit = {
-						happiness < 0.25
-						OR = {
-							has_modifier = cc_war_with_kin
-							has_modifier = nationalist_revolt
-						}
-					}
-					planet = {
-						change_variable = {
-							which = ccrebel_planet_armies
-							value = 1
-						}
-					}
-				}
-			}
 			every_owned_pop = {
 				limit = {
 					OR = {
@@ -507,7 +445,7 @@ planet_event = {
 				planet = {
 					change_variable = {
 						which = ccrebel_planet_armies
-						value = 2
+						value = 1
 					}
 				}
 			}
@@ -515,23 +453,23 @@ planet_event = {
 				limit = {
 					check_variable = {
 						which = ccrebel_planet_armies
-						value > 1
+						value > 0.5
 					}
 				}
 				subtract_variable = {
 					which = ccrebel_planet_armies
-					value = 2
+					value = 3
 				}
 				if = {
 					limit = {
 						check_variable = {
 							which = ccrebel_planet_armies
-							value = 1
+							value < 3
 						}
 					}
-					subtract_variable = {
+					set_variable = {
 						which = ccrebel_planet_armies
-						value = 1
+						value = 0
 					}
 				}
 				create_army = {
@@ -552,8 +490,14 @@ planet_event = {
 			}
 		}
 		else = { # no original owner
+			random_owned_pop = {
+				limit = {
+					has_modifier = cc_war_with_kin
+				}
+				save_event_target_as = rebel_pop
+			}
 			create_rebels = {
-				species = this
+				species = event_target:rebel_pop
 				ethos = random
 				authority = random
 				civics = random
@@ -572,29 +516,6 @@ planet_event = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					count_armies = {
-						limit = { owner = { is_same_value = root.owner } }
-						count > 8
-					}
-				}
-				every_owned_pop = {
-					limit = {
-						happiness < 0.25
-						OR = {
-							has_modifier = cc_war_with_kin
-							has_modifier = nationalist_revolt
-						}
-					}
-					planet = {
-						change_variable = {
-							which = ccrebel_planet_armies
-							value = 1
-						}
-					}
-				}
-			}
 			every_owned_pop = {
 				limit = {
 					OR = {
@@ -605,7 +526,7 @@ planet_event = {
 				planet = {
 					change_variable = {
 						which = ccrebel_planet_armies
-						value = 2
+						value = 1
 					}
 				}
 			}
@@ -613,23 +534,23 @@ planet_event = {
 				limit = {
 					check_variable = {
 						which = ccrebel_planet_armies
-						value > 1
+						value > 0.5
 					}
 				}
 				subtract_variable = {
 					which = ccrebel_planet_armies
-					value = 2
+					value = 3
 				}
 				if = {
 					limit = {
 						check_variable = {
 							which = ccrebel_planet_armies
-							value = 1
+							value < 3
 						}
 					}
-					subtract_variable = {
+					set_variable = {
 						which = ccrebel_planet_armies
-						value = 1
+						value = 0
 					}
 				}
 				create_army = {
@@ -683,7 +604,7 @@ country_event = {
 			}
 		}
 		create_leader = {
-			type = ruler
+			class = ruler
 			species = owner_main_species
 			name = random
 			skill = 2

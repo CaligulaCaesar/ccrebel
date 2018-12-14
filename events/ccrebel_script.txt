@@ -64,334 +64,6 @@ country_event = {
 	}
 }
 
-#disabled
-event = {
-	id = rebellionscript.2
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = { always = no }
-	
-	immediate = {
-		every_country = {
-			if = {
-				limit = {
-					has_revolutionary_boost = yes
-					NOT = { has_country_flag = revolutionary_boost }
-				}
-				set_country_flag = revolutionary_boost
-			}
-			if = {
-				limit = {
-					has_country_flag = revolutionary_boost
-					has_modifier = revolutionary_boost_1
-				}
-				remove_modifier = revolutionary_boost_1
-				add_modifier = {
-					modifier = "revolutionary_boost_05"
-					days = 1800
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = revolutionary_boost
-					has_modifier = revolutionary_boost_2
-				}
-				remove_modifier = revolutionary_boost_2
-				add_modifier = {
-					modifier = "revolutionary_boost_1"
-					days = -1
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = revolutionary_boost
-					has_modifier = revolutionary_boost_3
-				}
-				remove_modifier = revolutionary_boost_3
-				add_modifier = {
-					modifier = "revolutionary_boost_2"
-					days = -1
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = revolutionary_boost
-					has_modifier = revolutionary_boost_4
-				}
-				remove_modifier = revolutionary_boost_4
-				add_modifier = {
-					modifier = "revolutionary_boost_3"
-					days = -1
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = revolutionary_boost
-					has_modifier = revolutionary_boost_5
-				}
-				remove_modifier = revolutionary_boost_5
-				add_modifier = {
-					modifier = "revolutionary_boost_4"
-					days = -1
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = revolutionary_boost
-					has_modifier = revolutionary_boost_6
-				}
-				remove_modifier = revolutionary_boost_6
-				add_modifier = {
-					modifier = "revolutionary_boost_5"
-					days = -1
-				}
-			}
-		}
-	}
-}
-
-
-# Clears rebellion buffs if expansion happens
-event = {
-	id = rebellionscript.3
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		every_playable_country = {
-			limit = { 
-				has_revolutionary_boost = yes
-			}
-			if = {
-				limit = {
-					num_owned_planets > 1
-					years_passed < 25
-				}
-				if = { limit = { has_modifier = revolutionary_boost_1 }
-					remove_modifier = revolutionary_boost_1
-				}
-				if = { limit = { has_modifier = revolutionary_boost_2 }
-					remove_modifier = revolutionary_boost_2
-				}
-				if = { limit = { has_modifier = revolutionary_boost_3 }
-					remove_modifier = revolutionary_boost_3
-				}
-				if = { limit = { has_modifier = revolutionary_boost_4 }
-					remove_modifier = revolutionary_boost_4
-				}
-				add_modifier = {
-					modifier = "revolutionary_boost_05"
-					days = 1800
-				}
-			}
-			if = {
-				limit = {
-					years_passed < 50
-					NOT = { years_passed < 25 }
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 1
-						has_modifier = revolutionary_boost_5 
-					}
-					remove_modifier = revolutionary_boost_5
-					add_modifier = {
-						modifier = "revolutionary_boost_3"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 1
-						has_modifier = revolutionary_boost_4 
-					}
-					remove_modifier = revolutionary_boost_4
-					add_modifier = {
-						modifier = "revolutionary_boost_3"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 1
-						has_modifier = revolutionary_boost_3 
-					}
-					remove_modifier = revolutionary_boost_3
-					add_modifier = {
-						modifier = "revolutionary_boost_2"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 2
-						has_modifier = revolutionary_boost_2 
-					}
-					remove_modifier = revolutionary_boost_2
-					add_modifier = {
-						modifier = "revolutionary_boost_1"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 2
-						has_modifier = revolutionary_boost_1 
-					}
-					remove_modifier = revolutionary_boost_1
-					add_modifier = {
-						modifier = "revolutionary_boost_05"
-						days = 1800
-					}
-				}
-			}
-			if = {
-				limit = {
-					years_passed < 80
-					NOT = { years_passed < 50 }
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 1
-						has_modifier = revolutionary_boost_6
-					}
-					remove_modifier = revolutionary_boost_6
-					add_modifier = {
-						modifier = "revolutionary_boost_4"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 1
-						has_modifier = revolutionary_boost_5
-					}
-					remove_modifier = revolutionary_boost_5
-					add_modifier = {
-						modifier = "revolutionary_boost_4"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 2
-						has_modifier = revolutionary_boost_4 
-					}
-					remove_modifier = revolutionary_boost_4
-					add_modifier = {
-						modifier = "revolutionary_boost_3"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 3
-						has_modifier = revolutionary_boost_3 
-					}
-					remove_modifier = revolutionary_boost_3
-					add_modifier = {
-						modifier = "revolutionary_boost_2"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 4
-						has_modifier = revolutionary_boost_2 
-					}
-					remove_modifier = revolutionary_boost_2
-					add_modifier = {
-						modifier = "revolutionary_boost_1"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 4
-						has_modifier = revolutionary_boost_1 
-					}
-					remove_modifier = revolutionary_boost_1
-					add_modifier = {
-						modifier = "revolutionary_boost_05"
-						days = -1
-					}
-				}
-			}
-			if = {
-				limit = {
-					NOT = { years_passed < 80 }
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 1
-						has_modifier = revolutionary_boost_6
-					}
-					remove_modifier = revolutionary_boost_6
-					add_modifier = {
-						modifier = "revolutionary_boost_5"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 2
-						has_modifier = revolutionary_boost_5
-					}
-					remove_modifier = revolutionary_boost_5
-					add_modifier = {
-						modifier = "revolutionary_boost_4"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 3
-						has_modifier = revolutionary_boost_4 
-					}
-					remove_modifier = revolutionary_boost_4
-					add_modifier = {
-						modifier = "revolutionary_boost_3"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 4
-						has_modifier = revolutionary_boost_3 
-					}
-					remove_modifier = revolutionary_boost_3
-					add_modifier = {
-						modifier = "revolutionary_boost_2"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 5
-						has_modifier = revolutionary_boost_2 
-					}
-					remove_modifier = revolutionary_boost_2
-					add_modifier = {
-						modifier = "revolutionary_boost_1"
-						days = -1
-					}
-				}
-				if = {
-					limit = { 
-						num_owned_planets > 6
-						has_modifier = revolutionary_boost_1 
-					}
-					remove_modifier = revolutionary_boost_1
-					add_modifier = {
-						modifier = "revolutionary_boost_05"
-						days = -1
-					}
-				}
-			}
-		}
-	}
-}
 
 
 
@@ -441,21 +113,19 @@ country_event = {
 					}
 				}
 			}
-			this = {
-				save_event_target_as = rebellion
-				
-				set_timed_country_flag = {
-					flag = cc_rebellion
-					days = 360
-				}
-				set_timed_country_flag = {
-					flag = cc_rebellion_marker
-					days = 10
-				}
-				set_relation_flag = {
-					flag = cc_revolted_from
-					who = from.owner
-				}
+			save_event_target_as = rebellion
+			
+			set_timed_country_flag = {
+				flag = cc_rebellion
+				days = 360
+			}
+			set_timed_country_flag = {
+				flag = cc_rebellion_marker
+				days = 10
+			}
+			set_relation_flag = {
+				flag = cc_revolted_from
+				who = from.owner
 			}
 			from = {
 				set_timed_planet_flag = {
@@ -471,57 +141,11 @@ country_event = {
 	}
 }
 
-#planet_event = {
-#	id = rebellionscript.41
-#	hide_window = yes
-#
-#	is_triggered_only = yes
-#
-#	immediate = {
-#		if = {
-#			limit = {
-#				has_planet_flag = rebellion
-#				any_owned_pop = {
-#					is_same_species = owner
-#				}
-#			}
-#			remove_planet_flag = rebellion
-#			
-#			owner = {
-#				set_timed_country_flag = {
-#					flag = cc_rebellion
-#					days = 360
-#				}
-#			}
-#		}
-#	}
-#}
-
-# Post owner switch for on_rebels_take_planet
-#country_event = {
-#	id = rebellionscript.5
-#	hide_window = yes
-#	is_triggered_only = yes
-#	
-#	immediate = {
-#		from = {
-#			save_event_target_as = rebellion
-#		}
-#		event_target:rebelled_against_cc = {
-#			country_event = { id = rebellionscript.6 } # other planets join revolution
-#		}
-#	}
-#}
-
 country_event = {
 	id = rebellionscript.6
 	hide_window = yes
 	is_triggered_only = yes
 	
-#	trigger = {
-#		exists = event_target:rebellion
-#	}
-
 	immediate = {
 		if = {
 			limit = {
@@ -542,8 +166,10 @@ country_event = {
 		every_owned_pop = {
 			if = { 
 				limit = { 
-					is_same_species = event_target:rebellion
-					is_same_species = event_target:rebelled_against_cc
+					OR = {
+						is_same_species = event_target:rebellion
+						is_same_species = event_target:rebelled_against_cc
+					}
 					NOT = { planet = { has_planet_flag = rebellion } }
 					is_enslaved = yes
 				}
@@ -619,20 +245,10 @@ country_event = {
 				}
 			}
 		}
-		country_event = { id = rebellionscript.7 }
-	}
-}
-
-country_event = {
-	id = rebellionscript.7
-	hide_window = yes
-	is_triggered_only = yes
-	
-
-	immediate = {					
 		every_owned_planet = { planet_event = { id = rebellionscript.71 } }
 	}
 }
+
 	
 planet_event = {
 	id = rebellionscript.71
@@ -799,8 +415,7 @@ planet_event = {
 		}
 		if = { # joins rebels
 			limit = { 
-				any_country = {
-					is_country = event_target:rebellion
+				event_target:rebellion = {
 					root = {
 						any_owned_pop = {
 							is_same_species = prevprev
@@ -1033,30 +648,6 @@ planet_event = {
 				}
 			}
 
-			if = {
-				limit = {
-					count_armies = {
-						limit = { owner = { is_same_value = root.owner } }
-						count > 8
-					}
-				}
-				every_owned_pop = {
-					limit = {
-						OR = {
-							has_modifier = nationalist_revolt
-							has_modifier = cc_call_of_liberty_nationalist
-							has_modifier = cc_war_with_kin
-						}
-						happiness < 0.25
-					}
-					planet = {
-						change_variable = {
-							which = ccrebel_planet_armies
-							value = 1
-						}
-					}
-				}
-			}
 			every_owned_pop = {
 				limit = {
 					OR = {
@@ -1064,7 +655,6 @@ planet_event = {
 						has_modifier = cc_call_of_liberty_nationalist
 						has_modifier = cc_war_with_kin
 					}
-					happiness < 0.4
 				}
 				planet = {
 					change_variable = {
@@ -1077,23 +667,23 @@ planet_event = {
 				limit = {
 					check_variable = {
 						which = ccrebel_planet_armies
-						value > 1
+						value > 0.5
 					}
 				}
 				subtract_variable = {
 					which = ccrebel_planet_armies
-					value = 2
+					value = 3
 				}
 				if = {
 					limit = {
 						check_variable = {
 							which = ccrebel_planet_armies
-							value = 1
+							value < 3
 						}
 					}
-					subtract_variable = {
+					set_variable = {
 						which = ccrebel_planet_armies
-						value = 1
+						value = 0
 					}
 				}
 				create_army = {
@@ -1131,8 +721,72 @@ planet_event = {
 					save_event_target_as = rebellion
 				}
 			}
+			random_owned_pop = {
+				limit = {
+					species = { pops_have_happiness = yes }
+				}
+				weights = {
+					base = 1
+					modifier = {
+						mult = 0.5
+						root = {
+							count_pops = {
+								limit = {
+									is_same_species = prev
+								}
+								count < 6
+							}
+						}
+					}
+					modifier = {
+						mult = 2.5
+						root = {
+							count_pops = {
+								limit = {
+									is_same_species = prev
+								}
+								count > 10
+							}
+						}
+					}
+					modifier = {
+						mult = 2.5
+						root = {
+							count_pops = {
+								limit = {
+									is_same_species = prev
+								}
+								count > 20
+							}
+						}
+					}
+					modifier = {
+						mult = 3.5
+						root = {
+							count_pops = {
+								limit = {
+									is_same_species = prev
+								}
+								count > 30
+							}
+						}
+					}
+					modifier = {
+						mult = 5
+						root = {
+							count_pops = {
+								limit = {
+									is_same_species = prev
+								}
+								count > 50
+							}
+						}
+					}
+				}
+				save_event_target_as = ccrebel_rebellion_pop
+			}
 			create_rebels = {
-				species = this
+				species = event_target:ccrebel_rebellion_pop
 				ethos = random
 				authority = random
 				civics = random
@@ -1155,25 +809,6 @@ planet_event = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					count_armies = {
-						limit = { owner = { is_same_value = root.owner } }
-						count > 8
-					}
-				}
-				every_owned_pop = {
-					limit = {
-						happiness < 0.25
-					}
-					planet = {
-						change_variable = {
-							which = ccrebel_planet_armies
-							value = 1
-						}
-					}
-				}
-			}
 			every_owned_pop = {
 				limit = {
 					happiness < 0.4
@@ -1181,7 +816,7 @@ planet_event = {
 				planet = {
 					change_variable = {
 						which = ccrebel_planet_armies
-						value = 2
+						value = 1
 					}
 				}
 			}
@@ -1189,23 +824,23 @@ planet_event = {
 				limit = {
 					check_variable = {
 						which = ccrebel_planet_armies
-						value > 1
+						value > 0.5
 					}
 				}
 				subtract_variable = {
 					which = ccrebel_planet_armies
-					value = 2
+					value = 3
 				}
 				if = {
 					limit = {
 						check_variable = {
 							which = ccrebel_planet_armies
-							value = 1
+							value < 3
 						}
 					}
-					subtract_variable = {
+					set_variable = {
 						which = ccrebel_planet_armies
-						value = 1
+						value = 0
 					}
 				}
 				create_army = {
@@ -1261,7 +896,7 @@ country_event = {
 			}
 		}
 		create_leader = {
-			type = ruler
+			class = ruler
 			species = owner_main_species
 			name = random
 			skill = 2
@@ -1671,6 +1306,70 @@ planet_event = {
 		}
 		
 
+		random_owned_pop = {
+			limit = {
+				species = { pops_have_happiness = yes }
+			}
+			weights = {
+				base = 1
+				modifier = {
+					mult = 0.5
+					root = {
+						count_pops = {
+							limit = {
+								is_same_species = prev
+							}
+							count < 6
+						}
+					}
+				}
+				modifier = {
+					mult = 2.5
+					root = {
+						count_pops = {
+							limit = {
+								is_same_species = prev
+							}
+							count > 10
+						}
+					}
+				}
+				modifier = {
+					mult = 2.5
+					root = {
+						count_pops = {
+							limit = {
+								is_same_species = prev
+							}
+							count > 20
+						}
+					}
+				}
+				modifier = {
+					mult = 3.5
+					root = {
+						count_pops = {
+							limit = {
+								is_same_species = prev
+							}
+							count > 30
+						}
+					}
+				}
+				modifier = {
+					mult = 5
+					root = {
+						count_pops = {
+							limit = {
+								is_same_species = prev
+							}
+							count > 50
+						}
+					}
+				}
+			}
+			save_event_target_as = ccrebel_rebellion_pop
+		}
 		if = {
 			limit = { # has original owner
 				original_owner = no
@@ -1680,10 +1379,8 @@ planet_event = {
 					NOT = { has_ethic = ethic_gestalt_consciousness }
 					root = {
 						is_original_owner = prev
-						any_owned_pop = {
-							is_same_species = prevprev
-						}
 					}
+					is_same_species = event_target:ccrebel_rebellion_pop
 				}
 			}
 			random_country = {
@@ -1693,10 +1390,8 @@ planet_event = {
 					NOT = { has_ethic = ethic_gestalt_consciousness }
 					root = {
 						is_original_owner = prev
-						any_owned_pop = {
-							is_same_species = prevprev
-						}
 					}
+					is_same_species = event_target:ccrebel_rebellion_pop
 				}
 				save_event_target_as = fatherland
 			}
@@ -1708,12 +1403,7 @@ planet_event = {
 				any_country = { # has legitimate owner
 					is_subject = no
 					NOT = { has_ethic = ethic_gestalt_consciousness }
-					root = {
-						pop_percentage = {
-							percentage > 0.35
-							limit = { is_same_species = prev }
-						}
-					}
+					is_same_species = event_target:ccrebel_rebellion_pop
 					OR = {
 						NOT = { has_country_flag = ccrebel_has_existed_5_years }
 						any_owned_planet = {
@@ -1734,12 +1424,7 @@ planet_event = {
 				limit = {
 					is_subject = no
 					NOT = { has_ethic = ethic_gestalt_consciousness }
-					root = {
-						pop_percentage = {
-							percentage > 0.35
-							limit = { is_same_species = prev }
-						}
-					}
+					is_same_species = event_target:ccrebel_rebellion_pop
 					OR = {
 						NOT = { has_country_flag = ccrebel_has_existed_5_years }
 						any_owned_planet = {
@@ -1797,35 +1482,14 @@ planet_event = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					count_armies = {
-						limit = { owner = { is_same_value = root.owner } }
-						count > 8
-					}
-				}
-				every_owned_pop = {
-					limit = {
-						is_same_species = event_target:fatherland
-						happiness < 0.25
-					}
-					planet = {
-						change_variable = {
-							which = ccrebel_planet_armies
-							value = 1
-						}
-					}
-				}
-			}
 			every_owned_pop = {
 				limit = {
 					is_same_species = event_target:fatherland
-					happiness < 0.4
 				}
 				planet = {
 					change_variable = {
 						which = ccrebel_planet_armies
-						value = 2
+						value = 1
 					}
 				}
 			}
@@ -1833,23 +1497,23 @@ planet_event = {
 				limit = {
 					check_variable = {
 						which = ccrebel_planet_armies
-						value > 1
+						value > 0.5
 					}
 				}
 				subtract_variable = {
 					which = ccrebel_planet_armies
-					value = 2
+					value = 3
 				}
 				if = {
 					limit = {
 						check_variable = {
 							which = ccrebel_planet_armies
-							value = 1
+							value < 3
 						}
 					}
-					subtract_variable = {
+					set_variable = {
 						which = ccrebel_planet_armies
-						value = 1
+						value = 0
 					}
 				}
 				create_army = {
@@ -1867,7 +1531,7 @@ planet_event = {
 		}
 		else = {# no original owner
 			create_rebels = {
-				species = this
+				species = event_target:ccrebel_rebellion_pop
 				ethos = random
 				authority = random
 				civics = random
@@ -1890,25 +1554,6 @@ planet_event = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					count_armies = {
-						limit = { owner = { is_same_value = root.owner } }
-						count > 8
-					}
-				}
-				every_owned_pop = {
-					limit = {
-						happiness < 0.25
-					}
-					planet = {
-						change_variable = {
-							which = ccrebel_planet_armies
-							value = 1
-						}
-					}
-				}
-			}
 			every_owned_pop = {
 				limit = {
 					happiness < 0.4
@@ -1916,7 +1561,7 @@ planet_event = {
 				planet = {
 					change_variable = {
 						which = ccrebel_planet_armies
-						value = 2
+						value = 1
 					}
 				}
 			}
@@ -1924,23 +1569,23 @@ planet_event = {
 				limit = {
 					check_variable = {
 						which = ccrebel_planet_armies
-						value > 1
+						value > 0.5
 					}
 				}
 				subtract_variable = {
 					which = ccrebel_planet_armies
-					value = 2
+					value = 3
 				}
 				if = {
 					limit = {
 						check_variable = {
 							which = ccrebel_planet_armies
-							value = 1
+							value < 3
 						}
 					}
-					subtract_variable = {
+					set_variable = {
 						which = ccrebel_planet_armies
-						value = 1
+						value = 0
 					}
 				}
 				create_army = {
@@ -2096,15 +1741,84 @@ planet_event = {
 			}
 		}
 		
+		random_owned_pop = {
+			limit = {
+				is_enslaved = yes
+				species = { pops_have_happiness = yes }
+			}
+			weights = {
+				base = 1
+				modifier = {
+					mult = 0.5
+					root = {
+						count_pops = {
+							limit = {
+								is_enslaved = yes
+								is_same_species = prev
+							}
+							count < 6
+						}
+					}
+				}
+				modifier = {
+					mult = 2.5
+					root = {
+						count_pops = {
+							limit = {
+								is_enslaved = yes
+								is_same_species = prev
+							}
+							count > 10
+						}
+					}
+				}
+				modifier = {
+					mult = 2.5
+					root = {
+						count_pops = {
+							limit = {
+								is_enslaved = yes
+								is_same_species = prev
+							}
+							count > 20
+						}
+					}
+				}
+				modifier = {
+					mult = 3.5
+					root = {
+						count_pops = {
+							limit = {
+								is_enslaved = yes
+								is_same_species = prev
+							}
+							count > 30
+						}
+					}
+				}
+				modifier = {
+					mult = 5
+					root = {
+						count_pops = {
+							limit = {
+								is_enslaved = yes
+								is_same_species = prev
+							}
+							count > 50
+						}
+					}
+				}
+			}
+			save_event_target_as = leader_pop
+		}
+
 		if = {
 			limit = {
 				any_country = {
 					NOT = { is_same_value = root.owner }
 					is_subject = no
 					OR = {
-						root = {
-							is_original_owner = prev
-						}
+						is_same_species = event_target:leader_pop
 						has_country_flag = cc_rebellion
 					}
 #					has_ethic = ethic_fanatic_egalitarian
@@ -2124,9 +1838,7 @@ planet_event = {
 					NOT = { is_same_value = root.owner }
 					is_subject = no
 					OR = {
-						root = {
-							is_original_owner = prev
-						}
+						is_same_species = event_target:leader_pop
 						has_country_flag = cc_rebellion
 					}
 #					has_ethic = ethic_fanatic_egalitarian
@@ -2158,13 +1870,6 @@ planet_event = {
 			set_timed_planet_flag = {
 				flag = cc_revolution
 				days = 60
-			}
-			
-			random_owned_pop = {
-				limit = {
-					is_enslaved = yes
-				}
-				save_event_target_as = leader_pop
 			}
 			
 			create_rebels = {
@@ -2315,35 +2020,14 @@ planet_event = {
 							limit = { army_type = slave_army }
 							set_owner = event_target:rebelling_slaves
 						}
-						if = {
-							limit = {
-								count_armies = {
-									limit = { owner = { is_same_value = root.owner } }
-									count > 8
-								}
-							}
-							every_owned_pop = {
-								limit = {
-									is_enslaved = yes
-									happiness < 0.25
-								}
-								planet = {
-									change_variable = {
-										which = ccrebel_planet_armies
-										value = 2
-									}
-								}
-							}
-						}
 						every_owned_pop = {
 							limit = {
 								is_enslaved = yes
-								happiness < 0.4
 							}
 							planet = {
 								change_variable = {
 									which = ccrebel_planet_armies
-									value = 2
+									value = 1
 								}
 							}
 						}
@@ -2351,7 +2035,7 @@ planet_event = {
 							limit = {
 								check_variable = {
 									which = ccrebel_planet_armies
-									value > 1
+									value > 0.5
 								}
 							}
 							subtract_variable = {
@@ -2379,7 +2063,7 @@ planet_event = {
 						}
 					}
 					create_leader = {
-						type = ruler
+						class = ruler
 						species = owner_main_species
 						name = random
 						skill = 2
@@ -2545,35 +2229,14 @@ planet_event = {
 							limit = { army_type = slave_army }
 							set_owner = event_target:rebelling_slaves
 						}
-						if = {
-							limit = {
-								count_armies = {
-									limit = { owner = { is_same_value = root.owner } }
-									count > 8
-								}
-							}
-							every_owned_pop = {
-								limit = {
-									is_enslaved = yes
-									happiness < 0.25
-								}
-								planet = {
-									change_variable = {
-										which = ccrebel_planet_armies
-										value = 2
-									}
-								}
-							}
-						}
 						every_owned_pop = {
 							limit = {
 								is_enslaved = yes
-								happiness < 0.4
 							}
 							planet = {
 								change_variable = {
 									which = ccrebel_planet_armies
-									value = 2
+									value = 1
 								}
 							}
 						}
@@ -2581,7 +2244,7 @@ planet_event = {
 							limit = {
 								check_variable = {
 									which = ccrebel_planet_armies
-									value > 1
+									value > 0.5
 								}
 							}
 							subtract_variable = {
@@ -2609,7 +2272,7 @@ planet_event = {
 						}
 					}
 					create_leader = {
-						type = ruler
+						class = ruler
 						species = owner_main_species
 						name = random
 						skill = 2

@@ -1125,35 +1125,14 @@ planet_event = {
 							limit = { army_type = slave_army }
 							set_owner = event_target:rebelling_slaves
 						}
-						if = {
-							limit = {
-								count_armies = {
-									limit = { owner = { is_same_value = root.owner } }
-									count > 8
-								}
-							}
-							every_owned_pop = {
-								limit = {
-									is_enslaved = yes
-									happiness < 0.25
-								}
-								planet = {
-									change_variable = {
-										which = ccrebel_planet_armies
-										value = 2
-									}
-								}
-							}
-						}
 						every_owned_pop = {
 							limit = {
 								is_enslaved = yes
-								happiness < 0.4
 							}
 							planet = {
 								change_variable = {
 									which = ccrebel_planet_armies
-									value = 3
+									value = 1
 								}
 							}
 						}
@@ -1161,7 +1140,7 @@ planet_event = {
 							limit = {
 								check_variable = {
 									which = ccrebel_planet_armies
-									value > 1
+									value > 0.5
 								}
 							}
 							subtract_variable = {
@@ -1189,7 +1168,7 @@ planet_event = {
 						}
 					}
 					create_leader = {
-						type = ruler
+						class = ruler
 						species = owner_main_species
 						name = random
 						skill = 2
@@ -1347,35 +1326,14 @@ planet_event = {
 							set_owner = event_target:rebelling_slaves
 						}
 
-						if = {
-							limit = {
-								count_armies = {
-									limit = { owner = { is_same_value = root.owner } }
-									count > 8
-								}
-							}
-							every_owned_pop = {
-								limit = {
-									is_enslaved = yes
-									happiness < 0.25
-								}
-								planet = {
-									change_variable = {
-										which = ccrebel_planet_armies
-										value = 2
-									}
-								}
-							}
-						}
 						every_owned_pop = {
 							limit = {
 								is_enslaved = yes
-								happiness < 0.4
 							}
 							planet = {
 								change_variable = {
 									which = ccrebel_planet_armies
-									value = 3
+									value = 1
 								}
 							}
 						}
@@ -1383,7 +1341,7 @@ planet_event = {
 							limit = {
 								check_variable = {
 									which = ccrebel_planet_armies
-									value > 1
+									value > 0.5
 								}
 							}
 							subtract_variable = {
@@ -1411,7 +1369,7 @@ planet_event = {
 						}
 					}
 					create_leader = {
-						type = ruler
+						class = ruler
 						species = owner_main_species
 						name = random
 						skill = 2

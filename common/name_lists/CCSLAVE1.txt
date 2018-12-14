@@ -67,6 +67,10 @@ CCSLAVE1 = {
 		assault_army = {
 			sequential_name = "%O% Liberation Army"
 		}
+			
+		occupation_army = {
+			sequential_name = "%O% Guardians of Liberty"
+		}
 		
 		slave_army = {
 			sequential_name = "%O% Cognitive Dissonance"
@@ -82,14 +86,6 @@ CCSLAVE1 = {
 		
 		robotic_defense_army = {
 			sequential_name = "%O% Droid Guardians of Liberty"
-		}
-
-		android_army = {
-			sequential_name = "%O% Android Liberators"
-		}
-		
-		android_defense_army = {
-			sequential_name = "%O% Android Guardians of Liberty"
 		}
 		
 		psionic_army = {

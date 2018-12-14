@@ -6,7 +6,10 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
-	trigger = { years_passed > 30 }
+	trigger = {
+		years_passed > 30
+		always = no #until further testing
+	}
 	
 	immediate = {
 		every_playable_country = {

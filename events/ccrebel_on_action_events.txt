@@ -22,7 +22,7 @@ country_event = {
 		while = {
 			count = 3
 			create_leader = {
-				type = scientist
+				class = scientist
 				species = owner_main_species
 				name = random
 				skill = 1
@@ -33,7 +33,7 @@ country_event = {
 			}
 		}
 		create_leader = {
-			type = governor
+			class = governor
 			species = owner_main_species
 			name = random
 			skill = 1
@@ -43,7 +43,7 @@ country_event = {
 			add_random_leader_trait = yes
 		}
 		create_leader = {
-			type = admiral
+			class = admiral
 			species = owner_main_species
 			name = random
 			skill = 1
@@ -53,7 +53,7 @@ country_event = {
 			add_random_leader_trait = yes
 		}
 		create_leader = {
-			type = general
+			class = general
 			species = owner_main_species
 			name = random
 			skill = 1
@@ -116,10 +116,15 @@ country_event = {
 				}
 			}
 		}
-		add_minerals = 200 # Should be atleast the required amount for a spaceport
-		add_energy = 200
-		add_influence = 250
 		
+		add_resource = {
+			minerals = 1000
+			energy = 1000
+			alloys = 500
+			consumer_goods = 500
+			food = 500
+			influence = 500
+		}
 		
 		#putting this here for the hell of it
 		
@@ -221,353 +226,223 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
+	trigger = {
+		NOT = { has_planet_flag = ccrebel_rebellion_transfer }
+		owner = { 
+			OR = {
+				has_policy_flag = appropriation_allowed	
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}		
+	}
+
 	immediate = {
-		if = {
-			limit = {
-				any_tile = { has_empire_unique_building = yes }
-			}
-			every_tile = {
-				limit = {
-					has_empire_unique_building = yes
-				}
-				remove_building = yes
-			}
-		}
-		
-		# Land Appropriation
-		if = {
-			limit = {
-				NOT = { has_planet_flag = ccrebel_rebellion_transfer }
-				owner = { 
-					OR = {
-						has_policy_flag = appropriation_allowed	
-						AND = {
-							has_ethic = ethic_gestalt_consciousness
-							NOT = { has_valid_civic = civic_machine_servitor }
-						}
-						AND = {
-							NOT = { has_authority = auth_machine_intelligence }
-							root = {
-								any_owned_pop = {
-									has_trait = trait_machine_unit
+		random_list = {
+			25 = { 
+				while = {
+					count = 5				
+					if = {
+						limit = {
+							OR = {
+								num_pops > 10
+								AND = {
+									num_pops > 3
+									free_housing < 1								
 								}
 							}
+						}				
+						random_owned_pop = {
+							limit = {
+								is_sapient = yes
+								has_citizenship_rights = no
+								NOT = { has_citizenship_type = { type = citizenship_assimilation } }								
+							}
+							pop_event = { id = refugees.4 }
+							root = {
+								change_variable = {
+									which = land_appropriated
+									value = 1
+								}	
+							}						
 						}
-					}	
+					}
 				}
-				count_tile = {
-					limit = { has_pop = no has_blocker = no }
-					count < 5
-				}				
 			}
-			while = {
-				limit = {
-					count_tile = {
-						limit = { has_pop = no has_blocker = no }
-						count < 5
-					}				
-					any_owned_pop = {
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
+			25 = { 
+				while = {
+					count = 4				
+					if = {
+						limit = {
+							OR = {
+								num_pops > 10
+								AND = {
+									num_pops > 3
+									free_housing < 1								
+								}
 							}
+						}					
+						random_owned_pop = {
+							limit = {
+								is_sapient = yes
+								has_citizenship_rights = no
+								NOT = { has_citizenship_type = { type = citizenship_assimilation } }								
+							}
+							pop_event = { id = refugees.4 }
+							root = {
+								change_variable = {
+									which = land_appropriated
+									value = 1
+								}	
+							}													
 						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 5
-							}
-						}				
 					}
-				}	
-				random_owned_pop = {
-					limit = { 
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 5
-							}
-						}	
-					}							
-					random_list = {
-						66 = { pop_event = { id = refugees.4 } }
-						33 = { kill_pop = yes }
-					}	
-					set_global_flag = land_appropriated
-				}				
+				}
 			}	
-			while = {
-				limit = {
-					count_tile = {
-						limit = { has_pop = no has_blocker = no }
-						count < 5
-					}				
-					any_owned_pop = {
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
+			25 = { 
+				while = {
+					count = 3				
+					if = {
+						limit = {
+							OR = {
+								num_pops > 10
+								AND = {
+									num_pops > 3
+									free_housing < 1								
+								}
+							}
+						}					
+						random_owned_pop = {
+							limit = {
+								is_sapient = yes
+								has_citizenship_rights = no
+								NOT = { has_citizenship_type = { type = citizenship_assimilation } }								
+							}
+							pop_event = { id = refugees.4 }
+							root = {
+								change_variable = {
+									which = land_appropriated
+									value = 1
+								}	
 							}
 						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 4
-							}
-						}				
 					}
-				}	
-				random_owned_pop = {
-					limit = { 
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 4
-							}
-						}	
-					}							
-					random_list = {
-						66 = { pop_event = { id = refugees.4 } }
-						33 = { kill_pop = yes }
-					}	
-					set_global_flag = land_appropriated
-				}				
+				}
 			}				
-			while = {
-				limit = {
-					count_tile = {
-						limit = { has_pop = no has_blocker = no }
-						count < 5
-					}				
-					any_owned_pop = {
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 3
-							}
-						}				
-					}
-				}	
-				random_owned_pop = {
-					limit = { 
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 3
-							}
-						}	
-					}							
-					random_list = {
-						66 = { pop_event = { id = refugees.4 } }
-						33 = { kill_pop = yes }
-					}	
-					set_global_flag = land_appropriated
-				}				
-			}
-			while = {
-				limit = {
-					count_tile = {
-						limit = { has_pop = no has_blocker = no }
-						count < 5
-					}				
-					any_owned_pop = {
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 2
-							}
-						}				
-					}
-				}	
-				random_owned_pop = {
-					limit = { 
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 2
-							}
-						}	
-					}							
-					random_list = {
-						66 = { pop_event = { id = refugees.4 } }
-						33 = { kill_pop = yes }
-					}	
-					set_global_flag = land_appropriated
-				}				
-			}	
-			while = {
-				limit = {
-					count_tile = {
-						limit = { has_pop = no has_blocker = no }
-						count < 5
-					}				
-					any_owned_pop = {
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 1
-							}
-						}				
-					}
-				}	
-				random_owned_pop = {
-					limit = { 
-						OR = {
-							root.owner = { has_policy_flag = appropriation_allowed }
-							AND = {
-								root.owner = { NOT = { has_authority = auth_machine_intelligence } }
-								has_trait = trait_machine_unit							
-							}
-						}
-						is_sapient = yes
-						has_citizenship_rights = no
-						NOT = { has_citizenship_type = { type = citizenship_assimilation } }
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 1
-							}
-						}	
-					}							
-					random_list = {
-						66 = { pop_event = { id = refugees.4 } }
-						33 = { kill_pop = yes }
-					}	
-					set_global_flag = land_appropriated
-				}				
-			}
-			if = {
-				limit = { has_global_flag = land_appropriated }
-				add_modifier = {
-					modifier = "land_appropriation"
-					years = 5
-				}	
-				remove_global_flag = land_appropriated
-			}
-		
 		}
 		
-		# Servitors
-		if = {
+		while = {
 			limit = {
-				owner = { has_valid_civic = civic_machine_servitor }			
-				count_tile = {
-					limit = { has_pop = no has_blocker = no }
-					count < 10
-				}				
+				check_variable = {
+					which = land_appropriated
+					value > 0
+				}			
 			}
-			while = {
-				limit = {
-					count_tile = {
-						limit = { has_pop = no has_blocker = no }
-						count < 10
-					}				
-					any_owned_pop = {
-						is_robot_pop = no
-						is_sapient = yes
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 4
+			
+			change_variable = {
+				which = land_appropriated
+				value = -1
+			}
+			
+			owner = {
+				if = {
+					limit = {
+						any_owned_planet = {
+							free_housing < 1
+							any_owned_pop = {
+								is_sapient = yes
+								has_citizenship_rights = yes	
+								OR = {
+									is_pop_category = worker
+									is_pop_category = simple_drone
+								}
 							}
 						}				
 					}
-				}	
-				random_owned_pop = {
-					limit = { 
-						is_robot_pop = no
-						is_sapient = yes
-						root = {
-							count_pops = {
-								limit = { is_same_species = prev }
-								count > 4
+					
+					random_owned_planet = {
+						limit = {
+							free_housing < 1
+							any_owned_pop = {
+								is_sapient = yes
+								has_citizenship_rights = yes
+								OR = {
+									is_pop_category = worker
+									is_pop_category = simple_drone
+								}								
+							}				
+						}
+
+						random_owned_pop = {
+							limit = {
+								is_sapient = yes
+								has_citizenship_rights = yes
+								OR = {
+									is_pop_category = worker
+									is_pop_category = simple_drone
+								}								
 							}
-						}	
-					}							
-					kill_pop = yes		
-				}				
+							
+							resettle_pop = {
+								pop = this
+								planet = root
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						any_owned_planet = {
+							any_owned_pop = {
+								is_sapient = yes
+								has_citizenship_rights = yes	
+								OR = {
+									is_pop_category = worker
+									is_pop_category = simple_drone
+								}								
+							}
+						}				
+					}
+
+					random_owned_planet = {
+						limit = {
+							any_owned_pop = {
+								is_sapient = yes
+								has_citizenship_rights = yes	
+								OR = {
+									is_pop_category = worker
+									is_pop_category = simple_drone
+								}								
+							}				
+						}
+
+						random_owned_pop = {
+							limit = {
+								is_sapient = yes
+								has_citizenship_rights = yes	
+								OR = {
+									is_pop_category = worker
+									is_pop_category = simple_drone
+								}								
+							}
+							
+							resettle_pop = {
+								pop = this
+								planet = root
+							}
+						}
+					}					
+				}
+			}			
+		}
+		
+		if = {
+			limit = {
+				owner = { NOT = { has_ethic = ethic_gestalt_consciousness } }
 			}
-			add_organic_sanctuaries = yes
-			upgrade_organic_sanctuaries = yes
-		}		
+			add_modifier = {
+				modifier = "land_appropriation"
+				years = 5
+			}	
+		}			
 	}
 }
