@@ -95,38 +95,34 @@ event = {
 								max_distance <= 95
 							}
 						}
-						else = {
-							if = {
-								limit = {
-									owner = { has_technology = tech_hyper_drive_3 }
-								}
-								NOT = {
-									distance = {
-										source = prev.capital_scope
-										max_distance <= 80
-									}
-								}
-								else = {
-									if = {
-										limit = {
-											owner = { has_technology = tech_hyper_drive_2 }
-										}
-										NOT = {
-											distance = {
-												source = prev.capital_scope
-												max_distance <= 65
-											}
-										}
-										else = {
-											NOT = {
-												distance = {
-													source = prev.capital_scope
-													max_distance <= 40
-												}
-											}
-										}
-									}
-								}
+					}
+					else_if = {
+						limit = {
+							owner = { has_technology = tech_hyper_drive_3 }
+						}
+						NOT = {
+							distance = {
+								source = prev.capital_scope
+								max_distance <= 80
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							owner = { has_technology = tech_hyper_drive_2 }
+						}
+						NOT = {
+							distance = {
+								source = prev.capital_scope
+								max_distance <= 65
+							}
+						}
+					}
+					else = {
+						NOT = {
+							distance = {
+								source = prev.capital_scope
+								max_distance <= 40
 							}
 						}
 					}
@@ -153,36 +149,31 @@ event = {
 							source = prev.capital_scope
 							max_distance <= 95
 						}
-						else = {
-							if = {
-								limit = {
-									owner = { has_technology = tech_hyper_drive_3 }
-								}
-								distance = {
-									source = prev.capital_scope
-									max_distance <= 80
-								}
-								else = {
-									if = {
-										limit = {
-											owner = { has_technology = tech_hyper_drive_2 }
-										}
-										distance = {
-											source = prev.capital_scope
-											max_distance <= 65
-										}
-										else = {
-											distance = {
-												source = prev.capital_scope
-												max_distance <= 40
-											}
-										}
-									}
-								}
-							}
+					}
+					else_if = {
+						limit = {
+							owner = { has_technology = tech_hyper_drive_3 }
+						}
+						distance = {
+							source = prev.capital_scope
+							max_distance <= 80
 						}
 					}
-					
+					else_if = {
+						limit = {
+							owner = { has_technology = tech_hyper_drive_2 }
+						}
+						distance = {
+							source = prev.capital_scope
+							max_distance <= 65
+						}
+					}
+					else = {
+						distance = {
+							source = prev.capital_scope
+							max_distance <= 40
+						}
+					}
 				}
 				add_modifier = {
 					modifier = cc_empire_core
@@ -208,38 +199,34 @@ event = {
 								max_distance <= 95
 							}
 						}
-						else = {
-							if = {
-								limit = {
-									owner = { has_technology = tech_hyper_drive_3 }
-								}
-								NOT = {
-									distance = {
-										source = prev.capital_scope
-										max_distance <= 80
-									}
-								}
-								else = {
-									if = {
-										limit = {
-											owner = { has_technology = tech_hyper_drive_2 }
-										}
-										NOT = {
-											distance = {
-												source = prev.capital_scope
-												max_distance <= 65
-											}
-										}
-										else = {
-											NOT = {
-												distance = {
-													source = prev.capital_scope
-													max_distance <= 40
-												}
-											}
-										}
-									}
-								}
+					}
+					else_if = {
+						limit = {
+							owner = { has_technology = tech_hyper_drive_3 }
+						}
+						NOT = {
+							distance = {
+								source = prev.capital_scope
+								max_distance <= 80
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							owner = { has_technology = tech_hyper_drive_2 }
+						}
+						NOT = {
+							distance = {
+								source = prev.capital_scope
+								max_distance <= 65
+							}
+						}
+					}
+					else = {
+						NOT = {
+							distance = {
+								source = prev.capital_scope
+								max_distance <= 40
 							}
 						}
 					}
