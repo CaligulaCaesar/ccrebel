@@ -472,3 +472,8 @@ ccrebel_unrest_hard_name:0 "$ccrebel_unrest_hard$"
 ccrebel_unrest_hard_desc:0 "The player is given +30 unrest, all AIs are given +20 unrest."
 
 unrest.4220.desc.not_orowner:0 "Greetings, [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nWe recently broke free of the clutches of the [rebelled_against.GetName]. We are a young nation, and still an easy target for more... predatory powers. Many of us [root.GetSpeciesNamePlural] see the [Root.GetName] as our true fatherland. We would be glad to join your state."
+
+mod_planets_unity_produces_add:0 "$mod_country_unity_produces_mult$"
+mod_planets_influence_produces_add:0 "$mod_country_influence_produces_mult$"
+mod_planets_minerals_produces_add:0 "$mod_country_minerals_produces_mult$"
+mod_planets_energy_produces_add:0 "$mod_country_energy_produces_mult$"

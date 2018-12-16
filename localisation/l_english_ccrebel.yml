@@ -479,3 +479,9 @@ ccrebel_unrest_vanilla_desc:0 "No bonuses or maluses are given."
 ccrebel_unrest_hard:0 "Hard Mode"
 ccrebel_unrest_hard_name:0 "$ccrebel_unrest_hard$"
 ccrebel_unrest_hard_desc:0 "The player is given +30 unrest, all AIs are given +20 unrest."
+
+
+mod_planets_unity_produces_add:0 "$mod_country_unity_produces_mult$"
+mod_planets_influence_produces_add:0 "$mod_country_influence_produces_mult$"
+mod_planets_minerals_produces_add:0 "$mod_country_minerals_produces_mult$"
+mod_planets_energy_produces_add:0 "$mod_country_energy_produces_mult$"
