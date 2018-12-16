@@ -57,6 +57,12 @@ tech_ccrebel_unrest_1 = {
 	prerequisites = { "tech_colonial_centralization" }
 	weight = @tier2weight2
 
+	prereqfor_desc = {
+		custom = {
+			title = "feature_ccrebel_sow_unrest"
+			desc = "feature_ccrebel_sow_unrest_desc"
+		}
+	}
 	
 	# unlocks sow unrest edict
 	

@@ -1,4 +1,4 @@
-﻿l_spanish:
+﻿l_simp_chinese:
 
 #Rebellion Modifiers
 revolutionary_boost_05:0 "Rebellion Starter Bonus"
@@ -111,16 +111,16 @@ rebellionscript.43.desc:0 "The [fatherland.GetSpeciesName] populace on [Root.Get
 rebellionscript.46.name:0 "The Victor's Demands"
 rebellionscript.46.desc:0 "You have been defeated. Those planets are ours. Resistance will not be tolerated."
 rebellionscript.46.option:0 "We admit defeat."
-rebellionscript.46.option.tooltip:0 "Planets that seceded to the [Root.GetName] from the [cc_war_victor.GetName] and their allies via patriotic revolts during the recent war will be given back."
+#rebellionscript.46.option.tooltip:0 "Planets that seceded to the [Root.GetName] from the [cc_war_victor.GetName] and their allies via patriotic revolts during the recent war will be given back."
 
-rebellionscript.461.name:0 "Patriot Revolts during the War"
-rebellionscript.461.desc:0 "During the war, some of our planets defected to the [cc_war_loser.GetName]. However, we were able to overcome the [cc_war_loser.GetSpeciesAdj] fleets and defeat them. We had never consented to recognise these defections, so they were left out of the peace deal. Instead, our negotiating team has demanded that our planets be returned to us immediately, separately to the main peace deal." 
-rebellionscript.461.option:0 "Good"
+#rebellionscript.461.name:0 "Patriot Revolts during the War"
+#rebellionscript.461.desc:0 "During the war, some of our planets defected to the [cc_war_loser.GetName]. However, we were able to overcome the [cc_war_loser.GetSpeciesAdj] fleets and defeat them. We had never consented to recognise these defections, so they were left out of the peace deal. Instead, our negotiating team has demanded that our planets be returned to us immediately, separately to the main peace deal." 
+#rebellionscript.461.option:0 "Good"
 
-rebellionscript.462.name:0 "The Victor's Demands"
-rebellionscript.462.desc:0 "We dare not disobey you. You can have the planets back. May you choke on them!"
-rebellionscript.462.option:0 "Good"
-rebellionscript.462.option.tooltip:0 "Planets lost to the [cc_war_loser.GetName] via patriot revolts during the recent war will be ceded back."
+#rebellionscript.462.name:0 "The Victor's Demands"
+#rebellionscript.462.desc:0 "We dare not disobey you. You can have the planets back. May you choke on them!"
+#rebellionscript.462.option:0 "Good"
+#rebellionscript.462.option.tooltip:0 "Planets lost to the [cc_war_loser.GetName] via patriot revolts during the recent war will be ceded back."
 
 
 
@@ -148,13 +148,13 @@ cc_slaves_rebel.8.desc:0 "Inspired by the example (and clandestine activists) of
 fighting_for_liberty:0 "Fighting for Liberty"
 fighting_for_liberty_desc:0 "The Free Republic is at war with a Slaver Empire. It will not give up its Liberty easily.\n\n"
 
-war_demand_renounce_free_republic_header:1 "§YCounter-Revolution§!"
-war_demand_renounce_free_republic_subtext:0 "[parameter:country.GetName]"
-war_demand_renounce_free_republic_tooltip_header:0 "$war_demand_free_republic_header$"
-war_demand_renounce_free_republic_tooltip_content:1 "Enforcing a Counter-Revolution on [parameter:country.GetName] will force them to give up their §Y$civic_broken_shackles$§! and §Y$civic_free_republic$§! Civics, and adopt a §Y$auth_dictatorial$§! Government. The enforcer will also gain §Y$unity$§!."
-war_demand_renounce_free_republic_tooltip_proper_header:0 "$war_demand_free_republic_header$"
-war_demand_renounce_free_republic_tooltip_proper_content:0 "Enforce a Counter-Revolution on [parameter:country.GetName]."
-war_demand_renounce_free_republic_no_planets:1 "All the Empire's planets will be ceded, nothing left to change form of government."
+#war_demand_renounce_free_republic_header:1 "§YCounter-Revolution§!"
+#war_demand_renounce_free_republic_subtext:0 "[parameter:country.GetName]"
+#war_demand_renounce_free_republic_tooltip_header:0 "$war_demand_free_republic_header$"
+#war_demand_renounce_free_republic_tooltip_content:1 "Enforcing a Counter-Revolution on [parameter:country.GetName] will force them to give up their §Y$civic_broken_shackles$§! and §Y$civic_free_republic$§! Civics, and adopt a §Y$auth_dictatorial$§! Government. The enforcer will also gain §Y$unity$§!."
+#war_demand_renounce_free_republic_tooltip_proper_header:0 "$war_demand_free_republic_header$"
+#war_demand_renounce_free_republic_tooltip_proper_content:0 "Enforce a Counter-Revolution on the  [parameter:country.GetName]."
+#war_demand_renounce_free_republic_no_planets:1 "All the Empire's planets will be ceded, nothing left to change form of government."
 
 
 
@@ -341,12 +341,12 @@ tech_ccrebel_unrest_2:0 "Rebellious Persuasions"
 tech_ccrebel_unrest_2_desc:0 "Better techniques offer improved efficiency in espionage missions, allowing for a greater range and effectiveness in attempts to sow unrest in enemy planets."
 
 #Notification that someone is sowing unrest
-ccrebel_sow_unrest.1.name:0 "[ccrebel_sowing_unrest_1.GetName] is Sowing Unrest in our Planets"
+ccrebel_sow_unrest.1.name:0 "The [ccrebel_sowing_unrest_1.GetName] is Sowing Unrest in our Planets"
 ccrebel_sow_unrest.1.desc:0 "Word has come to us that the deceitful and treacherous [ccrebel_sowing_unrest_1.GetSpeciesNamePlural] are seeking to spread unrest to [ccrebel_sow_unrest_target.GetName] and other nearby planets. It is thought that they are using [ccrebel_sow_unrest_source.GetName] as their base from which to propagate their message of hate."
 ccrebel_sow_unrest.1.option:0 "They will pay for this."
 
 #Event for deciding whether to subsidise a rebellion
-ccrebel_sow_unrest.4.name:0 "[ccrebel_subsidised_rebels.GetName] looks to us for Support"
+ccrebel_sow_unrest.4.name:0 "The [ccrebel_subsidised_rebels.GetName] looks to us for Support"
 ccrebel_sow_unrest.4.desc:0 "Greetings [Root.GetRulerTitle] [Root.GetRulerName]. We are the [ccrebel_subsidised_rebels.GetName], from [ccrebel_subsidised_rebels.Capital.GetName]. Your support was of invaluable help to us during our revolution against the despised [ccrebel_revolted_from_country.GetName]. However, we are far from safe yet: We are a new nation, and the [ccrebel_revolted_from_country.GetName] still threatens us with their superior resources. Are you able to provide us with any support?"
 ccrebel_sow_unrest.4.desc.not_sown_unrest:0 "Greetings [Root.GetRulerTitle] [Root.GetRulerName]. We are the [ccrebel_subsidised_rebels.GetName], from [ccrebel_subsidised_rebels.Capital.GetName]. We recently revolted from your enemies, the despised [ccrebel_revolted_from_country.GetName], which still threatens us with their superior resources. In the interests of pursuing the struggle against them further, are you able to provide us with any support?"
 ccrebel_sow_unrest.4.option.A:0 "Give them a large subsidy."
@@ -426,14 +426,14 @@ name_list_CCSLAVE1:0 "$FLAG_CATEGORY_slave$"
 opinion_rebelled_from_rival:0 "Rebelled against our Rival"
 
 cc_vulnerability_tooltip:0 "The populace can be reassured either by the state having no militarily overwhelming hostile states or by having as large a fleet as the state can sustain (>90% of naval cap)."
-cc_vulnerability_pops_tooltip:0 "£pops Pops with grievances gain unhappiness modifiers proportional to their grievance and state vulnerability."
+cc_vulnerability_pops_tooltip:0 "£pops  Pops with grievances gain unhappiness modifiers proportional to their grievance and state vulnerability."
 cc_state_vulnerability_removed:0 "All state vulnerability modifiers removed."
 
 ccrebel.4200.tooltip:0 "Rebel armies will attempt to seize the planet."
 rebellionscript.41.tooltip:0 "[cc_patriot_pop.GetSpeciesNamePlural] in the [root.GetName] gain the modifier §R$cc_war_with_kin$§! (-30% happiness).\nPlanets with large [cc_patriot_pop.GetSpeciesAdj] populations §Rmay try to revolt§!."
 cc_slaves_rebel.4.tooltip:0 "Slave populations on planets near the [cc_freed_slaves.GetName] gain the modifier §R$cc_call_of_liberty$§! (-15% happiness)."
 cc_slaves_rebel.7.tooltip:0 "A slave revolt may be imminent."
-rebellionscript.14.tooltip:0 "Dissident £pops Pops gain unhappiness modifiers.\nPlanets with 50 unrest and higher §Rmay try to revolt§!."
+rebellionscript.14.tooltip:0 "Dissident £pops  Pops gain unhappiness modifiers.\nPlanets with 50 unrest and higher §Rmay try to revolt§!."
 
 effect_every_neighbor_country:0 "Every Neighbouring Country"
 
@@ -445,6 +445,10 @@ war_goal_wg_ccrebel_independence_desc:0 "$war_goal_wg_independence_desc$"
 wg_ccrebel_independence_status_quo:0 "$wg_independence_status_quo$ If the [Root.GetName] is being backed by a larger empire, it will secede to it."
 wg_ccrebel_independence_accept:0 "$wg_independence_accept$ If the [Root.GetName] is being backed by a larger empire, it will secede to it."
 
+
+
+unrest.4220.desc.not_orowner:0 "Greetings, [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nWe recently broke free of the clutches of the [rebelled_against.GetName]. We are a young nation, and still an easy target for more... predatory powers. Many of us [root.GetSpeciesNamePlural] see the [Root.GetName] as our true fatherland. We would be glad to join your state."
+ 
 ccrebel_wg_script.3.name:0 "The [from.GetName]"
 ccrebel_wg_script.3.desc:0 "Following the successful conclusion of our war with the [fromfrom.GetName], the [from.GetSpeciesAdj] rebels that had revolted from them have seceded and joined our state."
 ccrebel_wg_script.4.name:0 "The [fromfrom.GetName]"
@@ -475,5 +479,3 @@ ccrebel_unrest_vanilla_desc:0 "No bonuses or maluses are given."
 ccrebel_unrest_hard:0 "Hard Mode"
 ccrebel_unrest_hard_name:0 "$ccrebel_unrest_hard$"
 ccrebel_unrest_hard_desc:0 "The player is given +30 unrest, all AIs are given +20 unrest."
-
-unrest.4220.desc.not_orowner:0 "Greetings, [Root.GetRulerTitle] [Root.GetRulerName]. I am [From.GetRulerTitle] [From.GetRulerName] of the [From.GetName], and I speak for the people of [From.From.GetName].\n\nWe recently broke free of the clutches of the [rebelled_against.GetName]. We are a young nation, and still an easy target for more... predatory powers. Many of us [root.GetSpeciesNamePlural] see the [Root.GetName] as our true fatherland. We would be glad to join your state."

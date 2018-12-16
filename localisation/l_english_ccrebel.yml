@@ -190,8 +190,8 @@ cc_terror_state_desc:0 "The state is deploying its considerable resources - and 
 
 #------Sowing Unrest
 
-edict_ccrebel_sow_unrest:0 "Sow Unrest"
-edict_ccrebel_sow_unrest_desc:0 "Establish this planet as a base through which to sow unrest in nearby enemy planets.\n\nNotes on usage:\n-This edict will add unrest to every planet that is within 4 hyperlane jumps (6 if you have researched §G$tech_ccrebel_unrest_2$§!) and is owned by an empire that you are not friendly towards, provided the planet has £pops  Pops that are affected by happiness. It will also add an unhappiness modifier to £pops  Pops of your empire's species.\n-If you have researched £society  Tech §G$tech_ccrebel_unrest_2$§!, it will also create ethics attraction in favour of your empire's main ethic (if it is not the target's ethic), and £pops  Pops of that ethic will be given an unhappiness modifier. If you are $ethic_fanatic_egalitarian$, or if you are $ethic_fanatic_xenophile$ and your target is $ethic_xenophobe$, this also applies to slaves."
+ccrebel_sow_unrest:0 "Sow Unrest"
+ccrebel_sow_unrest_desc:0 "Establish this planet as a base through which to sow unrest in nearby enemy planets.\n\nNotes on usage:\n-This decision will add unrest to every planet that is within 4 hyperlane jumps (6 if you have researched §G$tech_ccrebel_unrest_2$§!) and is owned by an empire that you are not friendly towards, provided the planet has £pops  Pops that are affected by happiness. It will also add an unhappiness modifier to £pops  Pops of your empire's species.\n-If you have researched £society  Tech §G$tech_ccrebel_unrest_2$§!, it will also create ethics attraction in favour of your empire's main ethic (if it is not the target's ethic), and £pops  Pops of that ethic will be given an unhappiness modifier. If you are $ethic_fanatic_egalitarian$, or if you are $ethic_fanatic_xenophile$ and your target is $ethic_xenophobe$, this also applies to slaves."
 
 opinion_ccrebel_stirring_up:0 "Stirring Up Unrest in our Planets"
 opinion_ccrebel_subsidised:0 "Subsidising Us"
@@ -392,8 +392,11 @@ ccrebel_sow_unrest.71.name:0 "The [ccrebel_naughty_country.GetName] is openly su
 ccrebel_sow_unrest.71.desc:0 "The treacherous [ccrebel_naughty_country.GetName] is openly supporting the [ccrebel_subsidised_rebels.GetName], which has rebelled against us, having provided them with both funding and a fleet. When challenged with the facts of the matter, the [ccrebel_naughty_country.GetSpeciesAdj] ambassador claimed no knowledge of any such activity, but expressed firm support for the [ccrebel_subsidised_rebels.GetSpeciesAdj] cause. Nonetheless, the evidence speaks for itself."
 ccrebel_sow_unrest.71.option:0 "They will pay for this."
 
-feature_ccrebel_sow_unrest_better:0 "Improved Sow Unrest Edict"
+feature_ccrebel_sow_unrest_better:0 "Improved Sow Unrest Decision"
 feature_ccrebel_sow_unrest_better_desc:0 "§YSow Unrest§! adds ethics pull to your empire's main ethos and unhappiness modifiers in pops of your ethos. Range increased by 50%."
+
+feature_ccrebel_sow_unrest:0 "Sow Unrest Decision"
+feature_ccrebel_sow_unrest_desc:0 "Establish planets as bases through which to sow unrest in nearby enemy planets."
 
 #tech_gene_tailoring_modifier_desc
 

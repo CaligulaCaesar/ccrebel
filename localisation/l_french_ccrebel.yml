@@ -182,8 +182,8 @@ cc_terror_state_desc:0 "L'État déploie des ressources considérables - et tous
 
 #------Sowing Unrest
 
-edict_ccrebel_sow_unrest:0 "Semer le trouble"
-edict_ccrebel_sow_unrest_desc:0 "Établir sur cette planète un centre de propagande pour semer le trouble parmis les planètes ennemies proches.\n\nInstruction d'emploi :\n-Ce décret produit de l'agitation pour chaque planète qui est à une distance maximale de 4 bonds d'hyperligne (6 si la technologie £society  technologie §G$tech_ccrebel_unrest_2$§! est recherchée) et est gouvernée par un empire avec qui vous n'est pas amical, à condition que la planète possède des £pops  Pops qui sont influencés par le bonheur. Les £pops  Pops de votre espèce reçoivent un malus de bonheur.\n-Si vous avez recherché le technologie §G$tech_ccrebel_unrest_2$§!, les £pops  Pops vont aussi être attirée par vos éthiques gouvernementales et les Pops de cet éthique verront un malus de bonheur accru. Si vous êtes $ethic_fanatic_egalitarian$ ou $ethic_fanatic_xenophile$ vos voisins et ennemis qui sont $ethic_xenophobe$s, verront ces modificateurs appliqués aux esclaves."
+ccrebel_sow_unrest:0 "Semer le trouble"
+ccrebel_sow_unrest_desc:0 "Établir sur cette planète un centre de propagande pour semer le trouble parmis les planètes ennemies proches.\n\nInstruction d'emploi :\n-Ce décret produit de l'agitation pour chaque planète qui est à une distance maximale de 4 bonds d'hyperligne (6 si la technologie £society  technologie §G$tech_ccrebel_unrest_2$§! est recherchée) et est gouvernée par un empire avec qui vous n'est pas amical, à condition que la planète possède des £pops  Pops qui sont influencés par le bonheur. Les £pops  Pops de votre espèce reçoivent un malus de bonheur.\n-Si vous avez recherché le technologie §G$tech_ccrebel_unrest_2$§!, les £pops  Pops vont aussi être attirée par vos éthiques gouvernementales et les Pops de cet éthique verront un malus de bonheur accru. Si vous êtes $ethic_fanatic_egalitarian$ ou $ethic_fanatic_xenophile$ vos voisins et ennemis qui sont $ethic_xenophobe$s, verront ces modificateurs appliqués aux esclaves."
 
 opinion_ccrebel_stirring_up:0 "Encouragement des troubles sur nos planètes"
 opinion_ccrebel_subsidised:0 "De l'aide vient à nous"
@@ -387,6 +387,9 @@ planet_resource_energy_add:0 "Énergie sur la planète"
 
 feature_ccrebel_sow_unrest_better:0 "L'éfficacité de l'action §YSemer le trouble§! est améliorée"
 feature_ccrebel_sow_unrest_better_desc:0 "§YSemer le trouble§! augmente l'attractivité de votre éthique principale et produit du malheur pour les pops de cet éthique chez vos ennemis voisins. La portée est élargie de 50%."
+
+feature_ccrebel_sow_unrest:0 "Sow Unrest Decision"
+feature_ccrebel_sow_unrest_desc:0 "Establish planets as bases through which to sow unrest in nearby enemy planets."
 
 #ccrebel_hm.1.name:0 "Résistance à la Ruche"
 #ccrebel_hm.1.desc:0 "Les populations de cette colonie se sont soulevé contre les représentants de la ruche et ont pris les armes pour se libérer de son joug."
