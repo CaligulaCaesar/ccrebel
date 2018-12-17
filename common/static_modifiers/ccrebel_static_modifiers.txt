@@ -129,8 +129,8 @@ cc_empire_core = {
 
 cc_terror_state = {
 	planet_stability_add = 15
-	planets_energy_produces_add = 10
-	planets_minerals_produces_add = 10
+	planets_energy_produces_add = -10
+	planets_minerals_produces_add = -10
 	icon_frame = 3
 	icon = "gfx/interface/icons/planet_modifiers/pm_state_terror.dds"
 }
