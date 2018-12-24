@@ -25,6 +25,10 @@ ccrebel_sow_unrest = {
 			fail_text = "ccrebel_no_valid_target_in_range"
 			has_planet_flag = ccrebel_planet_can_sow_unrest
 		}
+		custom_tooltip = {
+			fail_text = "ccrebel_su_war_lost"
+			owner = { has_country_flag = ccrebel_su_stop_a_while }
+		}
 	}
 
     ai_weight = { #I'm moving as much of this as possible to a monthly check for performance reasons

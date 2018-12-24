@@ -484,3 +484,13 @@ mod_planets_unity_produces_add:0 "$mod_country_unity_produces_mult$"
 mod_planets_influence_produces_add:0 "$mod_country_influence_produces_mult$"
 mod_planets_minerals_produces_add:0 "$mod_country_minerals_produces_mult$"
 mod_planets_energy_produces_add:0 "$mod_country_energy_produces_mult$"
+
+
+
+casus_belli_ccrebel_cb_sowing_unrest:0 "Sowing Unrest"
+war_goal_wg_ccrebel_stop_su:0 "Stop Sowing Discord"
+war_goal_wg_ccrebel_stop_su_desc:0 "War is waged to stop the enemy from sowing unrest and interfering in other countries."
+
+wg_ccrebel_stop_su_accept:0 "§Y[from.GetName]§! ceases sowing unrest on §Y[root.GetAdj]§! planets\n§Y[from.GetName]§! is banned from sowing unrest for the next 15 years"
+
+ccrebel_su_war_lost:0 "Banned from sowing unrest by a peace treaty."
