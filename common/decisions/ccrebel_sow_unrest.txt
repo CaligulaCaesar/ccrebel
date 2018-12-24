@@ -27,7 +27,7 @@ ccrebel_sow_unrest = {
 		}
 		custom_tooltip = {
 			fail_text = "ccrebel_su_war_lost"
-			owner = { has_country_flag = ccrebel_su_stop_a_while }
+			NOT = { owner = { has_country_flag = ccrebel_su_stop_a_while } }
 		}
 	}
 
