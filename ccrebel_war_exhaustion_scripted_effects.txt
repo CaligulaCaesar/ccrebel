@@ -1,3 +1,4 @@
+#unused
 remove_all_war_exhaustion_flags = {
 	if = { limit = { has_country_flag = cc_war_exhaustion_modifier_5 } remove_country_flag = cc_war_exhaustion_modifier_5 }
 	if = { limit = { has_country_flag = cc_war_exhaustion_modifier_10 } remove_country_flag = cc_war_exhaustion_modifier_10 }

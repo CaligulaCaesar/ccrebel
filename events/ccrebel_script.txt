@@ -2337,9 +2337,14 @@ country_event = {
 
 		country_event = { id = rebellionscript.142 days = 181 }
 
-		add_modifier = {
-			modifier = wave_of_unrest
-			days = -1
+		if = {
+			limit = {
+				NOT = { has_modifier = wave_of_unrest }
+			}
+			add_modifier = {
+				modifier = wave_of_unrest
+				days = -1
+			}
 		}
 	}
 	option = {
@@ -2348,7 +2353,7 @@ country_event = {
 		tooltip = {
 			add_modifier = {
 				modifier = wave_of_unrest
-				days = -1
+				days = 180
 			}
 		}
 		custom_tooltip = rebellionscript.14.tooltip
@@ -2414,9 +2419,14 @@ country_event = {
 		}
 		
 		set_country_flag = period_of_unrest1
-		add_modifier = {
-			modifier = wave_of_unrest
-			days = -1
+		if = {
+			limit = {
+				NOT = { has_modifier = wave_of_unrest }
+			}
+			add_modifier = {
+				modifier = wave_of_unrest
+				days = -1
+			}
 		}
 	}
 	option = {
@@ -2425,7 +2435,7 @@ country_event = {
 		tooltip = {
 			add_modifier = {
 				modifier = wave_of_unrest
-				days = -1
+				days = 180
 			}
 		}
 		custom_tooltip = rebellionscript.14.tooltip
@@ -2446,12 +2456,7 @@ country_event = {
 			limit = {
 				NOT = { has_country_flag = period_of_unrest }
 			}
-			if = {
-				limit = {
-					is_ai = no
-				}
-				country_event = { id = rebellionscript.143 } #notify them
-			}
+			country_event = { id = rebellionscript.143 } #notify them
 		}
 		else = {
 			country_event = { id = rebellionscript.142 days = 30 }
@@ -2468,6 +2473,7 @@ country_event = {
 
 	option = { #intentional
 		name = rebellionscript.25.option
+		remove_modifier = wave_of_unrest
 	}
 }
 

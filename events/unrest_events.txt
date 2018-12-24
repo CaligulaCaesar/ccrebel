@@ -22,6 +22,7 @@ planet_event = {
 		has_orbital_bombardment = no
 		exists = controller
 		controller = { is_same_value = root.owner }
+		any_pop = { cc_has_happiness = yes }
 	}
 		
 		
@@ -907,6 +908,8 @@ planet_event = {
 		controller = { is_same_value = root.owner }
 		has_ground_combat = no
 		has_orbital_bombardment = no
+		
+		any_pop = { cc_has_happiness = yes }
 	}
 	immediate = {
 		# Fire Resistance
@@ -2317,6 +2320,8 @@ planet_event = {
 			has_planet_flag = revolt_in_progress
 		}
 		is_colony = yes
+		
+		any_pop = { cc_has_happiness = yes }
 	}
 	
 	immediate = {

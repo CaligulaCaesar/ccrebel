@@ -76,22 +76,22 @@ wave_of_unrest = {
 
 vulnerable_state_1 = {
 	pop_government_ethic_attraction = -0.2
-	planet_stability_add = -10
-	starbase_shipyard_build_speed_mult = 0.2
+#	planet_stability_add = -10
+	starbase_shipyard_build_speed_mult = 0.4
 #	faction_surpression_cost = 0.25
 }
 
 vulnerable_state_2 = {
 	pop_government_ethic_attraction = -0.35
-	planet_stability_add = -15
-	starbase_shipyard_build_speed_mult = 0.2
+#	planet_stability_add = -15
+	starbase_shipyard_build_speed_mult = 0.6
 #	faction_surpression_cost = 0.5
 }
 
 lost_war_vulnerable_state = {
 	pop_government_ethic_attraction = -0.5
-	planet_stability_add = -20
-	starbase_shipyard_build_speed_mult = 0.2
+#	planet_stability_add = -20
+	starbase_shipyard_build_speed_mult = 0.75
 #	faction_surpression_cost = 1
 }
 
