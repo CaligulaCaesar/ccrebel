@@ -57,7 +57,7 @@ country_event = {
 			}
 			set_timed_pop_flag = {
 				flag = cc_patriots
-				days = 10
+				days = 18
 			}
 			if = {
 				limit = { has_modifier = nationalist_revolt }
