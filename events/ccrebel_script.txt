@@ -520,14 +520,14 @@ planet_event = {
 				}
 				modifier = {
 					factor = 1.25
-					any_pop = { 
+					any_owned_pop = { 
 						is_same_species = event_target:rebellion
 						is_being_purged = yes
 					}
 				}
 				modifier = {
 					factor = 1.25
-					any_pop = { 
+					any_owned_pop = { 
 						is_same_species = event_target:rebellion
 						is_enslaved = yes
 					}
@@ -1222,7 +1222,7 @@ planet_event = {
 				}
 				modifier = {
 					factor = 1.25
-					any_pop = { 
+					any_owned_pop = { 
 						is_being_purged = yes
 					}
 				}

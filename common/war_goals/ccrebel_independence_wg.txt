@@ -119,7 +119,7 @@ wg_ccrebel_independence = {
             from = {
                 every_owned_planet = {
                     limit = {
-                        any_pop = { is_same_species = root }
+                        any_owned_pop = { is_same_species = root }
                     }
                     solar_system = {
                         add_claims = {

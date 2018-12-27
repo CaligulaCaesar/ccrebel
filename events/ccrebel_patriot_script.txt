@@ -250,7 +250,7 @@ planet_event = {
 			has_planet_flag = revolt_in_progress
 		}
 		
-		any_pop = { 
+		any_owned_pop = { 
 			has_modifier = cc_war_with_kin
 		}
 
@@ -296,14 +296,14 @@ planet_event = {
 		
 				modifier = {
 					factor = 1.25
-					any_pop = { 
+					any_owned_pop = { 
 						has_modifier = cc_war_with_kin
 						is_enslaved = yes
 					}
 				}
 				modifier = {
 					factor = 1.5
-					any_pop = { 
+					any_owned_pop = { 
 						has_modifier = cc_war_with_kin
 						is_being_purged = yes
 					}
@@ -357,7 +357,7 @@ planet_event = {
 		has_ground_combat = no
 		controller = { is_same_value = root.owner }
 		
-		any_pop = { 
+		any_owned_pop = { 
 			has_modifier = cc_war_with_kin
 		}
 		

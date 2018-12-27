@@ -41,7 +41,7 @@ planet_event = {
 		}
 		if = {
 			limit = { any_owned_pop = { has_trait = trait_hive_mind } }
-			random_pop = {
+			random_owned_pop = {
 				limit = { has_trait = trait_hive_mind }
 				kill_pop = yes
 			}
@@ -92,7 +92,7 @@ planet_event = {
 		}
 		if = {
 			limit = { any_owned_pop = { has_trait = trait_machine_unit  } }
-			random_pop = {
+			random_owned_pop = {
 				limit = { has_trait = trait_machine_unit  }
 				kill_pop = yes
 			}
