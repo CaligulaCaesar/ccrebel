@@ -186,7 +186,7 @@ country_event = {
 				limit = {
 					is_within_borders_of = event_target:cc_former_owner
 					starbase = { has_starbase_size = starbase_outpost }
-					NOT = { any_planet = { is_colony = yes } }
+					NOT = { any_system_planet = { is_colony = yes } }
 				}
 				starbase = { set_owner = root }
 				
@@ -205,7 +205,7 @@ country_event = {
 					limit = {
 						is_within_borders_of = event_target:cc_former_owner
 						starbase = { has_starbase_size = starbase_outpost }
-						NOT = { any_planet = { is_colony = yes } }
+						NOT = { any_system_planet = { is_colony = yes } }
 					}
 					starbase = { set_owner = root }
 				
