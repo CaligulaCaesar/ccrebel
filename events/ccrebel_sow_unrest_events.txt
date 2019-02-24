@@ -1136,10 +1136,9 @@ country_event = {
 					flag = ccrebel_subsidiser
 					who = root
 				}
-				has_relation_flag = {
+				reverse_has_relation_flag = {
 					flag = ccrebel_subsidiser
 					who = root
-					is_reverse = yes
 				}
 			}
 		}
@@ -1228,10 +1227,9 @@ country_event = {
 		if = {
 			limit = {
 				any_relation = {
-					has_relation_flag = {
+					reverse_has_relation_flag = {
 						flag = ccrebel_subsidiser
 						who = root
-						is_reverse = yes
 					}
 				}
 			}
