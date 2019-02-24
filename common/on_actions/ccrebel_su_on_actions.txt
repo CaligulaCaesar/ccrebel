@@ -1,12 +1,4 @@
 
-#From = Country scope
-#This = Planet scope
-#on_planet_transfer = {
-#	events = {
-#		ccrebel_sow_unrest.42
-#	}
-#}
-
 
 # Triggers country_event for the defender upon defeat
 # This = country, planet owner
@@ -33,5 +25,14 @@ on_monthly_pulse = {
 on_planet_transfer = {
 	events = {
 		ccrebel_sow_unrest.22
+	}
+}
+
+
+#This = destroyed country
+#From = optional, destroyer (country)
+on_country_destroyed = {
+	events = {
+		ccrebel_sow_unrest.42
 	}
 }

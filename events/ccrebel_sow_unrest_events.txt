@@ -96,41 +96,10 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		OR = {
-			has_modifier = ccrebel_sowing_up_planet
-			has_modifier = ccrebel_sowing_up_planet_2
-			has_modifier = ccrebel_sowing_up_planet_3
-			has_modifier = ccrebel_sowing_up_planet_4
-		}
+		has_planet_flag = cc_planet_sowing_unrest_marker
 	}
 	
 	immediate = {
-		if = {
-			limit = {
-				has_modifier = ccrebel_sowing_up_planet
-			}
-			remove_modifier = ccrebel_sowing_up_planet
-		}
-		else_if = {
-			limit = {
-				has_modifier = ccrebel_sowing_up_planet_2
-			}
-			remove_modifier = ccrebel_sowing_up_planet_2
-		}
-		else_if = {
-			limit = {
-				has_modifier = ccrebel_sowing_up_planet_3
-			}
-			remove_modifier = ccrebel_sowing_up_planet_3
-		}
-		else_if = {
-			limit = {
-				has_modifier = ccrebel_sowing_up_planet_4
-			}
-			remove_modifier = ccrebel_sowing_up_planet_4
-		}
-
-
 		every_country = {
 			every_owned_planet = {
 				limit = {
@@ -246,12 +215,8 @@ country_event = {
 					has_valid_civic = civic_machine_terminator
 					has_valid_civic = civic_barbaric_despoilers
 				}
-				any_owned_planet = {
-					distance = {
-						source = FromFrom
-						max_distance <= 150
-					}
-				}
+				is_neighbor_of = event_target:old_owner
+
 #				has_relation_flag = {
 #					who = event_target:old_owner
 #					flag = ccrebel_sowing_unrest_by
@@ -267,7 +232,7 @@ country_event = {
 					is_rival = event_target:old_owner
 					is_disloyal_to = event_target:old_owner
 					is_domineering_to = event_target:old_owner
-			}
+				}
 				OR = {
 					has_country_resource = {
 						type = minerals
@@ -315,7 +280,7 @@ country_event = {
 	
 	desc = {
 		trigger = { 
-			any_country = {
+			any_relation = {
 				has_relation_flag = {
 					flag = ccrebel_subsidised_rebels
 					who = root
@@ -326,7 +291,7 @@ country_event = {
 	}
 	desc = {
 		trigger = { 
-			any_country = {
+			any_relation = {
 				has_relation_flag = {
 					flag = ccrebel_may_support_rebels
 					who = root
@@ -397,51 +362,6 @@ country_event = {
 				}
 			}
 			save_event_target_as = ccrebel_subsidised_rebels
-		}
-		
-		
-		if = {
-			limit = {
-				event_target:ccrebel_subsidised_rebels = {
-					has_relation_flag = {
-						flag = ccrebel_subsidised_rebels
-						who = root
-					}
-				}
-			}
-			random_owned_planet = {
-				limit = {
-					has_planet_flag = cc_planet_sowing_unrest_marker
-					event_target:ccrebel_subsidised_rebels.capital_scope = {
-						has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@prev
-					}
-				}
-				save_event_target_as = ccrebel_subsidising_planet
-			}
-		}
-		else = {
-			random_owned_planet = {
-				limit = {
-					distance = {
-						source = event_target:ccrebel_subsidised_rebels.capital_scope
-						max_distance <= 150
-					}
-				}
-				save_event_target_as = ccrebel_subsidising_planet
-			}
-		}
-
-		if = {
-			limit = { NOT = { exists = event_target:ccrebel_subsidising_planet } }
-			random_owned_planet = {
-				limit = {
-					distance = {
-						source = event_target:ccrebel_subsidised_rebels.capital_scope
-						max_distance <= 200
-					}
-				}
-				save_event_target_as = ccrebel_subsidising_planet
-			}
 		}
 		
 		#bit of a cock-up here...
@@ -531,82 +451,76 @@ country_event = {
 				
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 8000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 400
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 8000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 400
-							}
-							resource_stockpile_compare = {
-								resource = energy
-								value > 8000
-								
-							}
+						has_monthly_income = {
+							resource = minerals
+							value > 400
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 400
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 8000
+							
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 0.1
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 10000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 500
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 10000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 500
-							}
-							resource_stockpile_compare = {
-								resource = energy
-								value > 10000
-								
-							}
+						has_monthly_income = {
+							resource = minerals
+							value > 500
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 500
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 10000
+							
 						}
 					}
 				}
 			}
 			modifier = {
 				factor = 2
-				AND = {
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 15000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 800
-						}
+				OR = {
+					has_country_resource = {
+						type = minerals
+						amount > 15000
 					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 800
-						}
-						resource_stockpile_compare = {
-							resource = energy
-							value > 15000
-						}
+					has_monthly_income = {
+						resource = minerals
+						value > 800
+					}
+				}
+				OR = {
+					has_monthly_income = {
+						resource = energy
+						value > 800
+					}
+					resource_stockpile_compare = {
+						resource = energy
+						value > 15000
 					}
 				}
 			}
@@ -688,72 +602,8 @@ country_event = {
 				}
 			}
 			
-			event_target:ccrebel_subsidising_planet = {
-				if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_4 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_4
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_5 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_5
-						days = 3600
-					}
-				}
-				else = {
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3
-						days = 3600
-					}
-				}
-				set_timed_planet_flag = {
-					flag = ccrebel_subsidiser_planet
-					days = 3610
-				}
-			}	
+			ccrebel_add_level_3_rebel_subsidiser = yes
+				
 			set_timed_relation_flag = {
 				who = event_target:ccrebel_subsidised_rebels
 				flag = ccrebel_subsidiser
@@ -766,19 +616,7 @@ country_event = {
 			country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
 			
 			event_target:ccrebel_subsidised_rebels = {
-				capital_scope = {
-					add_modifier = {
-						modifier = ccrebel_subsidised_3
-						days = 3600
-					}
-					
-					set_timed_planet_flag = {
-						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
-						days = 3600
-					}
-				}
-#				add_energy = 2000
-#				add_minerals = 6000
+				ccrebel_add_level_3_rebel_subsidies = yes
 				
 				add_opinion_modifier = {
 					who = root
@@ -989,7 +827,7 @@ country_event = {
 				}
 			}
 		}
-		
+
 		hidden_effect = {
 #			add_energy = -1000
 #			add_minerals = -3000
@@ -1009,73 +847,8 @@ country_event = {
 				}
 			}
 			
-			event_target:ccrebel_subsidising_planet = {
-				if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_4 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_4
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_5 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_5
-						days = 3600
-					}
-				}
-				else = {
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2
-						days = 3600
-					}
-				}
-					
-				set_timed_planet_flag = {
-					flag = ccrebel_subsidiser_planet
-					days = 3610
-				}
-			}	
+			ccrebel_add_level_2_rebel_subsidiser = yes
+				
 			set_timed_relation_flag = {
 				who = event_target:ccrebel_subsidised_rebels
 				flag = ccrebel_subsidiser
@@ -1088,17 +861,8 @@ country_event = {
 			country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
 			
 			event_target:ccrebel_subsidised_rebels = {
-				capital_scope = {
-					add_modifier = {
-						modifier = ccrebel_subsidised_2
-						days = 3600
-					}
-					
-					set_timed_planet_flag = {
-						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
-						days = 3600
-					}
-				}
+				ccrebel_add_level_2_rebel_subsidies = yes
+
 #				add_energy = 1000
 #				add_minerals = 3000
 				
@@ -1180,27 +944,25 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 2000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 100
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 2000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 100
-							}
-							resource_stockpile_compare = {
-								resource = energy
-								value > 2000
-							}
+						has_monthly_income = {
+							resource = minerals
+							value > 100
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 100
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 2000
 						}
 					}
 				}
@@ -1327,73 +1089,8 @@ country_event = {
 				}
 			}
 
-			event_target:ccrebel_subsidising_planet = {
-				if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_4 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_4
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_5 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_5
-						days = 3600
-					}
-				}
-				else = {
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1
-						days = 3600
-					}
-				}
-					
-				set_timed_planet_flag = {
-					flag = ccrebel_subsidiser_planet
-					days = 3610
-				}
-			}	
+			ccrebel_add_level_1_rebel_subsidiser = yes
+				
 			set_timed_relation_flag = {
 				who = event_target:ccrebel_subsidised_rebels
 				flag = ccrebel_subsidiser
@@ -1406,17 +1103,7 @@ country_event = {
 			country_event = { id = ccrebel_sow_unrest.5 days = 3605 }
 			
 			event_target:ccrebel_subsidised_rebels = {
-				capital_scope = {
-					add_modifier = {
-						modifier = ccrebel_subsidised_1
-						days = 3600
-					}
-					
-					set_timed_planet_flag = {
-						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
-						days = 3600
-					}
-				}
+				ccrebel_add_level_1_rebel_subsidies = yes
 #				add_energy = 1000
 #				add_minerals = 3000
 				
@@ -1437,28 +1124,187 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = ccrebel_sow_unrest.42
+	hide_window = yes
+	is_triggered_only = yes
 
-# Planet transferred
-#planet_event = {
-#	id = ccrebel_sow_unrest.42
-#	hide_window = yes
-#	is_triggered_only = yes
-#
-#	immediate = {
-#		if = {
-#			limit = {
-#				has_modifier = ccrebel_subsidised_1
-#			}
-#			remove_modifier = ccrebel_subsidised_1
-#		}
-#		if = {
-#			limit = {
-#				has_modifier = ccrebel_subsidised_2
-#			}
-#			remove_modifier = ccrebel_subsidised_2
-#		}
-#	}
-#}
+	trigger = {
+		any_relation = {
+			OR = {
+				has_relation_flag = {
+					flag = ccrebel_subsidiser
+					who = root
+				}
+				has_relation_flag = {
+					flag = ccrebel_subsidiser
+					who = root
+					is_reverse = yes
+				}
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_relation = {
+					has_relation_flag = {
+						flag = ccrebel_subsidiser
+						who = root
+					}
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_1_rebel_subsidies = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_1_rebel_subsidising = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_1_rebel_subsidising = yes
+					}
+					country_event = { id = ccrebel_sow_unrest.44 }
+					ccrebel_remove_level_1_rebel_subsidising = yes
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_2_rebel_subsidies = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_2_rebel_subsidising = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_2_rebel_subsidising = yes
+					}
+					country_event = { id = ccrebel_sow_unrest.44 }
+					ccrebel_remove_level_2_rebel_subsidising = yes
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_3_rebel_subsidies = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_3_rebel_subsidising = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_3_rebel_subsidising = yes
+					}
+					country_event = { id = ccrebel_sow_unrest.44 }
+					ccrebel_remove_level_3_rebel_subsidising = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_relation = {
+					has_relation_flag = {
+						flag = ccrebel_subsidiser
+						who = root
+						is_reverse = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_1_rebel_subsidising = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_1_rebel_subsidies = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_1_rebel_subsidies = yes
+					}
+					ccrebel_remove_level_1_rebel_subsidies = yes
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_2_rebel_subsidising = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_2_rebel_subsidies = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_2_rebel_subsidies = yes
+					}
+					ccrebel_remove_level_2_rebel_subsidies = yes
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_3_rebel_subsidising = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_3_rebel_subsidies = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = root
+						}
+						ccrebel_has_level_3_rebel_subsidies = yes
+					}
+					ccrebel_remove_level_3_rebel_subsidies = yes
+				}
+			}
+		}
+	}
+}
+
 
 #monthly
 event = {
@@ -1468,353 +1314,87 @@ event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		any_country = {
-			any_owned_planet = {
-				OR = {
-					has_modifier = ccrebel_subsidised_1
-					has_modifier = ccrebel_subsidised_2
-					has_modifier = ccrebel_subsidised_3
-				}
-			}
+		any_playable_country = {
+			ccrebel_has_rebel_subsidies = yes
+			is_subject = yes
 		}
 	}
 	immediate = {
-		every_country = {
+		every_playable_country = {
 			limit = {
-				any_owned_planet = {
-					OR = {
-						has_modifier = ccrebel_subsidised_1
-						has_modifier = ccrebel_subsidised_2
-						has_modifier = ccrebel_subsidised_3
-					}
-				}
+				ccrebel_has_rebel_subsidies = yes
+				is_subject = yes
 			}
-				
 			if = {
 				limit = {
-					NOT = {
-						any_country = {
-							has_relation_flag = {
-								flag = ccrebel_subsidiser
-								who = prev
-							}
-						}
-					}
-				}
-				every_owned_planet = {
-					limit = {
-						OR = {
-							has_modifier = ccrebel_subsidised_1
-							has_modifier = ccrebel_subsidised_2
-							has_modifier = ccrebel_subsidised_3
-						}
-					}
-					if = {
-						limit = { has_modifier = ccrebel_subsidised_1 }
-						remove_modifier = ccrebel_subsidised_1
-					}
-					if = {
-						limit = { has_modifier = ccrebel_subsidised_2 }
-						remove_modifier = ccrebel_subsidised_2
-					}
-					if = {
-						limit = { has_modifier = ccrebel_subsidised_3 }
-						remove_modifier = ccrebel_subsidised_3
-					}
-					
-					every_country = {
-						limit = {
-							any_owned_planet = {
-								prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev }
-							}
-						}
-						country_event = { id = ccrebel_sow_unrest.44 }
-						every_owned_planet = {
-							limit = { prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev } }
-							prevprev = { remove_planet_flag = ccrebel_subsidised_planet@prev }
-							
-							if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1
-								}
-								remove_modifier = ccrebel_subsidiser_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_1
-								}
-								remove_modifier = ccrebel_subsidiser_1_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_2
-								}
-								remove_modifier = ccrebel_subsidiser_1_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_3
-								}
-								remove_modifier = ccrebel_subsidiser_1_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_4
-								}
-								remove_modifier = ccrebel_subsidiser_1_4
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_5
-								}
-								remove_modifier = ccrebel_subsidiser_1_5
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2
-								}
-								remove_modifier = ccrebel_subsidiser_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_1
-								}
-								remove_modifier = ccrebel_subsidiser_2_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_2
-								}
-								remove_modifier = ccrebel_subsidiser_2_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_3
-								}
-								remove_modifier = ccrebel_subsidiser_2_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_4
-								}
-								remove_modifier = ccrebel_subsidiser_2_4
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_5
-								}
-								remove_modifier = ccrebel_subsidiser_2_5
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3
-								}
-								remove_modifier = ccrebel_subsidiser_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_1
-								}
-								remove_modifier = ccrebel_subsidiser_3_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_2
-								}
-								remove_modifier = ccrebel_subsidiser_3_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_3
-								}
-								remove_modifier = ccrebel_subsidiser_3_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_4
-								}
-								remove_modifier = ccrebel_subsidiser_3_4
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_5
-								}
-								remove_modifier = ccrebel_subsidiser_3_5
-							}
-						}
-					}
-				}
-			}
-			
-			if = {
-				limit = {
-					is_subject = yes
-					any_country = {
+					ccrebel_has_level_1_rebel_subsidies = yes
+					any_relation = {
 						has_relation_flag = {
 							flag = ccrebel_subsidiser
 							who = prev
 						}
+						ccrebel_has_level_1_rebel_subsidising = yes
 					}
 				}
-				save_event_target_as = ccrebel_subjected_rebel
-				
-				every_owned_planet = {
+				every_relation = {
 					limit = {
-						OR = {
-							has_modifier = ccrebel_subsidised_1
-							has_modifier = ccrebel_subsidised_2
-							has_modifier = ccrebel_subsidised_3
-						}
-					}
-					if = {
-						limit = { has_modifier = ccrebel_subsidised_1 }
-						remove_modifier = ccrebel_subsidised_1
-					}
-					if = {
-						limit = { has_modifier = ccrebel_subsidised_2 }
-						remove_modifier = ccrebel_subsidised_2
-					}
-					if = {
-						limit = { has_modifier = ccrebel_subsidised_3 }
-						remove_modifier = ccrebel_subsidised_3
-					}
-				
-				
-					every_country = {
-						limit = {
-							has_relation_flag = {
-								flag = ccrebel_subsidiser
-								who = prevprev
-							}
-							any_owned_planet = {
-								prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev }
-							}
-						}
-						save_event_target_as = ccrebel_ended_subsidiser
-						country_event = { id = ccrebel_sow_unrest.44 }
-
-						###get rid of subsidiser flag
-						remove_relation_flag = {
+						has_relation_flag = {
 							flag = ccrebel_subsidiser
-							who = prevprev
+							who = prev
 						}
-
-						every_owned_planet = {
-							limit = { prevprev = { has_planet_flag = ccrebel_subsidised_planet@prev } }
-							prevprev = { remove_planet_flag = ccrebel_subsidised_planet@prev }
-							
-							if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1
-								}
-								remove_modifier = ccrebel_subsidiser_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_1
-								}
-								remove_modifier = ccrebel_subsidiser_1_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_2
-								}
-								remove_modifier = ccrebel_subsidiser_1_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_3
-								}
-								remove_modifier = ccrebel_subsidiser_1_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_4
-								}
-								remove_modifier = ccrebel_subsidiser_1_4
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_1_5
-								}
-								remove_modifier = ccrebel_subsidiser_1_5
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2
-								}
-								remove_modifier = ccrebel_subsidiser_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_1
-								}
-								remove_modifier = ccrebel_subsidiser_2_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_2
-								}
-								remove_modifier = ccrebel_subsidiser_2_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_3
-								}
-								remove_modifier = ccrebel_subsidiser_2_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_4
-								}
-								remove_modifier = ccrebel_subsidiser_2_4
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_2_5
-								}
-								remove_modifier = ccrebel_subsidiser_2_5
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3
-								}
-								remove_modifier = ccrebel_subsidiser_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_1
-								}
-								remove_modifier = ccrebel_subsidiser_3_1
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_2
-								}
-								remove_modifier = ccrebel_subsidiser_3_2
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_3
-								}
-								remove_modifier = ccrebel_subsidiser_3_3
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_4
-								}
-								remove_modifier = ccrebel_subsidiser_3_4
-							}
-							else_if = {
-								limit = {
-									has_modifier = ccrebel_subsidiser_3_5
-								}
-								remove_modifier = ccrebel_subsidiser_3_5
-							}
-						}
+						ccrebel_has_level_1_rebel_subsidising = yes
 					}
+					country_event = { id = ccrebel_sow_unrest.44 }
+					ccrebel_remove_level_1_rebel_subsidising = yes
 				}
 			}
+			if = {
+				limit = {
+					ccrebel_has_level_2_rebel_subsidies = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = prev
+						}
+						ccrebel_has_level_2_rebel_subsidising = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = prev
+						}
+						ccrebel_has_level_2_rebel_subsidising = yes
+					}
+					country_event = { id = ccrebel_sow_unrest.44 }
+					ccrebel_remove_level_2_rebel_subsidising = yes
+				}
+			}
+			if = {
+				limit = {
+					ccrebel_has_level_3_rebel_subsidies = yes
+					any_relation = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = prev
+						}
+						ccrebel_has_level_3_rebel_subsidising = yes
+					}
+				}
+				every_relation = {
+					limit = {
+						has_relation_flag = {
+							flag = ccrebel_subsidiser
+							who = prev
+						}
+						ccrebel_has_level_3_rebel_subsidising = yes
+					}
+					country_event = { id = ccrebel_sow_unrest.44 }
+					ccrebel_remove_level_3_rebel_subsidising = yes
+				}
+			}
+			ccrebel_remove_all_rebel_subsidies = yes
 		}
 	}
 }
@@ -1822,7 +1402,7 @@ event = {
 country_event = {
 	id = ccrebel_sow_unrest.44
 	title = ccrebel_sow_unrest.44.name
-	desc = ccrebel_sow_unrest.44.name
+	desc = ccrebel_sow_unrest.44.desc
 	
 	picture = "GFX_evt_city_ruins"
 	
@@ -1873,13 +1453,6 @@ country_event = {
 					who = prev
 				}
 			}
-			any_owned_planet = {
-				NOR = {
-					has_modifier = ccrebel_subsidised_1
-					has_modifier = ccrebel_subsidised_2
-					has_modifier = ccrebel_subsidised_3
-				}
-			}
 		}
 	}
 	
@@ -1898,30 +1471,8 @@ country_event = {
 						who = prev
 					}
 				}
-				any_owned_planet = {
-					NOR = {
-						has_modifier = ccrebel_subsidised_1
-						has_modifier = ccrebel_subsidised_2
-						has_modifier = ccrebel_subsidised_3
-					}
-				}
 			}
 			save_event_target_as = ccrebel_subsidised_rebels
-		}
-		
-		if = {
-			limit = { NOT = { exists = event_target:ccrebel_subsidising_planet } }
-			random_owned_planet = {
-				limit = {
-					has_planet_flag = ccrebel_subsidiser_planet
-					
-					distance = {
-						source = event_target:ccrebel_subsidised_rebels.capital_scope
-						max_distance <= 150
-					}
-				}
-				save_event_target_as = ccrebel_subsidising_planet
-			}
 		}
 		
 		event_target:ccrebel_subsidised_rebels = {
@@ -2139,72 +1690,8 @@ country_event = {
 				}
 			}
 			
-			event_target:ccrebel_subsidising_planet = {
-				if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_4 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_4
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_3_5 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3_5
-						days = 3600
-					}
-				}
-				else = {
-					add_modifier = {
-						modifier = ccrebel_subsidiser_3
-						days = 3600
-					}
-				}
-				set_timed_planet_flag = {
-					flag = ccrebel_subsidiser_planet
-					days = 3610
-				}
-			}	
+			ccrebel_add_level_3_rebel_subsidiser = yes
+
 			set_timed_relation_flag = {
 				who = event_target:ccrebel_subsidised_rebels
 				flag = ccrebel_subsidiser
@@ -2223,17 +1710,8 @@ country_event = {
 			}
 			
 			event_target:ccrebel_subsidised_rebels = {
-				capital_scope = {
-					add_modifier = {
-						modifier = ccrebel_subsidised_3
-						days = 3600
-					}
-					
-					set_timed_planet_flag = {
-						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
-						days = 3600
-					}
-				}
+				ccrebel_add_level_3_rebel_subsidies = yes
+
 #				add_energy = 2000
 #				add_minerals = 6000
 				
@@ -2452,74 +1930,8 @@ country_event = {
 					modifier = opinion_ccrebel_subsidising_our_rebels
 				}
 			}
-			
-			event_target:ccrebel_subsidising_planet = {
-				if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_4 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_4
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_2_5 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2_5
-						days = 3600
-					}
-				}
-				else = {
-					add_modifier = {
-						modifier = ccrebel_subsidiser_2
-						days = 3600
-					}
-				}
-					
-				set_timed_planet_flag = {
-					flag = ccrebel_subsidiser_planet
-					days = 3610
-				}
-			}	
+			ccrebel_add_level_2_rebel_subsidiser = yes
+
 			set_timed_relation_flag = {
 				who = event_target:ccrebel_subsidised_rebels
 				flag = ccrebel_subsidiser
@@ -2538,16 +1950,8 @@ country_event = {
 			}
 			
 			event_target:ccrebel_subsidised_rebels = {
-				capital_scope = {
-					add_modifier = {
-						modifier = ccrebel_subsidised_2
-						days = 3600
-					}
-					set_timed_planet_flag = {
-						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
-						days = 3600
-					}
-				}
+				ccrebel_add_level_2_rebel_subsidies = yes
+
 #				add_energy = 1000
 #				add_minerals = 3000
 				
@@ -2766,73 +2170,8 @@ country_event = {
 				}
 			}
 
-			event_target:ccrebel_subsidising_planet = {
-				if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_1 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_1
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_2 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_2
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_3 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_3
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_4 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_4
-						days = 3600
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = { has_modifier = ccrebel_subsidiser_1_5 }
-					}
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1_5
-						days = 3600
-					}
-				}
-				else = {
-					add_modifier = {
-						modifier = ccrebel_subsidiser_1
-						days = 3600
-					}
-				}
-					
-				set_timed_planet_flag = {
-					flag = ccrebel_subsidiser_planet
-					days = 3610
-				}
-			}	
+			ccrebel_add_level_1_rebel_subsidiser = yes
+				
 			set_timed_relation_flag = {
 				who = event_target:ccrebel_subsidised_rebels
 				flag = ccrebel_subsidiser
@@ -2852,17 +2191,8 @@ country_event = {
 			}
 			
 			event_target:ccrebel_subsidised_rebels = {
-				capital_scope = {
-					add_modifier = {
-						modifier = ccrebel_subsidised_1
-						days = 3600
-					}
-					
-					set_timed_planet_flag = {
-						flag = ccrebel_subsidised_planet@event_target:ccrebel_subsidising_planet
-						days = 3600
-					}
-				}
+				ccrebel_add_level_1_rebel_subsidies = yes
+
 #				add_energy = 1000
 #				add_minerals = 3000
 				
@@ -2900,7 +2230,7 @@ country_event = {
 			has_valid_civic = civic_machine_terminator
 			has_valid_civic = civic_barbaric_despoilers
 		}
-		any_country = {
+		any_relation = {
 			NOR = {
 				has_valid_civic = civic_fanatic_purifiers
 				has_valid_civic = civic_hive_devouring_swarm
@@ -2913,12 +2243,10 @@ country_event = {
 					who = prev
 				}
 			}
-			any_owned_planet = {
-				NOR = {
-					has_modifier = ccrebel_subsidised_1
-					has_modifier = ccrebel_subsidised_2
-					has_modifier = ccrebel_subsidised_3
-				}
+			NOR = {
+				ccrebel_has_level_1_rebel_subsidies = yes
+				ccrebel_has_level_2_rebel_subsidies = yes
+				ccrebel_has_level_3_rebel_subsidies = yes
 			}
 		}
 	}
@@ -2938,11 +2266,10 @@ country_event = {
 						who = prev
 					}
 				}
-				any_owned_planet = {
-					NOR = {
-						has_modifier = ccrebel_subsidised_1
-						has_modifier = ccrebel_subsidised_2
-					}
+				NOR = {
+					ccrebel_has_level_1_rebel_subsidies = yes
+					ccrebel_has_level_2_rebel_subsidies = yes
+					ccrebel_has_level_3_rebel_subsidies = yes
 				}
 			}
 			save_event_target_as = ccrebel_subsidised_rebels

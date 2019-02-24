@@ -8,8 +8,8 @@ ccrebel_sow_unrest = {
 		category = decisions
 		cost = {
 			influence = 100
-			energy = 200
-			minerals = 200
+			energy = 250
+			minerals = 250
 		}
 	}
 	
@@ -175,116 +175,6 @@ ccrebel_sow_unrest = {
     }
 
     effect = {
-		owner = {
-			if = {
-				limit = { 
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 10000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 500
-							}
-						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 500
-							}
-							resource_stockpile_compare = {
-								resource = energy
-								value > 10000
-								
-							}
-						}
-					}
-				}
-				root = {
-					add_modifier = {
-						modifier = ccrebel_sowing_up_planet_4
-						days = 3600
-					}
-				}
-			}
-			else_if = {
-				limit = { 
-					OR = {
-						has_country_resource = {
-							type = minerals
-							amount > 5000
-						}
-						has_monthly_income = {
-							resource = minerals
-							value > 250
-						}
-					}
-					OR = {
-						has_monthly_income = {
-							resource = energy
-							value > 250
-						}
-						resource_stockpile_compare = {
-							resource = energy
-							value > 5000
-							
-						}
-					}
-				}
-				root = {
-					add_modifier = {
-						modifier = ccrebel_sowing_up_planet_3
-						days = 3600
-					}
-				}
-			}
-						
-			else_if = {
-				limit = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 2500
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 125
-							}
-						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 125
-							}
-							resource_stockpile_compare = {
-								resource = energy
-								value > 2500
-								
-							}
-						}
-					}
-				}
-				root = {
-					add_modifier = {
-						modifier = ccrebel_sowing_up_planet_2
-						days = 3600
-					}
-				}
-			}
-								
-			else = {
-				root = {
-					add_modifier = {
-						modifier = ccrebel_sowing_up_planet
-						days = 3600
-					}
-				}
-			}
-		}
-		
 		hidden_effect = {
 			owner = {
 				set_timed_country_flag = {

@@ -305,182 +305,222 @@ ccrebel_being_stirred_up_4 = {
 }
 
 #ccrebel_stirring_cost_1 = {
-#	planets_energy_produces_add = -30
-#	planets_minerals_produces_add = -65
+#	country_base_energy_produces_add = -30
+#	country_base_minerals_produces_add = -65
 #	planet_resource_influence_add = -1
 #}
 
-ccrebel_sowing_up_planet = {
-	planets_energy_produces_add = -5
-	planets_minerals_produces_add = -5
-	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
-	icon_frame = 3
-}
+#all unused as they do nothing!
+#ccrebel_sowing_up_planet = {
+#	country_base_energy_produces_add = -5
+#	country_base_minerals_produces_add = -5
+#	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
+#	icon_frame = 3
+#}
 
-ccrebel_sowing_up_planet_2 = {
-	planets_energy_produces_add = -5
-	planets_minerals_produces_add = -5
-	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
-	icon_frame = 3
-}
+#ccrebel_sowing_up_planet_2 = {
+#	country_base_energy_produces_add = -8
+#	country_base_minerals_produces_add = -8
+#	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
+#	icon_frame = 3
+#}
 
-ccrebel_sowing_up_planet_3 = {
-	planets_energy_produces_add = -12
-	planets_minerals_produces_add = -12
-	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
-	icon_frame = 3
-}
+#ccrebel_sowing_up_planet_3 = {
+#	country_base_energy_produces_add = -12
+#	country_base_minerals_produces_add = -12
+#	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
+#	icon_frame = 3
+#}
 
-ccrebel_sowing_up_planet_4 = {
-	planets_energy_produces_add = -15
-	planets_minerals_produces_add = -15
-	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
-	icon_frame = 3
-}
+#ccrebel_sowing_up_planet_4 = {
+#	country_base_energy_produces_add = -15
+#	country_base_minerals_produces_add = -15
+#	icon = "gfx/interface/icons/planet_modifiers/pm_sow_unrest.dds"
+#	icon_frame = 3
+#}
+
+#Receiving subsidies
 
 ccrebel_subsidised_1 = {
-	planets_energy_produces_add = 25
-	planets_minerals_produces_add = 25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 1
+	country_base_energy_produces_add = 25
+	country_base_minerals_produces_add = 25
+}
+
+ccrebel_subsidised_1_1 = {
+	country_base_energy_produces_add = 25
+	country_base_minerals_produces_add = 25
+}
+
+ccrebel_subsidised_1_2 = {
+	country_base_energy_produces_add = 25
+	country_base_minerals_produces_add = 25
+}
+
+ccrebel_subsidised_1_3 = {
+	country_base_energy_produces_add = 25
+	country_base_minerals_produces_add = 25
+}
+
+ccrebel_subsidised_1_4 = {
+	country_base_energy_produces_add = 25
+	country_base_minerals_produces_add = 25
+}
+
+ccrebel_subsidised_1_5 = {
+	country_base_energy_produces_add = 25
+	country_base_minerals_produces_add = 25
 }
 
 ccrebel_subsidised_2 = {
-	planets_energy_produces_add = 50
-	planets_minerals_produces_add = 50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 1
+	country_base_energy_produces_add = 50
+	country_base_minerals_produces_add = 50
+}
+
+ccrebel_subsidised_2_1 = {
+	country_base_energy_produces_add = 50
+	country_base_minerals_produces_add = 50
+}
+
+ccrebel_subsidised_2_2 = {
+	country_base_energy_produces_add = 50
+	country_base_minerals_produces_add = 50
+}
+
+ccrebel_subsidised_2_3 = {
+	country_base_energy_produces_add = 50
+	country_base_minerals_produces_add = 50
+}
+
+ccrebel_subsidised_2_4 = {
+	country_base_energy_produces_add = 50
+	country_base_minerals_produces_add = 50
+}
+
+ccrebel_subsidised_2_5 = {
+	country_base_energy_produces_add = 50
+	country_base_minerals_produces_add = 50
 }
 
 ccrebel_subsidised_3 = {
-	planets_energy_produces_add = 100
-	planets_minerals_produces_add = 100
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 1
+	country_base_energy_produces_add = 100
+	country_base_minerals_produces_add = 100
 }
 
+ccrebel_subsidised_3_1 = {
+	country_base_energy_produces_add = 100
+	country_base_minerals_produces_add = 100
+}
+
+ccrebel_subsidised_3_2 = {
+	country_base_energy_produces_add = 100
+	country_base_minerals_produces_add = 100
+}
+
+ccrebel_subsidised_3_3 = {
+	country_base_energy_produces_add = 100
+	country_base_minerals_produces_add = 100
+}
+
+ccrebel_subsidised_3_4 = {
+	country_base_energy_produces_add = 100
+	country_base_minerals_produces_add = 100
+}
+
+ccrebel_subsidised_3_5 = {
+	country_base_energy_produces_add = 100
+	country_base_minerals_produces_add = 100
+}
+
+
+
+#Paying subsidies
+
 ccrebel_subsidiser_1 = {
-	planets_energy_produces_add = -25
-	planets_minerals_produces_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -25
+	country_base_minerals_produces_add = -25
 }
 
 ccrebel_subsidiser_1_1 = {
-	planets_energy_produces_add = -25
-	planets_minerals_produces_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -25
+	country_base_minerals_produces_add = -25
 }
 
 ccrebel_subsidiser_1_2 = {
-	planets_energy_produces_add = -25
-	planets_minerals_produces_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -25
+	country_base_minerals_produces_add = -25
 }
 
 ccrebel_subsidiser_1_3 = {
-	planets_energy_produces_add = -25
-	planets_minerals_produces_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -25
+	country_base_minerals_produces_add = -25
 }
 
 ccrebel_subsidiser_1_4 = {
-	planets_energy_produces_add = -25
-	planets_minerals_produces_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -25
+	country_base_minerals_produces_add = -25
 }
 
 ccrebel_subsidiser_1_5 = {
-	planets_energy_produces_add = -25
-	planets_minerals_produces_add = -25
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -25
+	country_base_minerals_produces_add = -25
 }
 
 ccrebel_subsidiser_2 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_2_1 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_2_2 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_2_3 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_2_4 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_2_5 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_3 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_3_1 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_3_2 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_3_3 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_3_4 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }
 
 ccrebel_subsidiser_3_5 = {
-	planets_energy_produces_add = -50
-	planets_minerals_produces_add = -50
-	icon = "gfx/interface/icons/planet_modifiers/pm_gold_pile.dds"
-	icon_frame = 3
+	country_base_energy_produces_add = -50
+	country_base_minerals_produces_add = -50
 }

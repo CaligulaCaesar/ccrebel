@@ -116,25 +116,26 @@ on_war_beginning = {
 }
 
 
+##These two on_actions no longer exist
 
 # A pop has become fully grown
 # This = pop
-on_pop_birth = {
-	events = {
-		rebellionscript.475
-	}
-}
+#on_pop_birth = {
+#	events = {
+#		rebellionscript.475
+#	}
+#}
 
 # A pop has finished migrating to another planet
 # Root = pop
 # From = Tile on the new planet
 # FromFrom = Tile on the old planet
-on_pop_migration_end = {
-	events = {
-		rebellionscript.476
-		rebellionscript.1599
-	}
-}
+#on_pop_migration_end = {
+#	events = {
+#		rebellionscript.476
+#		rebellionscript.1599
+#	}
+#}
 
 
 #Fired whenever a new owner is set for a planet,

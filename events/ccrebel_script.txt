@@ -2427,6 +2427,7 @@ country_event = {
 				modifier = wave_of_unrest
 				days = -1
 			}
+			country_event = { id = rebellionscript.142 days = 180 }
 		}
 	}
 	option = {
@@ -2448,6 +2449,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		has_modifier = wave_of_unrest
 		has_country_flag = period_of_unrest1
 	}
 

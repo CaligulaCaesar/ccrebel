@@ -54,3 +54,73 @@ is_being_stirred_up = {
 #		has_modifier = ccrebel_stirring_cost_10
 #	}
 #}
+
+ccrebel_has_rebel_subsidies = {
+	OR = {
+		ccrebel_has_level_1_rebel_subsidies = yes
+		ccrebel_has_level_2_rebel_subsidies = yes
+		ccrebel_has_level_3_rebel_subsidies = yes
+	}
+}
+
+ccrebel_has_level_1_rebel_subsidies = {
+	OR = {
+		has_modifier = ccrebel_subsidised_1
+		has_modifier = ccrebel_subsidised_1_1
+		has_modifier = ccrebel_subsidised_1_2
+		has_modifier = ccrebel_subsidised_1_3
+		has_modifier = ccrebel_subsidised_1_4
+		has_modifier = ccrebel_subsidised_1_5
+	}
+}
+ccrebel_has_level_2_rebel_subsidies = {
+	OR = {
+		has_modifier = ccrebel_subsidised_2
+		has_modifier = ccrebel_subsidised_2_1
+		has_modifier = ccrebel_subsidised_2_2
+		has_modifier = ccrebel_subsidised_2_3
+		has_modifier = ccrebel_subsidised_2_4
+		has_modifier = ccrebel_subsidised_2_5
+	}
+}
+ccrebel_has_level_3_rebel_subsidies = {
+	OR = {
+		has_modifier = ccrebel_subsidised_3
+		has_modifier = ccrebel_subsidised_3_1
+		has_modifier = ccrebel_subsidised_3_2
+		has_modifier = ccrebel_subsidised_3_3
+		has_modifier = ccrebel_subsidised_3_4
+		has_modifier = ccrebel_subsidised_3_5
+	}
+}
+
+ccrebel_has_level_1_rebel_subsidising = {
+	OR = {
+		has_modifier = ccrebel_subsidiser_1
+		has_modifier = ccrebel_subsidiser_1_1
+		has_modifier = ccrebel_subsidiser_1_2
+		has_modifier = ccrebel_subsidiser_1_3
+		has_modifier = ccrebel_subsidiser_1_4
+		has_modifier = ccrebel_subsidiser_1_5
+	}
+}
+ccrebel_has_level_2_rebel_subsidising = {
+	OR = {
+		has_modifier = ccrebel_subsidiser_2
+		has_modifier = ccrebel_subsidiser_2_1
+		has_modifier = ccrebel_subsidiser_2_2
+		has_modifier = ccrebel_subsidiser_2_3
+		has_modifier = ccrebel_subsidiser_2_4
+		has_modifier = ccrebel_subsidiser_2_5
+	}
+}
+ccrebel_has_level_3_rebel_subsidising = {
+	OR = {
+		has_modifier = ccrebel_subsidiser_3
+		has_modifier = ccrebel_subsidiser_3_1
+		has_modifier = ccrebel_subsidiser_3_2
+		has_modifier = ccrebel_subsidiser_3_3
+		has_modifier = ccrebel_subsidiser_3_4
+		has_modifier = ccrebel_subsidiser_3_5
+	}
+}
