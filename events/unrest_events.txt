@@ -12,6 +12,7 @@ planet_event = {
 	
 	trigger = {
 		has_owner = yes
+		is_colony = yes
 		exists = owner
 		planet_stability < @stabilitylevel2
 		NOR = {
@@ -2360,6 +2361,19 @@ planet_event = {
 						has_orbital_bombardment = no
 						exists = controller
 						controller = { is_same_value = root.owner }
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_authority = auth_machine_intelligence
+						is_war_leader = yes
+						any_war = {
+							using_war_goal = {
+								type = wg_machine_uprising 
+								owner = root.owner
+							}
+						}
 					}
 				}
 				modifier = {
