@@ -96,20 +96,34 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		has_planet_flag = cc_planet_sowing_unrest_marker
+		OR = {
+			has_planet_flag = cc_planet_sowing_unrest_marker
+			is_being_stirred_up = yes
+		}
 	}
 	
 	immediate = {
-		every_country = {
-			every_owned_planet = {
-				limit = {
-					has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@root
-				}
-				cc_remove_su_modifiers = yes
-				
-				owner = { country_event = { id = ccrebel_sow_unrest.21 days = 1 random = 10 } }
+		if = {
+			limit = {
+				is_being_stirred_up = yes
 			}
-		}	
+			cc_remove_su_modifiers = yes
+		}
+		if = {
+			limit = {
+				has_planet_flag = cc_planet_sowing_unrest_marker
+			}
+			every_playable_country = {
+				every_owned_planet = {
+					limit = {
+						has_planet_flag = ccrebel_planet_being_stirred_up_longer_planet@root
+					}
+					cc_remove_su_modifiers = yes
+					
+					owner = { country_event = { id = ccrebel_sow_unrest.21 days = 1 random = 10 } }
+				}
+			}	
+		}
 	}
 }
 
@@ -1410,7 +1424,6 @@ country_event = {
 		name = OK
 	}
 }
-
 
 
 country_event = {
