@@ -40,6 +40,9 @@ rebellionscript.17.desc.gestalt:0 "The [root.GetName] is in a state of turmoil a
 rebellionscript.25.name:0 "State Power Restored"
 rebellionscript.25.desc:0 "The people of the [Root.GetName] have breathed a sigh of relief today, as the newly reformed navy was finally unveiled. The population no longer feels vulnerable, and is confident looking into the future."
 rebellionscript.25.desc.gestalt:0 "The [Root.GetName]'s new fleet has finally been unveiled. Unaligned elements are awed by its might, and have stopped agitating for freedom as they know it is no longer realisable."
+rebellionscript.25.desc.ally:0 "The people of the [Root.GetName] have breathed a sigh of relief today, as the leadership of the [cc_strong_ally.GetName] confirmed that they would aid us in our wars. Backed by [cc_strong_ally.GetAdj] might, the population no longer feels vulnerable and is able to look to the future with a degree of confidence."
+rebellionscript.25.desc.gestalt.ally:0 "The [cc_strong_ally.GetName]'s leadership has offered us assurances that they will support us in our wars. Fearing the might of the [cc_strong_ally.GetAdj] fleet, unaligned elements have stopped agitating for freedom as they know it is no longer realisable."
+rebellionscript.25.option:0 "Good to know."
 rebellionscript.25.option:0 "Good to know."
 
 

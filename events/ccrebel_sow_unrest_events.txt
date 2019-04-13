@@ -3300,6 +3300,15 @@ country_event = {
 					is_ship_size = corvette
 					is_in_combat = no
 				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
+				}
 				delete_ship = this
 			}
 			event_target:ccrebel_subsidised_rebels = {
