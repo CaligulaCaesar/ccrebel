@@ -10,16 +10,17 @@ planet_event = {
 	id = unrest.9999
 	hide_window = yes
 	
-	trigger = {
+	pre_triggers = {
 		has_owner = yes
-		is_colony = yes
-		exists = owner
+		has_ground_combat = no
+	}
+
+	trigger = {
 		planet_stability < @stabilitylevel2
 		NOR = {
 			has_planet_flag = cc_revolt_imminent
 			has_planet_flag = recent_unrest_event
 		}
-		has_ground_combat = no
 		has_orbital_bombardment = no
 		exists = controller
 		controller = { is_same_value = root.owner }
@@ -819,8 +820,12 @@ planet_event = {
 	show_sound = event_planetary_riot
 	location = root
 
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+	}
+
 	trigger = {
-		exists = owner
 		owner = { is_country_type = default }
 		exists = controller
 		controller = { is_same_value = root.owner }
@@ -833,7 +838,6 @@ planet_event = {
 			has_modifier = adding_unrest_slaves
 			has_modifier = revolt_suppressed
 		}
-		has_ground_combat = no
 		has_orbital_bombardment = no
  		any_owned_pop = {
 			NOT = { has_trait = trait_mechanical }

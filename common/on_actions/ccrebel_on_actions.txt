@@ -86,9 +86,15 @@ on_monthly_pulse = {
 		rebellionscript.15
 		rebellionscript.42
 		rebellionscript.801
+		cc_slaves_rebel.5
+	}
+}
+
+# No scope, like on_game_start
+on_monthly_pulse_country = {
+	events = {
 		cc_slaves_rebel.22
 		cc_slaves_rebel.3
-		cc_slaves_rebel.5		
 		cc_slaves_rebel.11
 	}
 }

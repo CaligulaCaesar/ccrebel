@@ -1,6 +1,6 @@
 
-on_monthly_pulse = {
-	events = {
-		rebellionscript.800
-	}
-}
+#on_monthly_pulse = {
+#	events = {
+#		rebellionscript.800
+#	}
+#}
