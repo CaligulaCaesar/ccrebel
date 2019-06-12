@@ -712,28 +712,26 @@ country_event = {
 			
 			modifier = {
 				factor = 0
-				NOT = {
-					AND = {
-						OR = {
-							has_country_resource = {
-								type = minerals
-								amount > 4000
-							}
-							has_monthly_income = {
-								resource = minerals
-								value > 200
-							}
+				NAND = {
+					OR = {
+						has_country_resource = {
+							type = minerals
+							amount > 4000
 						}
-						OR = {
-							has_monthly_income = {
-								resource = energy
-								value > 200
-							}
-							resource_stockpile_compare = {
-								resource = energy
-								value > 4000
-								
-							}
+						has_monthly_income = {
+							resource = minerals
+							value > 200
+						}
+					}
+					OR = {
+						has_monthly_income = {
+							resource = energy
+							value > 200
+						}
+						resource_stockpile_compare = {
+							resource = energy
+							value > 4000
+							
 						}
 					}
 				}

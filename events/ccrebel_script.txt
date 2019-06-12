@@ -488,6 +488,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		has_planet_flag = will_copycat_nationalist
 		
@@ -495,8 +498,6 @@ planet_event = {
 			has_planet_flag = recent_unrest_event
 			has_planet_flag = revolt_in_progress
 		}
-		
-		has_ground_combat = no
 		
 		owner = { has_modifier = wave_of_unrest }
 	}
@@ -566,6 +567,9 @@ planet_event = {
 
 	is_triggered_only = yes
 
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		planet_stability < @stabilitylevel2
 		has_planet_flag = will_copycat_nationalist
@@ -575,7 +579,7 @@ planet_event = {
 			has_planet_flag = revolt_in_progress
 			has_planet_flag = ccrebel_chain_revolt_pause
 		}
-		has_ground_combat = no
+		
 		
 		exists = controller
 		controller = { is_same_value = root.owner }
@@ -1182,6 +1186,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		has_planet_flag = will_copycat_standard 
 		
@@ -1189,7 +1196,7 @@ planet_event = {
 			has_planet_flag = recent_unrest_event 
 			has_planet_flag = revolt_in_progress
 		}
-		has_ground_combat = no
+		
 		
 		owner = { has_modifier = wave_of_unrest }
 	}
@@ -1262,6 +1269,9 @@ planet_event = {
 
 	is_triggered_only = yes
 
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		planet_stability < @stabilitylevel2
 		has_planet_flag = will_copycat_standard 
@@ -1271,7 +1281,7 @@ planet_event = {
 			has_planet_flag = revolt_in_progress
 			has_planet_flag = ccrebel_chain_revolt_pause
 		}
-		has_ground_combat = no
+		
 		
 		exists = controller
 		controller = { is_same_value = root.owner }
@@ -1616,6 +1626,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		has_planet_flag = will_copycat_slave 
 		
@@ -1627,7 +1640,7 @@ planet_event = {
 			has_planet_flag = recent_unrest_event 
 			has_planet_flag = revolt_in_progress
 		}
-		has_ground_combat = no
+		
 		
 		owner = { has_modifier = wave_of_unrest }
 	}

@@ -1085,10 +1085,8 @@ ccrebel_sow_unrest = {
 							every_owned_pop = {
 								limit = {
 									cc_has_happiness = yes
-									AND = {
-										is_same_species = root.owner
-										NOT = { is_same_species = prev.owner }
-									}
+									is_same_species = root.owner
+									NOT = { is_same_species = prev.owner }
 								}
 								add_modifier = {
 									modifier = ccrebel_being_stirred_up

@@ -903,6 +903,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		exists = owner
 		owner = {
@@ -911,7 +914,6 @@ planet_event = {
 		}
 		exists = controller
 		controller = { is_same_value = root.owner }
-		has_ground_combat = no
 		has_orbital_bombardment = no
 		
 		any_owned_pop = { cc_has_happiness = yes }
@@ -2512,8 +2514,12 @@ planet_event = {
 
 	is_triggered_only = yes
 
-	trigger = {
+	pre_triggers = {
 		has_owner = yes
+		has_ground_combat = no
+	}
+	trigger = {
+		
 		planet_stability < @stabilitylevel1
 		check_variable = {
 			which = unrest_50
@@ -2528,7 +2534,7 @@ planet_event = {
 			has_planet_flag = slave_revolt
 		}
 		
-		has_ground_combat = no
+		
 		exists = controller
 		controller = { is_same_value = root.owner }
 	}

@@ -242,6 +242,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		has_planet_flag = cc_patriot_revolt 
 		
@@ -254,7 +257,6 @@ planet_event = {
 			has_modifier = cc_war_with_kin
 		}
 
-		has_ground_combat = no
 		exists = controller
 		controller = { is_same_value = root.owner }
 		
@@ -346,6 +348,9 @@ planet_event = {
 
 	is_triggered_only = yes
 
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		planet_stability < @stabilitylevel2
 		has_planet_flag = cc_patriot_revolt 
@@ -354,7 +359,7 @@ planet_event = {
 			has_planet_flag = recent_unrest_event 
 			has_planet_flag = revolt_in_progress
 		}
-		has_ground_combat = no
+		
 		controller = { is_same_value = root.owner }
 		
 		any_owned_pop = { 

@@ -390,14 +390,10 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	pre_triggers = {
-		is_country_type = default
-		is_subject = yes
-	}
-
 	trigger = {
 		has_valid_civic = civic_broken_shackles
 		has_valid_civic = civic_free_republic
+		is_subject = yes
 	}
 	immediate = {
 		change_government = {
@@ -441,10 +437,6 @@ country_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
-
-	pre_triggers = {
-		is_country_type = default
-	}
 
 	trigger = {
 		has_valid_civic = civic_broken_shackles
@@ -843,6 +835,9 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	
+	pre_triggers = {
+		has_ground_combat = no
+	}
 	trigger = {
 		has_modifier = cc_planet_call_of_liberty
  		any_owned_pop = {
@@ -855,7 +850,6 @@ planet_event = {
 		NOT = { 
 			has_planet_flag = revolt_in_progress
 		}
-		has_ground_combat = no
 		
 		exists = event_target:cc_repeating_revolt
 		owner = { is_same_value = event_target:cc_repeating_revolt }
@@ -1420,10 +1414,6 @@ country_event = {
 	id = cc_slaves_rebel.11
 	hide_window = yes
 	is_triggered_only = yes
-
-	pre_triggers = {
-		is_country_type = default
-	}
 
 	trigger = {
 		has_modifier = fighting_for_liberty
