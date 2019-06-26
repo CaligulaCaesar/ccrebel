@@ -411,7 +411,7 @@ planet_event = {
 				save_event_target_as = fatherland
 				set_timed_country_flag = {
 					flag = ccrebel_seceed_to_patriot@root
-					days = 90
+					days = 360
 				}
 			}
 			random_owned_pop = {
