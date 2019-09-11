@@ -584,6 +584,9 @@ planet_event = {
 		exists = controller
 		controller = { is_same_value = root.owner }
 		
+		any_owned_pop = {
+			cc_has_happiness = yes
+		}
 	}
 
 	immediate = {
@@ -788,6 +791,15 @@ planet_event = {
 					}
 				}
 				save_event_target_as = ccrebel_rebellion_pop
+			}
+			if = { #I don't trust the above
+				limit = { NOT = { exists = event_target:ccrebel_rebellion_pop } }
+				random_owned_pop = {
+					limit = {
+						cc_has_happiness = yes
+					}
+					save_event_target_as = ccrebel_rebellion_pop
+				}
 			}
 			create_rebels = {
 				species = event_target:ccrebel_rebellion_pop
@@ -1379,6 +1391,15 @@ planet_event = {
 				}
 			}
 			save_event_target_as = ccrebel_rebellion_pop
+		}
+		if = { #I don't trust the above
+			limit = { NOT = { exists = event_target:ccrebel_rebellion_pop } }
+			random_owned_pop = {
+				limit = {
+					cc_has_happiness = yes
+				}
+				save_event_target_as = ccrebel_rebellion_pop
+			}
 		}
 		if = {
 			limit = { # has original owner
