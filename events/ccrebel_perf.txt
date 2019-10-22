@@ -602,7 +602,10 @@ event = {
 					limit = {
 						pop_percentage = {
 							percentage > 0.6
-							limit = { is_enslaved = yes }
+							limit = {
+								is_enslaved = yes
+								cc_sapient_and_has_happiness = yes
+							}
 						}
 					}
 					set_timed_planet_flag = {

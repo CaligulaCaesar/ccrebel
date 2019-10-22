@@ -1140,6 +1140,7 @@ planet_event = {
 		planet_stability < @stabilitylevel1
  		any_owned_pop = {
 			is_enslaved = yes
+			cc_sapient_and_has_happiness = yes
 		}
 		has_planet_flag = slave_resistance
 		NOR = {
@@ -1205,7 +1206,7 @@ planet_event = {
 		has_planet_flag = slave_riots
  		any_owned_pop = {
 			is_enslaved = yes
-			cc_has_happiness = yes
+			cc_sapient_and_has_happiness = yes
 		}
 		NOR = { 
 			has_planet_flag = slave_revolt
@@ -1219,7 +1220,7 @@ planet_event = {
 		random_owned_pop = {
 			limit = {
 				is_enslaved = yes
-				cc_has_happiness = yes
+				cc_sapient_and_has_happiness = yes
 			}
 			weights = {
 				base = 1
@@ -1291,7 +1292,7 @@ planet_event = {
 			random_owned_pop = {
 				limit = {
 					is_enslaved = yes
-					cc_has_happiness = yes
+					cc_sapient_and_has_happiness = yes
 				}
 				save_event_target_as = leader_pop
 			}
@@ -1443,6 +1444,7 @@ planet_event = {
 					every_owned_pop = {
 						limit = {
 							is_enslaved = yes
+							cc_sapient_and_has_happiness = yes
 						}
 						planet = {
 							change_variable = {
@@ -2130,6 +2132,7 @@ event = {
 					NOT = {
 						any_owned_pop = {
 							is_enslaved = yes
+							cc_sapient_and_has_happiness = yes
 						}
 					}
 				}
@@ -2564,7 +2567,7 @@ planet_event = {
 		random_owned_pop = {
 			limit = {
 				is_enslaved = yes
-				cc_has_happiness = yes
+				cc_sapient_and_has_happiness = yes
 			}
 			weights = {
 				base = 1
@@ -2785,7 +2788,7 @@ planet_event = {
 					percentage > 0.4
 					limit = {
 						is_enslaved = yes
-						cc_has_happiness = yes
+						cc_sapient_and_has_happiness = yes
 					}
 				}
 			}

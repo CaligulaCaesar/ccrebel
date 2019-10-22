@@ -464,7 +464,7 @@ country_event = {
 				}
 				every_owned_pop = {
 					limit = {
-						cc_has_happiness = yes
+						cc_sapient_and_has_happiness = yes
 						is_enslaved = yes
 						NOR = {
 							has_modifier = cc_call_of_liberty
@@ -876,7 +876,10 @@ planet_event = {
 					factor = 1.25
 					pop_percentage = {
 						percentage > 0.74
-						limit = { is_enslaved = yes }
+						limit = {
+							is_enslaved = yes
+							cc_sapient_and_has_happiness = yes
+						}
 					}
 				}
 			}
@@ -908,6 +911,7 @@ planet_event = {
 		has_modifier = cc_planet_call_of_liberty
  		any_owned_pop = {
 			is_enslaved = yes
+			cc_sapient_and_has_happiness = yes
 		}
 		NOR = { 
 			has_planet_flag = slave_revolt
@@ -960,6 +964,7 @@ planet_event = {
 			random_owned_pop = {
 				limit = {
 					is_enslaved = yes
+					cc_sapient_and_has_happiness = yes
 				}
 				save_event_target_as = leader_pop
 			}
@@ -1110,6 +1115,7 @@ planet_event = {
 						every_owned_pop = {
 							limit = {
 								is_enslaved = yes
+								cc_sapient_and_has_happiness = yes
 							}
 							planet = {
 								change_variable = {
@@ -1167,6 +1173,7 @@ planet_event = {
 			random_owned_pop = {
 				limit = {
 					is_enslaved = yes
+					cc_sapient_and_has_happiness = yes
 				}
 				save_event_target_as = leader_pop
 			}
@@ -1311,6 +1318,7 @@ planet_event = {
 						every_owned_pop = {
 							limit = {
 								is_enslaved = yes
+								cc_sapient_and_has_happiness = yes
 							}
 							planet = {
 								change_variable = {

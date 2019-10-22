@@ -245,7 +245,7 @@ planet_event = {
 						any_owned_planet = {
 							has_planet_flag = ccrebel_su_can_be_targeted@root
 							any_owned_pop = {
-								cc_has_happiness = yes
+								cc_sapient_and_has_happiness = yes
 								is_enslaved = yes
 							}
 						}

@@ -37,7 +37,10 @@ opinion_stirring_up_slaves = {
 	trigger = {
 		is_country_type = default
 		has_policy_flag = slavery_allowed
-		any_owned_pop = { is_enslaved = yes }
+		any_owned_pop = {
+			is_enslaved = yes
+			cc_sapient_and_has_happiness = yes
+		}
 		FROM = {
 			has_valid_civic = civic_broken_shackles
 			is_neighbor_of = root
