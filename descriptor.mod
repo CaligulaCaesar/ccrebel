@@ -6,7 +6,7 @@ tags={
 	"Overhaul"
 	"Fixes"
 }
-picture="potent_rebellions.png"
+picture="thumbnail.png"
 version="2.0"
-supported_version="2.4.*"
+supported_version="2.5.*"
 remote_file_id="1112740619"
