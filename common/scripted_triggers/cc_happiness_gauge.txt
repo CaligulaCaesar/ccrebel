@@ -1,7 +1,7 @@
 
 # this = pop
 # taken from Vanilla game rule species_has_happiness
-cc_has_happiness = {
+pop_has_happiness = {
 	NOR = {
 		has_trait = trait_machine_unit
 		has_trait = trait_hive_mind

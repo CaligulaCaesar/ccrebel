@@ -3264,7 +3264,7 @@ country_event = {
 	}
 		
 	option = {
-		name = ccrebel_sow_unrest.6.option.B
+		name = ccrebel_sow_unrest.6.option.C
 		
 		ai_chance = {
 			factor = 5
@@ -3343,6 +3343,15 @@ country_event = {
 					is_ship_size = corvette
 					is_in_combat = no
 				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
+				}
 				delete_ship = this
 			}
 			event_target:ccrebel_subsidised_rebels = {
@@ -3379,6 +3388,15 @@ country_event = {
 					is_ship_size = destroyer
 					is_in_combat = no
 				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
+				}
 				delete_ship = this
 			}
 			event_target:ccrebel_subsidised_rebels = {
@@ -3413,6 +3431,15 @@ country_event = {
 				limit = {
 					is_ship_size = destroyer
 					is_in_combat = no
+				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
 				}
 				delete_ship = this
 			}
@@ -3449,6 +3476,15 @@ country_event = {
 					is_ship_size = cruiser
 					is_in_combat = no
 				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
+				}
 				delete_ship = this
 			}
 			event_target:ccrebel_subsidised_rebels = {
@@ -3484,6 +3520,15 @@ country_event = {
 					is_ship_size = cruiser
 					is_in_combat = no
 				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
+				}
 				delete_ship = this
 			}
 			event_target:ccrebel_subsidised_rebels = {
@@ -3518,6 +3563,15 @@ country_event = {
 				limit = {
 					is_ship_size = battleship
 					is_in_combat = no
+				}
+				if = {
+					limit = {
+						fleet = {
+							num_ships = 1
+							exists = leader
+						}
+					}
+					leader = { unassign_leader = this }
 				}
 				delete_ship = this
 			}
