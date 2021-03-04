@@ -162,6 +162,11 @@ wg_ccrebel_independence = {
             }
         }
 	}
+
+	allowed_peace_offers = {
+		status_quo
+		demand_surrender
+	}
 	
 	ai_weight = {
 		weight = 100
