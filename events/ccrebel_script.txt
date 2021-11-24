@@ -735,7 +735,7 @@ planet_event = {
 				weights = {
 					base = 1
 					modifier = {
-						mult = 0.5
+						factor = 0.5
 						root = {
 							count_owned_pop = {
 								limit = {
@@ -746,7 +746,7 @@ planet_event = {
 						}
 					}
 					modifier = {
-						mult = 2.5
+						factor = 2.5
 						root = {
 							count_owned_pop = {
 								limit = {
@@ -757,7 +757,7 @@ planet_event = {
 						}
 					}
 					modifier = {
-						mult = 2.5
+						factor = 2.5
 						root = {
 							count_owned_pop = {
 								limit = {
@@ -768,7 +768,7 @@ planet_event = {
 						}
 					}
 					modifier = {
-						mult = 3.5
+						factor = 3.5
 						root = {
 							count_owned_pop = {
 								limit = {
@@ -779,7 +779,7 @@ planet_event = {
 						}
 					}
 					modifier = {
-						mult = 5
+						factor = 5
 						root = {
 							count_owned_pop = {
 								limit = {
@@ -1335,7 +1335,7 @@ planet_event = {
 			weights = {
 				base = 1
 				modifier = {
-					mult = 0.5
+					factor = 0.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1346,7 +1346,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 2.5
+					factor = 2.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1357,7 +1357,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 2.5
+					factor = 2.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1368,7 +1368,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 3.5
+					factor = 3.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1379,7 +1379,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 5
+					factor = 5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1785,7 +1785,7 @@ planet_event = {
 			weights = {
 				base = 1
 				modifier = {
-					mult = 0.5
+					factor = 0.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1797,7 +1797,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 2.5
+					factor = 2.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1809,7 +1809,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 2.5
+					factor = 2.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1821,7 +1821,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 3.5
+					factor = 3.5
 					root = {
 						count_owned_pop = {
 							limit = {
@@ -1833,7 +1833,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					mult = 5
+					factor = 5
 					root = {
 						count_owned_pop = {
 							limit = {
