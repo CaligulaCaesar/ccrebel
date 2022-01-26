@@ -131,7 +131,7 @@ wg_ccrebel_independence = {
                             min_steps = 1
                             max_steps = 1
                             limit = {
-                                is_within_borders_of = from
+                                is_within_borders_of = root.from
                                 starbase = { has_starbase_size = starbase_outpost }
                                 NOT = { root = { has_claim = prev } }
                                 NOT = { any_system_planet = { is_colony = yes } }
@@ -146,7 +146,7 @@ wg_ccrebel_independence = {
                             min_steps = 1
                             max_steps = 1
                             limit = {
-                                is_within_borders_of = from
+                                is_within_borders_of = root.from
                                 starbase = { has_starbase_size = starbase_outpost }
                                 NOT = { root = { has_claim = prev } }
                                 NOT = { any_system_planet = { is_colony = yes } }
